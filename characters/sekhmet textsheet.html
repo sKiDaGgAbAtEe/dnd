@@ -268,7 +268,7 @@
   .atk-chevron.open { transform:rotate(90deg); color:var(--gold); }
 </style>
 </head>
-<body>
+<body data-character="sekhmet">
 
 <!-- ══════════════ PAGE 1 ══════════════ -->
 <div class="page">
@@ -772,6 +772,153 @@
       pip.style.borderColor = isActive ? '' : 'var(--gold)';
     });
   });
+
+  // =========================
+  // JSON wiring (party.json)
+  // =========================
+  (function () {
+    const CHARACTER = document.body.dataset.character || 'sekhmet';
+    const PARTY_JSON_URL = '../party.json'; // page lives at /dnd/characters/, JSON at /dnd/party.json
+
+    const abKey = (s) => (s || '').trim().toLowerCase().slice(0,3); // str/dex/con/int/wis/cha
+    const abMod = (score) => {
+      const n = Number(score);
+      if (!Number.isFinite(n)) return '';
+      const mod = Math.floor((n - 10) / 2);
+      return (mod >= 0 ? '+' : '') + String(mod);
+    };
+
+    const setText = (el, value) => {
+      if (!el) return;
+      el.textContent = (value === undefined || value === null) ? '' : String(value);
+    };
+
+    const setInfoCell = (labelContains, value) => {
+      const cells = document.querySelectorAll('.info-grid .info-cell');
+      for (const cell of cells) {
+        const lbl = cell.querySelector('.info-label')?.textContent?.trim().toLowerCase() || '';
+        if (lbl.includes(labelContains)) {
+          setText(cell.querySelector('.info-value'), value);
+          return;
+        }
+      }
+    };
+
+    async function load() {
+      const res = await fetch(PARTY_JSON_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Failed to fetch party.json (${res.status})`);
+      const data = await res.json();
+      const c = data?.characters?.[CHARACTER];
+      if (!c) throw new Error(`Character not found in party.json: ${CHARACTER}`);
+
+      // Name banner
+      setText(document.querySelector('.char-name-big'), c.name || '—');
+
+      // Info grid
+      setInfoCell('class', `LVL ${c.level ?? ''} ${c.class ?? ''}`.trim());
+      setInfoCell('background', c.background ?? '—');
+      setInfoCell('player', c.player ?? '—');
+      setInfoCell('race', c.race ?? '—');
+      setInfoCell('alignment', c.alignment ?? '—');
+      setInfoCell('experience', c.xp ?? '0');
+
+      // Abilities
+      document.querySelectorAll('.ability-block').forEach(block => {
+        const name = block.querySelector('.ab-name')?.textContent || '';
+        const key = abKey(name);
+        const score = c.abilities?.[key];
+        if (score === undefined) return;
+        setText(block.querySelector('.ab-score'), score);
+        setText(block.querySelector('.ab-mod-box'), abMod(score));
+      });
+
+      // Proficiency bonus
+      if (c.combat?.proficiency_bonus !== undefined) {
+        setText(document.querySelector('.prof-val'), c.combat.proficiency_bonus);
+      }
+
+      // Combat row
+      document.querySelectorAll('.combat-stat').forEach(stat => {
+        const lbl = stat.querySelector('.cs-lbl')?.textContent?.trim().toLowerCase() || '';
+        const valEl = stat.querySelector('.cs-val');
+        if (!valEl) return;
+
+        if (lbl.includes('armor')) setText(valEl, c.combat?.ac ?? valEl.textContent);
+        else if (lbl.includes('initiative')) setText(valEl, c.combat?.initiative ?? valEl.textContent);
+        else if (lbl.includes('speed')) setText(valEl, c.combat?.speed ?? valEl.textContent);
+      });
+
+      // Hit Points (max + current)
+      const hpMaxDiv = Array.from(document.querySelectorAll('.section .section-body div'))
+        .find(d => (d.textContent || '').trim().toLowerCase().startsWith('hit point maximum'));
+      if (hpMaxDiv && c.combat?.hp_max !== undefined) {
+        hpMaxDiv.textContent = `Hit Point Maximum: ${c.combat.hp_max}`;
+      }
+      const hpBig = Array.from(document.querySelectorAll('.section .section-body div'))
+        .find(d => (d.style?.fontSize || '') === '48px' && (d.textContent || '').trim().match(/^\d+$/));
+      if (hpBig && c.combat?.hp_current !== undefined) {
+        setText(hpBig, c.combat.hp_current);
+      }
+
+      // Hit Dice
+      const hitDiceLabel = Array.from(document.querySelectorAll('.section-body div'))
+        .find(d => (d.textContent || '').trim().toLowerCase() === 'hit dice');
+      if (hitDiceLabel) {
+        const val = hitDiceLabel.parentElement?.querySelector("div[style*="font-family:'Cinzel Decorative'"]");
+        if (val && c.combat?.hit_dice) setText(val, c.combat.hit_dice);
+      }
+
+      // Passive Perception
+      if (c.combat?.passive_perception !== undefined) {
+        setText(document.querySelector('.passive-val'), c.combat.passive_perception);
+      }
+
+      // Skills (keep existing layout; just update values + proficiency dots)
+      const skillMap = new Map();
+      (c.skills || []).forEach(s => skillMap.set(String(s.name || '').toLowerCase(), s));
+
+      document.querySelectorAll('.skill-row').forEach(row => {
+        const name = row.querySelector('.skill-name')?.textContent?.trim().toLowerCase();
+        if (!name) return;
+        const s = skillMap.get(name);
+        if (!s) return;
+        setText(row.querySelector('.skill-val'), s.bonus ?? '');
+        const dot = row.querySelector('.dot');
+        if (dot) {
+          if (s.proficient) dot.classList.add('filled');
+          else dot.classList.remove('filled');
+        }
+      });
+
+      // Equipment list (rebuild items, keep styling)
+      const equipSection = Array.from(document.querySelectorAll('.section'))
+        .find(sec => (sec.querySelector('.section-title')?.textContent || '').trim().toLowerCase() === 'equipment');
+      if (equipSection) {
+        const body = equipSection.querySelector('.section-body');
+        if (body) {
+          body.innerHTML = '';
+          (c.equipment || []).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'equip-item';
+            div.textContent = item;
+            body.appendChild(div);
+          });
+          if (c.gold !== undefined && c.gold !== null) {
+            const div = document.createElement('div');
+            div.className = 'equip-item';
+            div.textContent = `Belt Pouch · ${c.gold} GP`;
+            body.appendChild(div);
+          }
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      load().catch(err => {
+        console.warn('[sheet wiring]', err);
+      });
+    });
+  })();
 </script>
 </body>
 </html>
