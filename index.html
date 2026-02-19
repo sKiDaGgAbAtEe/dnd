@@ -742,7 +742,7 @@
   <div class="char-grid">
 
     <!-- SEKHMET -->
-    <div class="char-card theme-sekhmet" style="--reveal-delay: 0.1s;">
+    <div class="char-card theme-sekhmet" data-character="sekhmet" style="--reveal-delay: 0.1s;">
       <div class="card-image">
         <img src="Sekhmet.png" alt="Sekhmet">
         <div class="card-image-overlay"></div>
@@ -810,7 +810,7 @@
     </div>
 
     <!-- RAVEN -->
-    <div class="char-card theme-raven" style="--reveal-delay: 0.2s;">
+    <div class="char-card theme-raven" data-character="raven" style="--reveal-delay: 0.2s;">
       <div class="card-image">
         <img src="raven.png" alt="Raven">
         <div class="card-image-overlay"></div>
@@ -870,7 +870,7 @@
           <a href="/dnd/characters/raven.html" class="btn btn-primary">
             <span class="btn-icon">🗡️</span> Character Sheet
           </a>
-          <a href="/dnd/characters/raven_textsheet.html" class="btn btn-secondary">
+          <a href="/dnd/characters/raven textsheet.html" class="btn btn-secondary">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -878,7 +878,7 @@
     </div>
 
     <!-- ASTRICA -->
-    <div class="char-card theme-astrica" style="--reveal-delay: 0.3s;">
+    <div class="char-card theme-astrica" data-character="astrica" style="--reveal-delay: 0.3s;">
       <div class="card-image">
         <img src="astrica.png" alt="Astrica">
         <div class="card-image-overlay"></div>
@@ -938,7 +938,7 @@
           <a href="/dnd/characters/astrica.html" class="btn btn-primary">
             <span class="btn-icon">✨</span> Character Sheet
           </a>
-          <a href="/dnd/characters/astrica_textsheet.html" class="btn btn-secondary">
+          <a href="/dnd/characters/astrica textsheet.html" class="btn btn-secondary">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1042,6 +1042,97 @@
       card.style.transform = '';
     });
   });
+</script>
+
+
+<script>
+/* ── PARTY.JSON WIRING (landing cards) ── */
+(async function () {
+  const CANDIDATES = [
+    "./party.json",
+    "party.json",
+    "/dnd/party.json",
+    "../party.json",
+    "../../party.json"
+  ];
+
+  async function loadParty() {
+    let lastErr = null;
+    for (const url of CANDIDATES) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) { lastErr = new Error(`HTTP ${r.status} @ ${url}`); continue; }
+        return await r.json();
+      } catch (e) { lastErr = e; }
+    }
+    throw lastErr || new Error("Could not load party.json");
+  }
+
+  function abMod(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "";
+    const m = Math.floor((n - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+
+  function setText(el, txt) {
+    if (!el) return;
+    el.textContent = (txt ?? "").toString();
+  }
+
+  function buildJoin(parts) {
+    return parts.filter(Boolean).join(" · ");
+  }
+
+  try {
+    const party = await loadParty();
+    const chars = party?.characters || {};
+
+    document.querySelectorAll(".char-card[data-character]").forEach(card => {
+      const key = card.getAttribute("data-character");
+      const c = chars?.[key];
+      if (!c) return;
+
+      // Name
+      setText(card.querySelector(".char-name"), c.name || key);
+
+      // Level badge
+      setText(card.querySelector(".level-badge .level-num"), c.level);
+
+      // Class badge (Class · Subclass)
+      setText(card.querySelector(".class-badge"), buildJoin([c.class, c.subclass]));
+
+      // Subtitle line under name (Race · Subclass/Path · Background)
+      setText(card.querySelector(".char-race-class"), buildJoin([c.race, c.subclass, c.background]));
+
+      // Abilities (ordered)
+      const order = ["str","dex","con","int","wis","cha"];
+      const cells = card.querySelectorAll(".stat-row .stat-cell");
+      order.forEach((k, i) => {
+        const cell = cells[i];
+        if (!cell) return;
+        setText(cell.querySelector(".stat-val"), c.abilities?.[k]);
+        setText(cell.querySelector(".stat-mod"), abMod(c.abilities?.[k]));
+      });
+
+      // Quick info tags: HP, AC, Speed, Prof, Alignment
+      const tags = card.querySelectorAll(".quick-info .qi-tag");
+      const hp = c.combat?.hp_current;
+      const ac = c.combat?.ac;
+      const sp = c.combat?.speed;
+      const pb = c.combat?.proficiency_bonus;
+      const al = c.alignment;
+
+      if (tags[0]) setText(tags[0], `HP ${hp ?? ""}`);
+      if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
+      if (tags[2]) setText(tags[2], `Speed ${sp ?? ""}`);
+      if (tags[3]) setText(tags[3], `Prof ${pb != null ? (pb >= 0 ? "+"+pb : pb) : ""}`);
+      if (tags[4]) setText(tags[4], al ?? "");
+    });
+  } catch (err) {
+    console.warn("Landing-page wiring failed; leaving fallback values in place.", err);
+  }
+})();
 </script>
 
 </body>
