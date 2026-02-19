@@ -1,0 +1,282 @@
+{
+  "campaign": {
+    "name": "Unnamed Chronicle",
+    "session_count": 0,
+    "last_updated": "2026-02-19"
+  },
+  "characters": {
+    "sekhmet": {
+      "name": "Sekhmet",
+      "race": "Leonin",
+      "class": "Barbarian",
+      "subclass": "Zealot",
+      "level": 1,
+      "background": "Outlander",
+      "alignment": "True Neutral",
+      "player": "—",
+      "xp": 0,
+      "theme_color": "#c8972a",
+      "portrait": "Sekhmet.png",
+      "emblem_text": "☀ · Son of the First Land · ☀",
+      "subtitle": "Leonin Barbarian · Path of the Zealot · Outlander",
+      "quote": "The world has hardened. The mythic has compressed into stone. I am what did not forget to remain.",
+      "footer": "☀   The world hardened. He did not.   ☀",
+      "abilities": {
+        "str": 16, "dex": 14, "con": 15, "int": 13, "wis": 13, "cha": 14
+      },
+      "saving_throws": {
+        "str": { "proficient": true,  "bonus": "+5" },
+        "dex": { "proficient": false, "bonus": "+2" },
+        "con": { "proficient": true,  "bonus": "+4" },
+        "int": { "proficient": false, "bonus": "+1" },
+        "wis": { "proficient": false, "bonus": "+1" },
+        "cha": { "proficient": false, "bonus": "+2" }
+      },
+      "combat": {
+        "hp_max": 17, "hp_current": 17, "ac": 14, "speed": 35,
+        "initiative": "+2", "proficiency_bonus": "+2",
+        "hit_dice": "1d12", "hit_dice_total": 1,
+        "passive_perception": 13, "passive_investigation": 11, "passive_insight": 11
+      },
+      "skills": [
+        { "name": "Acrobatics",      "ability": "Dex", "bonus": "+2", "proficient": false },
+        { "name": "Animal Handling",  "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Arcana",           "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Athletics",        "ability": "Str", "bonus": "+5", "proficient": true },
+        { "name": "Deception",        "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "History",          "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Insight",          "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Intimidation",     "ability": "Cha", "bonus": "+4", "proficient": true },
+        { "name": "Investigation",    "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Medicine",         "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Nature",           "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Perception",       "ability": "Wis", "bonus": "+3", "proficient": true },
+        { "name": "Performance",      "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Persuasion",       "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Religion",         "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Sleight of Hand",  "ability": "Dex", "bonus": "+2", "proficient": false },
+        { "name": "Stealth",          "ability": "Dex", "bonus": "+2", "proficient": false },
+        { "name": "Survival",         "ability": "Wis", "bonus": "+3", "proficient": true }
+      ],
+      "weapons": [
+        { "name": "Sun-Disc Club", "type": "Greatclub", "flavor": "The Fist of the First Land", "attack": "+5", "damage": "1d8+3", "damage_type": "Bludgeoning", "detail": "A massive club carved from petrified First-Land stone, sun-disc emblems etched along its face. While Raging: +5 attack, 1d8+5 damage. Versatile: use two hands for 1d10 base damage." },
+        { "name": "Natural Claws", "type": "Leonin · Unarmed Strike", "flavor": "", "attack": "+5", "damage": "1d4+3", "damage_type": "Slashing", "detail": "Leonin racial unarmed strike. Can be used as a bonus action after the Attack action. While raging: 1d4+5 slashing damage." },
+        { "name": "Daunting Roar", "type": "Leonin · Ability", "flavor": "", "attack": "DC 12", "damage": "WIS Save · Frightened", "damage_type": "", "detail": "Bonus action. Creatures within 10 ft must succeed WIS save (DC 12) or become frightened until end of your next turn. 1/short rest." }
+      ],
+      "features": [
+        { "name": "Rage", "desc": "Bonus action. +2 damage on STR attacks. Resistance to B/P/S damage. Advantage on STR checks and saves. Lasts 1 minute. 2 uses / long rest." },
+        { "name": "Unarmored Defense", "desc": "AC = 10 + DEX mod (+2) + CON mod (+2) = 14 while not wearing armor." },
+        { "name": "Daunting Roar (Leonin)", "desc": "Bonus action. Each creature of your choice within 10 ft must succeed on a WIS save (DC 12) or become frightened until the end of your next turn. 1/short rest." },
+        { "name": "Darkvision (Leonin)", "desc": "See in dim light as if bright, and darkness as if dim light, within 60 feet." },
+        { "name": "Wanderer (Outlander)", "desc": "Excellent memory for maps and terrain. Can find food and water for up to 5 companions per day in natural environments." }
+      ],
+      "traits": {
+        "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
+        "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something — his name must echo in story long after his bones bleach in the sand.",
+        "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
+        "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
+      },
+      "equipment": [ "Sun-Disc Club (Greatclub)", "Explorer's Pack", "Hunting Trap", "First-Land Stone Fragment", "Traveler's Clothes", "Gold Ceremonial Arm Cuff", "Desert Drum", "Belt Pouch" ],
+      "gold": 10,
+      "rage": { "uses": 2, "damage_bonus": 2, "resistances": "B/P/S" },
+      "backstory": {
+        "short": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded — some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest — but because his will refused to dissolve.",
+        "chapters": [
+          { "title": "The First Land", "subtitle": "Before the Compression", "text": "Long ago, his homeland was not like the world is now. The air was lighter. The horizon wider. Creatures moved as song. Spirits walked at the surface of things. There was no barrier between the mythic and the physical — they were the same substance, breathing together." },
+          { "title": "The Temporal Compression", "subtitle": "The Fall", "text": "Then came the shift — not a war, not a disaster. A hardening. The world compressed. Matter thickened. What once moved like wind became stone-bound. What once sang in the air fell silent. His pride did not all survive the transition. Some faded. Some became legend. Some petrified into monuments that scholars now mistake for ancient ruins." },
+          { "title": "He Held Form", "subtitle": "Why He Survived", "text": "He endured — not because he was strongest, but because his will would not dissolve. His rage anchored him to reality when reality itself was rewriting. He carries oral history that no book records. He remembers things that, to the modern world, never happened." },
+          { "title": "A World Too Small", "subtitle": "Now", "text": "Now he walks a world that feels smaller than it should be. He recognizes shapes in ruins others don't. He sometimes stares at stone and sees motion. He treats mountains like former living things. He does not rant. He is steady. Grounded. A survivor of the hardening of the world." },
+          { "title": "The Core Question", "subtitle": "What drives him", "text": "Does he believe the world fell once and it is done — or that the world is still falling, just slowly enough that no one else can feel it? That answer determines how he rages. And what he's really fighting for." }
+        ]
+      },
+      "appearance": { "height": "6'5\"", "weight": "240 lbs", "eyes": "Amber (faint glow)", "skin": "Tawny Gold", "mane": "Golden Amber", "build": "Broad, battle-hewn" },
+      "changelog": []
+    },
+
+    "raven": {
+      "name": "Raven",
+      "race": "Shadar-Kai",
+      "class": "Rogue",
+      "subclass": "Assassin",
+      "level": 1,
+      "background": "Criminal (Spy)",
+      "alignment": "Chaotic Neutral",
+      "player": "Rose",
+      "xp": 0,
+      "theme_color": "#8060b0",
+      "portrait": "raven.png",
+      "emblem_text": "🖤 · Shadow of the Raven Queen · 🖤",
+      "subtitle": "Shadar-Kai Rogue · Assassin · Criminal",
+      "quote": "Relax. If I wanted you dead, you'd be dead.",
+      "footer": "✦   Touch them and I'll end you.   ✦",
+      "abilities": {
+        "str": 10, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "bonus": "+0" },
+        "dex": { "proficient": true,  "bonus": "+5" },
+        "con": { "proficient": false, "bonus": "+2" },
+        "int": { "proficient": true,  "bonus": "+3" },
+        "wis": { "proficient": false, "bonus": "+1" },
+        "cha": { "proficient": false, "bonus": "+2" }
+      },
+      "combat": {
+        "hp_max": 10, "hp_current": 10, "ac": 14, "speed": 30,
+        "initiative": "+3", "proficiency_bonus": "+2",
+        "hit_dice": "1d8", "hit_dice_total": 1,
+        "passive_perception": 13, "passive_investigation": 11, "passive_insight": 11
+      },
+      "skills": [
+        { "name": "Acrobatics",      "ability": "Dex", "bonus": "+5", "proficient": true },
+        { "name": "Animal Handling",  "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Arcana",           "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Athletics",        "ability": "Str", "bonus": "+0", "proficient": false },
+        { "name": "Deception",        "ability": "Cha", "bonus": "+4", "proficient": true },
+        { "name": "History",          "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Insight",          "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Intimidation",     "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Investigation",    "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Medicine",         "ability": "Wis", "bonus": "+1", "proficient": false },
+        { "name": "Nature",           "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Perception",       "ability": "Wis", "bonus": "+3", "proficient": true },
+        { "name": "Performance",      "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Persuasion",       "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Religion",         "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Sleight of Hand",  "ability": "Dex", "bonus": "+5", "proficient": true },
+        { "name": "Stealth",          "ability": "Dex", "bonus": "+5", "proficient": true },
+        { "name": "Survival",         "ability": "Wis", "bonus": "+1", "proficient": false }
+      ],
+      "weapons": [
+        { "name": "Shadow Dagger", "type": "Dagger · Finesse · Light · Thrown (20/60)", "flavor": "", "attack": "+5", "damage": "1d4+3", "damage_type": "Piercing", "detail": "Finesse weapon. Sneak Attack eligible. Thrown range 20/60 ft." },
+        { "name": "Shortbow", "type": "Simple Ranged · Ammunition (80/320)", "flavor": "", "attack": "+5", "damage": "1d6+3", "damage_type": "Piercing", "detail": "Range 80/320 ft. Sneak Attack eligible." }
+      ],
+      "features": [
+        { "name": "Sneak Attack", "desc": "Once per turn, deal an extra 1d6 damage with a finesse or ranged weapon if you have advantage or an ally is within 5 ft of the target." },
+        { "name": "Expertise", "desc": "Double proficiency bonus for Stealth and Sleight of Hand." },
+        { "name": "Thieves' Cant", "desc": "Secret rogue language. Hidden messages in normal conversation. Takes 4× longer than plain speech." },
+        { "name": "Blessing of the Raven Queen", "desc": "Bonus action: teleport up to 30 ft. Gain resistance to all damage until start of your next turn. Prof. bonus uses / long rest." },
+        { "name": "Necrotic Resistance", "desc": "Resistance to necrotic damage." },
+        { "name": "Darkvision (Shadar-Kai)", "desc": "See in dim light as if bright, and darkness as if dim light, within 60 feet." }
+      ],
+      "traits": {
+        "personality": "Small frame. Quiet steps. Sharp tongue. Sharper blades. She teases her friends, mocks her enemies, and does not differentiate much in tone — only in outcome.",
+        "ideal": "She doesn't believe in ideals. She believes in hers. Loyalty like a war oath. Everyone else? Disposable.",
+        "bond": "Her ill-gotten gains support her family. She takes contracts. She finishes them clean. She never leaves witnesses if they threaten her circle.",
+        "flaw": "If there's a plan, she'll forget it. If she doesn't forget, she'll ignore it. She trusts instinct over strategy."
+      },
+      "equipment": [ "Daggers (×2)", "Shortbow + Quiver (20 arrows)", "Burglar's Pack", "Leather Armor", "Thieves' Tools", "Dark Common Clothes (hood)", "Trinket Pouch (shiny collection)", "Belt Pouch" ],
+      "gold": 15,
+      "sneak_attack": { "dice": "1d6" },
+      "backstory": {
+        "short": "Born in the muted grey of the Shadowfell, Raven learned early that the world does not protect you — you protect yourself. She found work as a hired blade, not out of cruelty but necessity. Her family needed coin. She provided it, clean and efficient.",
+        "chapters": []
+      },
+      "appearance": { "height": "5'2\"", "weight": "110 lbs", "eyes": "Dark, shadow-rimmed", "skin": "Ash grey", "hair": "Black, sharp-cut", "build": "Small, compact, deceptively fast" },
+      "changelog": []
+    },
+
+    "astrica": {
+      "name": "Astrica",
+      "race": "Fairy",
+      "class": "Wizard",
+      "subclass": "Witherbloom",
+      "level": 1,
+      "background": "Witherbloom Student",
+      "alignment": "True Neutral",
+      "player": "Illyasviel",
+      "xp": 0,
+      "theme_color": "#3a9a5a",
+      "portrait": "astrica.png",
+      "emblem_text": "✦ · Witherbloom Student · Astrica · ✦",
+      "subtitle": "Fairy Wizard · Witherbloom Student · True Neutral",
+      "quote": "Knowledge without application is just hoarding.",
+      "footer": "✦   The swamp does not forget. Neither does she.   ✦",
+      "abilities": {
+        "str": 13, "dex": 14, "con": 13, "int": 13, "wis": 15, "cha": 15
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "bonus": "+1" },
+        "dex": { "proficient": false, "bonus": "+2" },
+        "con": { "proficient": false, "bonus": "+1" },
+        "int": { "proficient": true,  "bonus": "+3" },
+        "wis": { "proficient": true,  "bonus": "+4" },
+        "cha": { "proficient": false, "bonus": "+2" }
+      },
+      "combat": {
+        "hp_max": 7, "hp_current": 7, "ac": 12, "speed": 10,
+        "initiative": "+2", "proficiency_bonus": "+2",
+        "hit_dice": "1d6", "hit_dice_total": 1,
+        "passive_perception": 14, "passive_investigation": 11, "passive_insight": 14
+      },
+      "skills": [
+        { "name": "Acrobatics",      "ability": "Dex", "bonus": "+2", "proficient": false },
+        { "name": "Animal Handling",  "ability": "Wis", "bonus": "+2", "proficient": false },
+        { "name": "Arcana",           "ability": "Int", "bonus": "+3", "proficient": false },
+        { "name": "Athletics",        "ability": "Str", "bonus": "+1", "proficient": false },
+        { "name": "Deception",        "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "History",          "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Insight",          "ability": "Wis", "bonus": "+4", "proficient": true },
+        { "name": "Intimidation",     "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Investigation",    "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Medicine",         "ability": "Wis", "bonus": "+2", "proficient": false },
+        { "name": "Nature",           "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Perception",       "ability": "Wis", "bonus": "+4", "proficient": true },
+        { "name": "Performance",      "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Persuasion",       "ability": "Cha", "bonus": "+2", "proficient": false },
+        { "name": "Religion",         "ability": "Int", "bonus": "+1", "proficient": false },
+        { "name": "Sleight of Hand",  "ability": "Dex", "bonus": "+2", "proficient": false },
+        { "name": "Stealth",          "ability": "Dex", "bonus": "+4", "proficient": true },
+        { "name": "Survival",         "ability": "Wis", "bonus": "+4", "proficient": true }
+      ],
+      "weapons": [
+        { "name": "Quarterstaff", "type": "Simple Melee · Versatile", "flavor": "", "attack": "+3", "damage": "1d6+1", "damage_type": "Bludgeoning", "detail": "Versatile: 1d8+1 two-handed." },
+        { "name": "Dagger", "type": "Simple Melee · Finesse · Light · Thrown (20/60)", "flavor": "", "attack": "+4", "damage": "1d4+2", "damage_type": "Piercing", "detail": "Finesse. Thrown 20/60 ft." }
+      ],
+      "spells": {
+        "casting_ability": "WIS", "spell_save_dc": 12, "spell_attack_bonus": "+4",
+        "slots": { "1": 2 },
+        "cantrips": [
+          { "name": "Thunderclap", "school": "Evocation" },
+          { "name": "Chill Touch", "school": "Necromancy" },
+          { "name": "Druidcraft", "school": "Transmutation" },
+          { "name": "Fire Bolt", "school": "Evocation" },
+          { "name": "Ray of Frost", "school": "Evocation" }
+        ],
+        "prepared": {
+          "1": [
+            { "name": "Catapult", "school": "Transmutation" },
+            { "name": "Witch Bolt", "school": "Evocation" },
+            { "name": "Magic Missile", "school": "Evocation" }
+          ]
+        }
+      },
+      "features": [
+        { "name": "Arcane Recovery", "desc": "Once per day on a Short Rest: recover spell slots totaling ≤ half wizard level (round up). At Level 1: recover one 1st-level slot." },
+        { "name": "Wizard Spellbook", "desc": "6 prepared 1st-level spells. Gain 2 spells per level. Copy from scrolls (2 hrs + 50 gp per level)." },
+        { "name": "Witherbloom Initiate", "desc": "Strixhaven Initiate feat. Witherbloom spells added to wizard list. Proficient with Herbalism Kit." },
+        { "name": "Fairy Flight", "desc": "30 ft flying speed. Cannot fly in medium or heavy armor." },
+        { "name": "Darkvision (Fairy)", "desc": "See in dim light as if bright, darkness as dim light, within 60 feet." },
+        { "name": "Fairy Dust", "desc": "Bonus action: resize non-magical equipment. Once per short rest." },
+        { "name": "Fey Ancestry", "desc": "Advantage on saves vs. charmed. Magic cannot put you to sleep." },
+        { "name": "Hidden Step", "desc": "Bonus action: become invisible until start of your next turn, or until you attack/damage/force save. Prof. bonus uses / long rest." },
+        { "name": "Friend of the Forest", "desc": "Communicate with beasts and plants in limited ways. Advantage on CHA checks to influence them." },
+        { "name": "One With Nature", "desc": "Know and cast Druidcraft at will using WIS." },
+        { "name": "Small Hands Big Dreams", "desc": "Disadvantage on Athletics (STR). Advantage on Persuasion (CHA)." }
+      ],
+      "traits": {
+        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable — she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
+        "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there.",
+        "bond": "Her spellbook contains pressed flowers, margin notes in three languages, and a spell she hasn't been able to cast yet. The people she travels with have become, unexpectedly, something she would cross swamps for.",
+        "flaw": "She occasionally forgets other people cannot fly, hide instantly, or talk to mushrooms — leading to plans that only work if you're her."
+      },
+      "equipment": [ "Quarterstaff", "Arcane Focus Rod", "Spellbook", "Explorer's Pack", "Herbalism Kit", "Ink Bottle & Pen", "School Uniform", "Plant ID Book", "Iron Pot", "Dagger", "Dart ×several", "Sling" ],
+      "gold": 1,
+      "backstory": {
+        "short": "A curious fairy who left the wild groves to study at Strixhaven's Witherbloom College, where the boundary between life and death is not a wall but a membrane. She pokes at it constantly.",
+        "chapters": []
+      },
+      "appearance": { "height": "1'2\"", "weight": "4 lbs", "eyes": "Deep green, luminous", "skin": "Pale, faintly luminous", "hair": "Wild, dark with green undertones", "build": "Tiny, delicate, deceptively tough" },
+      "changelog": []
+    }
+  }
+}
