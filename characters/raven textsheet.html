@@ -146,7 +146,7 @@
   .page { animation:fadeIn 0.8s ease; }
 </style>
 </head>
-<body>
+<body data-character="raven">
 
 <!-- ══════════════ PAGE 1 ══════════════ -->
 <div class="page">
@@ -710,5 +710,215 @@
     });
   });
 </script>
+
+<script>
+(async function () {
+  const CHAR = document.body.dataset.character || "raven";
+
+  async function loadParty() {
+    const candidates = ["../party.json", "/dnd/party.json", "./party.json"];
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) continue;
+        return await r.json();
+      } catch (_) {}
+    }
+    throw new Error("Could not load party.json");
+  }
+
+  const AB_KEYS = { "Strength":"str","Dexterity":"dex","Constitution":"con","Intelligence":"int","Wisdom":"wis","Charisma":"cha" };
+  function abMod(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "";
+    const m = Math.floor((n - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+  function normSkillName(s) {
+    return String(s || "").replace("✦", "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  try {
+    const party = await loadParty();
+    const c = party?.characters?.[CHAR];
+    if (!c) throw new Error(`Character "${CHAR}" not found in party.json`);
+
+    // ---------- NAME ----------
+    document.querySelectorAll(".char-name-big").forEach(el => el.textContent = c.name ?? el.textContent);
+
+    // Page 2 title (Cinzel Decorative 22px)
+    document.querySelectorAll("div[style*=\"Cinzel Decorative\"][style*=\"font-size:22px\"]").forEach(el => {
+      if (el.textContent.trim().length && el.textContent.trim().toLowerCase() === "raven") el.textContent = c.name ?? el.textContent;
+    });
+
+    // ---------- INFO GRID ----------
+    document.querySelectorAll(".info-cell").forEach(cell => {
+      const label = cell.querySelector(".info-label")?.textContent?.trim().toLowerCase() || "";
+      const valEl = cell.querySelector(".info-value");
+      if (!valEl) return;
+
+      if (label.includes("class")) {
+        const lvl = c.level ?? "";
+        const cls = c.class ?? "";
+        valEl.textContent = `LVL ${lvl} ${cls}`.trim();
+      } else if (label.includes("background")) {
+        valEl.textContent = c.background ?? valEl.textContent;
+      } else if (label.includes("player")) {
+        valEl.textContent = c.player ?? valEl.textContent;
+      } else if (label.includes("race")) {
+        valEl.textContent = c.race ?? valEl.textContent;
+      } else if (label.includes("alignment")) {
+        valEl.textContent = c.alignment ?? valEl.textContent;
+      } else if (label.includes("experience")) {
+        valEl.textContent = String(c.xp ?? valEl.textContent);
+      }
+    });
+
+    // ---------- ABILITIES + MODS ----------
+    document.querySelectorAll(".ability-block").forEach(block => {
+      const name = block.querySelector(".ab-name")?.textContent?.trim() || "";
+      const key = AB_KEYS[name] || AB_KEYS[name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()];
+      if (!key) return;
+
+      const score = c.abilities?.[key];
+      if (score !== undefined) {
+        const scoreEl = block.querySelector(".ab-score");
+        if (scoreEl) scoreEl.textContent = String(score);
+      }
+
+      const modEl = block.querySelector(".ab-mod-box");
+      if (modEl) modEl.textContent = abMod(score);
+    });
+
+    // proficiency
+    const prof = c.combat?.proficiency_bonus;
+    const profEl = document.querySelector(".proficiency-box .prof-val");
+    if (profEl && prof !== undefined) profEl.textContent = String(prof);
+
+    // ---------- COMBAT ROW ----------
+    document.querySelectorAll(".combat-stat").forEach(stat => {
+      const lbl = stat.querySelector(".cs-lbl")?.textContent?.trim().toLowerCase() || "";
+      const valEl = stat.querySelector(".cs-val");
+      if (!valEl) return;
+
+      if (lbl.includes("armor class") && c.combat?.ac !== undefined) valEl.textContent = String(c.combat.ac);
+      if (lbl.includes("initiative") && c.combat?.initiative !== undefined) valEl.textContent = String(c.combat.initiative);
+      if (lbl.includes("speed") && c.combat?.speed !== undefined) valEl.textContent = String(c.combat.speed);
+    });
+
+    // ---------- HIT POINTS ----------
+    document.querySelectorAll(".section").forEach(sec => {
+      const title = sec.querySelector(".section-title")?.textContent?.trim().toLowerCase();
+      if (title !== "hit points") return;
+
+      const body = sec.querySelector(".section-body");
+      if (!body) return;
+
+      const hpMax = c.combat?.hp_max;
+      const hpCur = c.combat?.hp_current;
+
+      // "Hit Point Maximum: X"
+      const maxLine = body.querySelector("div[style*=\"Hit Point Maximum\"]");
+      if (maxLine && hpMax !== undefined) maxLine.textContent = `Hit Point Maximum: ${hpMax}`;
+
+      // big number (current)
+      const big = body.querySelector("div[style*=\"font-size:48px\"]");
+      if (big && hpCur !== undefined) big.textContent = String(hpCur);
+
+      // hit dice
+      const hd = c.combat?.hit_dice;
+      const hdEl = body.querySelector("div[style*=\"Hit Dice\"] + div");
+      if (hdEl && hd !== undefined) hdEl.textContent = String(hd);
+    });
+
+    // ---------- PASSIVE PERCEPTION ----------
+    const pp = c.combat?.passive_perception;
+    const ppEl = document.querySelector(".passive-box .passive-val");
+    if (ppEl && pp !== undefined) ppEl.textContent = String(pp);
+
+    // ---------- SAVING THROWS ----------
+    const st = c.saving_throws || {};
+    document.querySelectorAll(".save-row").forEach(row => {
+      const name = row.querySelector(".save-name")?.textContent?.trim() || "";
+      const key = AB_KEYS[name] || AB_KEYS[name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()];
+      if (!key) return;
+
+      const data = st[key];
+      if (!data) return;
+
+      const dot = row.querySelector(".dot");
+      const val = row.querySelector(".save-val");
+      if (val && data.bonus !== undefined) val.textContent = String(data.bonus);
+
+      if (dot) {
+        if (data.proficient) dot.classList.add("filled");
+        else dot.classList.remove("filled");
+      }
+    });
+
+    // ---------- SKILLS ----------
+    const skills = Array.isArray(c.skills) ? c.skills : [];
+    const skillMap = new Map(skills.map(s => [normSkillName(s.name), s]));
+    document.querySelectorAll(".skill-row").forEach(row => {
+      const nameEl = row.querySelector(".skill-name");
+      const valEl = row.querySelector(".skill-val");
+      const dot = row.querySelector(".dot");
+      if (!nameEl || !valEl) return;
+
+      const key = normSkillName(nameEl.textContent);
+      const s = skillMap.get(key);
+      if (!s) return;
+
+      if (s.bonus !== undefined) valEl.textContent = String(s.bonus);
+
+      if (dot) {
+        if (s.proficient) {
+          if (!dot.classList.contains("shadow")) dot.classList.add("filled");
+        } else {
+          dot.classList.remove("filled");
+          if (!dot.dataset.keepShadow) dot.classList.remove("shadow");
+        }
+      }
+    });
+
+    // ---------- EQUIPMENT ----------
+    // Find the Equipment section by title and replace its list with new equip-items
+    document.querySelectorAll(".section").forEach(sec => {
+      const title = sec.querySelector(".section-title")?.textContent?.trim().toLowerCase();
+      if (title !== "equipment") return;
+
+      const body = sec.querySelector(".section-body");
+      if (!body) return;
+
+      const equip = Array.isArray(c.equipment) ? c.equipment.slice() : [];
+      const gold = c.gold;
+
+      // remove existing equip items
+      body.querySelectorAll(".equip-item").forEach(n => n.remove());
+
+      // append equipment items except belt pouch (we add it with gold)
+      const filtered = equip.filter(x => !String(x).toLowerCase().includes("belt pouch"));
+      for (const item of filtered) {
+        const div = document.createElement("div");
+        div.className = "equip-item";
+        div.textContent = String(item);
+        body.appendChild(div);
+      }
+
+      // add belt pouch with gold, or gold line fallback
+      if (gold !== undefined && gold !== null && gold !== "") {
+        const div = document.createElement("div");
+        div.className = "equip-item";
+        div.textContent = `Belt Pouch · ${gold} GP`;
+        body.appendChild(div);
+      }
+    });
+
+  } catch (err) {
+    console.warn("Wiring failed; leaving fallback values in place.", err);
+  }
+})();
+</script>
+
 </body>
 </html>
