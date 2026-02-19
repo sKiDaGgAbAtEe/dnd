@@ -58,6 +58,13 @@
     pointer-events: none;
   }
 
+  /* vignette burn */
+  .bg-vignette {
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(0,0,0,0.5) 100%);
+    pointer-events: none;
+  }
+
   /* ── MAIN CONTENT ── */
   .content {
     position: relative; z-index: 1;
@@ -71,7 +78,7 @@
   .hero {
     width: 100%;
     text-align: center;
-    padding: 80px 20px 50px;
+    padding: 90px 20px 50px;
     position: relative;
   }
 
@@ -168,14 +175,19 @@
   /* ── CHARACTER GRID ── */
   .char-grid {
     max-width: 1400px;
+    width: 100%;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 80px;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1100px) {
+    .char-grid { grid-template-columns: repeat(2, 1fr); max-width: 840px; }
+  }
+
+  @media (max-width: 700px) {
     .char-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 80px; }
   }
 
@@ -189,7 +201,6 @@
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.19,1,0.22,1);
-    animation: cardFadeUp 0.7s ease both;
     cursor: pointer;
   }
 
@@ -199,6 +210,7 @@
     border-color: var(--gold-dim);
   }
 
+  /* inner glow on hover */
   .char-card::before {
     content: '';
     position: absolute; inset: 0;
@@ -206,160 +218,172 @@
     opacity: 0;
     transition: opacity 0.5s;
     pointer-events: none;
+    z-index: 1;
   }
-
   .char-card:hover::before { opacity: 1; }
+
+  /* corner filigree inset border */
+  .char-card::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid transparent;
+    border-image: linear-gradient(135deg, rgba(200,151,42,0.2), transparent 35%, transparent 65%, rgba(200,151,42,0.2)) 1;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .char-card:hover::after { opacity: 1; }
 
   /* ── SEKHMET THEME (Gold) ── */
   .char-card.theme-sekhmet {
-    background: linear-gradient(135deg,
-      rgba(13,10,6,0.9) 0%,
-      rgba(20,14,6,0.95) 100%
-    );
+    background: linear-gradient(135deg, rgba(13,10,6,0.9) 0%, rgba(20,14,6,0.95) 100%);
     border-color: rgba(200,151,42,0.3);
   }
-
   .char-card.theme-sekhmet:hover {
-    box-shadow: 0 20px 60px rgba(200,151,42,0.35);
+    box-shadow: 0 20px 60px rgba(200,151,42,0.35), 0 0 80px -20px rgba(200,151,42,0.15);
     border-color: var(--gold);
   }
-
   .char-card.theme-sekhmet::before {
     background: radial-gradient(circle at top, rgba(200,151,42,0.08) 0%, transparent 70%);
   }
-
   .char-card.theme-sekhmet .level-badge,
   .char-card.theme-sekhmet .class-badge {
     border-color: var(--gold);
     background: rgba(13,10,6,0.9);
   }
-
-  .char-card.theme-sekhmet .level-num {
-    color: var(--gold-bright);
-  }
-
-  .char-card.theme-sekhmet .level-lbl {
-    color: var(--gold-dim);
-  }
-
-  .char-card.theme-sekhmet .class-badge {
-    color: var(--gold-bright);
-  }
-
+  .char-card.theme-sekhmet .level-num { color: var(--gold-bright); }
+  .char-card.theme-sekhmet .level-lbl { color: var(--gold-dim); }
+  .char-card.theme-sekhmet .class-badge { color: var(--gold-bright); }
   .char-card.theme-sekhmet .char-name {
     color: var(--gold-bright);
     text-shadow: 0 0 20px rgba(200,151,42,0.5);
   }
-
   .char-card.theme-sekhmet .stat-cell:hover {
     background: rgba(200,151,42,0.12);
     border-color: var(--gold);
   }
+  .char-card.theme-sekhmet .btn-primary {
+    background: rgba(200,151,42,0.15);
+    border-color: var(--gold);
+  }
+  .char-card.theme-sekhmet .btn-primary:hover {
+    background: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 4px 24px rgba(200,151,42,0.5);
+  }
 
   /* ── RAVEN THEME (Purple/Silver) ── */
   .char-card.theme-raven {
-    background: linear-gradient(135deg,
-      rgba(8,8,14,0.9) 0%,
-      rgba(14,12,20,0.95) 100%
-    );
+    background: linear-gradient(135deg, rgba(8,8,14,0.9) 0%, rgba(14,12,20,0.95) 100%);
     border-color: rgba(168,170,184,0.25);
   }
-
   .char-card.theme-raven:hover {
-    box-shadow: 0 20px 60px rgba(176,112,232,0.3);
+    box-shadow: 0 20px 60px rgba(176,112,232,0.3), 0 0 80px -20px rgba(120,80,200,0.15);
     border-color: #8060b0;
   }
-
   .char-card.theme-raven::before {
     background: radial-gradient(circle at top, rgba(88,40,160,0.08) 0%, transparent 70%);
   }
-
   .char-card.theme-raven .level-badge,
   .char-card.theme-raven .class-badge {
     border-color: #8060b0;
     background: rgba(8,8,14,0.9);
   }
-
-  .char-card.theme-raven .level-num {
-    color: #b070e8;
-  }
-
-  .char-card.theme-raven .level-lbl {
-    color: #6050a0;
-  }
-
-  .char-card.theme-raven .class-badge {
-    color: #d0d4e8;
-  }
-
+  .char-card.theme-raven .level-num { color: #b070e8; }
+  .char-card.theme-raven .level-lbl { color: #6050a0; }
+  .char-card.theme-raven .class-badge { color: #d0d4e8; }
   .char-card.theme-raven .char-name {
     color: #d0d4e8;
     text-shadow: 0 0 20px rgba(176,112,232,0.4);
   }
-
-  .char-card.theme-raven .stat-val {
-    color: #b070e8;
-  }
-
+  .char-card.theme-raven .stat-val { color: #b070e8; }
   .char-card.theme-raven .stat-cell:hover {
     background: rgba(88,40,160,0.12);
     border-color: #8060b0;
   }
+  .char-card.theme-raven .qi-tag {
+    background: rgba(88,40,160,0.08);
+    border-color: rgba(88,40,160,0.25);
+  }
+  .char-card.theme-raven .btn-primary {
+    background: rgba(88,40,160,0.15);
+    border-color: #8060b0;
+    color: #d0d4e8;
+  }
+  .char-card.theme-raven .btn-primary:hover {
+    background: #8060b0;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(176,112,232,0.5);
+  }
+  .char-card.theme-raven .btn-secondary {
+    border-color: rgba(88,40,160,0.25);
+    color: #8080a0;
+  }
+  .char-card.theme-raven .btn-secondary:hover {
+    border-color: #8060b0;
+    background: rgba(88,40,160,0.08);
+    color: #d0d4e8;
+  }
 
   /* ── ASTRICA THEME (Green/Nature) ── */
   .char-card.theme-astrica {
-    background: linear-gradient(135deg,
-      rgba(6,10,8,0.9) 0%,
-      rgba(8,14,10,0.95) 100%
-    );
+    background: linear-gradient(135deg, rgba(6,10,8,0.9) 0%, rgba(8,14,10,0.95) 100%);
     border-color: rgba(42,122,74,0.3);
   }
-
   .char-card.theme-astrica:hover {
-    box-shadow: 0 20px 60px rgba(80,192,128,0.3);
+    box-shadow: 0 20px 60px rgba(80,192,128,0.3), 0 0 80px -20px rgba(42,122,74,0.15);
     border-color: #3a9a5a;
   }
-
   .char-card.theme-astrica::before {
     background: radial-gradient(circle at top, rgba(42,122,74,0.08) 0%, transparent 70%);
   }
-
   .char-card.theme-astrica .level-badge,
   .char-card.theme-astrica .class-badge {
     border-color: #3a9a5a;
     background: rgba(6,10,8,0.9);
   }
-
-  .char-card.theme-astrica .level-num {
-    color: #50c080;
-  }
-
-  .char-card.theme-astrica .level-lbl {
-    color: #2a6040;
-  }
-
-  .char-card.theme-astrica .class-badge {
-    color: #7fff9a;
-  }
-
+  .char-card.theme-astrica .level-num { color: #50c080; }
+  .char-card.theme-astrica .level-lbl { color: #2a6040; }
+  .char-card.theme-astrica .class-badge { color: #7fff9a; }
   .char-card.theme-astrica .char-name {
     color: #50c080;
     text-shadow: 0 0 20px rgba(42,122,74,0.5);
   }
-
-  .char-card.theme-astrica .stat-val {
-    color: #50c080;
-  }
-
+  .char-card.theme-astrica .stat-val { color: #50c080; }
   .char-card.theme-astrica .stat-cell:hover {
     background: rgba(42,122,74,0.12);
     border-color: #3a9a5a;
   }
+  .char-card.theme-astrica .qi-tag {
+    background: rgba(42,122,74,0.08);
+    border-color: rgba(42,122,74,0.25);
+  }
+  .char-card.theme-astrica .btn-primary {
+    background: rgba(42,122,74,0.15);
+    border-color: #3a9a5a;
+    color: #7fff9a;
+  }
+  .char-card.theme-astrica .btn-primary:hover {
+    background: #3a9a5a;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(80,192,128,0.5);
+  }
+  .char-card.theme-astrica .btn-secondary {
+    border-color: rgba(42,122,74,0.25);
+    color: #508060;
+  }
+  .char-card.theme-astrica .btn-secondary:hover {
+    border-color: #3a9a5a;
+    background: rgba(42,122,74,0.08);
+    color: #50c080;
+  }
 
-  /* ── CARD IMAGE ── */
+  /* ── CARD IMAGE — CONSTRAINED ── */
   .card-image {
     position: relative;
-    height: 380px;
+    height: 220px;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
   }
@@ -368,41 +392,62 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    object-position: center 20%;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: saturate(0.8) brightness(0.88);
   }
 
   .char-card:hover .card-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: saturate(1) brightness(1);
   }
 
   .card-image-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-      transparent 0%,
-      rgba(6,5,3,0.3) 60%,
-      rgba(6,5,3,0.9) 100%
+      rgba(6,5,3,0.1) 0%,
+      rgba(6,5,3,0.25) 50%,
+      rgba(6,5,3,0.92) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* themed overlays */
+  .char-card.theme-raven .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(8,8,14,0.1) 0%,
+      rgba(8,8,14,0.25) 50%,
+      rgba(8,8,14,0.92) 100%
+    );
+  }
+  .char-card.theme-astrica .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(6,10,8,0.1) 0%,
+      rgba(6,10,8,0.25) 50%,
+      rgba(6,10,8,0.92) 100%
     );
   }
 
   /* ── LEVEL BADGE ── */
   .level-badge {
     position: absolute;
-    top: 16px; right: 16px;
-    background: rgba(6,5,3,0.85);
+    top: 14px; right: 14px;
+    background: rgba(6,5,3,0.88);
     border: 1px solid var(--gold-dim);
-    padding: 10px 14px;
+    padding: 8px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2px;
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 3;
   }
 
   .level-num {
     font-family: 'Cinzel Decorative', serif;
-    font-size: 22px;
+    font-size: 20px;
     color: var(--gold-light);
     line-height: 1;
     font-weight: 700;
@@ -418,37 +463,40 @@
   /* ── CLASS BADGE ── */
   .class-badge {
     position: absolute;
-    bottom: 16px; left: 16px;
-    background: rgba(6,5,3,0.85);
+    bottom: 14px; left: 14px;
+    background: rgba(6,5,3,0.88);
     border: 1px solid var(--gold-dim);
-    padding: 8px 16px;
-    font-size: 10px;
+    padding: 6px 14px;
+    font-size: 9px;
     letter-spacing: 3px;
     color: var(--gold-light);
     text-transform: uppercase;
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 3;
   }
 
   /* ── CARD BODY ── */
   .card-body {
-    padding: 28px 24px;
+    padding: 22px 20px 20px;
+    position: relative;
   }
 
   .char-name {
     font-family: 'Cinzel Decorative', serif;
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--gold-light);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    line-height: 1.1;
   }
 
   .char-race-class {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     color: var(--text-dim);
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-weight: 400;
   }
 
@@ -456,15 +504,15 @@
   .stat-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: 5px;
+    margin-bottom: 12px;
   }
 
   .stat-cell {
     background: rgba(200,151,42,0.03);
     border: 1px solid rgba(42,32,16,0.6);
     text-align: center;
-    padding: 10px 4px;
+    padding: 7px 2px;
     transition: all 0.3s;
   }
 
@@ -479,13 +527,13 @@
     letter-spacing: 1px;
     color: var(--gold-dim);
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .stat-val {
     display: block;
     font-family: 'Cinzel Decorative', serif;
-    font-size: 18px;
+    font-size: 15px;
     color: var(--gold-light);
     line-height: 1;
     margin-bottom: 2px;
@@ -493,7 +541,7 @@
 
   .stat-mod {
     display: block;
-    font-size: 10px;
+    font-size: 9px;
     color: var(--text-dim);
     font-weight: 600;
   }
@@ -502,15 +550,15 @@
   .quick-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 20px;
+    gap: 5px;
+    margin-bottom: 16px;
   }
 
   .qi-tag {
     background: rgba(200,151,42,0.08);
     border: 1px solid rgba(42,32,16,0.5);
-    padding: 6px 12px;
-    font-size: 9px;
+    padding: 5px 10px;
+    font-size: 8px;
     letter-spacing: 1px;
     color: var(--text);
     text-transform: uppercase;
@@ -519,15 +567,15 @@
   /* ── CARD ACTIONS ── */
   .card-actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
   }
 
   .btn {
     flex: 1;
-    padding: 12px;
+    padding: 10px 8px;
     text-align: center;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
@@ -536,7 +584,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   .btn-primary {
@@ -547,6 +595,7 @@
 
   .btn-primary:hover {
     background: var(--gold);
+    color: var(--dark);
     box-shadow: 0 4px 20px rgba(200,151,42,0.3);
   }
 
@@ -563,25 +612,26 @@
   }
 
   .btn-icon {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   /* ── EMPTY SLOT ── */
   .char-card.empty {
-    background: rgba(13,10,6,0.4);
+    background: rgba(13,10,6,0.3);
     border-style: dashed;
-    border-color: rgba(42,32,16,0.4);
+    border-color: rgba(42,32,16,0.3);
     cursor: default;
   }
-
   .char-card.empty:hover {
     transform: none;
     box-shadow: none;
-    border-color: rgba(42,32,16,0.6);
+    border-color: rgba(42,32,16,0.5);
   }
+  .char-card.empty::after { display: none; }
 
   .empty-inner {
-    height: 480px;
+    height: 100%;
+    min-height: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -591,15 +641,17 @@
 
   .empty-rune {
     font-size: 48px;
-    opacity: 0.15;
+    opacity: 0.12;
+    transition: opacity 0.4s;
   }
+  .char-card.empty:hover .empty-rune { opacity: 0.2; }
 
   .empty-label {
     font-family: 'IM Fell English', serif;
     font-style: italic;
     font-size: 14px;
     color: var(--text-dim);
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   /* ── FOOTER ── */
@@ -608,6 +660,19 @@
     text-align: center;
     padding: 40px 20px 60px;
     border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .footer::before {
+    content: '✦   ✦   ✦';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: var(--gold-dim);
+    letter-spacing: 4px;
+    background: var(--dark);
+    padding: 0 20px;
   }
 
   .footer-title {
@@ -627,30 +692,22 @@
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes cardFadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  /* ── SCROLL REVEAL ── */
+  .char-card {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .char-card.revealed {
+    animation: cardFadeUp 0.7s ease forwards;
   }
 </style>
 </head>
@@ -660,6 +717,7 @@
 <canvas id="particles"></canvas>
 <div class="bg-radial"></div>
 <div class="bg-grid"></div>
+<div class="bg-vignette"></div>
 
 <div class="content">
 
@@ -684,7 +742,7 @@
   <div class="char-grid">
 
     <!-- SEKHMET -->
-    <div class="char-card theme-sekhmet" style="animation-delay: 0.1s;">
+    <div class="char-card theme-sekhmet" style="--reveal-delay: 0.1s;">
       <div class="card-image">
         <img src="Sekhmet.png" alt="Sekhmet">
         <div class="card-image-overlay"></div>
@@ -752,7 +810,7 @@
     </div>
 
     <!-- RAVEN -->
-    <div class="char-card theme-raven" style="animation-delay: 0.2s;">
+    <div class="char-card theme-raven" style="--reveal-delay: 0.2s;">
       <div class="card-image">
         <img src="raven.png" alt="Raven">
         <div class="card-image-overlay"></div>
@@ -820,7 +878,7 @@
     </div>
 
     <!-- ASTRICA -->
-    <div class="char-card theme-astrica" style="animation-delay: 0.3s;">
+    <div class="char-card theme-astrica" style="--reveal-delay: 0.3s;">
       <div class="card-image">
         <img src="astrica.png" alt="Astrica">
         <div class="card-image-overlay"></div>
@@ -910,25 +968,36 @@
   window.addEventListener('resize', resize);
 
   const particles = [];
-  const COUNT = 60;
+  const COUNT = 70;
 
   for (let i = 0; i < COUNT; i++) {
     particles.push({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      size: Math.random() * 1.5 + 0.3,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: -Math.random() * 0.4 - 0.1,
-      opacity: Math.random() * 0.4 + 0.1,
-      pulse: Math.random() * Math.PI * 2
+      size: Math.random() * 1.8 + 0.2,
+      speedX: (Math.random() - 0.5) * 0.25,
+      speedY: -Math.random() * 0.35 - 0.08,
+      opacity: Math.random() * 0.35 + 0.05,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.01 + Math.random() * 0.02,
+      glow: Math.random() > 0.85
     });
   }
 
   function drawParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
-      p.pulse += 0.02;
-      const alpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+      p.pulse += p.pulseSpeed;
+      const alpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
+
+      // soft halo on select particles
+      if (p.glow) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 151, 42, ${alpha * 0.08})`;
+        ctx.fill();
+      }
+
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(200, 151, 42, ${alpha})`;
@@ -945,6 +1014,20 @@
   }
   drawParticles();
 
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = getComputedStyle(entry.target).getPropertyValue('--reveal-delay') || '0s';
+        entry.target.style.animationDelay = delay;
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.char-card').forEach(card => observer.observe(card));
+
   // ── CARD PARALLAX ──
   document.querySelectorAll('.char-card:not(.empty)').forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -953,7 +1036,7 @@
       const cy = rect.top + rect.height / 2;
       const dx = (e.clientX - cx) / rect.width;
       const dy = (e.clientY - cy) / rect.height;
-      card.style.transform = `translateY(-8px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg)`;
+      card.style.transform = `translateY(-8px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
