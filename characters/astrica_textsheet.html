@@ -683,7 +683,7 @@
   const CHAR = document.body.dataset.character || "astrica";
 
   async function loadParty() {
-    const candidates = ["../party.json", "/dnd/party.json", "./party.json"];
+    const candidates = ["../party.json","../../party.json","../../../party.json","/dnd/party.json","/party.json","./party.json"];
     for (const url of candidates) {
       try {
         const r = await fetch(url, { cache: "no-store" });
