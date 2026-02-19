@@ -608,7 +608,7 @@
   }
 </style>
 </head>
-<body>
+<body data-character="sekhmet">
 
 <!-- ── HEADER ── -->
 <div class="header">
@@ -641,27 +641,27 @@
     <div class="info-tags">
       <div class="info-tag">
         <span class="label">Race</span>
-        <span class="value">Leonin</span>
+        <span class="value" data-path="race">Leonin</span>
       </div>
       <div class="info-tag">
         <span class="label">Class</span>
-        <span class="value">Barbarian</span>
+        <span class="value" data-path="class">Barbarian</span>
       </div>
       <div class="info-tag">
         <span class="label">Subclass</span>
-        <span class="value">Zealot</span>
+        <span class="value" data-path="subclass">Zealot</span>
       </div>
       <div class="info-tag">
         <span class="label">Level</span>
-        <span class="value">1</span>
+        <span class="value" data-path="level">1</span>
       </div>
       <div class="info-tag">
         <span class="label">Background</span>
-        <span class="value">Outlander</span>
+        <span class="value" data-path="background">Outlander</span>
       </div>
       <div class="info-tag">
         <span class="label">Alignment</span>
-        <span class="value">Neutral</span>
+        <span class="value" data-path="alignment">Neutral</span>
       </div>
     </div>
 
@@ -697,33 +697,33 @@
         <div class="ability-grid">
           <div class="ability-block">
             <span class="ability-name">STR</span>
-            <span class="ability-score">16</span>
-            <span class="ability-mod">+3</span>
+            <span class="ability-score" data-path="abilities.str">16</span>
+            <span class="ability-mod" data-path="derived.str_mod">+3</span>
           </div>
           <div class="ability-block">
             <span class="ability-name">DEX</span>
-            <span class="ability-score">14</span>
-            <span class="ability-mod">+2</span>
+            <span class="ability-score" data-path="abilities.dex">14</span>
+            <span class="ability-mod" data-path="derived.dex_mod">+2</span>
           </div>
           <div class="ability-block">
             <span class="ability-name">CON</span>
-            <span class="ability-score">15</span>
-            <span class="ability-mod">+2</span>
+            <span class="ability-score" data-path="abilities.con">15</span>
+            <span class="ability-mod" data-path="derived.con_mod">+2</span>
           </div>
           <div class="ability-block">
             <span class="ability-name">INT</span>
-            <span class="ability-score">13</span>
-            <span class="ability-mod">+1</span>
+            <span class="ability-score" data-path="abilities.int">13</span>
+            <span class="ability-mod" data-path="derived.int_mod">+1</span>
           </div>
           <div class="ability-block">
             <span class="ability-name">WIS</span>
-            <span class="ability-score">13</span>
-            <span class="ability-mod">+1</span>
+            <span class="ability-score" data-path="abilities.wis">13</span>
+            <span class="ability-mod" data-path="derived.wis_mod">+1</span>
           </div>
           <div class="ability-block">
             <span class="ability-name">CHA</span>
-            <span class="ability-score">14</span>
-            <span class="ability-mod">+2</span>
+            <span class="ability-score" data-path="abilities.cha">14</span>
+            <span class="ability-mod" data-path="derived.cha_mod">+2</span>
           </div>
         </div>
       </div>
@@ -735,19 +735,19 @@
       <div class="panel-body">
         <div class="combat-grid">
           <div class="combat-block">
-            <span class="combat-value">17</span>
+            <span class="combat-value" data-path="combat.hp_current">17</span>
             <span class="combat-label">Hit Points</span>
           </div>
           <div class="combat-block">
-            <span class="combat-value">14</span>
+            <span class="combat-value" data-path="combat.ac">14</span>
             <span class="combat-label">Armor Class</span>
           </div>
           <div class="combat-block">
-            <span class="combat-value">35</span>
+            <span class="combat-value" data-path="combat.speed">35</span>
             <span class="combat-label">Speed (ft)</span>
           </div>
           <div class="combat-block">
-            <span class="combat-value">+2</span>
+            <span class="combat-value" data-path="combat.initiative">+2</span>
             <span class="combat-label">Initiative</span>
           </div>
         </div>
@@ -800,9 +800,9 @@
 
     <!-- SKILLS -->
     <div class="panel">
-      <div class="panel-title">Skills · Proficiency Bonus +2</div>
+      <div class="panel-title">Skills · Proficiency Bonus <span data-path="combat.proficiency_bonus">+2</span></div>
       <div class="panel-body">
-        <div class="skills-grid">
+        <div class="skills-grid" id="skills-grid">
           <div class="skill-row">
             <div class="skill-dot proficient"></div>
             <span class="skill-name">Athletics</span>
@@ -926,7 +926,7 @@
     <div class="panel">
       <div class="panel-title">Equipment</div>
       <div class="panel-body">
-        <div class="equip-grid">
+        <div class="equip-grid" id="equip-grid">
           <div class="equip-item">Sun-Disc Club (Greatclub)</div>
           <div class="equip-item">Explorer's Pack</div>
           <div class="equip-item">Hunting Trap</div>
@@ -934,7 +934,7 @@
           <div class="equip-item">First-Land Stone Fragment</div>
           <div class="equip-item">Gold Ceremonial Arm Cuff</div>
           <div class="equip-item">Belt Pouch</div>
-          <div class="equip-item">10 Gold Pieces</div>
+          <div class="equip-item" id="gold-item">10 Gold Pieces</div>
         </div>
       </div>
     </div>
@@ -948,17 +948,118 @@
 </div>
 
 <script>
-  // Rage pip toggling
+  // ── RAGE PIP TOGGLING ──────────────────────────────────────
   document.querySelectorAll('.rage-pip').forEach(pip => {
     pip.addEventListener('click', () => pip.classList.toggle('active'));
   });
 
-  // Staggered panel animation
+  // ── STAGGERED PANEL ANIMATION ──────────────────────────────
   document.querySelectorAll('.panel').forEach((panel, i) => {
     panel.style.animationDelay = `${i * 0.1}s`;
     panel.style.opacity = '0';
     panel.style.animation = `fadeIn 0.8s ease ${i * 0.08}s forwards`;
   });
+
+  // ── PARTY.JSON LOADER ──────────────────────────────────────
+  // Resolves a dot-notation path into a nested object
+  function resolvePath(obj, path) {
+    return path.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
+  }
+
+  // Computes ability modifier from score
+  function abMod(score) {
+    const mod = Math.floor((score - 10) / 2);
+    return (mod >= 0 ? '+' : '') + mod;
+  }
+
+  // Detects where party.json lives relative to this page
+  function jsonPath() {
+    const p = window.location.pathname;
+    if (p.includes('/dnd/')) {
+      return p.substring(0, p.indexOf('/dnd/') + 5) + 'party.json';
+    }
+    return './party.json';
+  }
+
+  async function loadCharacter() {
+    try {
+      const resp = await fetch(jsonPath());
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+
+      // Detect character from <body data-character="...">
+      const charKey = (document.body.getAttribute('data-character') || '').toLowerCase();
+      const c = data.characters?.[charKey];
+      if (!c) { console.warn('[Loader] Character not found:', charKey); return; }
+
+      // ── Build derived values (ability mods) ─────────────────
+      c.derived = {};
+      for (const ab of ['str','dex','con','int','wis','cha']) {
+        c.derived[ab + '_mod'] = abMod(c.abilities[ab]);
+      }
+
+      // ── Inject simple data-path fields ──────────────────────
+      document.querySelectorAll('[data-path]').forEach(el => {
+        const val = resolvePath(c, el.getAttribute('data-path'));
+        if (val !== undefined && val !== null) el.textContent = String(val);
+      });
+
+      // ── Skills grid ─────────────────────────────────────────
+      if (Array.isArray(c.skills)) {
+        const grid = document.getElementById('skills-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          // Sort: proficient first, then alphabetical
+          const sorted = [...c.skills].sort((a, b) => {
+            if (b.proficient !== a.proficient) return b.proficient ? 1 : -1;
+            return a.name.localeCompare(b.name);
+          });
+          sorted.forEach(skill => {
+            const row = document.createElement('div');
+            row.className = 'skill-row';
+            row.innerHTML = `
+              <div class="skill-dot${skill.proficient ? ' proficient' : ''}"></div>
+              <span class="skill-name">${skill.name}</span>
+              <span class="skill-bonus">${skill.bonus}</span>`;
+            grid.appendChild(row);
+          });
+        }
+      }
+
+      // ── Equipment grid ──────────────────────────────────────
+      if (Array.isArray(c.equipment)) {
+        const grid = document.getElementById('equip-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          c.equipment.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'equip-item';
+            div.textContent = item;
+            grid.appendChild(div);
+          });
+          // Append gold as last item
+          if (c.gold !== undefined) {
+            const goldDiv = document.createElement('div');
+            goldDiv.className = 'equip-item';
+            goldDiv.textContent = c.gold + ' Gold Pieces';
+            grid.appendChild(goldDiv);
+          }
+        }
+      }
+
+      console.log(`[Loader] ✓ Injected data for "${c.name}"`);
+
+    } catch (err) {
+      // Graceful fallback: hardcoded HTML values remain visible
+      console.warn('[Loader] Could not load party.json — using hardcoded values.', err.message);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadCharacter);
+  } else {
+    loadCharacter();
+  }
 </script>
 
 </body>
