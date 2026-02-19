@@ -797,6 +797,7 @@
       const t = (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase();
       return t.includes("hit point");
     });
+
     if (hpSection) {
       // Max HP line (text contains "Hit Point Maximum")
       const maxDiv = Array.from(hpSection.querySelectorAll("div")).find(d =>
@@ -813,10 +814,11 @@
       if (curDiv && c.combat?.hp_current != null) {
         curDiv.textContent = String(c.combat.hp_current);
       }
-    }
 
-      // hit dice display (e.g., 1d6)
-      const hitDiceLabel = Array.from(hpSection.querySelectorAll("div")).find(d => (d.textContent || "").trim() === "Hit Dice");
+      // Hit dice display (e.g., 1d6)
+      const hitDiceLabel = Array.from(hpSection.querySelectorAll("div")).find(d =>
+        (d.textContent || "").trim() === "Hit Dice"
+      );
       if (hitDiceLabel) {
         const val = hitDiceLabel.parentElement?.querySelector("div[style*='font-size:18px']");
         const total = c.combat?.hit_dice_total;
