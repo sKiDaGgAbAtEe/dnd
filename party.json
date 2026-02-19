@@ -22,7 +22,7 @@
       "quote": "The world has hardened. The mythic has compressed into stone. I am what did not forget to remain.",
       "footer": "☀   The world hardened. He did not.   ☀",
       "abilities": {
-        "str": 16, "dex": 14, "con": 15, "int": 13, "wis": 13, "cha": 14
+        "str": 1600, "dex": 14, "con": 15, "int": 13, "wis": 13, "cha": 14
       },
       "saving_throws": {
         "str": { "proficient": true,  "bonus": "+5" },
@@ -110,7 +110,7 @@
       "quote": "Relax. If I wanted you dead, you'd be dead.",
       "footer": "✦   Touch them and I'll end you.   ✦",
       "abilities": {
-        "str": 10, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
+        "str": 1000, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
       },
       "saving_throws": {
         "str": { "proficient": false, "bonus": "+0" },
@@ -192,7 +192,7 @@
       "quote": "Knowledge without application is just hoarding.",
       "footer": "✦   The swamp does not forget. Neither does she.   ✦",
       "abilities": {
-        "str": 13, "dex": 14, "con": 13, "int": 13, "wis": 15, "cha": 15
+        "str": 1300, "dex": 14, "con": 13, "int": 13, "wis": 15, "cha": 15
       },
       "saving_throws": {
         "str": { "proficient": false, "bonus": "+1" },
