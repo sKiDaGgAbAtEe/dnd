@@ -33,7 +33,7 @@
         "cha": { "proficient": false, "bonus": "+2" }
       },
       "combat": {
-        "hp_max": 179, "hp_current": 17, "ac": 14, "speed": 35,
+        "hp_max": 17, "hp_current": 179, "ac": 14, "speed": 35,
         "initiative": "+2", "proficiency_bonus": "+2",
         "hit_dice": "1d12", "hit_dice_total": 1,
         "passive_perception": 13, "passive_investigation": 11, "passive_insight": 11
