@@ -818,7 +818,7 @@
       const hpCur = c.combat?.hp_current;
 
       // "Hit Point Maximum: X"
-      const maxLine = body.querySelector("div[style*=\"Hit Point Maximum\"]");
+      const maxLine = Array.from(body.querySelectorAll("div")).find(d => (d.textContent || "").includes("Hit Point Maximum"));
       if (maxLine && hpMax !== undefined) maxLine.textContent = `Hit Point Maximum: ${hpMax}`;
 
       // big number (current)
