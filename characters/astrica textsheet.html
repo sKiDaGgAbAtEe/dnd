@@ -145,7 +145,7 @@
   .page { animation:fadeIn 0.8s ease; }
 </style>
 </head>
-<body>
+<body data-character="astrica">
 
 <!-- ══════════ PAGE 1 ══════════ -->
 <div class="page">
@@ -677,6 +677,190 @@
     </div><!-- end right -->
   </div>
 </div><!-- end page 2 -->
+
+<script>
+(async function () {
+  const CHAR = document.body.dataset.character || "astrica";
+
+  async function loadParty() {
+    const candidates = ["../party.json", "/dnd/party.json", "./party.json"];
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) continue;
+        return await r.json();
+      } catch (_) {}
+    }
+    throw new Error("Could not load party.json");
+  }
+
+  function abMod(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "";
+    const m = Math.floor((n - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+
+  function byText(el, sel, text) {
+    const nodes = el.querySelectorAll(sel);
+    for (const n of nodes) {
+      if ((n.textContent || "").trim() === text) return n;
+    }
+    return null;
+  }
+
+  try {
+    const party = await loadParty();
+    const c = party?.characters?.[CHAR];
+    if (!c) throw new Error(`Character "${CHAR}" not found in party.json`);
+
+    // ---- name ----
+    const nameEl = document.querySelector(".char-name-big");
+    if (nameEl && c.name) nameEl.textContent = c.name;
+
+    // ---- info grid ----
+    document.querySelectorAll(".info-cell").forEach(cell => {
+      const label = (cell.querySelector(".info-label")?.textContent || "").trim().toLowerCase();
+      const valEl = cell.querySelector(".info-value");
+      if (!valEl) return;
+
+      if (label.startsWith("class")) {
+        const lvl = c.level ?? "";
+        const cls = c.class ?? "";
+        valEl.textContent = `LVL ${lvl} ${cls}`.trim();
+      } else if (label.startsWith("background")) {
+        if (c.background != null) valEl.textContent = c.background;
+      } else if (label.startsWith("player")) {
+        // keep as character name by default; change if you later add c.player in JSON
+        valEl.textContent = c.player ?? c.name ?? valEl.textContent;
+      } else if (label.startsWith("race")) {
+        if (c.race != null) valEl.textContent = c.race;
+      } else if (label.startsWith("alignment")) {
+        if (c.alignment != null) valEl.textContent = c.alignment;
+      } else if (label.startsWith("experience")) {
+        if (c.xp != null) valEl.textContent = String(c.xp);
+      }
+    });
+
+    // ---- abilities + mods ----
+    const abMap = {
+      strength: "str",
+      dexterity: "dex",
+      constitution: "con",
+      intelligence: "int",
+      wisdom: "wis",
+      charisma: "cha",
+    };
+
+    document.querySelectorAll(".ability-block").forEach(block => {
+      const nm = (block.querySelector(".ab-name")?.textContent || "").trim().toLowerCase();
+      const key = abMap[nm];
+      if (!key) return;
+
+      const score = c.abilities?.[key];
+      if (score != null) {
+        const sEl = block.querySelector(".ab-score");
+        if (sEl) sEl.textContent = String(score);
+
+        const mEl = block.querySelector(".ab-mod-box");
+        if (mEl) mEl.textContent = abMod(score);
+      }
+    });
+
+    // ---- proficiency bonus ----
+    const pbEl = document.querySelector(".proficiency-box .prof-val");
+    if (pbEl && c.combat?.proficiency_bonus != null) {
+      const pb = Number(c.combat.proficiency_bonus);
+      pbEl.textContent = (pb >= 0 ? "+" : "") + pb;
+    }
+
+    // ---- combat row (AC / Init / Speed) ----
+    document.querySelectorAll(".combat-stat").forEach(stat => {
+      const lbl = (stat.querySelector(".cs-lbl")?.textContent || "").trim().toLowerCase();
+      const valEl = stat.querySelector(".cs-val");
+      if (!valEl) return;
+
+      if (lbl.startsWith("armor class") && c.combat?.ac != null) {
+        valEl.textContent = String(c.combat.ac);
+      } else if (lbl.startsWith("initiative") && c.combat?.initiative != null) {
+        const ini = Number(c.combat.initiative);
+        valEl.textContent = (ini >= 0 ? "+" : "") + ini;
+      } else if (lbl.startsWith("speed") && c.combat?.speed != null) {
+        valEl.textContent = String(c.combat.speed);
+      }
+    });
+
+    // ---- hit points section (max label + big current number) ----
+    const sections = Array.from(document.querySelectorAll(".section"));
+    const hpSection = sections.find(sec => (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase() === "hit points");
+    if (hpSection) {
+      const maxDiv = Array.from(hpSection.querySelectorAll("div")).find(d => (d.textContent || "").includes("Hit Point Maximum"));
+      if (maxDiv && c.combat?.hp_max != null) {
+        maxDiv.textContent = `Hit Point Maximum: ${c.combat.hp_max}`;
+      }
+      const big = hpSection.querySelector("div[style*='font-size:48px']");
+      if (big && c.combat?.hp_current != null) {
+        big.textContent = String(c.combat.hp_current);
+      }
+
+      // hit dice display (e.g., 1d6)
+      const hitDiceLabel = Array.from(hpSection.querySelectorAll("div")).find(d => (d.textContent || "").trim() === "Hit Dice");
+      if (hitDiceLabel) {
+        const val = hitDiceLabel.parentElement?.querySelector("div[style*='font-size:18px']");
+        const total = c.combat?.hit_dice_total;
+        const die = c.combat?.hit_dice;
+        if (val && total != null && die) val.textContent = `${total}${die}`;
+      }
+    }
+
+    // ---- passive perception ----
+    const passiveEl = document.querySelector(".passive-val");
+    if (passiveEl && c.passive?.perception != null) passiveEl.textContent = String(c.passive.perception);
+
+    // ---- skills (value + dot fill) ----
+    const skills = Array.isArray(c.skills) ? c.skills : [];
+    document.querySelectorAll(".skill-row").forEach(row => {
+      const nm = (row.querySelector(".skill-name")?.textContent || "").trim().toLowerCase();
+      if (!nm) return;
+      const sk = skills.find(s => (s.name || "").trim().toLowerCase() === nm);
+      if (!sk) return;
+
+      const valEl = row.querySelector(".skill-val");
+      if (valEl && sk.bonus != null) {
+        const b = Number(sk.bonus);
+        valEl.textContent = (b >= 0 ? "+" : "") + b;
+      }
+      const dot = row.querySelector(".dot");
+      if (dot) dot.classList.toggle("filled", !!sk.proficient);
+    });
+
+    // ---- equipment list ----
+    const equipSection = sections.find(sec => (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase() === "equipment");
+    if (equipSection) {
+      const body = equipSection.querySelector(".section-body");
+      if (body) {
+        const eq = Array.isArray(c.equipment) ? c.equipment : [];
+        body.innerHTML = "";
+        for (const item of eq) {
+          const div = document.createElement("div");
+          div.className = "equip-item";
+          div.textContent = item;
+          body.appendChild(div);
+        }
+        if (c.gold != null) {
+          const gp = document.createElement("div");
+          gp.className = "equip-item";
+          gp.textContent = `Belt Pouch · ${c.gold} GP`;
+          body.appendChild(gp);
+        }
+      }
+    }
+
+  } catch (err) {
+    console.warn("Astrica wiring failed; leaving fallback values in place.", err);
+  }
+})();
+</script>
 
 <script>
   function toggleAtk(id, cell) {
