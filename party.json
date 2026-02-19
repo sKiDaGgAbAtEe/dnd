@@ -22,7 +22,7 @@
       "quote": "The world has hardened. The mythic has compressed into stone. I am what did not forget to remain.",
       "footer": "☀   The world hardened. He did not.   ☀",
       "abilities": {
-        "str": 1600, "dex": 14, "con": 15, "int": 13, "wis": 13, "cha": 14
+        "str": 16, "dex": 14, "con": 15, "int": 13, "wis": 13, "cha": 14
       },
       "saving_throws": {
         "str": { "proficient": true,  "bonus": "+5" },
@@ -110,7 +110,7 @@
       "quote": "Relax. If I wanted you dead, you'd be dead.",
       "footer": "✦   Touch them and I'll end you.   ✦",
       "abilities": {
-        "str": 1000, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
+        "str": 10, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
       },
       "saving_throws": {
         "str": { "proficient": false, "bonus": "+0" },
@@ -121,7 +121,7 @@
         "cha": { "proficient": false, "bonus": "+2" }
       },
       "combat": {
-        "hp_max": 109, "hp_current": 100, "ac": 14, "speed": 30,
+        "hp_max": 10, "hp_current": 10, "ac": 14, "speed": 30,
         "initiative": "+3", "proficiency_bonus": "+2",
         "hit_dice": "1d8", "hit_dice_total": 1,
         "passive_perception": 13, "passive_investigation": 11, "passive_insight": 11
@@ -183,7 +183,7 @@
       "level": 1,
       "background": "Witherbloom Student",
       "alignment": "True Neutral",
-      "player": "Illyasviel",
+      "player": "Astricalex",
       "xp": 0,
       "theme_color": "#3a9a5a",
       "portrait": "astrica.png",
@@ -192,7 +192,7 @@
       "quote": "Knowledge without application is just hoarding.",
       "footer": "✦   The swamp does not forget. Neither does she.   ✦",
       "abilities": {
-        "str": 1300, "dex": 14, "con": 13, "int": 13, "wis": 15, "cha": 15
+        "str": 13, "dex": 14, "con": 13, "int": 13, "wis": 15, "cha": 15
       },
       "saving_throws": {
         "str": { "proficient": false, "bonus": "+1" },
@@ -203,7 +203,7 @@
         "cha": { "proficient": false, "bonus": "+2" }
       },
       "combat": {
-        "hp_max": 79, "hp_current": 70, "ac": 12, "speed": 10,
+        "hp_max": 7, "hp_current": 7, "ac": 12, "speed": 10,
         "initiative": "+2", "proficiency_bonus": "+2",
         "hit_dice": "1d6", "hit_dice_total": 1,
         "passive_perception": 14, "passive_investigation": 11, "passive_insight": 14
