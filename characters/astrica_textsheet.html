@@ -193,7 +193,7 @@
 
       <!-- HIT POINTS -->
       <div class="section">
-        <div class="section-title">Hit Points</div>
+        <div class="section-title">Hit Point Maximum</div>
         <div class="section-body" style="text-align:center;">
           <div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 7</div>
           <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:4px;">Hit Points</div>
@@ -814,10 +814,6 @@
         curDiv.textContent = String(c.combat.hp_current);
       }
     }
-      const big = hpSection.querySelector("div[style*='font-size:48px']");
-      if (big && c.combat?.hp_current != null) {
-        big.textContent = String(c.combat.hp_current);
-      }
 
       // hit dice display (e.g., 1d6)
       const hitDiceLabel = Array.from(hpSection.querySelectorAll("div")).find(d => (d.textContent || "").trim() === "Hit Dice");
