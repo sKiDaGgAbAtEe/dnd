@@ -793,12 +793,27 @@
 
     // ---- hit points section (max label + big current number) ----
     const sections = Array.from(document.querySelectorAll(".section"));
-    const hpSection = sections.find(sec => (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase() === "hit points");
+    const hpSection = sections.find(sec => {
+      const t = (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase();
+      return t.includes("hit point");
+    });
     if (hpSection) {
-      const maxDiv = Array.from(hpSection.querySelectorAll("div")).find(d => (d.textContent || "").includes("Hit Point Maximum"));
+      // Max HP line (text contains "Hit Point Maximum")
+      const maxDiv = Array.from(hpSection.querySelectorAll("div")).find(d =>
+        (d.textContent || "").toLowerCase().includes("hit point maximum")
+      );
       if (maxDiv && c.combat?.hp_max != null) {
         maxDiv.textContent = `Hit Point Maximum: ${c.combat.hp_max}`;
       }
+
+      // Current HP big number (typically the 48px value line)
+      const curDiv = Array.from(hpSection.querySelectorAll("div")).find(d =>
+        (d.getAttribute("style") || "").includes("font-size:48px")
+      );
+      if (curDiv && c.combat?.hp_current != null) {
+        curDiv.textContent = String(c.combat.hp_current);
+      }
+    }
       const big = hpSection.querySelector("div[style*='font-size:48px']");
       if (big && c.combat?.hp_current != null) {
         big.textContent = String(c.combat.hp_current);
