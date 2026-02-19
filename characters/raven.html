@@ -153,7 +153,7 @@
   @media(max-width:960px){.sheet{grid-template-columns:1fr}.pcol{position:static}.agrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
-<body>
+<body data-character="raven">
 
 <!-- HEADER -->
 <div class="hdr">
@@ -465,5 +465,171 @@
     });
   });
 </script>
+
+<script>
+(async function () {
+  const CHAR = document.body.dataset.character || "raven";
+
+  async function loadParty() {
+    const candidates = ["../party.json", "/dnd/party.json", "./party.json"];
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) continue;
+        return await r.json();
+      } catch (_) {}
+    }
+    throw new Error("Could not load party.json");
+  }
+
+  function abMod(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "";
+    const m = Math.floor((n - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+
+  function setText(el, v) {
+    if (!el || v === undefined || v === null) return;
+    el.textContent = String(v);
+  }
+
+  function setIdentity(c) {
+    const bar = document.querySelector(".ibar");
+    if (!bar) return;
+    bar.querySelectorAll(".ic").forEach(cell => {
+      const lbl = cell.querySelector(".ilbl")?.textContent?.trim()?.toLowerCase();
+      const valEl = cell.querySelector(".ival");
+      if (!lbl || !valEl) return;
+      if (lbl === "class") setText(valEl, c.class);
+      else if (lbl === "level") setText(valEl, c.level);
+      else if (lbl === "race") setText(valEl, c.race);
+      else if (lbl === "background") setText(valEl, c.background);
+      else if (lbl === "alignment") setText(valEl, c.alignment);
+      else if (lbl === "subclass") setText(valEl, c.subclass);
+    });
+  }
+
+  function setHeader(c) {
+    setText(document.querySelector(".cname"), c.name || "Raven");
+
+    // Keep the original vibe, but update the structured bits if present.
+    const parts = [];
+    if (c.class) parts.push(c.class);
+    if (c.subclass) parts.push(c.subclass);
+    if (c.alignment) parts.push(c.alignment);
+    const sub = parts.filter(Boolean).join(" · ");
+    if (sub) setText(document.querySelector(".csub"), sub);
+  }
+
+  function setAbilities(c) {
+    const abilityKey = (abbr) => ({
+      "str":"str","strength":"str",
+      "dex":"dex","dexterity":"dex",
+      "con":"con","constitution":"con",
+      "int":"int","intelligence":"int",
+      "wis":"wis","wisdom":"wis",
+      "cha":"cha","charisma":"cha"
+    })[abbr];
+
+    document.querySelectorAll(".abl").forEach(block => {
+      const lbl = block.querySelector(".an")?.textContent?.trim()?.toLowerCase();
+      const key = lbl ? abilityKey(lbl) : null;
+      if (!key) return;
+      const score = c.abilities?.[key];
+      setText(block.querySelector(".as"), score);
+      setText(block.querySelector(".am"), abMod(score));
+    });
+  }
+
+  function setCombat(c) {
+    document.querySelectorAll(".cbl").forEach(block => {
+      const lbl = block.querySelector(".cl")?.textContent?.trim()?.toLowerCase();
+      const valEl = block.querySelector(".cv");
+      if (!lbl || !valEl) return;
+
+      if (lbl.includes("hp")) setText(valEl, c.combat?.hp_current);
+      else if (lbl.includes("armor class") || lbl === "ac") setText(valEl, c.combat?.ac);
+      else if (lbl.includes("speed")) setText(valEl, c.combat?.speed);
+      else if (lbl.includes("initiative")) setText(valEl, c.combat?.initiative);
+      else if (lbl.includes("proficiency")) setText(valEl, c.combat?.proficiency_bonus);
+    });
+  }
+
+  function setSaves(c) {
+    // If this sheet has a saves panel, update the numeric values by matching labels.
+    // We keep dots/visuals untouched.
+    const savesByName = {};
+    (c.saves || []).forEach(s => { if (s?.name) savesByName[s.name.toLowerCase()] = s; });
+
+    document.querySelectorAll(".sr").forEach(row => {
+      const name = row.querySelector(".sn")?.textContent?.trim()?.toLowerCase();
+      if (!name) return;
+      const s = savesByName[name];
+      if (!s) return;
+      setText(row.querySelector(".sv2"), s.bonus);
+      // Optional: toggle dot fill based on proficient (if you use it)
+      const dot = row.querySelector(".dt");
+      if (dot) {
+        dot.classList.toggle("f", !!s.proficient);
+      }
+    });
+  }
+
+  function setSkills(c) {
+    const skillsByName = {};
+    (c.skills || []).forEach(s => { if (s?.name) skillsByName[s.name.toLowerCase()] = s; });
+
+    document.querySelectorAll(".skr").forEach(row => {
+      const name = row.querySelector(".skn")?.textContent?.trim()?.toLowerCase();
+      if (!name) return;
+      const s = skillsByName[name];
+      if (!s) return;
+      setText(row.querySelector(".skv"), s.bonus);
+
+      // If you ever add a dot element later, we’ll toggle it, but we won’t create new visuals here.
+      const dot = row.querySelector(".dt, .skill-dot, .dot, .pip");
+      if (dot && dot.classList) dot.classList.toggle("f", !!s.proficient);
+    });
+  }
+
+  function setEquipment(c) {
+    const grid = document.querySelector(".egrid");
+    if (!grid) return;
+    // Rebuild items but keep the exact same .ei class so visuals remain.
+    grid.innerHTML = "";
+    (c.equipment || []).forEach(item => {
+      const div = document.createElement("div");
+      div.className = "ei";
+      div.textContent = item;
+      grid.appendChild(div);
+    });
+    if (c.gold !== undefined && c.gold !== null) {
+      const div = document.createElement("div");
+      div.className = "ei";
+      div.textContent = `${c.gold} Gold Pieces`;
+      grid.appendChild(div);
+    }
+  }
+
+  try {
+    const party = await loadParty();
+    const c = party?.characters?.[CHAR];
+    if (!c) throw new Error(`Character "${CHAR}" not found in party.json`);
+
+    setHeader(c);
+    setIdentity(c);
+    setAbilities(c);
+    setCombat(c);
+    setSaves(c);
+    setSkills(c);
+    setEquipment(c);
+
+  } catch (err) {
+    console.warn("Wiring failed; leaving fallback values in place.", err);
+  }
+})();
+</script>
+
 </body>
 </html>
