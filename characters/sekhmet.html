@@ -614,7 +614,7 @@
 <div class="header">
   <div class="sun-emblem">☀ &nbsp; Eye of the Desert Sun &nbsp; ☀</div>
   <h1 class="char-name">Sekhmet</h1>
-  <div class="char-subtitle">Leonin Barbarian · Path of the Zealot · Outlander</div>
+  <div class="char-subtitle">Leonin Barbarian · Outlander</div>
 </div>
 
 <div class="divider">
@@ -649,7 +649,7 @@
       </div>
       <div class="info-tag">
         <span class="label">Subclass</span>
-        <span class="value" data-path="subclass">Zealot</span>
+        <span class="value" data-path="subclass"></span>
       </div>
       <div class="info-tag">
         <span class="label">Level</span>
@@ -992,7 +992,24 @@
       const c = data.characters?.[charKey];
       if (!c) { console.warn('[Loader] Character not found:', charKey); return; }
 
-      // ── Build derived values (ability mods) ─────────────────
+      
+      // ── Header subtitle (race · class · subclass? · background) ───
+      const subEl = document.querySelector('.char-subtitle');
+      if (subEl) {
+        const parts = [];
+        if (c.race) parts.push(c.race);
+        if (c.class) parts.push(c.class);
+        if (c.subclass) parts.push(c.subclass);
+        if (c.background) parts.push(c.background);
+        if (parts.length) subEl.textContent = parts.join(' · ');
+      }
+
+      // Hide the "Subclass" info-tag if subclass isn't set (level 1 start)
+      document.querySelectorAll('.info-tag').forEach(tag => {
+        const lbl = tag.querySelector('.label')?.textContent?.trim()?.toLowerCase();
+        if (lbl === 'subclass' && !c.subclass) tag.style.display = 'none';
+      });
+// ── Build derived values (ability mods) ─────────────────
       c.derived = {};
       for (const ab of ['str','dex','con','int','wis','cha']) {
         c.derived[ab + '_mod'] = abMod(c.abilities[ab]);
