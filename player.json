@@ -290,7 +290,7 @@
       "level": 1,
       "background": "Spy",
       "alignment": "Neutral",
-      "player": "Rose",
+      "player": "Illyasviel",
       "xp": 0,
       "theme_color": "#8060b0",
       "portrait": "raven.png",
@@ -587,7 +587,7 @@
       "level": 1,
       "background": "Witherbloom Student",
       "alignment": "True Neutral",
-      "player": "Astricalex",
+      "player": "Illyasviel",
       "xp": 0,
       "theme_color": "#3a9a5a",
       "portrait": "astrica.png",
@@ -896,7 +896,14 @@
       "level": 1,
       "background": "Rival Intern",
       "alignment": "True Neutral",
-      "proficiencyBonus": 2,
+      "player": "Ilyasviel",
+      "xp": 0,
+      "theme_color": "#6FB5FF",
+      "portrait": "Evo.png",
+      "emblem_text": "\u26a1",
+      "subtitle": "Stormbound Initiate",
+      "quote": "",
+      "footer": "Tempest Domain \u2022 Bronze Dragonborn",
       "abilities": {
         "str": 15,
         "dex": 13,
@@ -905,45 +912,250 @@
         "wis": 15,
         "cha": 17
       },
+      "saving_throws": {
+        "str": {
+          "proficient": false,
+          "bonus": "+2"
+        },
+        "dex": {
+          "proficient": false,
+          "bonus": "+1"
+        },
+        "con": {
+          "proficient": false,
+          "bonus": "+2"
+        },
+        "int": {
+          "proficient": false,
+          "bonus": "+1"
+        },
+        "wis": {
+          "proficient": true,
+          "bonus": "+4"
+        },
+        "cha": {
+          "proficient": true,
+          "bonus": "+5"
+        }
+      },
+      "saves": [
+        {
+          "name": "STR",
+          "bonus": 2,
+          "proficient": false
+        },
+        {
+          "name": "DEX",
+          "bonus": 1,
+          "proficient": false
+        },
+        {
+          "name": "CON",
+          "bonus": 2,
+          "proficient": false
+        },
+        {
+          "name": "INT",
+          "bonus": 1,
+          "proficient": false
+        },
+        {
+          "name": "WIS",
+          "bonus": 4,
+          "proficient": true
+        },
+        {
+          "name": "CHA",
+          "bonus": 5,
+          "proficient": true
+        }
+      ],
       "combat": {
+        "hp_max": 10,
+        "hp_current": 10,
         "ac": 18,
+        "speed": 30,
         "initiative": 1,
-        "speed": 30
+        "proficiency_bonus": "+2",
+        "hit_dice": "1d8",
+        "hit_dice_total": 1,
+        "passive_perception": 12
       },
-      "hp": {
-        "max": 10,
-        "current": 10,
-        "temp": 0
+      "skills": [
+        {
+          "name": "Acrobatics",
+          "ability": "Dex",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Animal Handling",
+          "ability": "Wis",
+          "bonus": "+2",
+          "proficient": false
+        },
+        {
+          "name": "Arcana",
+          "ability": "Int",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Athletics",
+          "ability": "Str",
+          "bonus": "+2",
+          "proficient": false
+        },
+        {
+          "name": "Deception",
+          "ability": "Cha",
+          "bonus": "+3",
+          "proficient": false
+        },
+        {
+          "name": "History",
+          "ability": "Int",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Insight",
+          "ability": "Wis",
+          "bonus": "+4",
+          "proficient": true
+        },
+        {
+          "name": "Intimidation",
+          "ability": "Cha",
+          "bonus": "+3",
+          "proficient": false
+        },
+        {
+          "name": "Investigation",
+          "ability": "Int",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Medicine",
+          "ability": "Wis",
+          "bonus": "+4",
+          "proficient": true
+        },
+        {
+          "name": "Nature",
+          "ability": "Int",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Perception",
+          "ability": "Wis",
+          "bonus": "+2",
+          "proficient": false
+        },
+        {
+          "name": "Performance",
+          "ability": "Cha",
+          "bonus": "+3",
+          "proficient": false
+        },
+        {
+          "name": "Persuasion",
+          "ability": "Cha",
+          "bonus": "+5",
+          "proficient": true
+        },
+        {
+          "name": "Religion",
+          "ability": "Int",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Sleight of Hand",
+          "ability": "Dex",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Stealth",
+          "ability": "Dex",
+          "bonus": "+1",
+          "proficient": false
+        },
+        {
+          "name": "Survival",
+          "ability": "Wis",
+          "bonus": "+2",
+          "proficient": false
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Mace",
+          "type": "Mace",
+          "flavor": "",
+          "attack": "+4",
+          "damage": "1d6+2",
+          "damage_type": "Bludgeoning",
+          "detail": ""
+        },
+        {
+          "name": "Club",
+          "type": "Club",
+          "flavor": "",
+          "attack": "+4",
+          "damage": "1d4+2",
+          "damage_type": "Bludgeoning",
+          "detail": ""
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed Strike",
+          "flavor": "",
+          "attack": "+4",
+          "damage": "1+2",
+          "damage_type": "Bludgeoning",
+          "detail": ""
+        }
+      ],
+      "features": [
+        "Spellcasting (Cleric)",
+        "Divine Domain: Tempest (Heavy Armor, Martial Weapons)",
+        "Wrath of the Storm (Reaction, 2/Long Rest)",
+        "Bronze Dragonborn Breath Weapon (Lightning, 5\u00d730 ft line, DC 12)",
+        "Lightning Resistance",
+        "Rival Intern: Inside Information"
+      ],
+      "traits": {
+        "personality": "",
+        "ideal": "",
+        "bond": "",
+        "flaw": ""
       },
-      "saves": {
-        "str": 2,
-        "dex": 1,
-        "con": 2,
-        "int": 1,
-        "wis": 4,
-        "cha": 5
+      "equipment": [
+        "Chain Mail",
+        "Shield",
+        "Mace",
+        "Club",
+        "Holy Symbol (Emblem)",
+        "Explorer's Pack",
+        "Cartographer's Tools"
+      ],
+      "gold": 1,
+      "backstory": {
+        "short": "",
+        "chapters": []
       },
-      "skills": {
-        "acrobatics": 1,
-        "animalHandling": 2,
-        "arcana": 1,
-        "athletics": 2,
-        "deception": 3,
-        "history": 1,
-        "insight": 4,
-        "intimidation": 3,
-        "investigation": 1,
-        "medicine": 4,
-        "nature": 1,
-        "perception": 2,
-        "performance": 3,
-        "persuasion": 5,
-        "religion": 1,
-        "sleightOfHand": 1,
-        "stealth": 1,
-        "survival": 2
+      "appearance": {
+        "height": "",
+        "weight": "",
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "build": ""
       },
-      "passivePerception": 12,
       "proficiencies": {
         "armor": [
           "Light Armor",
@@ -955,83 +1167,57 @@
           "Simple Weapons",
           "Martial Weapons"
         ],
-        "tools": [],
+        "tools": [
+          "Cartographer's Tools"
+        ],
         "languages": [
           "Common",
           "Draconic"
         ]
       },
-      "weapons": [
-        {
-          "name": "Mace",
-          "toHit": 4,
-          "damage": "1d6+2",
-          "type": "Bludgeoning",
-          "notes": ""
-        },
-        {
-          "name": "Club",
-          "toHit": 4,
-          "damage": "1d4+2",
-          "type": "Bludgeoning",
-          "notes": ""
-        },
-        {
-          "name": "Unarmed Strike",
-          "toHit": 4,
-          "damage": "1+2",
-          "type": "Bludgeoning",
-          "notes": ""
-        }
-      ],
-      "currency": {
-        "cp": 0,
-        "sp": 0,
-        "ep": 0,
-        "gp": 1,
-        "pp": 0
-      },
-      "equipment": [
-        "Chain Mail",
-        "Shield",
-        "Mace",
-        "Club",
-        "Holy Symbol (Emblem)",
-        "Explorer's Pack",
-        "Cartographer's Tools"
-      ],
-      "notes": {
-        "featuresAndTraits": [
-          "Divine Domain: Tempest",
-          "Bonus Proficiencies (Tempest)",
-          "Domain Spells (Fog Cloud, Thunderwave)",
-          "Wrath of the Storm (Tempest)",
-          "Lightning Breath Weapon (Bronze Dragonborn)",
-          "Lightning Resistance (Bronze Dragonborn)",
-          "Inside Information (Rival Intern)"
-        ]
-      },
       "spells": {
-        "castingAbility": "WIS",
-        "spellSaveDC": 12,
-        "spellAttackBonus": 4,
+        "casting_ability": "WIS",
+        "spell_save_dc": 12,
+        "spell_attack_bonus": "+4",
         "slots": {
           "1": 2
         },
         "cantrips": [
-          "Toll the Dead",
-          "Word of Radiance",
-          "Guidance"
+          {
+            "name": "Toll the Dead",
+            "school": ""
+          },
+          {
+            "name": "Word of Radiance",
+            "school": ""
+          },
+          {
+            "name": "Guidance",
+            "school": ""
+          }
         ],
         "prepared": {
           "1": [
-            "Bless",
-            "Guiding Bolt",
-            "Healing Word"
-          ],
-          "domain": [
-            "Fog Cloud",
-            "Thunderwave"
+            {
+              "name": "Bless",
+              "school": ""
+            },
+            {
+              "name": "Fog Cloud",
+              "school": ""
+            },
+            {
+              "name": "Guiding Bolt",
+              "school": ""
+            },
+            {
+              "name": "Healing Word",
+              "school": ""
+            },
+            {
+              "name": "Thunderwave",
+              "school": ""
+            }
           ]
         }
       }
