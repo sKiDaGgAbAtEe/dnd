@@ -470,14 +470,7 @@
   const CHAR = (document.body && document.body.dataset && document.body.dataset.character) ? document.body.dataset.character : "raven";
 
   async function loadParty() {
-    const candidates = [
-      "../party.json",
-      "../../party.json",
-      "../../../party.json",
-      "/dnd/party.json",
-      "/party.json",
-      "./party.json"
-    ];
+    const candidates = ["../player.json","../../player.json","../../../player.json","/dnd/player.json","/player.json","./player.json"];
     for (const url of candidates) {
       try {
         const r = await fetch(url, { cache: "no-store" });
@@ -485,7 +478,7 @@
         return await r.json();
       } catch (_) {}
     }
-    throw new Error("Could not load party.json (tried common paths)");
+    throw new Error("Could not load player.json (tried common paths)");
   }
 
   function abMod(score) {
@@ -504,7 +497,7 @@
   try {
     const party = await loadParty();
     const c = party?.characters?.[CHAR];
-    if (!c) throw new Error(`Character "${CHAR}" not found in party.json`);
+    if (!c) throw new Error(`Character "${CHAR}" not found in player.json`);
 
     // ---- header ----
     const nameEl = document.querySelector(".cname");
@@ -589,7 +582,7 @@
 
       // find save object from skills array? your JSON stores saves separately? If not present, fall back to ability mod.
       let bonus = null;
-      // If party.json later includes c.saves: [{name, bonus, proficient}] handle it.
+      // If player.json later includes c.saves: [{name, bonus, proficient}] handle it.
       const saveArr = Array.isArray(c.saves) ? c.saves : null;
       if (saveArr) {
         const found = saveArr.find(s => (s.name || "").trim().toLowerCase() === nm);
