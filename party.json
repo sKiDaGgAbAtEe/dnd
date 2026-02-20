@@ -643,7 +643,7 @@
         "hp_current": 7,
         "ac": 12,
         "speed": 10,
-        "initiative": "+2",
+        "initiative": 2,
         "proficiency_bonus": "+2",
         "hit_dice": "1d6",
         "hit_dice_total": 1,
@@ -782,9 +782,9 @@
         }
       ],
       "spells": {
-        "casting_ability": "WIS",
-        "spell_save_dc": 12,
-        "spell_attack_bonus": "+4",
+        "casting_ability": "INT",
+        "spell_save_dc": 11,
+        "spell_attack_bonus": "+3",
         "slots": {
           "1": 2
         },
@@ -835,34 +835,6 @@
         {
           "name": "Wizard Spellbook",
           "desc": "6 prepared 1st-level spells. Gain 2 spells per level. Copy from scrolls (2 hrs + 50 gp per level)."
-        },
-        {
-          "name": "Witherbloom Initiate",
-          "desc": "Strixhaven Initiate feat. Witherbloom spells added to wizard list. Proficient with Herbalism Kit."
-        },
-        {
-          "name": "Darkvision",
-          "desc": "See in dim light as if bright, darkness as dim light, within 60 feet."
-        },
-        {
-          "name": "Fairy Dust",
-          "desc": "Bonus action: resize non-magical equipment. Once per short rest."
-        },
-        {
-          "name": "Fey Ancestry",
-          "desc": "Advantage on saves vs. charmed. Magic cannot put you to sleep."
-        },
-        {
-          "name": "Hidden Step",
-          "desc": "Bonus action: become invisible until start of your next turn, or until you attack/damage/force save. Prof. bonus uses / long rest."
-        },
-        {
-          "name": "Friend of the Forest",
-          "desc": "Communicate with beasts and plants in limited ways. Advantage on CHA checks to influence them."
-        },
-        {
-          "name": "One With Nature",
-          "desc": "Know and cast Druidcraft at will using WIS."
         }
       ],
       "traits": {
@@ -899,15 +871,15 @@
       },
       "changelog": [],
       "proficiencies": {
-        "armor": [
-          "None"
-        ],
         "weapons": [
           "Dagger",
           "Dart",
           "Light Crossbow",
           "Quarterstaff",
           "Sling"
+        ],
+        "armor": [
+          "None"
         ],
         "tools": [
           "Herbalism Kit"
