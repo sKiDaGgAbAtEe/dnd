@@ -582,8 +582,8 @@
         ]
       }
     },
-    "astrica": {
-      "name": "Astrica",
+    "izabella": {
+      "name": "Izabella",
       "race": "Fairy",
       "class": "Wizard",
       "subclass": "Witherbloom",
@@ -594,7 +594,7 @@
       "xp": 0,
       "theme_color": "#3a9a5a",
       "portrait": "astrica.png",
-      "emblem_text": "\u2726 \u00b7 Witherbloom Student \u00b7 Astrica \u00b7 \u2726",
+      "emblem_text": "\u2726   Witherbloom Student \u00b7 Izabella   \u2726",
       "subtitle": "Fairy Wizard \u00b7 Witherbloom Student \u00b7 True Neutral",
       "quote": "Knowledge without application is just hoarding.",
       "footer": "\u2726   The swamp does not forget. Neither does she.   \u2726",
@@ -606,32 +606,38 @@
         "wis": 15,
         "cha": 15
       },
-      "saving_throws": {
-        "str": {
-          "proficient": false,
-          "bonus": "+1"
+      "saving_throws": [
+        {
+          "name": "Strength",
+          "bonus": 1,
+          "proficient": false
         },
-        "dex": {
-          "proficient": false,
-          "bonus": "+2"
+        {
+          "name": "Dexterity",
+          "bonus": 2,
+          "proficient": false
         },
-        "con": {
-          "proficient": false,
-          "bonus": "+1"
+        {
+          "name": "Constitution",
+          "bonus": 1,
+          "proficient": false
         },
-        "int": {
-          "proficient": true,
-          "bonus": "+3"
+        {
+          "name": "Intelligence",
+          "bonus": 3,
+          "proficient": true
         },
-        "wis": {
-          "proficient": true,
-          "bonus": "+4"
+        {
+          "name": "Wisdom",
+          "bonus": 4,
+          "proficient": true
         },
-        "cha": {
-          "proficient": false,
-          "bonus": "+2"
+        {
+          "name": "Charisma",
+          "bonus": 2,
+          "proficient": false
         }
-      },
+      ],
       "combat": {
         "hp_max": 7,
         "hp_current": 7,
@@ -648,110 +654,110 @@
       "skills": [
         {
           "name": "Acrobatics",
-          "ability": "Dex",
-          "bonus": "+2",
+          "ab": "DEX",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "Animal Handling",
-          "ability": "Wis",
-          "bonus": "+2",
-          "proficient": false
+          "ab": "WIS",
+          "bonus": 4,
+          "proficient": true
         },
         {
           "name": "Arcana",
-          "ability": "Int",
-          "bonus": "+3",
-          "proficient": false
+          "ab": "INT",
+          "bonus": 3,
+          "proficient": true
         },
         {
           "name": "Athletics",
-          "ability": "Str",
-          "bonus": "+1",
+          "ab": "STR",
+          "bonus": 1,
           "proficient": false
         },
         {
           "name": "Deception",
-          "ability": "Cha",
-          "bonus": "+2",
+          "ab": "CHA",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "History",
-          "ability": "Int",
-          "bonus": "+1",
-          "proficient": false
+          "ab": "INT",
+          "bonus": 3,
+          "proficient": true
         },
         {
           "name": "Insight",
-          "ability": "Wis",
-          "bonus": "+4",
+          "ab": "WIS",
+          "bonus": 4,
           "proficient": true
         },
         {
           "name": "Intimidation",
-          "ability": "Cha",
-          "bonus": "+2",
+          "ab": "CHA",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "Investigation",
-          "ability": "Int",
-          "bonus": "+1",
-          "proficient": false
+          "ab": "INT",
+          "bonus": 3,
+          "proficient": true
         },
         {
           "name": "Medicine",
-          "ability": "Wis",
-          "bonus": "+2",
-          "proficient": false
+          "ab": "WIS",
+          "bonus": 4,
+          "proficient": true
         },
         {
           "name": "Nature",
-          "ability": "Int",
-          "bonus": "+1",
-          "proficient": false
+          "ab": "INT",
+          "bonus": 3,
+          "proficient": true
         },
         {
           "name": "Perception",
-          "ability": "Wis",
-          "bonus": "+4",
+          "ab": "WIS",
+          "bonus": 4,
           "proficient": true
         },
         {
           "name": "Performance",
-          "ability": "Cha",
-          "bonus": "+2",
+          "ab": "CHA",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "Persuasion",
-          "ability": "Cha",
-          "bonus": "+2",
+          "ab": "CHA",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "Religion",
-          "ability": "Int",
-          "bonus": "+1",
-          "proficient": false
+          "ab": "INT",
+          "bonus": 3,
+          "proficient": true
         },
         {
           "name": "Sleight of Hand",
-          "ability": "Dex",
-          "bonus": "+2",
+          "ab": "DEX",
+          "bonus": 2,
           "proficient": false
         },
         {
           "name": "Stealth",
-          "ability": "Dex",
-          "bonus": "+4",
-          "proficient": true
+          "ab": "DEX",
+          "bonus": 2,
+          "proficient": false
         },
         {
           "name": "Survival",
-          "ability": "Wis",
-          "bonus": "+4",
+          "ab": "WIS",
+          "bonus": 4,
           "proficient": true
         }
       ],
@@ -766,13 +772,13 @@
           "detail": "Versatile: 1d8+1 two-handed."
         },
         {
-          "name": "Dagger",
-          "type": "Simple Melee \u00b7 Finesse \u00b7 Light \u00b7 Thrown (20/60)",
+          "name": "Unarmed Strike",
+          "type": "Melee",
           "flavor": "",
-          "attack": "+4",
-          "damage": "1d4+2",
-          "damage_type": "Piercing",
-          "detail": "Finesse. Thrown 20/60 ft."
+          "attack": "+1",
+          "damage": "1d1+1",
+          "damage_type": "Bludgeoning",
+          "detail": ""
         }
       ],
       "spells": {
@@ -835,11 +841,7 @@
           "desc": "Strixhaven Initiate feat. Witherbloom spells added to wizard list. Proficient with Herbalism Kit."
         },
         {
-          "name": "Fairy Flight",
-          "desc": "30 ft flying speed. Cannot fly in medium or heavy armor."
-        },
-        {
-          "name": "Darkvision (Fairy)",
+          "name": "Darkvision",
           "desc": "See in dim light as if bright, darkness as dim light, within 60 feet."
         },
         {
@@ -861,10 +863,6 @@
         {
           "name": "One With Nature",
           "desc": "Know and cast Druidcraft at will using WIS."
-        },
-        {
-          "name": "Small Hands Big Dreams",
-          "desc": "Disadvantage on Athletics (STR). Advantage on Persuasion (CHA)."
         }
       ],
       "traits": {
@@ -876,16 +874,15 @@
       "equipment": [
         "Quarterstaff",
         "Arcane Focus Rod",
-        "Spellbook",
         "Explorer's Pack",
+        "Spellbook",
+        "Ink Bottle",
+        "Ink Pen",
         "Herbalism Kit",
-        "Ink Bottle & Pen",
         "School Uniform",
         "Plant ID Book",
         "Iron Pot",
-        "Dagger",
-        "Dart \u00d7several",
-        "Sling"
+        "Iron (10)"
       ],
       "gold": 1,
       "backstory": {
@@ -900,7 +897,27 @@
         "hair": "Wild, dark with green undertones",
         "build": "Tiny, delicate, deceptively tough"
       },
-      "changelog": []
+      "changelog": [],
+      "proficiencies": {
+        "armor": [
+          "None"
+        ],
+        "weapons": [
+          "Dagger",
+          "Dart",
+          "Light Crossbow",
+          "Quarterstaff",
+          "Sling"
+        ],
+        "tools": [
+          "Herbalism Kit"
+        ],
+        "languages": [
+          "Common",
+          "Elvish",
+          "Sylvan"
+        ]
+      }
     }
   }
 }
