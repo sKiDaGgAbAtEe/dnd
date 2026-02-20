@@ -282,8 +282,7 @@
       },
       "changelog": []
     },
-    {
-  "malc": {
+    "malc": {
     "name": "Malc Grann",
     "race": "Gnome",
     "class": "Fighter",
@@ -292,6 +291,8 @@
     "background": "Folk Hero",
     "alignment": "Neutral",
     "player": "SirMoosen",
+    "portrait": "/dnd/malc.png",
+    "emblem_text": "✦   Rock Gnome · Folk Hero · \"Wall God\"   ✦",
     "xp": "(Milestone)",
 
     "quote": "“A wall is a promise made of stone. I keep promises.”",
@@ -391,8 +392,8 @@
       "bond": "His “temple wall” is his dream made physical. Anyone who helps lay its first stones becomes part of his myth.",
       "flaw": "He confuses confidence with divinity, and can’t resist “proving” himself when a structure (or ego) is challenged."
     }
-  }
-},
+    },
+
     "raven": {
       "name": "Raven",
       "race": "Shadar-Kai",
