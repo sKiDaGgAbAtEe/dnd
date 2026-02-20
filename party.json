@@ -93,87 +93,163 @@
       "changelog": []
     },
 
-    "raven": {
-      "name": "Raven",
-      "race": "Shadar-Kai",
-      "class": "Rogue",
-      "subclass": "Assassin",
-      "level": 1,
-      "background": "Criminal (Spy)",
-      "alignment": "Chaotic Neutral",
-      "player": "Rose",
-      "xp": 0,
-      "theme_color": "#8060b0",
-      "portrait": "raven.png",
-      "emblem_text": "🖤 · Shadow of the Raven Queen · 🖤",
-      "subtitle": "Shadar-Kai Rogue · Assassin · Criminal",
-      "quote": "Relax. If I wanted you dead, you'd be dead.",
-      "footer": "✦   Touch them and I'll end you.   ✦",
-      "abilities": {
-        "str": 10, "dex": 17, "con": 14, "int": 12, "wis": 13, "cha": 14
-      },
-      "saving_throws": {
-        "str": { "proficient": false, "bonus": "+0" },
-        "dex": { "proficient": true,  "bonus": "+5" },
-        "con": { "proficient": false, "bonus": "+2" },
-        "int": { "proficient": true,  "bonus": "+3" },
-        "wis": { "proficient": false, "bonus": "+1" },
-        "cha": { "proficient": false, "bonus": "+2" }
-      },
-      "combat": {
-        "hp_max": 10, "hp_current": 10, "ac": 14, "speed": 301,
-        "initiative": "+3", "proficiency_bonus": "+2",
-        "hit_dice": "1d8", "hit_dice_total": 1,
-        "passive_perception": 13, "passive_investigation": 11, "passive_insight": 11
-      },
-      "skills": [
-        { "name": "Acrobatics",      "ability": "Dex", "bonus": "+5", "proficient": true },
-        { "name": "Animal Handling",  "ability": "Wis", "bonus": "+1", "proficient": false },
-        { "name": "Arcana",           "ability": "Int", "bonus": "+1", "proficient": false },
-        { "name": "Athletics",        "ability": "Str", "bonus": "+0", "proficient": false },
-        { "name": "Deception",        "ability": "Cha", "bonus": "+4", "proficient": true },
-        { "name": "History",          "ability": "Int", "bonus": "+1", "proficient": false },
-        { "name": "Insight",          "ability": "Wis", "bonus": "+1", "proficient": false },
-        { "name": "Intimidation",     "ability": "Cha", "bonus": "+2", "proficient": false },
-        { "name": "Investigation",    "ability": "Int", "bonus": "+1", "proficient": false },
-        { "name": "Medicine",         "ability": "Wis", "bonus": "+1", "proficient": false },
-        { "name": "Nature",           "ability": "Int", "bonus": "+1", "proficient": false },
-        { "name": "Perception",       "ability": "Wis", "bonus": "+3", "proficient": true },
-        { "name": "Performance",      "ability": "Cha", "bonus": "+2", "proficient": false },
-        { "name": "Persuasion",       "ability": "Cha", "bonus": "+2", "proficient": false },
-        { "name": "Religion",         "ability": "Int", "bonus": "+1", "proficient": false },
-        { "name": "Sleight of Hand",  "ability": "Dex", "bonus": "+5", "proficient": true },
-        { "name": "Stealth",          "ability": "Dex", "bonus": "+5", "proficient": true },
-        { "name": "Survival",         "ability": "Wis", "bonus": "+1", "proficient": false }
-      ],
-      "weapons": [
-        { "name": "Shadow Dagger", "type": "Dagger · Finesse · Light · Thrown (20/60)", "flavor": "", "attack": "+5", "damage": "1d4+3", "damage_type": "Piercing", "detail": "Finesse weapon. Sneak Attack eligible. Thrown range 20/60 ft." },
-        { "name": "Shortbow", "type": "Simple Ranged · Ammunition (80/320)", "flavor": "", "attack": "+5", "damage": "1d6+3", "damage_type": "Piercing", "detail": "Range 80/320 ft. Sneak Attack eligible." }
-      ],
-      "features": [
-        { "name": "Sneak Attack", "desc": "Once per turn, deal an extra 1d6 damage with a finesse or ranged weapon if you have advantage or an ally is within 5 ft of the target." },
-        { "name": "Expertise", "desc": "Double proficiency bonus for Stealth and Sleight of Hand." },
-        { "name": "Thieves' Cant", "desc": "Secret rogue language. Hidden messages in normal conversation. Takes 4× longer than plain speech." },
-        { "name": "Blessing of the Raven Queen", "desc": "Bonus action: teleport up to 30 ft. Gain resistance to all damage until start of your next turn. Prof. bonus uses / long rest." },
-        { "name": "Necrotic Resistance", "desc": "Resistance to necrotic damage." },
-        { "name": "Darkvision (Shadar-Kai)", "desc": "See in dim light as if bright, and darkness as if dim light, within 60 feet." }
-      ],
-      "traits": {
-        "personality": "Small frame. Quiet steps. Sharp tongue. Sharper blades. She teases her friends, mocks her enemies, and does not differentiate much in tone — only in outcome.",
-        "ideal": "She doesn't believe in ideals. She believes in hers. Loyalty like a war oath. Everyone else? Disposable.",
-        "bond": "Her ill-gotten gains support her family. She takes contracts. She finishes them clean. She never leaves witnesses if they threaten her circle.",
-        "flaw": "If there's a plan, she'll forget it. If she doesn't forget, she'll ignore it. She trusts instinct over strategy."
-      },
-      "equipment": [ "Daggers (×2)", "Shortbow + Quiver (20 arrows)", "Burglar's Pack", "Leather Armor", "Thieves' Tools", "Dark Common Clothes (hood)", "Trinket Pouch (shiny collection)", "Belt Pouch" ],
-      "gold": 15,
-      "sneak_attack": { "dice": "1d6" },
-      "backstory": {
-        "short": "Born in the muted grey of the Shadowfell, Raven learned early that the world does not protect you — you protect yourself. She found work as a hired blade, not out of cruelty but necessity. Her family needed coin. She provided it, clean and efficient.",
-        "chapters": []
-      },
-      "appearance": { "height": "5'2\"", "weight": "110 lbs", "eyes": "Dark, shadow-rimmed", "skin": "Ash grey", "hair": "Black, sharp-cut", "build": "Small, compact, deceptively fast" },
-      "changelog": []
+   "raven": {
+  "name": "Raven",
+  "race": "Shadar-Kai",
+  "class": "Rogue",
+  "subclass": null,
+  "level": 1,
+  "background": "Criminal (Spy)",
+  "alignment": "Chaotic Neutral",
+  "player": "Rose",
+  "xp": 0,
+  "theme_color": "#8060b0",
+  "portrait": "raven.png",
+  "emblem_text": "🖤 · Shadow-Touched Blade · 🖤",
+  "subtitle": "Shadar-Kai Rogue · Level 1 · Criminal (Spy)",
+  "quote": "Relax. If I wanted you dead, you'd be dead.",
+  "footer": "✦   Touch them and I'll end you.   ✦",
+
+  "abilities": {
+    "str": 10,
+    "dex": 17,
+    "con": 14,
+    "int": 12,
+    "wis": 13,
+    "cha": 14
+  },
+
+  "saving_throws": {
+    "str": { "proficient": false, "bonus": "+0" },
+    "dex": { "proficient": true,  "bonus": "+5" },
+    "int": { "proficient": true,  "bonus": "+3" },
+    "con": { "proficient": false, "bonus": "+2" },
+    "wis": { "proficient": false, "bonus": "+1" },
+    "cha": { "proficient": false, "bonus": "+2" }
+  },
+
+  "combat": {
+    "hp_max": 10,
+    "hp_current": 10,
+    "ac": 14,
+    "speed": 30,
+    "initiative": "+3",
+    "proficiency_bonus": "+2",
+    "hit_dice": "1d8",
+    "hit_dice_total": 1,
+    "passive_perception": 13,
+    "passive_investigation": 11,
+    "passive_insight": 11
+  },
+
+  "skills": [
+    { "name": "Acrobatics",      "ability": "Dex", "bonus": "+5", "proficient": true },
+    { "name": "Animal Handling", "ability": "Wis", "bonus": "+1", "proficient": false },
+    { "name": "Arcana",          "ability": "Int", "bonus": "+1", "proficient": false },
+    { "name": "Athletics",       "ability": "Str", "bonus": "+0", "proficient": false },
+    { "name": "Deception",       "ability": "Cha", "bonus": "+4", "proficient": true },
+    { "name": "History",         "ability": "Int", "bonus": "+1", "proficient": false },
+    { "name": "Insight",         "ability": "Wis", "bonus": "+1", "proficient": false },
+    { "name": "Intimidation",    "ability": "Cha", "bonus": "+2", "proficient": false },
+    { "name": "Investigation",   "ability": "Int", "bonus": "+1", "proficient": false },
+    { "name": "Medicine",        "ability": "Wis", "bonus": "+1", "proficient": false },
+    { "name": "Nature",          "ability": "Int", "bonus": "+1", "proficient": false },
+    { "name": "Perception",      "ability": "Wis", "bonus": "+3", "proficient": true },
+    { "name": "Performance",     "ability": "Cha", "bonus": "+2", "proficient": false },
+    { "name": "Persuasion",      "ability": "Cha", "bonus": "+2", "proficient": false },
+    { "name": "Religion",        "ability": "Int", "bonus": "+1", "proficient": false },
+    { "name": "Sleight of Hand", "ability": "Dex", "bonus": "+7", "proficient": true, "expertise": true },
+    { "name": "Stealth",         "ability": "Dex", "bonus": "+7", "proficient": true, "expertise": true },
+    { "name": "Survival",        "ability": "Wis", "bonus": "+1", "proficient": false }
+  ],
+
+  "weapons": [
+    {
+      "name": "Shadow Dagger",
+      "type": "Dagger · Finesse · Light · Thrown (20/60)",
+      "attack": "+5",
+      "damage": "1d4+3",
+      "damage_type": "Piercing",
+      "detail": "Eligible for Sneak Attack."
     },
+    {
+      "name": "Shortbow",
+      "type": "Simple Ranged · Ammunition (80/320)",
+      "attack": "+5",
+      "damage": "1d6+3",
+      "damage_type": "Piercing",
+      "detail": "Eligible for Sneak Attack."
+    }
+  ],
+
+  "features": [
+    {
+      "name": "Sneak Attack",
+      "desc": "Once per turn, deal an extra 1d6 damage with a finesse or ranged weapon if you have advantage or an ally is within 5 ft of the target."
+    },
+    {
+      "name": "Expertise",
+      "desc": "Double proficiency bonus in Stealth and Sleight of Hand."
+    },
+    {
+      "name": "Thieves' Cant",
+      "desc": "Secret rogue language. Hidden messages in normal speech."
+    },
+    {
+      "name": "Blessing of the Raven Queen",
+      "desc": "Bonus action: teleport up to 30 ft. Gain resistance to all damage until start of next turn. 2 uses per long rest."
+    },
+    {
+      "name": "Necrotic Resistance",
+      "desc": "Resistance to necrotic damage."
+    },
+    {
+      "name": "Darkvision",
+      "desc": "See in dim light as if bright and darkness as dim light within 60 ft."
+    }
+  ],
+
+  "equipment": [
+    "Leather Armor",
+    "Daggers (×2)",
+    "Shortbow + 20 Arrows",
+    "Burglar's Pack",
+    "Thieves' Tools",
+    "Dark Hooded Clothes",
+    "Belt Pouch",
+    "Trinket Pouch (Shiny Collection)"
+  ],
+
+  "trinkets": {
+    "capacity_soft": 25,
+    "current_count": 7,
+    "notes": "Raven obsessively collects shiny objects. Mechanical value questionable. Emotional value immense."
+  },
+
+  "gold": 15,
+
+  "backstory": {
+    "short": "Born in the Shadowfell, Raven learned early that survival favors the quick and the quiet. She works as a hired blade to support her family. Protective of her friends. Playful. Dangerous."
+  },
+
+  "appearance": {
+    "height": "5'2\"",
+    "weight": "110 lbs",
+    "eyes": "Dark, shadow-rimmed",
+    "skin": "Ash grey",
+    "hair": "Black, sharp-cut",
+    "build": "Small, compact, deceptively fast"
+  },
+
+  "encumbrance": {
+    "strength_score": 10,
+    "carry_capacity": 150,
+    "current_estimated_weight": 61,
+    "status": "Lightly Loaded"
+  },
+
+  "changelog": []
+},
 
     "astrica": {
       "name": "Astrica",
