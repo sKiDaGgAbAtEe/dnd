@@ -282,6 +282,117 @@
       },
       "changelog": []
     },
+    {
+  "malc": {
+    "name": "Malc Grann",
+    "race": "Gnome",
+    "class": "Fighter",
+    "subclass": "",
+    "level": 1,
+    "background": "Folk Hero",
+    "alignment": "Neutral",
+    "player": "SirMoosen",
+    "xp": "(Milestone)",
+
+    "quote": "“A wall is a promise made of stone. I keep promises.”",
+    "subtitle": "Fighter · Neutral · Strong Wall",
+
+    "abilities": { "str": 18, "dex": 12, "con": 18, "int": 10, "wis": 10, "cha": 16 },
+
+    "saving_throws": {
+      "str": { "proficient": true, "bonus": "+6" },
+      "dex": { "proficient": false, "bonus": "+1" },
+      "con": { "proficient": true, "bonus": "+6" },
+      "int": { "proficient": false, "bonus": "+0" },
+      "wis": { "proficient": false, "bonus": "+0" },
+      "cha": { "proficient": false, "bonus": "+3" }
+    },
+
+    "combat": {
+      "ac": 19,
+      "initiative": "+1",
+      "speed": 30,
+      "proficiency_bonus": "+2",
+      "hit_dice": "1d10",
+      "passive_perception": 12,
+      "passive_insight": 10,
+      "passive_investigation": 10
+    },
+
+    "hp": { "max": 14, "current": 14, "temp": 0 },
+
+    "skills": [
+      { "name": "Acrobatics", "ability": "DEX", "bonus": "+1" },
+      { "name": "Animal Handling", "ability": "WIS", "bonus": "+2" },
+      { "name": "Arcana", "ability": "INT", "bonus": "+0" },
+      { "name": "Athletics", "ability": "STR", "bonus": "+4" },
+      { "name": "Deception", "ability": "CHA", "bonus": "+3" },
+      { "name": "History", "ability": "INT", "bonus": "+2" },
+      { "name": "Insight", "ability": "WIS", "bonus": "+0" },
+      { "name": "Intimidation", "ability": "CHA", "bonus": "+3" },
+      { "name": "Investigation", "ability": "INT", "bonus": "+0" },
+      { "name": "Medicine", "ability": "WIS", "bonus": "+0" },
+      { "name": "Nature", "ability": "INT", "bonus": "+0" },
+      { "name": "Perception", "ability": "WIS", "bonus": "+2" },
+      { "name": "Performance", "ability": "CHA", "bonus": "+3" },
+      { "name": "Persuasion", "ability": "CHA", "bonus": "+3" },
+      { "name": "Religion", "ability": "INT", "bonus": "+0" },
+      { "name": "Sleight of Hand", "ability": "DEX", "bonus": "+1" },
+      { "name": "Stealth", "ability": "DEX", "bonus": "+1" },
+      { "name": "Survival", "ability": "WIS", "bonus": "+2" }
+    ],
+
+    "weapons": [
+      {
+        "name": "Whip",
+        "type": "Martial · Finesse · Reach",
+        "attack": "+6",
+        "damage": "1d4+4",
+        "damage_type": "Slashing",
+        "detail": "Slow"
+      },
+      {
+        "name": "Unarmed Strike",
+        "type": "Melee",
+        "attack": "+6",
+        "damage": "5",
+        "damage_type": "Bludgeoning",
+        "detail": ""
+      }
+    ],
+
+    "features": [
+      { "name": "Second Wind", "desc": "Bonus Action: regain 1d10+1 HP. 2 uses / Long Rest; regain 1 use on Short Rest." },
+      { "name": "Defense (Fighting Style)", "desc": "+1 AC while wearing armor (included in AC)." },
+      { "name": "Weapon Mastery", "desc": "Access to mastery properties (e.g., Slow on whip)." },
+      { "name": "Darkvision", "desc": "Darkvision 60 ft." },
+      { "name": "Gnomish Cunning", "desc": "Advantage on INT/WIS/CHA saving throws." },
+      { "name": "Rock Gnome Clockwork", "desc": "Know Mending + Prestidigitation; can create Tiny clockwork devices via Prestidigitation (up to 3, last 8 hours)." }
+    ],
+
+    "equipment": [
+      "Chain Mail",
+      "Shield",
+      "Whip",
+      "Backpack",
+      "Bedroll",
+      "Mason's Tools"
+    ],
+    "gold": 5,
+
+    "backstory": {
+      "short": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self-proclaimed “Wall God.” Bright-eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!",
+      "chapters": []
+    },
+
+    "traits": {
+      "personality": "Bright-eyed and delighted by any sufficiently sturdy wall. Speaks of masonry like liturgy.",
+      "ideal": "To build is to worship. A perfect wall is proof the world can be made better—stronger—on purpose.",
+      "bond": "His “temple wall” is his dream made physical. Anyone who helps lay its first stones becomes part of his myth.",
+      "flaw": "He confuses confidence with divinity, and can’t resist “proving” himself when a structure (or ego) is challenged."
+    }
+  }
+},
     "raven": {
       "name": "Raven",
       "race": "Shadar-Kai",
@@ -290,7 +401,7 @@
       "level": 1,
       "background": "Spy",
       "alignment": "Neutral",
-      "player": "Illyasviel",
+      "player": "Rose",
       "xp": 0,
       "theme_color": "#8060b0",
       "portrait": "raven.png",
@@ -587,7 +698,7 @@
       "level": 1,
       "background": "Witherbloom Student",
       "alignment": "True Neutral",
-      "player": "Illyasviel",
+      "player": "Astrica",
       "xp": 0,
       "theme_color": "#3a9a5a",
       "portrait": "astrica.png",
@@ -896,7 +1007,7 @@
       "level": 1,
       "background": "Rival Intern",
       "alignment": "True Neutral",
-      "player": "Ilyasviel",
+      "player": "Nikkelz",
       "xp": 0,
       "theme_color": "#6FB5FF",
       "portrait": "Evo.png",
