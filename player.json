@@ -9,18 +9,18 @@
       "name": "Sekhmet",
       "race": "Leonin",
       "class": "Barbarian",
-      "subclass": "Zealot",
+      "subclass": "",
       "level": 1,
       "background": "Outlander",
-      "alignment": "True Neutral",
-      "player": "\u2014",
+      "alignment": "Neutral",
+      "player": "—",
       "xp": 0,
       "theme_color": "#c8972a",
       "portrait": "Sekhmet.png",
-      "emblem_text": "\u2600 \u00b7 Son of the First Land \u00b7 \u2600",
-      "subtitle": "Leonin Barbarian \u00b7 Path of the Zealot \u00b7 Outlander",
+      "emblem_text": "☀ · Son of the First Land · ☀",
+      "subtitle": "Leonin Barbarian · Outlander",
       "quote": "The world has hardened. The mythic has compressed into stone. I am what did not forget to remain.",
-      "footer": "\u2600   The world hardened. He did not.   \u2600",
+      "footer": "☀   The world hardened. He did not.   ☀",
       "abilities": {
         "str": 16,
         "dex": 14,
@@ -186,25 +186,16 @@
           "attack": "+5",
           "damage": "1d8+3",
           "damage_type": "Bludgeoning",
-          "detail": "A massive club carved from petrified First-Land stone, sun-disc emblems etched along its face. While Raging: +5 attack, 1d8+5 damage. Versatile: use two hands for 1d10 base damage."
+          "detail": ""
         },
         {
           "name": "Natural Claws",
-          "type": "Leonin \u00b7 Unarmed Strike",
+          "type": "Leonin · Unarmed Strike",
           "flavor": "",
           "attack": "+5",
           "damage": "1d4+3",
           "damage_type": "Slashing",
-          "detail": "Leonin racial unarmed strike. Can be used as a bonus action after the Attack action. While raging: 1d4+5 slashing damage."
-        },
-        {
-          "name": "Daunting Roar",
-          "type": "Leonin \u00b7 Ability",
-          "flavor": "",
-          "attack": "DC 12",
-          "damage": "WIS Save \u00b7 Frightened",
-          "damage_type": "",
-          "detail": "Bonus action. Creatures within 10 ft must succeed WIS save (DC 12) or become frightened until end of your next turn. 1/short rest."
+          "detail": ""
         }
       ],
       "features": [
@@ -230,8 +221,8 @@
         }
       ],
       "traits": {
-        "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly \u2014 but he positions himself between danger and the weak without thinking.",
-        "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something \u2014 his name must echo in story long after his bones bleach in the sand.",
+        "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
+        "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something — his name must echo in story long after his bones bleach in the sand.",
         "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
         "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
       },
@@ -252,22 +243,22 @@
         "resistances": "B/P/S"
       },
       "backstory": {
-        "short": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded \u2014 some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest \u2014 but because his will refused to dissolve.",
+        "short": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded — some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest — but because his will refused to dissolve.",
         "chapters": [
           {
             "title": "The First Land",
             "subtitle": "Before the Compression",
-            "text": "Long ago, his homeland was not like the world is now. The air was lighter. The horizon wider. Creatures moved as song. Spirits walked at the surface of things. There was no barrier between the mythic and the physical \u2014 they were the same substance, breathing together."
+            "text": "Long ago, his homeland was not like the world is now. The air was lighter. The horizon wider. Creatures moved as song. Spirits walked at the surface of things. There was no barrier between the mythic and the physical — they were the same substance, breathing together."
           },
           {
             "title": "The Temporal Compression",
             "subtitle": "The Fall",
-            "text": "Then came the shift \u2014 not a war, not a disaster. A hardening. The world compressed. Matter thickened. What once moved like wind became stone-bound. What once sang in the air fell silent. His pride did not all survive the transition. Some faded. Some became legend. Some petrified into monuments that scholars now mistake for ancient ruins."
+            "text": "Then came the shift — not a war, not a disaster. A hardening. The world compressed. Matter thickened. What once moved like wind became stone-bound. What once sang in the air fell silent. His pride did not all survive the transition. Some faded. Some became legend. Some petrified into monuments that scholars now mistake for ancient ruins."
           },
           {
             "title": "He Held Form",
             "subtitle": "Why He Survived",
-            "text": "He endured \u2014 not because he was strongest, but because his will would not dissolve. His rage anchored him to reality when reality itself was rewriting. He carries oral history that no book records. He remembers things that, to the modern world, never happened."
+            "text": "He endured — not because he was strongest, but because his will would not dissolve. His rage anchored him to reality when reality itself was rewriting. He carries oral history that no book records. He remembers things that, to the modern world, never happened."
           },
           {
             "title": "A World Too Small",
@@ -277,7 +268,7 @@
           {
             "title": "The Core Question",
             "subtitle": "What drives him",
-            "text": "Does he believe the world fell once and it is done \u2014 or that the world is still falling, just slowly enough that no one else can feel it? That answer determines how he rages. And what he's really fighting for."
+            "text": "Does he believe the world fell once and it is done — or that the world is still falling, just slowly enough that no one else can feel it? That answer determines how he rages. And what he's really fighting for."
           }
         ]
       },
@@ -303,16 +294,16 @@
       "xp": 0,
       "theme_color": "#8060b0",
       "portrait": "raven.png",
-      "emblem_text": "\ud83d\udda4 \u00b7 Shadow of the Raven Queen \u00b7 \ud83d\udda4",
-      "subtitle": "Shadar-Kai Rogue \u00b7 Spy",
+      "emblem_text": "🖤 · Shadow of the Raven Queen · 🖤",
+      "subtitle": "Shadar-Kai Rogue · Spy",
       "quote": "Relax. If I wanted you dead, you'd be dead.",
-      "footer": "\u2726   Touch them and I'll end you.   \u2726",
+      "footer": "✦   Touch them and I'll end you.   ✦",
       "abilities": {
-        "str": 15,
+        "str": 10,
         "dex": 18,
-        "con": 15,
-        "int": 11,
-        "wis": 16,
+        "con": 14,
+        "int": 12,
+        "wis": 13,
         "cha": 14
       },
       "saving_throws": {
@@ -483,21 +474,27 @@
       "weapons": [
         {
           "name": "Shortsword",
-          "atk_bonus": "+6",
-          "damage": "1d6+4 Piercing",
-          "notes": "Finesse"
+          "type": "Shortsword",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Finesse, light."
         },
         {
           "name": "Dagger",
-          "atk_bonus": "+6",
-          "damage": "1d4+4 Piercing",
-          "notes": "Finesse, light, thrown (20/60)"
+          "type": "Dagger",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Piercing",
+          "detail": "Finesse, light, thrown (20/60)."
         },
         {
           "name": "Shortbow",
-          "atk_bonus": "+6",
-          "damage": "1d6+4 Piercing",
-          "notes": "Ammunition (range 80/320), two-handed"
+          "type": "Shortbow",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Ammunition (80/320), two-handed."
         }
       ],
       "features": [
@@ -531,7 +528,7 @@
         }
       ],
       "traits": {
-        "personality": "Small frame. Quiet steps. Sharp tongue. Sharper blades. She teases her friends, mocks her enemies, and does not differentiate much in tone \u2014 only in outcome.",
+        "personality": "Small frame. Quiet steps. Sharp tongue. Sharper blades. She teases her friends, mocks her enemies, and does not differentiate much in tone — only in outcome.",
         "ideal": "She doesn't believe in ideals. She believes in hers. Loyalty like a war oath. Everyone else? Disposable.",
         "bond": "Her ill-gotten gains support her family. She takes contracts. She finishes them clean. She never leaves witnesses if they threaten her circle.",
         "flaw": "If there's a plan, she'll forget it. If she doesn't forget, she'll ignore it. She trusts instinct over strategy."
@@ -550,7 +547,7 @@
       "gold": 15,
       "sneak_attack": "1d6",
       "backstory": {
-        "short": "Born in the muted grey of the Shadowfell, Raven learned early that the world does not protect you \u2014 you protect yourself. She found work as a hired blade, not out of cruelty but necessity. Her family needed coin. She provided it, clean and efficient.",
+        "short": "Born in the muted grey of the Shadowfell, Raven learned early that the world does not protect you — you protect yourself. She found work as a hired blade, not out of cruelty but necessity. Her family needed coin. She provided it, clean and efficient.",
         "chapters": []
       },
       "appearance": {
@@ -594,10 +591,10 @@
       "xp": 0,
       "theme_color": "#3a9a5a",
       "portrait": "astrica.png",
-      "emblem_text": "\u2726   Witherbloom Student \u00b7 Izabella   \u2726",
-      "subtitle": "Fairy Wizard \u00b7 Witherbloom Student \u00b7 True Neutral",
+      "emblem_text": "✦   Witherbloom Student · Izabella   ✦",
+      "subtitle": "Fairy Wizard · Witherbloom Student · True Neutral",
       "quote": "Knowledge without application is just hoarding.",
-      "footer": "\u2726   The swamp does not forget. Neither does she.   \u2726",
+      "footer": "✦   The swamp does not forget. Neither does she.   ✦",
       "abilities": {
         "str": 13,
         "dex": 14,
@@ -764,7 +761,7 @@
       "weapons": [
         {
           "name": "Quarterstaff",
-          "type": "Simple Melee \u00b7 Versatile",
+          "type": "Simple Melee · Versatile",
           "flavor": "",
           "attack": "+3",
           "damage": "1d6+1",
@@ -830,7 +827,7 @@
       "features": [
         {
           "name": "Arcane Recovery",
-          "desc": "Once per day on a Short Rest: recover spell slots totaling \u2264 half wizard level (round up). At Level 1: recover one 1st-level slot."
+          "desc": "Once per day on a Short Rest: recover spell slots totaling ≤ half wizard level (round up). At Level 1: recover one 1st-level slot."
         },
         {
           "name": "Wizard Spellbook",
@@ -838,10 +835,10 @@
         }
       ],
       "traits": {
-        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable \u2014 she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
+        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable — she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
         "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there.",
         "bond": "Her spellbook contains pressed flowers, margin notes in three languages, and a spell she hasn't been able to cast yet. The people she travels with have become, unexpectedly, something she would cross swamps for.",
-        "flaw": "She occasionally forgets other people cannot fly, hide instantly, or talk to mushrooms \u2014 leading to plans that only work if you're her."
+        "flaw": "She occasionally forgets other people cannot fly, hide instantly, or talk to mushrooms — leading to plans that only work if you're her."
       },
       "equipment": [
         "Quarterstaff",
