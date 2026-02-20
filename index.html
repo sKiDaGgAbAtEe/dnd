@@ -380,7 +380,69 @@
     color: #50c080;
   }
 
-  /* ── CARD IMAGE — CONSTRAINED ── */
+  
+  /* ── EVO THEME (Storm/Blue) ── */
+  .char-card.theme-evo {
+    background: linear-gradient(135deg, rgba(6,8,14,0.9) 0%, rgba(10,14,22,0.95) 100%);
+    border-color: rgba(120,180,255,0.28);
+  }
+  .char-card.theme-evo:hover {
+    box-shadow: 0 20px 60px rgba(120,180,255,0.28), 0 0 90px -24px rgba(90,150,255,0.18);
+    border-color: rgba(140,200,255,0.55);
+  }
+  .char-card.theme-evo::before {
+    background: radial-gradient(circle at top, rgba(120,180,255,0.10) 0%, transparent 70%);
+  }
+  .char-card.theme-evo .level-badge,
+  .char-card.theme-evo .class-badge {
+    border-color: rgba(140,200,255,0.55);
+    background: rgba(6,8,14,0.9);
+  }
+  .char-card.theme-evo .level-num { color: rgba(160,220,255,0.95); }
+  .char-card.theme-evo .level-lbl { color: rgba(90,140,200,0.85); }
+  .char-card.theme-evo .class-badge { color: rgba(190,235,255,0.95); }
+  .char-card.theme-evo .char-name {
+    color: rgba(190,235,255,0.95);
+    text-shadow: 0 0 22px rgba(120,180,255,0.45);
+  }
+  .char-card.theme-evo .stat-val { color: rgba(160,220,255,0.95); }
+  .char-card.theme-evo .stat-cell:hover {
+    background: rgba(120,180,255,0.10);
+    border-color: rgba(140,200,255,0.55);
+  }
+  .char-card.theme-evo .qi-tag {
+    background: rgba(120,180,255,0.08);
+    border-color: rgba(120,180,255,0.22);
+  }
+  .char-card.theme-evo .btn-primary {
+    background: rgba(120,180,255,0.14);
+    border-color: rgba(140,200,255,0.55);
+    color: rgba(190,235,255,0.95);
+  }
+  .char-card.theme-evo .btn-primary:hover {
+    background: rgba(160,220,255,0.95);
+    color: var(--dark);
+    box-shadow: 0 4px 26px rgba(120,180,255,0.45);
+  }
+  .char-card.theme-evo .btn-secondary {
+    border-color: rgba(120,180,255,0.20);
+    color: rgba(140,180,220,0.80);
+  }
+  .char-card.theme-evo .btn-secondary:hover {
+    border-color: rgba(140,200,255,0.55);
+    background: rgba(120,180,255,0.08);
+    color: rgba(190,235,255,0.95);
+  }
+
+  /* themed overlay */
+  .char-card.theme-evo .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(6,8,14,0.10) 0%,
+      rgba(6,8,14,0.25) 50%,
+      rgba(6,8,14,0.92) 100%
+    );
+  }
+/* ── CARD IMAGE — CONSTRAINED ── */
   .card-image {
     position: relative;
     height: 220px;
@@ -736,7 +798,7 @@
     <div class="orn-line r"></div>
   </div>
 
-  <div class="party-count">Three Adventurers · Many More to Come</div>
+  <div class="party-count">Four Adventurers · Many More to Come</div>
 
   <!-- ── CHARACTER GRID ── -->
   <div class="char-grid">
@@ -802,7 +864,7 @@
           <a href="/dnd/characters/sekhmet.html" class="btn btn-primary">
             <span class="btn-icon">🦁</span> Character Sheet
           </a>
-          <a href="/dnd/characters/sekhmet textsheet.html" class="btn btn-secondary">
+          <a href="/dnd/characters/sekhmet_textsheet.html" class="btn btn-secondary">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -945,6 +1007,74 @@
       </div>
     </div>
 
+
+    <!-- EVO -->
+    <div class="char-card theme-evo" data-character="evo" style="--reveal-delay: 0.4s;">
+      <div class="card-image">
+        <img src="Evo.png" alt="Evo">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Cleric · Tempest</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Evo</div>
+        <div class="char-race-class">Bronze Dragonborn &nbsp;·&nbsp; Tempest Domain &nbsp;·&nbsp; Rival Intern</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">12</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">17</span>
+            <span class="stat-mod">+3</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 10</span>
+          <span class="qi-tag">AC 18</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">True Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/evo.html" class="btn btn-primary">
+            <span class="btn-icon">⚡</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/evo_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── FOOTER ── -->
@@ -1118,18 +1248,27 @@
 
       // Quick info tags: HP, AC, Speed, Prof, Alignment
       const tags = card.querySelectorAll(".quick-info .qi-tag");
-      const hp = (c.hp?.current ?? c.hp?.max);
-      const ac = c.combat?.ac;
-      const sp = c.combat?.speed;
-      const pb = c.proficiencyBonus;
-const al = c.alignment;
 
-      if (tags[0]) setText(tags[0], `HP ${hp ?? ""}`);
+      const hpCur = (c.combat?.hp_current ?? c.hp?.current ?? c.hp_current ?? null);
+      const hpMax = (c.combat?.hp_max ?? c.hp?.max ?? c.hp_max ?? null);
+      const hpDisplay = (hpCur ?? hpMax);
+
+      const ac = (c.combat?.ac ?? c.ac ?? null);
+      const sp = (c.combat?.speed ?? c.speed ?? null);
+
+      const pbRaw = (c.combat?.proficiency_bonus ?? c.proficiencyBonus ?? c.proficiency_bonus ?? null);
+      let pbTxt = "";
+      if (typeof pbRaw === "string") pbTxt = pbRaw.trim();
+      else if (pbRaw != null && pbRaw !== "") pbTxt = (Number(pbRaw) >= 0 ? "+" + Number(pbRaw) : String(pbRaw));
+
+      const al = (c.alignment ?? "");
+
+      if (tags[0]) setText(tags[0], `HP ${hpDisplay ?? ""}`);
       if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
       if (tags[2]) setText(tags[2], `Speed ${sp ?? ""}`);
-      if (tags[3]) setText(tags[3], `Prof ${pb != null ? (pb >= 0 ? "+"+pb : pb) : ""}`);
-      if (tags[4]) setText(tags[4], al ?? "");
-    });
+      if (tags[3]) setText(tags[3], `Prof ${pbTxt}`);
+      if (tags[4]) setText(tags[4], al);
+});
   } catch (err) {
     console.warn("Landing-page wiring failed; leaving fallback values in place.", err);
   }
