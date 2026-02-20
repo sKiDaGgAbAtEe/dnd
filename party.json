@@ -295,16 +295,16 @@
       "name": "Raven",
       "race": "Shadar-Kai",
       "class": "Rogue",
-      "subclass": "Assassin (Lv3)",
+      "subclass": "",
       "level": 1,
       "background": "Spy",
-      "alignment": "True Neutral",
+      "alignment": "Neutral",
       "player": "Illyasviel",
       "xp": 0,
       "theme_color": "#8060b0",
       "portrait": "raven.png",
       "emblem_text": "\ud83d\udda4 \u00b7 Shadow of the Raven Queen \u00b7 \ud83d\udda4",
-      "subtitle": "Shadar-Kai Rogue \u00b7 Assassin \u00b7 Criminal",
+      "subtitle": "Shadar-Kai Rogue \u00b7 Spy",
       "quote": "Relax. If I wanted you dead, you'd be dead.",
       "footer": "\u2726   Touch them and I'll end you.   \u2726",
       "abilities": {
@@ -318,7 +318,7 @@
       "saving_throws": {
         "str": {
           "proficient": false,
-          "bonus": "+2"
+          "bonus": "+0"
         },
         "dex": {
           "proficient": true,
@@ -329,12 +329,12 @@
           "bonus": "+2"
         },
         "int": {
-          "proficient": false,
-          "bonus": "+0"
+          "proficient": true,
+          "bonus": "+3"
         },
         "wis": {
           "proficient": false,
-          "bonus": "+3"
+          "bonus": "+1"
         },
         "cha": {
           "proficient": false,
@@ -350,171 +350,160 @@
         "proficiency_bonus": "+2",
         "hit_dice": "1d8",
         "hit_dice_total": 1,
-        "passive_perception": 15,
-        "passive_investigation": 11,
-        "passive_insight": 11
+        "passive_perception": 13
       },
       "skills": [
         {
           "name": "Acrobatics",
-          "ability": "Dex",
-          "bonus": "+6",
-          "proficient": false
+          "ability": "dex",
+          "proficient": true,
+          "expertise": false,
+          "bonus": "+6"
         },
         {
           "name": "Animal Handling",
-          "ability": "Wis",
-          "bonus": "+3",
-          "proficient": false
+          "ability": "wis",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Arcana",
-          "ability": "Int",
-          "bonus": "+0",
-          "proficient": false
+          "ability": "int",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Athletics",
-          "ability": "Str",
-          "bonus": "+4",
-          "proficient": false
+          "ability": "str",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+0"
         },
         {
           "name": "Deception",
-          "ability": "Cha",
-          "bonus": "+6",
-          "proficient": false
+          "ability": "cha",
+          "proficient": true,
+          "expertise": false,
+          "bonus": "+4"
         },
         {
           "name": "History",
-          "ability": "Int",
-          "bonus": "+0",
-          "proficient": false
+          "ability": "int",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Insight",
-          "ability": "Wis",
-          "bonus": "+3",
-          "proficient": false
+          "ability": "wis",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Intimidation",
-          "ability": "Cha",
-          "bonus": "+2",
-          "proficient": false
+          "ability": "cha",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+2"
         },
         {
           "name": "Investigation",
-          "ability": "Int",
-          "bonus": "+0",
-          "proficient": false
+          "ability": "int",
+          "proficient": true,
+          "expertise": false,
+          "bonus": "+3"
         },
         {
           "name": "Medicine",
-          "ability": "Wis",
-          "bonus": "+3",
-          "proficient": false
+          "ability": "wis",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Nature",
-          "ability": "Int",
-          "bonus": "+0",
-          "proficient": false
+          "ability": "int",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Perception",
-          "ability": "Wis",
-          "bonus": "+5",
-          "proficient": true
+          "ability": "wis",
+          "proficient": true,
+          "expertise": false,
+          "bonus": "+3"
         },
         {
           "name": "Performance",
-          "ability": "Cha",
-          "bonus": "+2",
-          "proficient": false
+          "ability": "cha",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+2"
         },
         {
           "name": "Persuasion",
-          "ability": "Cha",
-          "bonus": "+2",
-          "proficient": false
+          "ability": "cha",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+2"
         },
         {
           "name": "Religion",
-          "ability": "Int",
-          "bonus": "+0",
-          "proficient": false
+          "ability": "int",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         },
         {
           "name": "Sleight of Hand",
-          "ability": "Dex",
-          "bonus": "+6",
-          "proficient": false
+          "ability": "dex",
+          "proficient": true,
+          "expertise": true,
+          "bonus": "+8"
         },
         {
           "name": "Stealth",
-          "ability": "Dex",
-          "bonus": "+8",
-          "proficient": true
+          "ability": "dex",
+          "proficient": true,
+          "expertise": true,
+          "bonus": "+8"
         },
         {
           "name": "Survival",
-          "ability": "Wis",
-          "bonus": "+3",
-          "proficient": false
+          "ability": "wis",
+          "proficient": false,
+          "expertise": false,
+          "bonus": "+1"
         }
       ],
       "weapons": [
         {
-          "name": "Crowbar",
-          "type": "Improvised Melee",
-          "flavor": "",
-          "attack": "+4",
-          "damage": "1d4+2",
-          "damage_type": "Bludgeoning",
-          "detail": "Improvised weapon. DM may rule as club."
+          "name": "Shortsword",
+          "atk_bonus": "+6",
+          "damage": "1d6+4 Piercing",
+          "notes": "Finesse"
         },
         {
           "name": "Dagger",
-          "type": "Simple Melee \u00b7 Finesse \u00b7 Light \u00b7 Thrown (20/60)",
-          "flavor": "",
-          "attack": "+6",
-          "damage": "1d4+4",
-          "damage_type": "Piercing",
-          "detail": "Finesse/thrown. Sneak Attack eligible."
+          "atk_bonus": "+6",
+          "damage": "1d4+4 Piercing",
+          "notes": "Finesse, light, thrown (20/60)"
         },
         {
           "name": "Shortbow",
-          "type": "Simple Ranged \u00b7 Ammunition (80/320)",
-          "flavor": "",
-          "attack": "+6",
-          "damage": "1d6+4",
-          "damage_type": "Piercing",
-          "detail": "Sneak Attack eligible."
-        },
-        {
-          "name": "Shortsword",
-          "type": "Martial Melee \u00b7 Finesse \u00b7 Light",
-          "flavor": "",
-          "attack": "+6",
-          "damage": "1d6+4",
-          "damage_type": "Piercing",
-          "detail": "Finesse. Sneak Attack eligible."
-        },
-        {
-          "name": "Unarmed Strike",
-          "type": "Unarmed",
-          "flavor": "",
-          "attack": "+4",
-          "damage": "1d1+2",
-          "damage_type": "Bludgeoning",
-          "detail": "Improvised unarmed strike."
+          "atk_bonus": "+6",
+          "damage": "1d6+4 Piercing",
+          "notes": "Ammunition (range 80/320), two-handed"
         }
       ],
       "features": [
         {
           "name": "Sneak Attack",
-          "desc": "Once per turn, deal an extra 1d6 damage with a finesse or ranged weapon if you have advantage or an ally is within 5 ft of the target."
+          "desc": "Once per turn, deal an extra 1d6 damage with a finesse or ranged weapon if you have advantage on the attack roll, or if an ally is within 5 ft of the target and you don't have disadvantage."
         },
         {
           "name": "Expertise",
@@ -522,19 +511,23 @@
         },
         {
           "name": "Thieves' Cant",
-          "desc": "Secret rogue language. Hidden messages in normal conversation. Takes 4\u00d7 longer than plain speech."
+          "desc": "Secret rogue language. Hidden messages inside normal conversation."
         },
         {
           "name": "Blessing of the Raven Queen",
-          "desc": "Bonus action: teleport up to 30 ft. Gain resistance to all damage until start of your next turn. Prof. bonus uses / long rest."
+          "desc": "Bonus action teleport up to 30 ft. Gain resistance to all damage except force until the start of your next turn. Once per short or long rest."
         },
         {
-          "name": "Necrotic Resistance",
-          "desc": "Resistance to necrotic damage."
+          "name": "Darkvision",
+          "desc": "See in dim light within 60 ft as bright light, and in darkness as dim light."
         },
         {
-          "name": "Darkvision (Shadar-Kai)",
-          "desc": "See in dim light as if bright, and darkness as if dim light, within 60 feet."
+          "name": "Fey Ancestry",
+          "desc": "Advantage on saving throws against being charmed; magic can't put you to sleep."
+        },
+        {
+          "name": "Trance",
+          "desc": "Elves don't need to sleep. They meditate deeply for 4 hours to gain the benefits of a long rest."
         }
       ],
       "traits": {
@@ -544,17 +537,18 @@
         "flaw": "If there's a plan, she'll forget it. If she doesn't forget, she'll ignore it. She trusts instinct over strategy."
       },
       "equipment": [
-        "Arrows",
+        "Shortsword",
+        "Shortbow",
+        "Quiver (20 arrows)",
+        "Leather armor",
+        "2 Daggers",
         "Burglar's Pack",
-        "Leather Armor",
-        "Dagger",
         "Thieves' Tools",
-        "Dark hooded common clothes (x2)"
+        "Crowbar",
+        "Dark, hooded common clothes"
       ],
       "gold": 15,
-      "sneak_attack": {
-        "dice": "1d6"
-      },
+      "sneak_attack": "1d6",
       "backstory": {
         "short": "Born in the muted grey of the Shadowfell, Raven learned early that the world does not protect you \u2014 you protect yourself. She found work as a hired blade, not out of cruelty but necessity. Her family needed coin. She provided it, clean and efficient.",
         "chapters": []
@@ -567,7 +561,26 @@
         "hair": "Black, sharp-cut",
         "build": "Small, compact, deceptively fast"
       },
-      "changelog": []
+      "proficiencies": {
+        "armor": [
+          "Light armor"
+        ],
+        "weapons": [
+          "Simple weapons",
+          "hand crossbows",
+          "longswords",
+          "rapiers",
+          "shortswords"
+        ],
+        "tools": [
+          "Thieves' Tools"
+        ],
+        "languages": [
+          "Common",
+          "Thieves' Cant",
+          "Undercommon"
+        ]
+      }
     },
     "astrica": {
       "name": "Astrica",
