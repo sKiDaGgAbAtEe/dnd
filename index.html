@@ -870,17 +870,17 @@
           <a href="/dnd/characters/raven.html" class="btn btn-primary">
             <span class="btn-icon">🗡️</span> Character Sheet
           </a>
-          <a href="/dnd/characters/raven_textsheet.html" class="btn btn-secondary">
+          <a href="/dnd/characters/raven textsheet.html" class="btn btn-secondary">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
       </div>
     </div>
 
-    <!-- ASTRICA -->
-    <div class="char-card theme-astrica" data-character="astrica" style="--reveal-delay: 0.3s;">
+    <!-- IZABELLA (formerly Astrica) -->
+    <div class="char-card theme-astrica" data-character="izabella" style="--reveal-delay: 0.3s;">
       <div class="card-image">
-        <img src="astrica.png" alt="Astrica">
+        <img src="astrica.png" alt="Izabella">
         <div class="card-image-overlay"></div>
         <div class="level-badge">
           <span class="level-num">1</span>
@@ -890,7 +890,7 @@
       </div>
 
       <div class="card-body">
-        <div class="char-name">Astrica</div>
+        <div class="char-name">Izabella</div>
         <div class="char-race-class">Fairy &nbsp;·&nbsp; Witherbloom Student &nbsp;·&nbsp; Wizard</div>
 
         <div class="stat-row">
@@ -935,10 +935,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/astrica.html" class="btn btn-primary">
+          <a href="/dnd/characters/izabella.html" class="btn btn-primary">
             <span class="btn-icon">✨</span> Character Sheet
           </a>
-          <a href="/dnd/characters/astrica_textsheet.html" class="btn btn-secondary">
+          <a href="/dnd/characters/izabella textsheet.html" class="btn btn-secondary">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1046,17 +1046,18 @@
 
 
 <script>
-/* ── PARTY.JSON WIRING (landing cards) ── */
+/* ── PLAYER.JSON WIRING (landing cards) ── */
 (async function () {
   const CANDIDATES = [
-    "./party.json",
-    "party.json",
-    "/dnd/party.json",
-    "../party.json",
-    "../../party.json"
+    "./player.json",
+    "player.json",
+    "/player.json",
+    "/dnd/player.json",
+    "../player.json",
+    "../../player.json"
   ];
 
-  async function loadParty() {
+  async function loadPlayers() {
     let lastErr = null;
     for (const url of CANDIDATES) {
       try {
@@ -1065,7 +1066,7 @@
         return await r.json();
       } catch (e) { lastErr = e; }
     }
-    throw lastErr || new Error("Could not load party.json");
+    throw lastErr || new Error("Could not load player.json");
   }
 
   function abMod(score) {
@@ -1085,8 +1086,8 @@
   }
 
   try {
-    const party = await loadParty();
-    const chars = party?.characters || {};
+    const data = await loadPlayers();
+    const chars = data?.characters || {};
 
     document.querySelectorAll(".char-card[data-character]").forEach(card => {
       const key = card.getAttribute("data-character");
@@ -1117,11 +1118,11 @@
 
       // Quick info tags: HP, AC, Speed, Prof, Alignment
       const tags = card.querySelectorAll(".quick-info .qi-tag");
-      const hp = c.combat?.hp_current;
+      const hp = (c.hp?.current ?? c.hp?.max);
       const ac = c.combat?.ac;
       const sp = c.combat?.speed;
-      const pb = c.combat?.proficiency_bonus;
-      const al = c.alignment;
+      const pb = c.proficiencyBonus;
+const al = c.alignment;
 
       if (tags[0]) setText(tags[0], `HP ${hp ?? ""}`);
       if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
