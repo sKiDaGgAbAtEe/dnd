@@ -159,7 +159,7 @@
     <div class="info-grid">
       <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL 1 Rogue</span></div>
       <div class="info-cell"><span class="info-label">Background</span><span class="info-value">Spy</span></div>
-      <div class="info-cell"><span class="info-label">Player Name</span>Rose<span class="info-value">—</span></div>
+      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">—</span></div>
       <div class="info-cell"><span class="info-label">Race</span><span class="info-value">Shadar-Kai</span></div>
       <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value">Neutral</span></div>
       <div class="info-cell"><span class="info-label">Experience Points</span><span class="info-value">0</span></div>
@@ -171,7 +171,7 @@
     <!-- ABILITY SCORES -->
     <div class="ability-col">
       <div class="ability-block"><span class="ab-name">Strength</span><span class="ab-score">10</span><div class="ab-mod-box">+0</div></div>
-      <div class="ability-block"><span class="ab-name">Dexterity</span><span class="ab-score">18</span><div class="ab-mod-box">+4</div></div>
+      <div class="ability-block"><span class="ab-name">Dexterity</span><span class="ab-score">17</span><div class="ab-mod-box">+3</div></div>
       <div class="ability-block"><span class="ab-name">Constitution</span><span class="ab-score">14</span><div class="ab-mod-box">+2</div></div>
       <div class="ability-block"><span class="ab-name">Intelligence</span><span class="ab-score">12</span><div class="ab-mod-box">+1</div></div>
       <div class="ability-block"><span class="ab-name">Wisdom</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
@@ -186,8 +186,8 @@
       <div class="section">
         <div class="section-body" style="padding:10px 12px;">
           <div class="combat-row">
-            <div class="combat-stat"><span class="cs-val">15</span><span class="cs-lbl">Armor Class</span></div>
-            <div class="combat-stat"><span class="cs-val">+4</span><span class="cs-lbl">Initiative</span></div>
+            <div class="combat-stat"><span class="cs-val">14</span><span class="cs-lbl">Armor Class</span></div>
+            <div class="combat-stat"><span class="cs-val">+3</span><span class="cs-lbl">Initiative</span></div>
             <div class="combat-stat"><span class="cs-val">30</span><span class="cs-lbl">Speed (ft)</span></div>
           </div>
         </div>
@@ -225,7 +225,7 @@
         <div class="section-body">
           <div class="save-list">
             <div class="save-row"><div class="dot"></div><span class="save-name">Strength</span><span class="save-val">+0</span></div>
-            <div class="save-row"><div class="dot filled"></div><span class="save-name">Dexterity</span><span class="save-val">+6</span></div>
+            <div class="save-row"><div class="dot filled"></div><span class="save-name">Dexterity</span><span class="save-val">+5</span></div>
             <div class="save-row"><div class="dot"></div><span class="save-name">Constitution</span><span class="save-val">+2</span></div>
             <div class="save-row"><div class="dot filled"></div><span class="save-name">Intelligence</span><span class="save-val">+3</span></div>
             <div class="save-row"><div class="dot"></div><span class="save-name">Wisdom</span><span class="save-val">+1</span></div>
@@ -268,31 +268,36 @@
         <div class="section-body">
           <table class="attack-table">
             <thead><tr><th>Name</th><th>Atk Bonus</th><th>Damage / Type</th></tr></thead>
-            <tbody id="attackTableBody">
+            <tbody>
               <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk1',this)">Shortsword <span class="atk-chevron" id="chv1">▶</span></td>
-                <td class="val">+6</td><td>1d6+4 Piercing</td>
+                <td class="attack-name-cell" onclick="toggleAtk('atk1',this)">Main Dagger <span class="atk-chevron" id="chv1">▶</span></td>
+                <td class="val">+5</td><td>1d4+3 Piercing</td>
               </tr>
               <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk1">
-                Finesse melee weapon. Attack bonus = DEX +4, Prof +2. <strong>+ Sneak Attack:</strong> if you have advantage or an ally is adjacent to the target, deal <em>+1d6 extra damage</em> once per turn.
+                Finesse, light, thrown (20/60 ft). Attack bonus = DEX +3, Prof +2. The primary blade — kept at hip, drawn first. She doesn't flourish it. It appears, and then it's done. <strong>+ Sneak Attack:</strong> if she has advantage or an ally is adjacent to the target, deals <em>+1d6 extra damage</em>. Once per turn.
               </div></td></tr>
-
               <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk2',this)">Dagger <span class="atk-chevron" id="chv2">▶</span></td>
-                <td class="val">+6</td><td>1d4+4 Piercing</td>
+                <td class="attack-name-cell" onclick="toggleAtk('atk2',this)">Off-Hand Dagger <span class="atk-chevron" id="chv2">▶</span></td>
+                <td class="val">+5</td><td>1d4 Piercing</td>
               </tr>
               <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk2">
-                Finesse, light, thrown (range 20/60). Same attack bonus in melee or thrown. A spare blade — quiet, close, and always useful.
+                Bonus action attack with the second dagger (Two-Weapon Fighting). No DEX modifier added to damage on off-hand. Kept at boot — seen last. <em>"The first one's a distraction."</em>
               </div></td></tr>
-
               <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk3',this)">Shortbow <span class="atk-chevron" id="chv3">▶</span></td>
-                <td class="val">+6</td><td>1d6+4 Piercing · 80/320 ft</td>
+                <td class="attack-name-cell" onclick="toggleAtk('atk3',this)">Thrown Dagger <span class="atk-chevron" id="chv3">▶</span></td>
+                <td class="val">+5</td><td>1d4+3 Piercing · 60 ft</td>
               </tr>
               <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk3">
-                Ranged weapon. Range 80/320 (disadvantage beyond 80). Uses DEX. Useful when distance matters — before the daggers can.
+                Range 20/60. Same attack bonus as melee (finesse). Used to distract, mark, or pin — she closes distance fast after. She doesn't miss. She just makes sure it hurts.
               </div></td></tr>
-</tbody>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk4',this)">Hand Crossbow <span class="atk-chevron" id="chv4">▶</span></td>
+                <td class="val">+5</td><td>1d6+3 Piercing · 30/120 ft</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk4">
+                Light ranged weapon. 30 ft normal / 120 ft long range (disadvantage beyond 30 ft). She carries this as a last resort or long room opener. She doesn't like telegraphing. A crossbow bolt is a message before the daggers arrive.
+              </div></td></tr>
+            </tbody>
           </table>
 
           <!-- SNEAK ATTACK TRACKER -->
@@ -310,15 +315,15 @@
       <div class="section">
         <div class="section-title">Proficiencies &amp; Languages</div>
         <div class="section-body">
-          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;" id="proficienciesText">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
             <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">WEAPONS</span><br>
             Simple weapons, Hand Crossbows, Longswords, Rapiers, Shortswords<br><br>
             <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">ARMOR</span><br>
             Light Armor<br><br>
             <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">TOOLS</span><br>
-            Thieves' Tools<br><br>
+            Thieves' Tools · Disguise Kit · Forgery Kit · Poisoner's Kit<br><br>
             <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">LANGUAGES</span><br>
-            Common, Thieves' Cant, Undercommon
+            Common, Elvish, Thieves' Cant
           </p>
         </div>
       </div>
@@ -357,6 +362,110 @@
       <div class="section">
         <div class="section-title">Features &amp; Traits</div>
         <div class="section-body" style="padding:8px 10px;">
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem shadow"></div>
+              <span class="feat-name shadow">Sneak Attack</span>
+              <span class="feat-short">1d6 · Rogue</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              Once per turn, deal <em>+1d6 extra damage</em> when you hit with a <strong>finesse or ranged weapon</strong> if you have <strong>advantage</strong> on the attack roll, or if an <strong>ally is within 5 ft</strong> of the target and you don't have disadvantage. No need to declare — it just happens. <em>Scales with Rogue level.</em>
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Thieves' Cant</span>
+              <span class="feat-short">Passive · Rogue</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              Secret language of rogues and criminal underworlds — <strong>hidden messages</strong> inside normal conversation. Non-rogues cannot decode it without magic. Takes 4x longer than normal speech to convey the hidden meaning, but it's invisible to eavesdroppers. She speaks it naturally. She thinks in it sometimes.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem shadow"></div>
+              <span class="feat-name shadow">Expertise × 2</span>
+              <span class="feat-short">Stealth · Sleight of Hand</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              Double proficiency bonus on chosen skills. At Level 1:<br>
+              <strong>Stealth:</strong> DEX +3, Prof ×2 (+4) = <em>+7 total</em><br>
+              <strong>Sleight of Hand:</strong> DEX +3, Prof ×2 (+4) = <em>+7 total</em><br>
+              She does not make noise. She does not leave things where you put them. These are the two things she has perfected.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem shadow"></div>
+              <span class="feat-name shadow">Blessing of the Raven Queen</span>
+              <span class="feat-short">1/SR · Shadar-Kai</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              <strong>Bonus action</strong>: teleport up to <em>30 ft</em> to an unoccupied space you can see. You become <strong>incorporeal</strong> until the start of your next turn — resistance to all damage except force. Once per short or long rest.<br>
+              The shadow swallows her. She steps out elsewhere. She finds this deeply satisfying. The Shadowfell trained her well before she even knew it.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem shadow"></div>
+              <span class="feat-name shadow">Necrotic Resistance</span>
+              <span class="feat-short">Passive · Shadar-Kai</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              <strong>Resistance to necrotic damage</strong> — take half damage from necrotic sources. The Shadowfell is not hostile to her. It's familiar. She grew up brushing against the edge of it. Death doesn't scare her. It respects her back.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Darkvision · 60 ft</span>
+              <span class="feat-short">Shadar-Kai</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              See in <strong>dim light</strong> within 60 ft as bright light, and in <strong>darkness</strong> as dim light. Cannot discern color in darkness, only grey. She prefers grey. It's easier to disappear into it.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Fey Ancestry</span>
+              <span class="feat-short">Passive · Shadar-Kai</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              <strong>Advantage</strong> on saving throws against being <em>charmed</em>. Magic cannot put her to sleep. Her connection to the Raven Queen makes certain magics slide off. She is not easily held by anything she hasn't chosen.
+            </div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem shadow"></div>
+              <span class="feat-name shadow">Assassin Subclass</span>
+              <span class="feat-short">Unlocks at LVL 3</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">
+              <em>(Unlocks at Level 3)</em><br>
+              <strong>Bonus Proficiencies:</strong> Disguise Kit, Poisoner's Kit<br>
+              <strong>Assassinate:</strong> Advantage on attacks vs. creatures that haven't acted in combat yet. Any hit against a <em>surprised</em> creature is an automatic crit.<br>
+              <strong>Infiltration Expertise (Lv9):</strong> Create false identities that hold up to scrutiny.<br>
+              She's already thinking like an Assassin. Level 3 just makes it official.
+            </div>
+          </details>
 
           <details class="feature-item">
             <summary class="feature-toggle">
@@ -607,7 +716,7 @@
   const CHAR = document.body.dataset.character || "raven";
 
   async function loadParty() {
-    const candidates = ["../party.json", "/dnd/party.json", "./party.json"];
+    const candidates = ["../player.json","../../player.json","../../../player.json","/dnd/player.json","/player.json","./player.json"];
     for (const url of candidates) {
       try {
         const r = await fetch(url, { cache: "no-store" });
@@ -615,7 +724,7 @@
         return await r.json();
       } catch (_) {}
     }
-    throw new Error("Could not load party.json");
+    throw new Error("Could not load player.json");
   }
 
   const AB_KEYS = { "Strength":"str","Dexterity":"dex","Constitution":"con","Intelligence":"int","Wisdom":"wis","Charisma":"cha" };
@@ -632,7 +741,7 @@
   try {
     const party = await loadParty();
     const c = party?.characters?.[CHAR];
-    if (!c) throw new Error(`Character "${CHAR}" not found in party.json`);
+    if (!c) throw new Error(`Character "${CHAR}" not found in player.json`);
 
     // ---------- NAME ----------
     document.querySelectorAll(".char-name-big").forEach(el => el.textContent = c.name ?? el.textContent);
@@ -804,66 +913,6 @@
         body.appendChild(div);
       }
     });
-
-
-
-    // ---------- PROFICIENCIES & LANGUAGES (Text Sheet template wiring) ----------
-    function toList(v) {
-      if (Array.isArray(v)) return v.filter(Boolean).map(String);
-      if (typeof v === "string") return v.split(",").map(s => s.trim()).filter(Boolean);
-      return [];
-    }
-    const prof = c.proficiencies || {};
-    const armor = toList(prof.armor);
-    const tools = toList(prof.tools);
-    const langs = toList(prof.languages || c.languages);
-
-    const profP = document.getElementById("proficienciesText");
-    if (profP) {
-      const hdr = (t) => `<span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">${t}</span><br>`;
-      const block = (items) => (items && items.length ? items.join("<br>") : "—");
-      // Keep the same visual structure as the original PDF transcription.
-      profP.innerHTML =
-        `Simple weapons, hand crossbows, longswords, rapiers, shortswords<br><br>` +
-        hdr("ARMOR") + `${block(armor)}<br><br>` +
-        hdr("TOOLS") + `${block(tools)}<br><br>` +
-        hdr("LANGUAGES") + `${block(langs)}`;
-    }
-
-    // ---------- ATTACKS TABLE ----------
-    const attacks = Array.isArray(c.weapons) ? c.weapons : (Array.isArray(c.attacks) ? c.attacks : []);
-    const tbody = document.getElementById("attackTableBody");
-    if (tbody && attacks.length) {
-      tbody.innerHTML = "";
-      const sneak = (typeof c.sneak_attack === "string" && c.sneak_attack.trim()) ? c.sneak_attack.trim() : "";
-      attacks.forEach((a, i) => {
-        const n = i + 1;
-        const atkId = `atk${n}`;
-        const name = a.name ?? `Attack ${n}`;
-        const bonus = a.atk_bonus ?? a.bonus ?? "";
-        const dmg = a.damage ?? a.dmg ?? "";
-        const notes = a.notes ?? "";
-
-        const tr1 = document.createElement("tr");
-        tr1.innerHTML = `
-          <td class="attack-name-cell" onclick="toggleAtk('${atkId}',this)">${name} <span class="atk-chevron" id="chv${n}">▶</span></td>
-          <td class="val">${bonus}</td>
-          <td>${dmg}</td>
-        `;
-
-        const tr2 = document.createElement("tr");
-        tr2.className = "attack-detail-row";
-        const sneakLine = sneak ? `<br><strong>Sneak Attack:</strong> +${sneak} once per turn (finesse or ranged) if you have advantage or an ally is within 5 ft and you don't have disadvantage.` : "";
-        tr2.innerHTML = `
-          <td colspan="3"><div class="attack-expand" id="${atkId}">
-            ${notes ? `${notes}` : "—"}${sneakLine}
-          </div></td>
-        `;
-
-        tbody.appendChild(tr1);
-        tbody.appendChild(tr2);
-      });
-    }
 
   } catch (err) {
     console.warn("Wiring failed; leaving fallback values in place.", err);
