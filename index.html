@@ -442,6 +442,67 @@
       rgba(6,8,14,0.92) 100%
     );
   }
+
+  /* ── MALC THEME (Steel · Bronze) ── */
+  .char-card.theme-malc {
+    background: linear-gradient(135deg, rgba(8,9,12,0.92) 0%, rgba(12,13,18,0.96) 100%);
+    border-color: rgba(176,122,42,0.3);
+  }
+  .char-card.theme-malc:hover {
+    box-shadow: 0 20px 60px rgba(176,122,42,0.28), 0 0 80px -20px rgba(176,122,42,0.12);
+    border-color: #e0b060;
+  }
+  .char-card.theme-malc::before {
+    background: radial-gradient(circle at top, rgba(176,122,42,0.08) 0%, transparent 70%);
+  }
+  .char-card.theme-malc .level-badge,
+  .char-card.theme-malc .class-badge {
+    border-color: rgba(176,122,42,0.55);
+    background: rgba(8,9,12,0.92);
+  }
+  .char-card.theme-malc .level-num { color: #e0b060; }
+  .char-card.theme-malc .level-lbl { color: #7a5020; }
+  .char-card.theme-malc .class-badge { color: #d6dde6; }
+  .char-card.theme-malc .char-name {
+    color: #d6dde6;
+    text-shadow: 0 0 20px rgba(176,122,42,0.4);
+  }
+  .char-card.theme-malc .stat-val { color: #e0b060; }
+  .char-card.theme-malc .stat-cell:hover {
+    background: rgba(176,122,42,0.10);
+    border-color: rgba(176,122,42,0.55);
+  }
+  .char-card.theme-malc .qi-tag {
+    background: rgba(176,122,42,0.07);
+    border-color: rgba(176,122,42,0.22);
+  }
+  .char-card.theme-malc .btn-primary {
+    background: rgba(176,122,42,0.15);
+    border-color: #e0b060;
+    color: #f2f5ff;
+  }
+  .char-card.theme-malc .btn-primary:hover {
+    background: #e0b060;
+    color: var(--dark);
+    box-shadow: 0 4px 24px rgba(176,122,42,0.5);
+  }
+  .char-card.theme-malc .btn-secondary {
+    border-color: rgba(176,122,42,0.22);
+    color: #7a8396;
+  }
+  .char-card.theme-malc .btn-secondary:hover {
+    border-color: rgba(176,122,42,0.55);
+    background: rgba(176,122,42,0.08);
+    color: #d6dde6;
+  }
+  .char-card.theme-malc .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(8,9,12,0.10) 0%,
+      rgba(8,9,12,0.25) 50%,
+      rgba(8,9,12,0.92) 100%
+    );
+  }
+
 /* ── CARD IMAGE — CONSTRAINED ── */
   .card-image {
     position: relative;
@@ -798,7 +859,7 @@
     <div class="orn-line r"></div>
   </div>
 
-  <div class="party-count">Four Adventurers · Many More to Come</div>
+  <div class="party-count">Five Adventurers · Many More to Come</div>
 
   <!-- ── CHARACTER GRID ── -->
   <div class="char-grid">
@@ -1075,6 +1136,75 @@
         </div>
       </div>
     </div>
+
+    <!-- MALC -->
+    <div class="char-card theme-malc" data-character="malc" style="--reveal-delay: 0.5s;">
+      <div class="card-image">
+        <img src="/dnd/malc.png" alt="Malc Grann">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Fighter · Folk Hero</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Malc Grann</div>
+        <div class="char-race-class">Rock Gnome &nbsp;·&nbsp; Folk Hero &nbsp;·&nbsp; Fighter</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">18</span>
+            <span class="stat-mod">+4</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">12</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">18</span>
+            <span class="stat-mod">+4</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">10</span>
+            <span class="stat-mod">+0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">10</span>
+            <span class="stat-mod">+0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">16</span>
+            <span class="stat-mod">+3</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 14</span>
+          <span class="qi-tag">AC 19</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/malc.html" class="btn btn-primary">
+            <span class="btn-icon">🧱</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/malc_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ── FOOTER ── -->
