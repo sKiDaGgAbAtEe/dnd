@@ -27,7 +27,7 @@
   /* HEADER */
   .header { position:relative; text-align:center; padding:60px 20px 0; overflow:hidden; }
   .header::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle,rgba(42,122,74,0.1) 0%,transparent 70%); pointer-events:none; }
-  .char-emblem { font-size:26px; letter-spacing:8px; color:var(--primary-dim); text-transform:uppercase; margin-bottom:8px; animation:fadeIn 2s ease; }
+  .char-emblem { font-size:19px; letter-spacing:8px; color:var(--primary-dim); text-transform:uppercase; margin-bottom:8px; animation:fadeIn 2s ease; }
   .char-name {
     font-family:'Cinzel Decorative',serif; font-size:clamp(48px,8vw,96px); font-weight:900; line-height:0.9;
     background:linear-gradient(180deg,var(--primary-bright) 0%,var(--primary-light) 40%,var(--primary) 100%);
@@ -36,7 +36,7 @@
     animation:fadeIn 1.5s ease, glowPulse 5s ease-in-out infinite; position:relative; z-index:1;
   }
   @keyframes glowPulse { 0%,100% { filter:drop-shadow(0 0 30px rgba(42,122,74,0.5)); } 50% { filter:drop-shadow(0 0 70px rgba(127,255,154,0.7)); } }
-  .char-subtitle { font-family:'IM Fell English',serif; font-style:italic; font-size:28px; color:var(--text-dim); letter-spacing:4px; margin-top:10px; animation:fadeIn 2.5s ease; }
+  .char-subtitle { font-family:'IM Fell English',serif; font-style:italic; font-size:20px; color:var(--text-dim); letter-spacing:4px; margin-top:10px; animation:fadeIn 2.5s ease; }
 
   /* DIVIDER */
   .divider { display:flex; align-items:center; gap:16px; margin:30px auto; max-width:700px; padding:0 30px; }
@@ -50,8 +50,8 @@
     background-color:var(--primary-dim); border:1px solid var(--primary-dim);
   }
   .id-cell { background:var(--dark-panel); padding:12px 10px; text-align:center; }
-  .id-label { font-size:21px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
-  .id-value { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); font-weight:700; }
+  .id-label { font-size:15px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
+  .id-value { font-family:'Cinzel Decorative',serif; font-size:17px; color:var(--primary-light); font-weight:700; }
 
   /* MAIN LAYOUT */
   .sheet { max-width:1300px; margin:0 auto; padding:0 20px 60px; display:grid; grid-template-columns:420px 1fr; gap:24px; align-items:start; }
@@ -70,50 +70,50 @@
   /* PANEL */
   .panel { background:var(--dark-panel); border:1px solid var(--dark-border); position:relative; }
   .panel::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
-  .panel-title { font-size:24px; letter-spacing:5px; color:var(--primary-dim); text-transform:uppercase; padding:12px 18px 10px; border-bottom:1px solid var(--dark-border); }
+  .panel-title { font-size:17px; letter-spacing:5px; color:var(--primary-dim); text-transform:uppercase; padding:12px 18px 10px; border-bottom:1px solid var(--dark-border); }
   .panel-body { padding:14px 18px; }
 
   /* ABILITY GRID */
   .ability-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
   .ability-block { background:rgba(42,122,74,0.05); border:1px solid var(--dark-border); text-align:center; padding:12px 6px; transition:all 0.3s; }
   .ability-block:hover { background:rgba(42,122,74,0.14); border-color:var(--primary-dim); }
-  .ab-name { font-size:21px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
-  .ab-score { font-family:'Cinzel Decorative',serif; font-size:42px; color:var(--primary-light); line-height:1; display:block; }
-  .ab-mod { font-size:27px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
+  .ab-name { font-size:15px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:31px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod { font-size:20px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
 
   /* COMBAT */
   .combat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
   .combat-block { text-align:center; padding:14px 8px; background:rgba(42,122,74,0.04); border:1px solid var(--dark-border); transition:all 0.3s; }
   .combat-block:hover { background:rgba(42,122,74,0.12); border-color:var(--primary-dim); }
-  .combat-value { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); display:block; line-height:1; }
-  .combat-label { font-size:11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+  .combat-value { font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--primary-light); display:block; line-height:1; }
+  .combat-label { font-size:8px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
 
   /* SAVES */
   .save-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px 16px; }
-  .save-row { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:27px; }
+  .save-row { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:20px; }
   .dot { width:10px; height:10px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
   .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
   .dot.arcane { background:var(--arcane-light); border-color:var(--arcane-light); box-shadow:0 0 5px var(--arcane-light); }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val { color:var(--primary-light); font-weight:700; font-size:26px; }
+  .save-val { color:var(--primary-light); font-weight:700; font-size:19px; }
 
   /* SKILLS */
   .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
-  .skill-row { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:26px; }
-  .skill-name { flex:1; color:var(--text-cream); font-size:26px; }
-  .skill-ab { font-size:22px; color:var(--text-dim); }
-  .skill-val { color:var(--primary-light); font-weight:700; font-size:27px; }
+  .skill-row { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:19px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:19px; }
+  .skill-ab { font-size:16px; color:var(--text-dim); }
+  .skill-val { color:var(--primary-light); font-weight:700; font-size:20px; }
 
   /* SPELLCASTING */
   .spell-header { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
   .spell-stat { text-align:center; padding:10px; background:rgba(106,42,138,0.08); border:1px solid rgba(106,42,138,0.25); }
-  .spell-stat-val { font-family:'Cinzel Decorative',serif; font-size:30px; color:var(--arcane-light); display:block; line-height:1; }
-  .spell-stat-label { font-size:22px; letter-spacing:2px; color:#9a60aa; text-transform:uppercase; display:block; margin-top:3px; }
-  .spell-section-title { font-size:26px; letter-spacing:4px; color:var(--arcane-light); text-transform:uppercase; margin:10px 0 5px; opacity:0.8; }
-  .spell-item { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(106,42,138,0.1); font-size:27px; }
+  .spell-stat-val { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--arcane-light); display:block; line-height:1; }
+  .spell-stat-label { font-size:16px; letter-spacing:2px; color:#9a60aa; text-transform:uppercase; display:block; margin-top:3px; }
+  .spell-section-title { font-size:19px; letter-spacing:4px; color:var(--arcane-light); text-transform:uppercase; margin:10px 0 5px; opacity:0.8; }
+  .spell-item { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(106,42,138,0.1); font-size:20px; }
   .spell-dot { width:9px; height:9px; background:var(--arcane-light); border-radius:50%; flex-shrink:0; box-shadow:0 0 5px var(--arcane-light); }
   .spell-name { flex:1; color:var(--text-cream); }
-  .spell-school { font-family:'IM Fell English',serif; font-style:italic; font-size:24px; color:var(--text-dim); }
+  .spell-school { font-family:'IM Fell English',serif; font-style:italic; font-size:17px; color:var(--text-dim); }
   .slot-pip { width:16px; height:16px; border:1px solid rgba(106,42,138,0.6); border-radius:2px; cursor:pointer; transition:all 0.3s; display:inline-block; }
   .slot-pip.used { background:var(--arcane); border-color:var(--arcane-light); box-shadow:0 0 8px rgba(106,42,138,0.7); }
 
@@ -129,31 +129,31 @@
   .feature-gem { width:5px; height:5px; background:var(--primary-light); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--primary-light); }
   .feature-gem.arcane { background:var(--arcane-light); box-shadow:0 0 5px var(--arcane-light); }
   details[open] .feature-gem { box-shadow:0 0 12px var(--primary-bright); }
-  .feat-name { font-size:28px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-name { font-size:20px; color:var(--primary-light); font-weight:600; flex:1; }
   .feat-name.arcane { color:var(--arcane-light); }
-  .feat-short { font-family:'IM Fell English',serif; font-size:26px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow { font-size:27px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  .feat-short { font-family:'IM Fell English',serif; font-size:19px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow { font-size:20px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary-light); }
-  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:27px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(42,122,74,0.1); animation:dropIn 0.2s ease; }
+  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:20px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(42,122,74,0.1); animation:dropIn 0.2s ease; }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
   .feature-detail em { color:var(--arcane-light); }
 
   /* TRAITS */
   .trait-details { border-bottom:1px solid var(--dark-border); }
   .trait-details:last-child { border-bottom:none; }
-  .trait-summary { list-style:none; padding:7px 6px; font-size:27px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
+  .trait-summary { list-style:none; padding:7px 6px; font-size:20px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
   .trait-summary::-webkit-details-marker { display:none; }
   .trait-summary:hover { color:var(--primary-light); }
-  .trait-arrow { font-size:27px; color:var(--primary-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size:20px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform:rotate(90deg); color:var(--primary-light); }
-  .trait-body { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:27px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease; }
+  .trait-body { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:20px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease; }
 
   /* EQUIP */
   .equip-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
-  .equip-item { font-family:'IM Fell English',serif; font-size:27px; color:var(--text-dim); padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); display:flex; align-items:center; gap:6px; }
-  .equip-item::before { content:'◆'; font-size:16px; color:var(--primary-dim); }
+  .equip-item { font-family:'IM Fell English',serif; font-size:20px; color:var(--text-dim); padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); display:flex; align-items:center; gap:6px; }
+  .equip-item::before { content:'◆'; font-size:12px; color:var(--primary-dim); }
 
-  .footer { text-align:center; padding:40px 20px; font-family:'IM Fell English',serif; font-style:italic; font-size:27px; color:var(--primary-dim); letter-spacing:2px; }
+  .footer { text-align:center; padding:40px 20px; font-family:'IM Fell English',serif; font-style:italic; font-size:20px; color:var(--primary-dim); letter-spacing:2px; }
   @keyframes dropIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
@@ -215,7 +215,7 @@
 <div class="spell-item"><div class="spell-dot"></div><span class="spell-name">Ray of Frost</span><span class="spell-school">Evocation</span></div>
 <div style="margin-top:14px;">
 <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(106,42,138,0.2);margin-bottom:4px;">
-<span style="font-size:24px;letter-spacing:2px;color:#9a60aa;text-transform:uppercase;min-width:100px;">Level 1 · 2 Slots</span>
+<span style="font-size:17px;letter-spacing:2px;color:#9a60aa;text-transform:uppercase;min-width:100px;">Level 1 · 2 Slots</span>
 <div style="display:flex;gap:6px;"><div class="slot-pip"></div><div class="slot-pip"></div></div>
 </div>
 <div class="spell-section-title">1st Level Prepared</div>
@@ -244,8 +244,8 @@
 <div class="equip-item">Sling</div>
 </div>
 <div style="margin-top:10px;padding:8px 10px;background:rgba(42,122,74,0.04);border:1px solid var(--dark-border);display:flex;align-items:center;gap:10px;">
-<div style="font-family:'Cinzel Decorative',serif;font-size:27px;color:var(--primary-light);">1</div>
-<div style="font-size:24px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Gold Piece</div>
+<div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--primary-light);">1</div>
+<div style="font-size:17px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Gold Piece</div>
 </div>
 </div>
 </div>
@@ -279,17 +279,17 @@
 </div>
 <div style="display:flex;gap:16px;margin-top:10px;padding:10px;background:rgba(106,42,138,0.06);border:1px solid rgba(106,42,138,0.2);">
 <div>
-<div style="font-size:20px;letter-spacing:2px;color:#9a60aa;text-transform:uppercase;margin-bottom:4px;">Hit Dice</div>
-<div style="font-family:'Cinzel Decorative',serif;font-size:27px;color:var(--arcane-light);">1d6</div>
+<div style="font-size:14px;letter-spacing:2px;color:#9a60aa;text-transform:uppercase;margin-bottom:4px;">Hit Dice</div>
+<div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);">1d6</div>
 </div>
 <div style="flex:1;border-left:1px solid var(--dark-border);padding-left:16px;">
-<div style="font-size:24px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+<div style="font-size:17px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-<span style="font-size:24px;color:var(--primary-light);min-width:60px;">Successes</span>
+<span style="font-size:17px;color:var(--primary-light);min-width:60px;">Successes</span>
 <div style="display:flex;gap:5px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
 </div>
 <div style="display:flex;align-items:center;gap:8px;">
-<span style="font-size:24px;color:#cc4444;min-width:60px;">Failures</span>
+<span style="font-size:17px;color:#cc4444;min-width:60px;">Failures</span>
 <div style="display:flex;gap:5px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
 </div>
 </div>
@@ -314,11 +314,11 @@
 <div class="panel" style="animation:fadeIn 0.6s ease 0.2s both;">
 <div class="panel-title">Proficiencies</div>
 <div class="panel-body" style="padding:10px 14px;">
-<p style="font-family:'IM Fell English',serif;font-size:21px;color:var(--text-dim);line-height:1.8;">
-<span style="color:var(--primary-light);font-size:24px;letter-spacing:2px;font-family:'Cinzel',serif;">WEAPONS</span><br/>
+<p style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-dim);line-height:1.8;">
+<span style="color:var(--primary-light);font-size:17px;letter-spacing:2px;font-family:'Cinzel',serif;">WEAPONS</span><br/>
             Dagger, Dart, Crossbow, Quarterstaff, Sling<br/><br/>
-<span style="color:var(--primary-light);font-size:24px;letter-spacing:2px;font-family:'Cinzel',serif;">TOOLS</span><br/>Herbalism Kit<br/><br/>
-<span style="color:var(--primary-light);font-size:24px;letter-spacing:2px;font-family:'Cinzel',serif;">LANGUAGES</span><br/>Common, Elvish, Sylvan
+<span style="color:var(--primary-light);font-size:17px;letter-spacing:2px;font-family:'Cinzel',serif;">TOOLS</span><br/>Herbalism Kit<br/><br/>
+<span style="color:var(--primary-light);font-size:17px;letter-spacing:2px;font-family:'Cinzel',serif;">LANGUAGES</span><br/>Common, Elvish, Sylvan
           </p>
 </div>
 </div>
