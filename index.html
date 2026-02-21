@@ -196,23 +196,24 @@
     /* Background image */
     .panel-bg {
       position: absolute; inset: 0;
-      overflow: hidden;
-    }
-    .panel-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 70% top;
+      background-size: cover;
+      background-position: center;
       transform: scale(1.03);
       transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
-      display: block;
     }
-    .panel.right .panel-bg img {
-      object-position: 30% top;
+    .panel.left .panel-bg {
+      background-image: url("/dnd/landing-players.jpg");
+      background-size: cover;
+      background-position: right center;
+    }
+    .panel.right .panel-bg {
+      background-image: url("/dnd/landing-campaigns.jpg");
+      background-size: cover;
+      background-position: left center;
     }
 
-    .panel:hover .panel-bg img { transform: scale(1.09); }
+    .panel:hover .panel-bg { transform: scale(1.09); }
 
     /* Dark gradient overlay */
     .panel-overlay {
@@ -498,7 +499,7 @@
 
       <!-- LEFT: Players -->
       <section class="panel left" id="players-panel" aria-label="Players">
-        <div class="panel-bg" aria-hidden="true"><img src="/dnd/landing-players.jpg" alt=""></div>
+        <div class="panel-bg" aria-hidden="true"></div>
         <div class="panel-overlay" aria-hidden="true"></div>
         <canvas class="embers" id="embers" aria-hidden="true"></canvas>
         <a href="/dnd/players.html">
@@ -514,7 +515,7 @@
 
       <!-- RIGHT: Campaigns -->
       <section class="panel right" id="campaigns-panel" aria-label="Campaigns">
-        <div class="panel-bg" aria-hidden="true"><img src="/dnd/landing-campaigns.jpg" alt=""></div>
+        <div class="panel-bg" aria-hidden="true"></div>
         <div class="panel-overlay" aria-hidden="true"></div>
         <div class="lightning" aria-hidden="true"></div>
         <a href="/dnd/campaigns/index.html">
