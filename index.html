@@ -144,6 +144,7 @@
       grid-template-columns: 1fr 1fr;
       position: relative;
       min-height: 0;
+      overflow: hidden;
     }
 
     /* Glowing seam */
@@ -203,11 +204,13 @@
     }
     .panel.left .panel-bg {
       background-image: url("/dnd/landing-players.jpg");
-      background-position: center;
+      background-size: cover;
+      background-position: right center;
     }
     .panel.right .panel-bg {
       background-image: url("/dnd/landing-campaigns.jpg");
-      background-position: center;
+      background-size: cover;
+      background-position: left center;
     }
 
     .panel:hover .panel-bg { transform: scale(1.09); }
