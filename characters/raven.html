@@ -26,7 +26,7 @@
   /* HEADER */
   .hdr { position:relative; text-align:center; padding:60px 20px 0; overflow:hidden; }
   .hdr::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:700px; height:600px; background:radial-gradient(circle,rgba(88,40,160,.13) 0%,transparent 70%); pointer-events:none; }
-  .emblem { font-size:11px; letter-spacing:8px; color:var(--sv-d); text-transform:uppercase; margin-bottom:8px; animation:fi 2s ease; }
+  .emblem { font-size:18px; letter-spacing:8px; color:var(--sv-d); text-transform:uppercase; margin-bottom:8px; animation:fi 2s ease; }
   .cname {
     font-family:'Cinzel Decorative',serif; font-size:clamp(48px,8vw,96px); font-weight:900; line-height:.9;
     background:linear-gradient(180deg,var(--sv-b) 0%,var(--sv-l) 35%,#9090b8 100%);
@@ -35,7 +35,7 @@
     animation:fi 1.5s ease, gp 6s ease-in-out infinite; position:relative; z-index:1;
   }
   @keyframes gp { 0%,100%{filter:drop-shadow(0 0 25px rgba(176,112,232,.4))} 50%{filter:drop-shadow(0 0 65px rgba(220,180,255,.7))} }
-  .csub { font-family:'IM Fell English',serif; font-style:italic; font-size:16px; color:#6060a0; letter-spacing:4px; margin-top:10px; animation:fi 2.5s ease; }
+  .csub { font-family:'IM Fell English',serif; font-style:italic; font-size:20px; color:#6060a0; letter-spacing:4px; margin-top:10px; animation:fi 2.5s ease; }
 
   .div { display:flex; align-items:center; gap:16px; margin:30px auto; max-width:700px; padding:0 30px; }
   .dl { flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--sv-d),transparent); }
@@ -44,8 +44,8 @@
   /* IDENTITY BAR */
   .ibar { max-width:1300px; margin:0 auto 20px; padding:0 20px; display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background-color:var(--sv-d); border:1px solid var(--sv-d); }
   .ic { background:var(--dk-p); padding:12px 10px; text-align:center; }
-  .ilbl { font-size:8px; letter-spacing:3px; color:var(--sv-d); text-transform:uppercase; display:block; margin-bottom:4px; }
-  .ival { font-family:'Cinzel Decorative',serif; font-size:10px; color:var(--sv-l); font-weight:700; }
+  .ilbl { font-size:15px; letter-spacing:3px; color:var(--sv-d); text-transform:uppercase; display:block; margin-bottom:4px; }
+  .ival { font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--sv-l); font-weight:700; }
 
   /* LAYOUT */
   .sheet { max-width:1300px; margin:0 auto; padding:0 20px 60px; display:grid; grid-template-columns:400px 1fr; gap:24px; align-items:start; }
@@ -62,43 +62,43 @@
   .pimg { width:100%; display:block; filter:contrast(1.08) brightness(1.05); }
 
   /* QUOTE */
-  .qbox { border:1px solid var(--sv-d); padding:16px 18px; background:rgba(88,40,160,.07); font-family:'IM Fell English',serif; font-style:italic; font-size:14px; color:#9090b0; line-height:1.8; text-align:center; }
+  .qbox { border:1px solid var(--sv-d); padding:16px 18px; background:rgba(88,40,160,.07); font-family:'IM Fell English',serif; font-style:italic; font-size:20px; color:#9090b0; line-height:1.8; text-align:center; }
 
   /* PANEL */
   .panel { background:var(--dk-p); border:1px solid var(--dk-b); position:relative; }
   .panel::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--sv-d),transparent); }
-  .pt { font-size:9px; letter-spacing:5px; color:var(--sv-d); text-transform:uppercase; padding:12px 18px 10px; border-bottom:1px solid var(--dk-b); }
+  .pt { font-size:15px; letter-spacing:5px; color:var(--sv-d); text-transform:uppercase; padding:12px 18px 10px; border-bottom:1px solid var(--dk-b); }
   .pb { padding:14px 18px; }
 
   /* ABILITY GRID */
   .agrid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
   .abl { background:rgba(88,40,160,.05); border:1px solid var(--dk-b); text-align:center; padding:12px 6px; transition:all .3s; }
   .abl:hover { background:rgba(88,40,160,.14); border-color:var(--sv-d); }
-  .an { font-size:8px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .an { font-size:15px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; display:block; margin-bottom:5px; }
   .as { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--sv-l); line-height:1; display:block; }
-  .am { font-size:13px; color:var(--sv); display:block; margin-top:4px; font-weight:600; }
+  .am { font-size:18px; color:var(--sv); display:block; margin-top:4px; font-weight:600; }
 
   /* COMBAT */
   .cgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
   .cbl { text-align:center; padding:14px 8px; background:rgba(88,40,160,.04); border:1px solid var(--dk-b); transition:all .3s; }
   .cbl:hover { background:rgba(88,40,160,.12); border-color:var(--sv-d); }
   .cv { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--sv-l); display:block; line-height:1; }
-  .cl { font-size:8px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; display:block; margin-top:6px; }
+  .cl { font-size:15px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; display:block; margin-top:6px; }
 
   /* SAVES */
-  .sr { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); font-size:11px; }
+  .sr { display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); font-size:18px; }
   .dt { width:8px; height:8px; border-radius:50%; border:1px solid var(--sv-d); flex-shrink:0; }
   .dt.f { background:var(--sv-l); border-color:var(--sv-l); box-shadow:0 0 5px var(--sv-l); }
   .dt.x { background:var(--vt-l); border-color:var(--vt-l); box-shadow:0 0 6px var(--vt-l); }
   .sn { flex:1; color:var(--tx); }
-  .sv2 { color:var(--sv-l); font-weight:700; font-size:12px; }
+  .sv2 { color:var(--sv-l); font-weight:700; font-size:17px; }
 
   /* SKILLS */
   .sgrid { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
-  .skr { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); font-size:10px; }
-  .skn { flex:1; color:var(--tx); font-size:10px; }
-  .ska { font-size:8px; color:#606080; }
-  .skv { color:var(--sv-l); font-weight:700; font-size:11px; }
+  .skr { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); font-size:16px; }
+  .skn { flex:1; color:var(--tx); font-size:16px; }
+  .ska { font-size:15px; color:#606080; }
+  .skv { color:var(--sv-l); font-weight:700; font-size:18px; }
 
   /* SNEAK + BLESS PIPS */
   .spip { width:18px; height:18px; border:1px solid var(--sv-d); transform:rotate(45deg); cursor:pointer; transition:all .3s; display:inline-block; }
@@ -114,38 +114,38 @@
   .fg { width:5px; height:5px; background:var(--sv-l); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--sv-l); }
   .fg.s { background:var(--vt-l); box-shadow:0 0 5px var(--vt-l); }
   details[open] .fg { box-shadow:0 0 14px var(--sv-b); }
-  .fn { font-size:10px; color:var(--sv-l); font-weight:600; flex:1; }
+  .fn { font-size:16px; color:var(--sv-l); font-weight:600; flex:1; }
   .fn.s { color:var(--vt-l); }
-  .fs { font-family:'IM Fell English',serif; font-size:9px; color:var(--td); margin-left:auto; font-style:italic; }
-  .fa { font-size:8px; color:var(--sv-d); transition:transform .3s; flex-shrink:0; }
+  .fs { font-family:'IM Fell English',serif; font-size:15px; color:var(--td); margin-left:auto; font-style:italic; }
+  .fa { font-size:15px; color:var(--sv-d); transition:transform .3s; flex-shrink:0; }
   details[open] .fa { transform:rotate(90deg); color:var(--vt-l); }
-  .fd { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--td); line-height:1.7; border-top:1px solid rgba(88,40,160,.1); animation:di .2s ease; }
+  .fd { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:18px; color:var(--td); line-height:1.7; border-top:1px solid rgba(88,40,160,.1); animation:di .2s ease; }
   .fd strong { color:var(--sv-l); font-style:normal; }
   .fd em { color:var(--vt-l); }
 
   /* TRAITS */
   .tr2 { border-bottom:1px solid var(--dk-b); }
   .tr2:last-child { border-bottom:none; }
-  .ts { list-style:none; padding:7px 6px; font-size:7px; letter-spacing:3px; color:var(--sv-d); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
+  .ts { list-style:none; padding:7px 6px; font-size:13px; letter-spacing:3px; color:var(--sv-d); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
   .ts::-webkit-details-marker { display:none; }
   .ts:hover { color:var(--sv-l); }
-  .ta { font-size:7px; color:var(--sv-d); transition:transform .3s; }
+  .ta { font-size:13px; color:var(--sv-d); transition:transform .3s; }
   details[open] .ta { transform:rotate(90deg); color:var(--vt-l); }
-  .tb { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:11px; color:var(--tx); line-height:1.6; font-style:italic; animation:di .2s ease; }
+  .tb { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:18px; color:var(--tx); line-height:1.6; font-style:italic; animation:di .2s ease; }
 
   /* EQUIP */
   .egrid { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
-  .ei { font-family:'IM Fell English',serif; font-size:11px; color:#808090; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); display:flex; align-items:center; gap:6px; }
-  .ei::before { content:'◆'; font-size:5px; color:var(--sv-d); }
+  .ei { font-family:'IM Fell English',serif; font-size:18px; color:#808090; padding:4px 0; border-bottom:1px solid rgba(88,40,160,.08); display:flex; align-items:center; gap:6px; }
+  .ei::before { content:'◆'; font-size:9px; color:var(--sv-d); }
 
   /* ATTACK TABLE */
   .at { width:100%; border-collapse:collapse; }
-  .at th { font-size:7px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dk-b); text-align:left; }
-  .at td { padding:6px 8px; border-bottom:1px solid var(--dk-b); font-size:11px; color:var(--tx); }
-  .at td.v { color:var(--sv-l); font-family:'Cinzel Decorative',serif; font-size:13px; }
-  .at td.n { font-family:'IM Fell English',serif; font-size:10px; color:#808090; }
+  .at th { font-size:13px; letter-spacing:2px; color:var(--sv-d); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dk-b); text-align:left; }
+  .at td { padding:6px 8px; border-bottom:1px solid var(--dk-b); font-size:18px; color:var(--tx); }
+  .at td.v { color:var(--sv-l); font-family:'Cinzel Decorative',serif; font-size:18px; }
+  .at td.n { font-family:'IM Fell English',serif; font-size:16px; color:#808090; }
 
-  .footer { text-align:center; padding:40px 20px; font-family:'IM Fell English',serif; font-style:italic; font-size:13px; color:var(--sv-d); letter-spacing:2px; }
+  .footer { text-align:center; padding:40px 20px; font-family:'IM Fell English',serif; font-style:italic; font-size:18px; color:var(--sv-d); letter-spacing:2px; }
 
   @keyframes di { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fi { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
@@ -193,13 +193,13 @@
       <div class="pb">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
           <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--vt-l);">1d6</div>
-          <div style="font-size:9px;color:#606080;letter-spacing:2px;text-transform:uppercase;line-height:1.6;">Extra Damage<br>Once Per Turn</div>
+          <div style="font-size:15px;color:#606080;letter-spacing:2px;text-transform:uppercase;line-height:1.6;">Extra Damage<br>Once Per Turn</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
           <div class="spip" id="sa-pip"></div>
-          <span style="font-family:'IM Fell English',serif;font-size:11px;color:#808090;">Advantage OR ally within 5 ft of target</span>
+          <span style="font-family:'IM Fell English',serif;font-size:18px;color:#808090;">Advantage OR ally within 5 ft of target</span>
         </div>
-        <div style="font-size:7px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Finesse or ranged weapon · No disadvantage</div>
+        <div style="font-size:13px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Finesse or ranged weapon · No disadvantage</div>
       </div>
     </div>
 
@@ -209,22 +209,22 @@
       <div class="pb">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
           <div style="text-align:center;padding:8px;background:rgba(88,40,160,.1);border:1px solid rgba(88,40,160,.3);">
-            <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--vt-l);">30</div>
-            <div style="font-size:7px;letter-spacing:2px;color:#7060a0;text-transform:uppercase;">ft Teleport</div>
+            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--vt-l);">30</div>
+            <div style="font-size:13px;letter-spacing:2px;color:#7060a0;text-transform:uppercase;">ft Teleport</div>
           </div>
           <div style="text-align:center;padding:8px;background:rgba(88,40,160,.1);border:1px solid rgba(88,40,160,.3);">
-            <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--sv-l);">1/SR</div>
-            <div style="font-size:7px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Short Rest</div>
+            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--sv-l);">1/SR</div>
+            <div style="font-size:13px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Short Rest</div>
           </div>
           <div style="text-align:center;padding:8px;background:rgba(88,40,160,.1);border:1px solid rgba(88,40,160,.3);">
-            <div style="font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--vt-l);line-height:1.4;">Incorp.</div>
-            <div style="font-size:7px;letter-spacing:2px;color:#7060a0;text-transform:uppercase;">1 Turn</div>
+            <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--vt-l);line-height:1.4;">Incorp.</div>
+            <div style="font-size:13px;letter-spacing:2px;color:#7060a0;text-transform:uppercase;">1 Turn</div>
           </div>
         </div>
         <div style="display:flex;justify-content:center;gap:8px;margin-bottom:8px;">
           <div class="spip" id="bq-pip"></div>
         </div>
-        <p style="font-family:'IM Fell English',serif;font-size:10px;color:#808090;line-height:1.6;text-align:center;">Bonus action. Teleport to visible space. Resistance to all damage except force until next turn.</p>
+        <p style="font-family:'IM Fell English',serif;font-size:16px;color:#808090;line-height:1.6;text-align:center;">Bonus action. Teleport to visible space. Resistance to all damage except force until next turn.</p>
       </div>
     </div>
 
@@ -281,23 +281,23 @@
         </div>
         <div style="display:flex;gap:16px;margin-top:10px;padding:10px;background:rgba(88,40,160,.07);border:1px solid rgba(88,40,160,.2);">
           <div>
-            <div style="font-size:7px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;margin-bottom:4px;">Hit Dice</div>
-            <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--vt-l);">1d8</div>
+            <div style="font-size:13px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;margin-bottom:4px;">Hit Dice</div>
+            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--vt-l);">1d8</div>
           </div>
           <div style="flex:1;border-left:1px solid var(--dk-b);padding-left:16px;">
-            <div style="font-size:8px;letter-spacing:2px;color:#606080;text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+            <div style="font-size:15px;letter-spacing:2px;color:#606080;text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-              <span style="font-size:8px;color:var(--sv-l);min-width:60px;">Successes</span>
+              <span style="font-size:15px;color:var(--sv-l);min-width:60px;">Successes</span>
               <div style="display:flex;gap:5px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
             </div>
             <div style="display:flex;align-items:center;gap:8px;">
-              <span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
+              <span style="font-size:15px;color:#cc4444;min-width:60px;">Failures</span>
               <div style="display:flex;gap:5px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
             </div>
           </div>
           <div style="text-align:center;padding-left:16px;border-left:1px solid var(--dk-b);">
-            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--sv-l);">13</div>
-            <div style="font-size:7px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Passive WIS</div>
+            <div style="font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--sv-l);">13</div>
+            <div style="font-size:13px;letter-spacing:2px;color:var(--sv-d);text-transform:uppercase;">Passive WIS</div>
           </div>
         </div>
       </div>
@@ -319,12 +319,12 @@
       <div class="panel" style="animation:fi .6s ease .2s both;">
         <div class="pt">Proficiencies</div>
         <div class="pb" style="padding:10px 14px;">
-          <p style="font-family:'IM Fell English',serif;font-size:11px;color:#808090;line-height:1.9;">
-            <span style="color:var(--sv-l);font-size:8px;letter-spacing:2px;font-family:'Cinzel',serif;">WEAPONS</span><br>
+          <p style="font-family:'IM Fell English',serif;font-size:18px;color:#808090;line-height:1.9;">
+            <span style="color:var(--sv-l);font-size:15px;letter-spacing:2px;font-family:'Cinzel',serif;">WEAPONS</span><br>
             Simple · Hand Crossbow · Longsword · Rapier · Shortsword<br><br>
-            <span style="color:var(--sv-l);font-size:8px;letter-spacing:2px;font-family:'Cinzel',serif;">TOOLS</span><br>
+            <span style="color:var(--sv-l);font-size:15px;letter-spacing:2px;font-family:'Cinzel',serif;">TOOLS</span><br>
             Thieves' Tools · Disguise Kit · Forgery Kit<br><br>
-            <span style="color:var(--sv-l);font-size:8px;letter-spacing:2px;font-family:'Cinzel',serif;">LANGUAGES</span><br>
+            <span style="color:var(--sv-l);font-size:15px;letter-spacing:2px;font-family:'Cinzel',serif;">LANGUAGES</span><br>
             Common · Elvish · Thieves' Cant
           </p>
         </div>
