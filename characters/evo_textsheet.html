@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evo — Text Sheet</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&amp;family=Cinzel:wght@400;500;600&amp;family=IM+Fell+English:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #1b5f8a; --primary-light: #4fb9ff; --primary-bright: #b8f3ff;
-    --primary-dim: #0f3a57; --arcane: #1e4aa8; --arcane-light: #73a8ff;
-    --dark: #060a08; --dark-panel: #080e0a; --dark-border: #101a12;
-    --text-cream: #d0e8d8; --text-dim: #608060;
+    --primary: #1b5f8a;
+    --primary-light: #4fb9ff;
+    --primary-bright: #b8f3ff;
+    --primary-dim: #0f3a57;
+
+    --arcane: #1e4aa8;
+    --arcane-light: #73a8ff;
+    --arcane-dim: #0d2460;
+
+    --dark: #060a08;
+    --dark-panel: #080e0a;
+    --dark-border: #101a12;
+
+    --text-cream: #d0e8d8;
+    --text-dim: #608060;
+
+    --blood: #8b1a1a;
   }
+
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     background: var(--dark); color: var(--text-cream);
@@ -23,101 +36,114 @@
       repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(42,122,74,0.012) 50px, rgba(42,122,74,0.012) 51px),
       repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(42,122,74,0.012) 50px, rgba(42,122,74,0.012) 51px);
   }
-  /* PAGE */
+
   .page {
     max-width: 900px; margin: 30px auto;
-    background: #060e07; border: 1px solid var(--primary-dim);
+    background: #060e07; border: 1px solid rgba(27,95,138,0.55);
     position: relative; padding: 30px; page-break-after: always;
   }
   .page::before {
     content:''; position:absolute; top:0;left:0;right:0;height:2px;
     background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
   }
-  /* NAME BANNER */
-  .name-banner { display:grid; grid-template-columns:280px 1fr; border:1px solid var(--primary-dim); margin-bottom:24px; }
-  .name-box { border-right:1px solid var(--primary-dim); padding:14px 20px; }
+
+  .name-banner { display:grid; grid-template-columns:280px 1fr; border:1px solid rgba(27,95,138,0.45); margin-bottom:24px; }
+  .name-box { border-right:1px solid rgba(27,95,138,0.45); padding:14px 20px; background: rgba(27,95,138,0.06); }
   .char-name-big {
     font-family:'Cinzel Decorative',serif; font-size:36px; font-weight:900;
-    background:linear-gradient(180deg,var(--primary-bright),var(--primary));
+    background:linear-gradient(180deg,var(--primary-bright),var(--primary-light));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    filter:drop-shadow(0 0 20px rgba(42,122,74,0.6)); line-height:1.1;
+    filter:drop-shadow(0 0 20px rgba(27,95,138,0.55)); line-height:1.1;
   }
-  .name-sub { font-size:8px; letter-spacing:4px; color:var(--primary-dim); text-transform:uppercase; margin-top:4px; }
+  .name-sub { font-size:8px; letter-spacing:4px; color: var(--primary-dim); text-transform:uppercase; margin-top:4px; }
   .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; }
-  .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); }
+  .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); background: rgba(8,14,10,0.5); }
   .info-cell:nth-child(n+4) { border-bottom:none; }
-  .info-label { font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
-  .info-value { font-size:12px; color:var(--primary-light); font-weight:600; }
-  /* SHEET BODY */
+  .info-label { font-size:7px; letter-spacing:3px; color: var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
+  .info-value { font-size:12px; color: var(--primary-light); font-weight:600; }
+
   .sheet-body { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; }
-  /* ABILITY SCORES */
+
   .ability-col { display:flex; flex-direction:column; gap:8px; }
-  .ability-block { border:1px solid var(--primary-dim); text-align:center; padding:10px 6px 8px; background:rgba(42,122,74,0.04); }
-  .ability-block:hover { background:rgba(42,122,74,0.12); }
+  .ability-block { border:1px solid rgba(27,95,138,0.35); text-align:center; padding:10px 6px 8px; background:rgba(27,95,138,0.05); }
+  .ability-block:hover { background:rgba(27,95,138,0.12); }
   .ab-name { font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
   .ab-score { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--primary-light); line-height:1; display:block; }
-  .ab-mod-box { display:inline-block; border:1px solid var(--primary-dim); padding:2px 10px; margin-top:6px; font-size:14px; color:var(--primary-light); font-weight:700; }
-  .proficiency-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(42,122,74,0.04); margin-top:4px; }
+  .ab-mod-box { display:inline-block; border:1px solid rgba(27,95,138,0.35); padding:2px 10px; margin-top:6px; font-size:14px; color:var(--primary-light); font-weight:700; }
+  .proficiency-box { border:1px solid rgba(27,95,138,0.35); padding:10px; text-align:center; background:rgba(27,95,138,0.05); margin-top:4px; }
   .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); }
   .prof-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
-  /* MID COL */
+
   .mid-col { display:flex; flex-direction:column; gap:12px; }
-  /* SECTION */
+
   .section { border:1px solid var(--dark-border); background:var(--dark-panel); position:relative; }
-  .section::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .section::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,rgba(27,95,138,0.55),transparent); }
   .section-title { font-size:7px; letter-spacing:4px; color:var(--primary-dim); text-transform:uppercase; padding:8px 14px; border-bottom:1px solid var(--dark-border); text-align:center; }
   .section-body { padding:12px 14px; }
-  /* COMBAT */
+
   .combat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(42,122,74,0.03); }
+  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(27,95,138,0.05); }
   .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; line-height:1; }
   .cs-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
-  /* SAVES & SKILLS */
+
   .save-list { display:flex; flex-direction:column; gap:3px; }
-  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:11px; }
-  .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
-  .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
-  .dot.arcane { background:var(--arcane-light); border-color:var(--arcane-light); box-shadow:0 0 5px var(--arcane-light); }
+  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(27,95,138,0.08); font-size:11px; }
+  .dot { width:8px; height:8px; border-radius:50%; border:1px solid rgba(27,95,138,0.35); flex-shrink:0; }
+  .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 6px rgba(79,185,255,0.4); }
+  .dot.arcane { background:var(--arcane-light); border-color:var(--arcane-light); box-shadow:0 0 6px rgba(115,168,255,0.4); }
   .save-name { flex:1; color:var(--text-cream); }
   .save-val { color:var(--primary-light); font-weight:700; font-size:12px; }
+
   .skill-list { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
-  .skill-row { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-size:10px; }
+  .skill-row { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(27,95,138,0.08); font-size:10px; }
   .skill-name { flex:1; color:var(--text-cream); font-size:10px; }
   .skill-ab { font-size:8px; color:var(--text-dim); }
   .skill-val { color:var(--primary-light); font-weight:700; font-size:11px; }
-  /* ATTACK TABLE */
+
   .attack-table { width:100%; border-collapse:collapse; }
   .attack-table th { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; }
   .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:11px; color:var(--text-cream); }
   .attack-table td.val { color:var(--primary-light); font-family:'Cinzel Decorative',serif; font-size:13px; }
-  /* SPELL SLOT PIPS */
-  .spell-pip { width:14px; height:14px; border:1px solid rgba(106,42,138,0.6); border-radius:2px; cursor:pointer; transition:all 0.3s; display:inline-block; }
-  .spell-pip.used { background:var(--arcane); border-color:var(--arcane-light); box-shadow:0 0 6px rgba(106,42,138,0.7); }
-  /* DEATH PIPS */
-  .pip { width:14px; height:14px; border:1px solid var(--primary-dim); border-radius:50%; cursor:pointer; transition:all 0.3s; display:inline-block; }
-  /* RIGHT COL */
+
+  .spell-pip {
+    width:16px; height:16px; border:1px solid rgba(115,168,255,0.4);
+    border-radius:2px; cursor:pointer; transition:all 0.3s; display:inline-block;
+    background: rgba(27,95,138,0.06);
+  }
+  .spell-pip.used { background:var(--arcane); border-color:var(--arcane-light); box-shadow:0 0 8px rgba(115,168,255,0.4); }
+
+  .pip { width:14px; height:14px; border:1px solid rgba(27,95,138,0.35); border-radius:50%; cursor:pointer; transition:all 0.3s; display:inline-block; }
+
+  .wrath-pip {
+    width:16px; height:16px; border:1px solid rgba(27,95,138,0.45);
+    transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block;
+    background: rgba(27,95,138,0.06);
+  }
+  .wrath-pip.active { background: var(--arcane); border-color:var(--arcane-light); box-shadow:0 0 10px rgba(115,168,255,0.4); }
+
   .right-col { display:flex; flex-direction:column; gap:12px; }
-  .passive-box { border:1px solid var(--dark-border); padding:10px 12px; text-align:center; background:rgba(42,122,74,0.04); }
+  .passive-box { border:1px solid var(--dark-border); padding:10px 12px; text-align:center; background:rgba(27,95,138,0.05); }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); display:block; }
   .passive-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
-  /* DROPDOWN FEATURES */
+
   .feature-item { border-bottom:1px solid var(--dark-border); }
   .feature-item:last-child { border-bottom:none; }
   .feature-toggle { display:flex; align-items:center; gap:8px; padding:8px 0; cursor:pointer; user-select:none; list-style:none; transition:background 0.2s; }
-  .feature-toggle:hover { background:rgba(42,122,74,0.06); }
+  .feature-toggle:hover { background:rgba(27,95,138,0.07); }
   .feature-toggle::-webkit-details-marker { display:none; }
-  .feature-gem { width:5px; height:5px; background:var(--primary-light); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--primary-light); }
-  .feature-gem.arcane { background:var(--arcane-light); box-shadow:0 0 5px var(--arcane-light); }
-  details[open] .feature-gem { box-shadow:0 0 12px var(--primary-bright); }
+  .feature-gem { width:5px; height:5px; background:var(--primary-light); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 6px rgba(79,185,255,0.4); }
+  .feature-gem.arcane { background:var(--arcane-light); box-shadow:0 0 6px rgba(115,168,255,0.4); }
+  details[open] .feature-gem { background:var(--primary-bright); box-shadow:0 0 12px rgba(184,230,255,0.55); }
+  details[open] .feature-gem.arcane { background:var(--arcane-light); box-shadow:0 0 12px rgba(115,168,255,0.6); }
   .feat-name { font-size:10px; color:var(--primary-light); font-weight:600; flex:1; }
   .feat-name.arcane { color:var(--arcane-light); }
   .feat-short { font-family:'IM Fell English',serif; font-size:9px; color:var(--text-dim); margin-left:auto; font-style:italic; }
   .feat-arrow { font-size:8px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary-light); }
-  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(42,122,74,0.1); animation:dropIn 0.2s ease; }
+  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(27,95,138,0.12); animation:dropIn 0.2s ease; }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
   .feature-detail em { color:var(--arcane-light); }
-  /* ATTACK EXPAND */
+
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--primary-light); }
   .atk-chevron { font-size:8px; color:var(--primary-dim); margin-left:4px; transition:transform 0.3s; }
@@ -125,7 +151,7 @@
   .attack-detail-row td { padding:0 8px; border-bottom:1px solid var(--dark-border); }
   .attack-expand { font-family:'IM Fell English',serif; font-size:10px; color:var(--text-dim); line-height:1.6; padding:6px 0 8px; display:none; animation:dropIn 0.2s ease; }
   .attack-expand.open { display:block; }
-  /* TRAITS */
+
   .trait-details { border-bottom:1px solid var(--dark-border); }
   .trait-details:last-child { border-bottom:none; }
   .trait-summary { list-style:none; padding:7px 6px; font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
@@ -134,436 +160,518 @@
   .trait-arrow { font-size:7px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform:rotate(90deg); color:var(--primary-light); }
   .trait-body { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease; }
-  /* EQUIP */
-  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(42,122,74,0.07); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); }
-  .equip-item::before { content:'◆'; font-size:5px; color:var(--primary-dim); }
-  /* LORE */
-  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(42,122,74,0.03); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.8; font-style:italic; }
+
+  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(27,95,138,0.08); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); }
+  .equip-item::before { content:'◆'; font-size:5px; color:rgba(27,95,138,0.55); }
+
+  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(27,95,138,0.04); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.8; font-style:italic; }
   .lore-box strong { color:var(--primary-light); font-style:normal; }
+
   .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
+
+  .portrait-frame {
+    border:1px solid rgba(27,95,138,0.45);
+    position:relative; overflow:hidden;
+    background: linear-gradient(135deg, rgba(27,95,138,0.18), rgba(0,0,0,0));
+  }
+  .portrait-frame img { width:100%; display:block; }
+  .corner { position:absolute; width:18px; height:18px; }
+  .corner.tl { top:0; left:0; border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+  .corner.bl { bottom:0; left:0; border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+
   @keyframes dropIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
   .page { animation:fadeIn 0.8s ease; }
+
+  @media print {
+    body { background:#fff; }
+    .page { box-shadow:none; margin:0; border:none; }
+  }
 </style>
 </head>
 <body data-character="evo">
+
 <!-- ══════════ PAGE 1 ══════════ -->
 <div class="page">
-<div class="name-banner">
-<div class="name-box">
-<div class="char-name-big">Evo</div>
-<div class="name-sub">Character Name</div>
-</div>
-<div class="info-grid">
-<div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL 1 Cleric</span></div>
-<div class="info-cell"><span class="info-label">Background</span><span class="info-value">Rival Intern</span></div>
-<div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">sKiDa</span></div>
-<div class="info-cell"><span class="info-label">Race</span><span class="info-value">Bronze Dragonborn</span></div>
-<div class="info-cell"><span class="info-label">Alignment</span><span class="info-value">True Neutral</span></div>
-<div class="info-cell"><span class="info-label">Experience Points</span><span class="info-value">0</span></div>
-</div>
-</div>
-<div class="sheet-body">
-<!-- ABILITY SCORES -->
-<div class="ability-col">
-<div class="ability-block"><span class="ab-name">Strength</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
-<div class="ability-block"><span class="ab-name">Dexterity</span><span class="ab-score">14</span><div class="ab-mod-box">+2</div></div>
-<div class="ability-block"><span class="ab-name">Constitution</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
-<div class="ability-block"><span class="ab-name">Intelligence</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
-<div class="ability-block"><span class="ab-name">Wisdom</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
-<div class="ability-block"><span class="ab-name">Charisma</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
-<div class="proficiency-box"><div class="prof-val">+2</div><span class="prof-lbl">Proficiency Bonus</span></div>
-</div>
-<!-- MIDDLE COL -->
-<div class="mid-col">
-<div class="section">
-<div class="section-body" style="padding:10px 12px;">
-<div class="combat-row">
-<div class="combat-stat"><span class="cs-val">12</span><span class="cs-lbl">Armor Class</span></div>
-<div class="combat-stat"><span class="cs-val">+2</span><span class="cs-lbl">Initiative</span></div>
-<div class="combat-stat"><span class="cs-val">10</span><span class="cs-lbl">Speed (ft)</span></div>
-</div>
-</div>
-</div>
-<!-- HIT POINTS -->
-<div class="section">
-<div class="section-title">Hit Point Maximum</div>
-<div class="section-body" style="text-align:center;">
-<div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 7</div>
-<div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:4px;">Hit Points</div>
-<div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;">7</div>
-<div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
-<div>
-<div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
-<div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);margin-top:2px;">1d6</div>
-</div>
-<div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-<div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-<span style="font-size:8px;color:var(--primary-light);min-width:60px;">Successes</span>
-<div style="display:flex;gap:6px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
-</div>
-<div style="display:flex;align-items:center;gap:8px;">
-<span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
-<div style="display:flex;gap:6px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-Cleric
-<div class="section">
-<div class="section-title">Saving Throws</div>
-<div class="section-body">
-<div class="save-list">
-<div class="save-row"><div class="dot"></div><span class="save-name">Strength</span><span class="save-val">+2</span></div>
-<div class="save-row"><div class="dot"></div><span class="save-name">Dexterity</span><span class="save-val">+1</span></div>
-<div class="save-row"><div class="dot"></div><span class="save-name">Constitution</span><span class="save-val">+2</span></div>
-<div class="save-row"><div class="dot"></div><span class="save-name">Intelligence</span><span class="save-val">+1</span></div>
-<div class="save-row"><div class="dot arcane"></div><span class="save-name">Wisdom</span><span class="save-val">+4</span></div>
-<div class="save-row"><div class="dot arcane"></div><span class="save-name">Charisma</span><span class="save-val">+5</span></div>
-</div>
-</div>
-</div>
-<!-- SKILLS -->
-<div class="section">
-<div class="section-title">Skills</div>
-<div class="section-body">
-<div class="skill-list">
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Acrobatics</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Animal Handling</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Arcana</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Athletics</span><span class="skill-ab">(Str)</span><span class="skill-val">+2</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Deception</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
-<div class="skill-row"><div class="dot arcane"></div><span class="skill-name">History</span><span class="skill-ab">(Int)</span><span class="skill-val">+3</span></div>
-<div class="skill-row"><div class="dot filled"></div><span class="skill-name">Insight</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Intimidation</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
-<div class="skill-row"><div class="dot arcane"></div><span class="skill-name">Investigation</span><span class="skill-ab">(Int)</span><span class="skill-val">+3</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Medicine</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Nature</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot filled"></div><span class="skill-name">Perception</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Performance</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
-<div class="skill-row"><div class="dot arcane"></div><span class="skill-name">Persuasion</span><span class="skill-ab">(Cha)</span><span class="skill-val">+5</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Religion</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot"></div><span class="skill-name">Sleight of Hand</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot filled"></div><span class="skill-name">Stealth</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
-<div class="skill-row"><div class="dot filled"></div><span class="skill-name">Survival</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
-</div>
-</div>
-</div>
-<!-- ATTACKS & SPELLCASTING -->
-<div class="section">
-<div class="section-title">Attacks &amp; Spellcasting</div>
-<div class="section-body">
-<table class="attack-table">
-<thead><tr><th>Name</th><th>Bonus</th><th>Damage / Effect</th></tr></thead>
-<tbody>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk1',this)">Quarterstaff <span class="atk-chevron" id="chv1">▶</span></td>
-<td class="val">+3</td><td>1d6+1 Bludgeoning</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk1">
-                Simple melee weapon. <strong>Versatile:</strong> 1d8+1 bludgeoning when wielded two-handed.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk2',this)">Unarmed Strike <span class="atk-chevron" id="chv2">▶</span></td>
-<td class="val">+1</td><td>1d1+1 Bludgeoning</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk2">
-                Basic melee strike.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk3',this)">Fire Bolt <span class="atk-chevron" id="chv3">▶</span></td>
-<td class="val">+3</td><td>1d10 Fire · 120 ft</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk3">
-                Ranged spell attack.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk4',this)">Chill Touch <span class="atk-chevron" id="chv4">▶</span></td>
-<td class="val">+3</td><td>1d8 Necrotic · 120 ft</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk4">
-                Ranged spell attack. Target can’t regain hit points until the start of your next turn.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk5',this)">Ray of Frost <span class="atk-chevron" id="chv5">▶</span></td>
-<td class="val">+3</td><td>1d8 Cold · 60 ft</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk5">
-                Ranged spell attack. Target’s speed is reduced by 10 ft until the start of your next turn.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk6',this)">Thunderclap <span class="atk-chevron" id="chv6">▶</span></td>
-<td class="val">—</td><td>CON Save · 1d6 Thunder (5 ft)</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk6">
-                Each creature within 5 ft must make a Constitution saving throw or take thunder damage.
-              </div></td></tr>
-<tr>
-<td class="attack-name-cell" onclick="toggleAtk('atk7',this)">Druidcraft <span class="atk-chevron" id="chv7">▶</span></td>
-<td class="val">—</td><td>Utility cantrip</td>
-</tr>
-<tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk7">
-                Simple nature magic (predict weather, light/snuff small flames, harmless effects).
-              </div></td></tr>
-</tbody>&gt;
+
+  <div class="name-banner">
+    <div class="name-box">
+      <div class="char-name-big">Evo</div>
+      <div class="name-sub">Character Name</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL 1 Cleric</span></div>
+      <div class="info-cell"><span class="info-label">Background</span><span class="info-value">Rival Intern</span></div>
+      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">Nikkelz</span></div>
+      <div class="info-cell"><span class="info-label">Race</span><span class="info-value">Bronze Dragonborn</span></div>
+      <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value">True Neutral</span></div>
+      <div class="info-cell"><span class="info-label">Experience Points</span><span class="info-value">0</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-body">
+
+    <!-- ABILITY SCORES -->
+    <div class="ability-col">
+      <div class="ability-block"><span class="ab-name">Strength</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
+      <div class="ability-block"><span class="ab-name">Dexterity</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
+      <div class="ability-block"><span class="ab-name">Constitution</span><span class="ab-score">14</span><div class="ab-mod-box">+2</div></div>
+      <div class="ability-block"><span class="ab-name">Intelligence</span><span class="ab-score">12</span><div class="ab-mod-box">+1</div></div>
+      <div class="ability-block"><span class="ab-name">Wisdom</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
+      <div class="ability-block"><span class="ab-name">Charisma</span><span class="ab-score">17</span><div class="ab-mod-box">+3</div></div>
+      <div class="proficiency-box"><div class="prof-val">+2</div><span class="prof-lbl">Proficiency Bonus</span></div>
+    </div>
+
+    <!-- MIDDLE COL -->
+    <div class="mid-col">
+
+      <div class="section">
+        <div class="section-body" style="padding:10px 12px;">
+          <div class="combat-row">
+            <div class="combat-stat"><span class="cs-val">18</span><span class="cs-lbl">Armor Class</span></div>
+            <div class="combat-stat"><span class="cs-val">+1</span><span class="cs-lbl">Initiative</span></div>
+            <div class="combat-stat"><span class="cs-val">30</span><span class="cs-lbl">Speed (ft)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIT POINTS -->
+      <div class="section">
+        <div class="section-title">Hit Points</div>
+        <div class="section-body" style="text-align:center;">
+          <div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: <span id="hp-max">10</span></div>
+          <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;" id="hp-current">10</div>
+          <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
+            <div>
+              <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);margin-top:2px;" id="hit-dice">1d8</div>
+            </div>
+            <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
+              <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:8px;color:var(--primary-light);min-width:60px;">Successes</span>
+                <div style="display:flex;gap:6px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
+                <div style="display:flex;gap:6px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVING THROWS -->
+      <div class="section">
+        <div class="section-title">Saving Throws</div>
+        <div class="section-body">
+          <div class="save-list" id="saves-list">
+            <div class="save-row"><div class="dot"></div><span class="save-name">Strength</span><span class="save-val">+2</span></div>
+            <div class="save-row"><div class="dot"></div><span class="save-name">Dexterity</span><span class="save-val">+1</span></div>
+            <div class="save-row"><div class="dot"></div><span class="save-name">Constitution</span><span class="save-val">+2</span></div>
+            <div class="save-row"><div class="dot"></div><span class="save-name">Intelligence</span><span class="save-val">+1</span></div>
+            <div class="save-row"><div class="dot filled"></div><span class="save-name">Wisdom</span><span class="save-val">+4</span></div>
+            <div class="save-row"><div class="dot filled"></div><span class="save-name">Charisma</span><span class="save-val">+5</span></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:rgba(27,95,138,0.07);border:1px solid rgba(27,95,138,0.18);">
+            <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Lightning Resistance</div>
+            <div style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);">
+              Resistance to <strong style="color:var(--primary-light);font-style:normal;">Lightning</strong> damage from Bronze Dragonborn heritage.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="section-body">
+          <div class="skill-list" id="skills-grid">
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Acrobatics</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Animal Handling</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Arcana</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Athletics</span><span class="skill-ab">(Str)</span><span class="skill-val">+2</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Deception</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">History</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot filled"></div><span class="skill-name">Insight</span><span class="skill-ab">(Wis)</span><span class="skill-val">+4</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Intimidation</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Investigation</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot filled"></div><span class="skill-name">Medicine</span><span class="skill-ab">(Wis)</span><span class="skill-val">+4</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Nature</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Perception</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Performance</span><span class="skill-ab">(Cha)</span><span class="skill-val">+3</span></div>
+            <div class="skill-row"><div class="dot filled"></div><span class="skill-name">Persuasion</span><span class="skill-ab">(Cha)</span><span class="skill-val">+5</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Religion</span><span class="skill-ab">(Int)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Sleight of Hand</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Stealth</span><span class="skill-ab">(Dex)</span><span class="skill-val">+1</span></div>
+            <div class="skill-row"><div class="dot"></div><span class="skill-name">Survival</span><span class="skill-ab">(Wis)</span><span class="skill-val">+2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTACKS -->
+      <div class="section">
+        <div class="section-title">Attacks &amp; Spellcasting</div>
+        <div class="section-body">
+          <table class="attack-table">
+            <thead><tr><th>Name</th><th>Atk Bonus</th><th>Damage / Effect</th></tr></thead>
+            <tbody id="attacks-body">
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk1')">Mace <span class="atk-chevron" id="chv1">▶</span></td>
+                <td class="val">+4</td><td>1d6+2 Bludgeoning</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk1">Simple melee weapon. Primary weapon of the Tempest cleric.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk2')">Club <span class="atk-chevron" id="chv2">▶</span></td>
+                <td class="val">+4</td><td>1d4+2 Bludgeoning</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk2">Simple melee weapon. Light one-handed backup.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk3')">Unarmed Strike <span class="atk-chevron" id="chv3">▶</span></td>
+                <td class="val">+4</td><td>1+2 Bludgeoning</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk3">Basic melee strike.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk4')">Guiding Bolt <span class="atk-chevron" id="chv4">▶</span></td>
+                <td class="val">+4</td><td>4d6 Radiant · 120 ft</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk4">Ranged spell attack. On hit: 4d6 radiant damage and the next attack roll against the target has <strong>advantage</strong>. Upcast: +1d6 per slot above 1st.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk5')">Toll the Dead <span class="atk-chevron" id="chv5">▶</span></td>
+                <td class="val">DC 12</td><td>1d8 / 1d12 Necrotic · 60 ft</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk5">Cantrip. WIS save DC 12. Fail: <strong>1d8 necrotic</strong> — or <strong>1d12</strong> if target is already missing HP. Scales at 5th, 11th, 17th level.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk6')">Word of Radiance <span class="atk-chevron" id="chv6">▶</span></td>
+                <td class="val">DC 12</td><td>1d6 Radiant · 5 ft AoE</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk6">Cantrip. CON save DC 12. Each chosen creature within 5 ft takes 1d6 radiant on fail. Hits multiple targets — excellent in melee. Scales at 5th, 11th, 17th level.</div></td></tr>
+              <tr>
+                <td class="attack-name-cell" onclick="toggleAtk('atk7')">Breath Weapon <span class="atk-chevron" id="chv7">▶</span></td>
+                <td class="val">DC 12</td><td>2d6 Lightning · 5×30 ft</td>
+              </tr>
+              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk7"><strong>Action. 1/Rest.</strong> 5×30 ft line. DEX save DC 12 or take 2d6 lightning damage (half on save). Scales with level.</div></td></tr>
+            </tbody>
           </table>
-<!-- SPELL SLOTS -->
-<div style="margin-top:12px;padding:10px;background:rgba(106,42,138,0.08);border:1px solid rgba(106,42,138,0.25);">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div style="font-size:7px;letter-spacing:3px;color:#9a60aa;text-transform:uppercase;">Spell Save DC</div>
-<div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);">11</div>
-<div style="font-size:7px;letter-spacing:3px;color:#9a60aa;text-transform:uppercase;">Spell Attack</div>
-<div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);">+3</div>
-</div>
-<div style="font-size:7px;letter-spacing:3px;color:#9a60aa;text-transform:uppercase;margin-bottom:5px;">1st Level Slots (2)</div>
-<div style="display:flex;align-items:center;gap:8px;">
-<div class="spell-pip"></div>
-<div class="spell-pip"></div>
-<span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);margin-left:6px;">Catapult · Witch Bolt · Magic Missile</span>
-</div>
-</div>
-</div>
-</div>
-<!-- PROFICIENCIES -->
-<div class="section">
-<div class="section-title">Proficiencies &amp; Languages</div>
-<div class="section-body">
-<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
-<span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">WEAPONS</span><br/>
-            Dagger, Dart, Light Crossbow, Quarterstaff, Sling<br/><br/>
-<span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">ARMOR</span><br/>
-            None<br/><br/>
-<span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">TOOLS</span><br/>
-            Herbalism Kit<br/><br/>
-<span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">LANGUAGES</span><br/>
-            Common, Elvish, Sylvan
+
+          <!-- SPELL SLOTS + WRATH TRACKER -->
+          <div style="margin-top:12px;padding:10px;background:rgba(30,74,168,0.10);border:1px solid rgba(27,95,138,0.28);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Save DC</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);">12</div>
+              <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Attack</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--arcane-light);">+4</div>
+            </div>
+            <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:5px;">1st Level Slots (2)</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div class="spell-pip"></div>
+              <div class="spell-pip"></div>
+              <span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);margin-left:6px;">Bless · Fog Cloud · Guiding Bolt · Healing Word · Thunderwave</span>
+            </div>
+            <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:5px;">Wrath of the Storm (2 / Long Rest)</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="wrath-pip"></div>
+              <div class="wrath-pip"></div>
+              <span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);margin-left:8px;">Reaction · <strong style="color:var(--primary-light);font-style:normal;">DEX save DC 12</strong> or 2d8 lightning/thunder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFICIENCIES -->
+      <div class="section">
+        <div class="section-title">Other Proficiencies &amp; Languages</div>
+        <div class="section-body">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
+            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">WEAPONS</span><br>
+            Simple Weapons, Martial Weapons<br><br>
+            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">ARMOR</span><br>
+            Light, Medium, Heavy Armor, Shields<br><br>
+            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">TOOLS</span><br>
+            Cartographer's Tools<br><br>
+            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">LANGUAGES</span><br>
+            Common, Draconic
           </p>
-</div>
-</div>
-</div><!-- end mid-col -->
-<!-- RIGHT COL -->
-<div class="right-col">
-<div class="passive-box">
-<span class="passive-val">14</span>
-<span class="passive-lbl">Passive Wisdom (Perception)</span>
-</div>
-<!-- TRAITS -->
-<div class="section">
-<details class="trait-details">
-<summary class="trait-summary">Personality Traits <span class="trait-arrow">▶</span></summary>
-<div class="trait-body">Bright-eyed and competitive. Evo takes notes on everything and treats every encounter like a lesson he refuses to fail.</div>
-</details>
-<details class="trait-details">
-<summary class="trait-summary">Ideals <span class="trait-arrow">▶</span></summary>
-<div class="trait-body">Prove your worth through service. Power is meant to protect, not posture.</div>
-</details>
-<details class="trait-details">
-<summary class="trait-summary">Bonds <span class="trait-arrow">▶</span></summary>
-<div class="trait-body">The internship that brought him here — and the rival who thinks he doesn’t belong — are both storms he intends to outlast.</div>
-</details>
-<details class="trait-details">
-<summary class="trait-summary">Flaws <span class="trait-arrow">▶</span></summary>
-<div class="trait-body">Pride. If challenged, he’ll push too hard and forget to ask for help until lightning has already struck.</div>
-</details>
-</div>
-<!-- FEATURES -->
-<div class="section">
-<div class="section-title">Features &amp; Traits</div>
-<div class="section-body" style="padding:8px 10px;">
-<details class="feature-item">
-<summary class="feature-toggle">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Arcane Recovery</span>
-<span class="feat-short">1/Day · SR</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-              Once per day on a <strong>Short Rest</strong>, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover <em>one 1st-level slot</em>. Cannot recover 6th level or higher.
-            </div>
-</details>
-<details class="feature-item">
-<summary class="feature-toggle">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Wizard Spellbook</span>
-<span class="feat-short">6 Spells · +2/Level</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-              Contains <strong>6 prepared 1st-level spells</strong>. Gain 2 new spells per wizard level. Copy from scrolls and tomes (2 hrs + 50 gp/spell level). Spellbook is a pressed-flower diary that also happens to contain the secrets of arcane reality.
-            </div>
-</details>
-<div style="margin-top:10px;font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.7;">
-<strong style="color:var(--primary-light);font-style:normal;">Campaign Standard:</strong>
-            This sheet lists only features explicitly present on the starting PDF. Racial/background traits are intentionally omitted here unless they appear on the official sheet export.
-          </div>
-</div> </div>
-</div>
-</div><!-- end right-col -->
-</div><!-- end sheet-body -->
-<!-- end page 1 -->
-<!-- ══════════ PAGE 2 ══════════ -->
+        </div>
+      </div>
+
+    </div><!-- end mid-col -->
+
+    <!-- RIGHT COL -->
+    <div class="right-col">
+
+      <div class="passive-box">
+        <span class="passive-val" id="pp-val">12</span>
+        <span class="passive-lbl">Passive Wisdom (Perception)</span>
+      </div>
+
+      <!-- TRAITS -->
+      <div class="section" id="traits-box">
+        <details class="trait-details">
+          <summary class="trait-summary">Personality Traits <span class="trait-arrow">▶</span></summary>
+          <div class="trait-body" data-trait="personality">—</div>
+        </details>
+        <details class="trait-details">
+          <summary class="trait-summary">Ideals <span class="trait-arrow">▶</span></summary>
+          <div class="trait-body" data-trait="ideal">—</div>
+        </details>
+        <details class="trait-details">
+          <summary class="trait-summary">Bonds <span class="trait-arrow">▶</span></summary>
+          <div class="trait-body" data-trait="bond">—</div>
+        </details>
+        <details class="trait-details">
+          <summary class="trait-summary">Flaws <span class="trait-arrow">▶</span></summary>
+          <div class="trait-body" data-trait="flaw">—</div>
+        </details>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="section">
+        <div class="section-title">Features &amp; Traits</div>
+        <div class="section-body" style="padding:0;" id="features-list">
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Wrath of the Storm</span>
+              <span class="feat-short">2/LR · Reaction</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Reaction</strong> when hit by a creature within 5 ft: force a <strong>DEX save DC 12</strong> or deal <em>2d8 lightning or thunder</em> (half on save). Uses = CHA mod (2).</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Spellcasting (Cleric)</span>
+              <span class="feat-short">WIS · Prepared</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">Casting ability: <strong>Wisdom</strong>. Prepare WIS mod + Cleric level spells (3 at level 1). Holy symbol as focus. Ritual casting available.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Tempest Domain</span>
+              <span class="feat-short">Heavy Armor · Martial</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">Bonus proficiency in <strong>Heavy Armor</strong> and <strong>Martial Weapons</strong>. Domain spells always prepared: <em>Fog Cloud, Thunderwave</em>.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Draconic Breath Weapon</span>
+              <span class="feat-short">1/Rest · Lightning Line</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Action.</strong> 5×30 ft line of lightning. DEX save <strong>DC 12</strong> or take <em>2d6 lightning</em> (half on save). 1 use per rest. Scales with level.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Rival Intern: Inside Info</span>
+              <span class="feat-short">Background</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">Access to insider knowledge and professional contacts from the internship. Can extract useful information from organizational networks.</div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- EQUIPMENT -->
+      <div class="section">
+        <div class="section-title">Equipment</div>
+        <div class="section-body" id="equip-grid">
+          <div class="equip-item">Chain Mail</div>
+          <div class="equip-item">Shield</div>
+          <div class="equip-item">Mace</div>
+          <div class="equip-item">Club</div>
+          <div class="equip-item">Holy Symbol (Emblem)</div>
+          <div class="equip-item">Explorer's Pack</div>
+          <div class="equip-item">Cartographer's Tools</div>
+          <div class="equip-item">1 Gold Piece</div>
+        </div>
+      </div>
+
+    </div><!-- end right-col -->
+  </div><!-- end sheet-body -->
+</div><!-- end page 1 -->
+
+
+<!-- ══════════════ PAGE 2 ══════════════ -->
 <div class="page">
-<div style="text-align:center;margin-bottom:20px;">
-<div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--primary-bright),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Evo</div>
-<div style="font-size:8px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
-</div>
-<div class="page2-grid">
-<!-- LEFT -->
-<div style="display:flex;flex-direction:column;gap:14px;">
-<!-- PORTRAIT -->
-<div style="border:1px solid var(--primary-dim);position:relative;overflow:hidden;">
-<img class="pimg" src="/dnd/Evo.png" alt="Evo" />
-<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 65%,var(--dark) 100%);pointer-events:none;"></div>
-</div>
-<!-- PHYSICAL DETAILS -->
-<div class="section">
-<div class="section-title">Physical Details</div>
-<div class="section-body">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Size</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Tiny (Fairy)</div></div>
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Eyes</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Forest Green</div></div>
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hair</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Dark Brown, Braided</div></div>
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Wings</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Translucent Green</div></div>
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Halo</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Gilded · Glowing</div></div>
-<div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Garb</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Living Leaves &amp; Vines</div></div>
-</div>
-</div>
-</div>
-<!-- EQUIPMENT -->
-<div class="section">
-<div class="section-title">Equipment</div>
-<div class="section-body">
-<div class="equip-item">Quarterstaff (Witherbloom-etched)</div>
-<div class="equip-item">Arcane Focus Rod</div>
-<div class="equip-item">Spellbook (pressed flowers inside)</div>
-<div class="equip-item">Explorer's Pack</div>
-<div class="equip-item">Herbalism Kit</div>
-<div class="equip-item">Ink Bottle &amp; Ink Pen</div>
-<div class="equip-item">School Uniform</div>
-<div class="equip-item">Book — Plant Identification</div>
-<div class="equip-item">Iron Pot</div>
-<div class="equip-item">Dagger</div>
-<div class="equip-item">Dart (×several)</div>
-<div class="equip-item">Sling</div>
-<div class="equip-item">1 Gold Piece</div>
-</div>
-</div>
-</div><!-- end left -->
-<!-- RIGHT -->
-<div style="display:flex;flex-direction:column;gap:14px;">
-<!-- SPELLS — all dropdowns -->
-<div class="section">
-<div class="section-title">Spellbook — Full Details</div>
-<div class="section-body" style="padding:0;">
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Thunderclap</span>
-<span class="feat-short">Cantrip · Evocation</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Action.</strong> Each creature within <em>5 ft</em> must succeed on <strong>CON save DC 11</strong> or take <em>1d6 thunder damage</em>. The sound is heard up to 100 ft away. Great for getting attention in small rooms. Scales at 5th, 11th, 17th level.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Chill Touch</span>
-<span class="feat-short">Cantrip · Necromancy · 120 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Ranged spell attack</strong> (+3). On hit: <em>1d8 necrotic damage</em>, target <strong>cannot regain HP</strong> until start of your next turn. Against undead: disadvantage on attack rolls against you until end of your next turn. Scales at 5th, 11th, 17th level.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem"></div>
-<span class="feat-name">Druidcraft</span>
-<span class="feat-short">Cantrip · Transmutation · 30 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-              Whisper to nature spirits for harmless effects: <strong>predict weather</strong> in 24 hours, create a small sensory effect (falling leaves, animal sounds, faint odors), or snuff/light a small flame. She uses this constantly. More than is strictly necessary.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Fire Bolt</span>
-<span class="feat-short">Cantrip · Evocation · 120 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Ranged spell attack</strong> (+3). On hit: <em>1d10 fire damage</em>. Ignites unattended flammable objects. Her primary combat cantrip — she aims with quiet precision. Scales at 5th, 11th, 17th level.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Ray of Frost</span>
-<span class="feat-short">Cantrip · Evocation · 60 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Ranged spell attack</strong> (+3). On hit: <em>1d8 cold damage</em> and target's speed is reduced by <strong>10 ft</strong> until start of your next turn. Scales at 5th, 11th, 17th level. Good for keeping things at arm's length — which is relevant when you're the size of a hand.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Catapult</span>
-<span class="feat-short">Level 1 · Transmutation · 60 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Action.</strong> Choose a Small-or-smaller object (1–5 lbs) not worn or carried. It flies up to 90 ft in a straight line; if it strikes a creature, <strong>DEX save DC 11</strong> or take <em>3d8 bludgeoning damage</em>. Spell ends on impact. <strong>Upcast:</strong> +1d8 per slot above 1st.
-            </div>
-</details>
-<details class="feature-item" style="border-bottom:1px solid var(--dark-border);">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Witch Bolt</span>
-<span class="feat-short">Level 1 · Evocation · 30 ft · Conc.</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>Ranged spell attack</strong> (+3). On hit: <em>1d12 lightning damage</em>. On each subsequent turn, use your action to deal <em>1d12 lightning automatically</em> — no new attack roll needed. Ends if target leaves range or has total cover. <strong>Upcast:</strong> +1d12 per slot above 1st.
-            </div>
-</details>
-<details class="feature-item">
-<summary class="feature-toggle" style="padding:10px 14px;">
-<div class="feature-gem arcane"></div>
-<span class="feat-name arcane">Magic Missile</span>
-<span class="feat-short">Level 1 · Evocation · 120 ft</span>
-<span class="feat-arrow">▶</span>
-</summary>
-<div class="feature-detail">
-<strong>No attack roll needed. Auto-hits.</strong> Create <strong>3 darts</strong> of magical force, each dealing <em>1d4+1 force damage</em>. Direct all at one target or split freely. <strong>Upcast:</strong> +1 dart per slot above 1st. The spell that ends arguments.
-            </div>
-</details>
-</div>
-</div>
-<!-- CHARACTER NOTES -->
-<div class="section">
-<div class="section-title">Character Notes</div>
-<div class="section-body">
-<div class="lore-box">
-            She arrived at Witherbloom with <strong>pressed flowers already in her spellbook</strong> and a question she hadn't told anyone yet.<br/><br/>
-            The swamp suited her. It didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does <strong>life end</strong> and <strong>death begin</strong> — and is anything actually living in that gap?<br/><br/>
-            She is very small. She compensates with <em>extraordinary thoroughness</em>. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index. She is, in her own words, <em>organized</em>.
+  <div style="text-align:center;margin-bottom:20px;">
+    <div class="char-name-big" style="font-size:22px;filter:drop-shadow(0 0 18px rgba(27,95,138,0.50));">Evo</div>
+    <div style="font-size:8px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
+  </div>
+
+  <div class="page2-grid">
+
+    <!-- LEFT -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <div class="portrait-frame">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <img id="portrait-img" src="/dnd/Evo.png" alt="Evo Portrait">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 65%,#060e07 100%);pointer-events:none;"></div>
+      </div>
+
+      <div class="lore-box">
+        <strong>Build Notes.</strong><br>
+        AC 18 = Chain Mail + Shield. Tempest Domain grants Heavy Armor + Martial Weapons proficiency. Wrath of the Storm fires on reaction (2×/long rest). Draconic lightning breath once per rest. WIS-based casting, DC 12, +4 attack.
+      </div>
+
+      <!-- PHYSICAL DETAILS -->
+      <div class="section">
+        <div class="section-title">Physical Details</div>
+        <div class="section-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Height</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-height">—</div></div>
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Weight</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-weight">—</div></div>
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Eyes</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-eyes">—</div></div>
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Skin</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-skin">—</div></div>
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hair</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-hair">—</div></div>
+            <div><div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Build</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;" id="app-build">—</div></div>
           </div>
-</div>
-</div>
-</div><!-- end right -->
-</div>
+        </div>
+      </div>
+
+    </div><!-- end left -->
+
+    <!-- RIGHT -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <div class="section">
+        <div class="section-title">Origin</div>
+        <div class="section-body">
+          <div class="lore-box" id="backstory-short">—</div>
+        </div>
+      </div>
+
+      <!-- SPELLS — full details -->
+      <div class="section">
+        <div class="section-title">Spell Details</div>
+        <div class="section-body" style="padding:0;">
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem"></div>
+              <span class="feat-name">Guidance</span>
+              <span class="feat-short">Cantrip · Divination · Touch · Conc.</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Action.</strong> Touch one willing creature. Before the spell ends, they can add <em>1d4</em> to one ability check of their choice. Use it constantly.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Toll the Dead</span>
+              <span class="feat-short">Cantrip · Necromancy · 60 ft</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>WIS save DC 12.</strong> On fail: <em>1d8 necrotic</em> — or <em>1d12</em> if target is already missing any HP. Scales at 5th, 11th, 17th level.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Word of Radiance</span>
+              <span class="feat-short">Cantrip · Evocation · 5 ft AoE</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>CON save DC 12.</strong> Each chosen creature within 5 ft must save or take <em>1d6 radiant</em>. Hits multiple targets in melee. Scales at 5th, 11th, 17th level.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Bless</span>
+              <span class="feat-short">Level 1 · Enchantment · 30 ft · Conc.</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Action.</strong> Up to 3 willing creatures within 30 ft add <em>1d4</em> to attack rolls and saving throws for 1 minute. Concentration. One of the strongest 1st-level spells in the game. Upcast: +1 creature per slot above 1st.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Fog Cloud</span>
+              <span class="feat-short">Level 1 · Conjuration · 120 ft · Conc. · Domain</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Action.</strong> 20-ft radius heavily obscured sphere within 120 ft. Concentration up to 1 hour. Always prepared (domain spell). Upcast: +20 ft radius per slot above 1st.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Guiding Bolt</span>
+              <span class="feat-short">Level 1 · Evocation · 120 ft</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Ranged spell attack (+4).</strong> On hit: <em>4d6 radiant</em> and the next attack roll against the target has <strong>advantage</strong>. Set up your teammates. Upcast: +1d6 per slot above 1st.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Healing Word</span>
+              <span class="feat-short">Level 1 · Evocation · 60 ft · Bonus Action</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>Bonus Action.</strong> A creature within 60 ft regains <em>1d4 + 2 HP</em>. Brings downed allies up from range. Still lets you act. Upcast: +1d4 per slot above 1st.</div>
+          </details>
+
+          <details class="feature-item">
+            <summary class="feature-toggle" style="padding:10px 14px;">
+              <div class="feature-gem arcane"></div>
+              <span class="feat-name arcane">Thunderwave</span>
+              <span class="feat-short">Level 1 · Evocation · Self 15 ft · Domain</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail"><strong>CON save DC 12.</strong> 15-ft cube: fail = <em>2d8 thunder</em> + pushed 10 ft; success = half, not pushed. Audible 300 ft away. Always prepared (domain). Upcast: +1d8 per slot above 1st.</div>
+          </details>
+
+        </div>
+      </div>
+
+    </div><!-- end right -->
+  </div>
 </div><!-- end page 2 -->
+
+
+<script>
+  function toggleAtk(id) {
+    const panel = document.getElementById(id);
+    const chvId = 'chv' + id.replace('atk','');
+    const chv = document.getElementById(chvId);
+    if (panel) panel.classList.toggle('open');
+    if (chv) chv.classList.toggle('open');
+  }
+  document.querySelectorAll('.pip').forEach(pip => {
+    pip.addEventListener('click', () => {
+      const on = pip.dataset.on === '1';
+      const fail = pip.dataset.fail === '1';
+      pip.style.background = on ? '' : (fail ? '#8b1a1a' : 'var(--primary-light)');
+      pip.style.borderColor = on ? '' : (fail ? '#cc2222' : 'var(--primary-light)');
+      pip.dataset.on = on ? '0' : '1';
+    });
+  });
+  document.querySelectorAll('.spell-pip').forEach(p => p.addEventListener('click', () => p.classList.toggle('used')));
+  document.querySelectorAll('.wrath-pip').forEach(p => p.addEventListener('click', () => p.classList.toggle('active')));
+</script>
+
 <script>
 (async function () {
-  const CHAR = document.body.dataset.character || "izabella";
+  const CHAR = document.body.dataset.character || "evo";
 
   async function loadPlayer() {
     const candidates = ["../player.json","../../player.json","../../../player.json","/dnd/player.json","/player.json","./player.json"];
@@ -584,198 +692,195 @@ Cleric
     return (m >= 0 ? "+" : "") + m;
   }
 
-  function byText(el, sel, text) {
-    const nodes = el.querySelectorAll(sel);
-    for (const n of nodes) {
-      if ((n.textContent || "").trim() === text) return n;
-    }
-    return null;
+  function setText(el, v) { if (!el) return; el.textContent = (v == null) ? "" : String(v); }
+
+  function fmtBonus(v) {
+    const n = Number(v);
+    if (!Number.isFinite(n)) return String(v);
+    return (n >= 0 ? "+" : "") + n;
   }
 
   try {
-    const party = await loadPlayer();
-    const c = party?.characters?.[CHAR];
-    if (!c) throw new Error(`Character "${CHAR}" not found in player.json`);
+    const data = await loadPlayer();
+    const c = data?.characters?.[CHAR];
+    if (!c) throw new Error(`Character "${CHAR}" not found`);
 
-    // ---- name ----
-    const nameEl = document.querySelector(".char-name-big");
-    if (nameEl && c.name) nameEl.textContent = c.name;
+    // Name (both pages)
+    document.querySelectorAll(".char-name-big").forEach(el => setText(el, c.name));
 
-    // ---- info grid ----
+    // Info grid
     document.querySelectorAll(".info-cell").forEach(cell => {
-      const label = (cell.querySelector(".info-label")?.textContent || "").trim().toLowerCase();
+      const lbl = (cell.querySelector(".info-label")?.textContent || "").trim().toLowerCase();
       const valEl = cell.querySelector(".info-value");
       if (!valEl) return;
-
-      if (label.startsWith("class")) {
-        const lvl = c.level ?? "";
-        const cls = c.class ?? "";
-        valEl.textContent = `LVL ${lvl} ${cls}`.trim();
-      } else if (label.startsWith("background")) {
-        if (c.background != null) valEl.textContent = c.background;
-      } else if (label.startsWith("player")) {
-        // keep as character name by default; change if you later add c.player in JSON
-        valEl.textContent = c.player ?? c.name ?? valEl.textContent;
-      } else if (label.startsWith("race")) {
-        if (c.race != null) valEl.textContent = c.race;
-      } else if (label.startsWith("alignment")) {
-        if (c.alignment != null) valEl.textContent = c.alignment;
-      } else if (label.startsWith("experience")) {
-        if (c.xp != null) valEl.textContent = String(c.xp);
-      }
+      if (lbl.startsWith("class"))      valEl.textContent = `LVL ${c.level ?? ""} ${c.class ?? ""}`.trim();
+      else if (lbl.startsWith("back"))  { if (c.background) valEl.textContent = c.background; }
+      else if (lbl.startsWith("play"))  valEl.textContent = c.player ?? valEl.textContent;
+      else if (lbl.startsWith("race"))  { if (c.race) valEl.textContent = c.race; }
+      else if (lbl.startsWith("align")) { if (c.alignment) valEl.textContent = c.alignment; }
+      else if (lbl.startsWith("exp"))   { if (c.xp != null) valEl.textContent = String(c.xp); }
     });
 
-    // ---- abilities + mods ----
-    const abMap = {
-      strength: "str",
-      dexterity: "dex",
-      constitution: "con",
-      intelligence: "int",
-      wisdom: "wis",
-      charisma: "cha",
-    };
-
+    // Ability scores
+    const abMap = { strength:"str", dexterity:"dex", constitution:"con", intelligence:"int", wisdom:"wis", charisma:"cha" };
     document.querySelectorAll(".ability-block").forEach(block => {
-      const nm = (block.querySelector(".ab-name")?.textContent || "").trim().toLowerCase();
-      const key = abMap[nm];
+      const key = abMap[(block.querySelector(".ab-name")?.textContent || "").trim().toLowerCase()];
       if (!key) return;
-
       const score = c.abilities?.[key];
-      if (score != null) {
-        const sEl = block.querySelector(".ab-score");
-        if (sEl) sEl.textContent = String(score);
-
-        const mEl = block.querySelector(".ab-mod-box");
-        if (mEl) mEl.textContent = abMod(score);
-      }
+      if (score == null) return;
+      setText(block.querySelector(".ab-score"), score);
+      setText(block.querySelector(".ab-mod-box"), abMod(score));
     });
 
-    // ---- proficiency bonus ----
-    const pbEl = document.querySelector(".proficiency-box .prof-val");
-    if (pbEl && c.combat?.proficiency_bonus != null) {
-      const pb = Number(c.combat.proficiency_bonus);
-      pbEl.textContent = (pb >= 0 ? "+" : "") + pb;
-    }
+    // Proficiency bonus
+    setText(document.querySelector(".prof-val"), c.combat?.proficiency_bonus);
 
-    // ---- combat row (AC / Init / Speed) ----
+    // Combat stats
     document.querySelectorAll(".combat-stat").forEach(stat => {
       const lbl = (stat.querySelector(".cs-lbl")?.textContent || "").trim().toLowerCase();
       const valEl = stat.querySelector(".cs-val");
       if (!valEl) return;
-
-      if (lbl.startsWith("armor class") && c.combat?.ac != null) {
-        valEl.textContent = String(c.combat.ac);
-      } else if (lbl.startsWith("initiative") && c.combat?.initiative != null) {
-        const ini = Number(c.combat.initiative);
-        valEl.textContent = (ini >= 0 ? "+" : "") + ini;
-      } else if (lbl.startsWith("speed") && c.combat?.speed != null) {
-        valEl.textContent = String(c.combat.speed);
-      }
+      if (lbl.includes("armor"))    setText(valEl, c.combat?.ac);
+      else if (lbl.includes("init")) setText(valEl, fmtBonus(c.combat?.initiative));
+      else if (lbl.includes("spee")) setText(valEl, c.combat?.speed);
     });
 
-    // ---- hit points section (max label + big current number) ----
-    const sections = Array.from(document.querySelectorAll(".section"));
-    const hpSection = sections.find(sec => {
-      const t = (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase();
-      return t.includes("hit point");
-    });
+    // HP
+    const hpMax = c.hp?.max ?? c.combat?.hp_max;
+    const hpCur = c.hp?.current ?? c.combat?.hp_current ?? hpMax;
+    setText(document.getElementById("hp-max"), hpMax);
+    setText(document.getElementById("hp-current"), hpCur);
+    setText(document.getElementById("hit-dice"), c.combat?.hit_dice);
 
-    if (hpSection) {
-      // Max HP line (text contains "Hit Point Maximum")
-      const maxDiv = Array.from(hpSection.querySelectorAll("div")).find(d =>
-        (d.textContent || "").toLowerCase().includes("hit point maximum")
-      );
-      if (maxDiv && c.combat?.hp_max != null) {
-        maxDiv.textContent = `Hit Point Maximum: ${c.combat.hp_max}`;
-      }
+    // Passive perception
+    setText(document.getElementById("pp-val"), c.combat?.passive_perception);
 
-      // Current HP big number (typically the 48px value line)
-      const curDiv = Array.from(hpSection.querySelectorAll("div")).find(d =>
-        (d.getAttribute("style") || "").includes("font-size:48px")
-      );
-      if (curDiv && c.combat?.hp_current != null) {
-        curDiv.textContent = String(c.combat.hp_current);
-      }
+    // Saving throws — c.saving_throws is object {str:{proficient,bonus}, ...}
+    const savesEl = document.getElementById("saves-list");
+    if (savesEl && c.saving_throws && !Array.isArray(c.saving_throws)) {
+      const order = [["Strength","str"],["Dexterity","dex"],["Constitution","con"],["Intelligence","int"],["Wisdom","wis"],["Charisma","cha"]];
+      savesEl.innerHTML = "";
+      order.forEach(([nm, key]) => {
+        const s = c.saving_throws[key];
+        const row = document.createElement("div");
+        row.className = "save-row";
+        row.innerHTML = `<div class="dot${s?.proficient ? " filled" : ""}"></div><span class="save-name">${nm}</span><span class="save-val">${s?.bonus ?? ""}</span>`;
+        savesEl.appendChild(row);
+      });
+    }
 
-      // Hit dice display (e.g., 1d6)
-      const hitDiceLabel = Array.from(hpSection.querySelectorAll("div")).find(d =>
-        (d.textContent || "").trim() === "Hit Dice"
-      );
-      if (hitDiceLabel) {
-        const val = hitDiceLabel.parentElement?.querySelector("div[style*='font-size:18px']");
-        const total = c.combat?.hit_dice_total;
-        const die = c.combat?.hit_dice;
-        if (val && total != null && die) val.textContent = `${total}${die}`;
+    // Skills — array of {name, ability, bonus, proficient}
+    const skillsGrid = document.getElementById("skills-grid");
+    if (skillsGrid && Array.isArray(c.skills)) {
+      skillsGrid.innerHTML = "";
+      c.skills.forEach(sk => {
+        const bonus = typeof sk.bonus === "number" ? fmtBonus(sk.bonus) : sk.bonus;
+        const row = document.createElement("div");
+        row.className = "skill-row";
+        row.innerHTML = `<div class="dot${sk.proficient ? " filled" : ""}"></div><span class="skill-name">${sk.name}</span><span class="skill-ab">(${sk.ability})</span><span class="skill-val">${bonus}</span>`;
+        skillsGrid.appendChild(row);
+      });
+    }
+
+    // Weapons — array of {name, attack, damage, damage_type, detail}
+    const attacksBody = document.getElementById("attacks-body");
+    if (attacksBody && Array.isArray(c.weapons)) {
+      attacksBody.innerHTML = "";
+      c.weapons.forEach((w, i) => {
+        const id = `atk${i+1}`;
+        const chvId = `chv${i+1}`;
+        const line = `${w.damage ?? ""}${w.damage_type ? " " + w.damage_type : ""}`.trim();
+        const detail = (w.detail || w.notes || "").trim();
+        const tr1 = document.createElement("tr");
+        tr1.innerHTML = `<td class="attack-name-cell" onclick="toggleAtk('${id}')">${w.name ?? "—"} <span class="atk-chevron" id="${chvId}">▶</span></td><td class="val">${w.attack ?? "—"}</td><td>${line}</td>`;
+        attacksBody.appendChild(tr1);
+        const tr2 = document.createElement("tr");
+        tr2.className = "attack-detail-row";
+        tr2.innerHTML = `<td colspan="3"><div class="attack-expand" id="${id}">${detail || "—"}</div></td>`;
+        attacksBody.appendChild(tr2);
+      });
+    }
+
+    // Spell slot count from spells.slots["1"]
+    if (c.spells?.slots) {
+      const slotCount = c.spells.slots["1"] ?? 2;
+      document.querySelectorAll(".spell-pip").forEach((pip, i) => {
+        if (i >= slotCount) pip.style.display = "none";
+      });
+    }
+
+    // Features — c.features is an array of STRINGS in Evo's JSON, so keep hardcoded HTML
+    // (only replace if features are objects with name+desc)
+    const featList = document.getElementById("features-list");
+    if (featList && Array.isArray(c.features) && c.features.every(f => typeof f === "object")) {
+      featList.innerHTML = "";
+      c.features.forEach(f => {
+        const d = document.createElement("details");
+        d.className = "feature-item";
+        d.innerHTML = `
+          <summary class="feature-toggle" style="padding:10px 14px;">
+            <div class="feature-gem"></div>
+            <span class="feat-name">${f.name ?? "—"}</span>
+            <span class="feat-short">${f.short ?? ""}</span>
+            <span class="feat-arrow">▶</span>
+          </summary>
+          <div class="feature-detail">${(f.desc ?? "").replaceAll("\n","<br>")}</div>`;
+        featList.appendChild(d);
+      });
+    }
+
+    // Equipment
+    const eqEl = document.getElementById("equip-grid");
+    if (eqEl && Array.isArray(c.equipment)) {
+      eqEl.innerHTML = "";
+      c.equipment.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "equip-item";
+        div.textContent = it;
+        eqEl.appendChild(div);
+      });
+      if (Number.isFinite(Number(c.gold))) {
+        const div = document.createElement("div");
+        div.className = "equip-item";
+        div.textContent = `${c.gold} Gold Piece${c.gold !== 1 ? "s" : ""}`;
+        eqEl.appendChild(div);
       }
     }
 
-    // ---- passive perception ----
-    const passiveEl = document.querySelector(".passive-val");
-    if (passiveEl && c.passive?.perception != null) passiveEl.textContent = String(c.passive.perception);
-
-    // ---- skills (value + dot fill) ----
-    const skills = Array.isArray(c.skills) ? c.skills : [];
-    document.querySelectorAll(".skill-row").forEach(row => {
-      const nm = (row.querySelector(".skill-name")?.textContent || "").trim().toLowerCase();
-      if (!nm) return;
-      const sk = skills.find(s => (s.name || "").trim().toLowerCase() === nm);
-      if (!sk) return;
-
-      const valEl = row.querySelector(".skill-val");
-      if (valEl && sk.bonus != null) {
-        const b = Number(sk.bonus);
-        valEl.textContent = (b >= 0 ? "+" : "") + b;
-      }
-      const dot = row.querySelector(".dot");
-      if (dot) dot.classList.toggle("filled", !!sk.proficient);
-    });
-
-    // ---- equipment list ----
-    const equipSection = sections.find(sec => (sec.querySelector(".section-title")?.textContent || "").trim().toLowerCase() === "equipment");
-    if (equipSection) {
-      const body = equipSection.querySelector(".section-body");
-      if (body) {
-        const eq = Array.isArray(c.equipment) ? c.equipment : [];
-        body.innerHTML = "";
-        for (const item of eq) {
-          const div = document.createElement("div");
-          div.className = "equip-item";
-          div.textContent = item;
-          body.appendChild(div);
-        }
-        if (c.gold != null) {
-          const gp = document.createElement("div");
-          gp.className = "equip-item";
-          gp.textContent = `Belt Pouch · ${c.gold} GP`;
-          body.appendChild(gp);
-        }
-      }
+    // Traits
+    if (c.traits) {
+      document.querySelectorAll("[data-trait]").forEach(el => {
+        const k = el.getAttribute("data-trait");
+        if (c.traits[k]) el.textContent = c.traits[k];
+      });
     }
 
-  } catch (err) {
-    console.warn("Evo wiring failed; leaving fallback values in place.", err);
+    // Backstory
+    if (c.backstory?.short) setText(document.getElementById("backstory-short"), c.backstory.short);
+
+    // Appearance
+    if (c.appearance) {
+      const a = c.appearance;
+      setText(document.getElementById("app-height"), a.height || "—");
+      setText(document.getElementById("app-weight"), a.weight || "—");
+      setText(document.getElementById("app-eyes"),   a.eyes   || "—");
+      setText(document.getElementById("app-skin"),   a.skin   || "—");
+      setText(document.getElementById("app-hair"),   a.hair   || "—");
+      setText(document.getElementById("app-build"),  a.build  || "—");
+    }
+
+    // Portrait
+    const portrait = c.portrait || c.portrait_path;
+    if (portrait) {
+      const src = portrait.startsWith("/") ? portrait : `/dnd/${portrait}`;
+      document.getElementById("portrait-img")?.setAttribute("src", src);
+    }
+
+  } catch (e) {
+    console.warn("[Evo Textsheet] Using fallback hardcoded values.", e);
   }
 })();
 </script>
-<script>
-  function toggleAtk(id, cell) {
-    const panel = document.getElementById(id);
-    const num = id.replace('atk','');
-    const chv = document.getElementById('chv'+num);
-    panel.classList.toggle('open');
-    if(chv) chv.classList.toggle('open');
-  }
-  document.querySelectorAll('.spell-pip').forEach(p => p.addEventListener('click', () => p.classList.toggle('used')));
-  document.querySelectorAll('.pip').forEach(p => {
-    p.addEventListener('click', () => {
-      const on = p.dataset.on === '1';
-      const fail = p.dataset.fail === '1';
-      p.style.background = on ? '' : (fail ? '#8b1a1a' : 'var(--primary-light)');
-      p.style.borderColor = on ? '' : (fail ? '#cc2222' : 'var(--primary-light)');
-      p.dataset.on = on ? '0' : '1';
-    });
-  });
-</script>
+
 </body>
 </html>
-
