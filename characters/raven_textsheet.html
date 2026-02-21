@@ -40,49 +40,49 @@
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     filter:drop-shadow(0 0 20px rgba(176,112,224,0.6)); line-height:1.1;
   }
-  .name-sub { font-size:8px; letter-spacing:4px; color:var(--silver-dim); text-transform:uppercase; margin-top:4px; }
+  .name-sub { font-size:12px; letter-spacing:4px; color:var(--silver-dim); text-transform:uppercase; margin-top:4px; }
   .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; }
   .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); }
   .info-cell:nth-child(n+4) { border-bottom:none; }
-  .info-label { font-size:7px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
-  .info-value { font-size:12px; color:var(--silver-light); font-weight:600; }
+  .info-label { font-size:11px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
+  .info-value { font-size:15px; color:var(--silver-light); font-weight:600; }
   /* SHEET BODY */
   .sheet-body { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; }
   /* ABILITY SCORES */
   .ability-col { display:flex; flex-direction:column; gap:8px; }
   .ability-block { border:1px solid var(--silver-dim); text-align:center; padding:10px 6px 8px; background:rgba(96,48,160,0.05); }
   .ability-block:hover { background:rgba(96,48,160,0.12); }
-  .ab-name { font-size:7px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
+  .ab-name { font-size:11px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
   .ab-score { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--silver-light); line-height:1; display:block; }
-  .ab-mod-box { display:inline-block; border:1px solid var(--silver-dim); padding:2px 10px; margin-top:6px; font-size:14px; color:var(--silver); font-weight:700; }
+  .ab-mod-box { display:inline-block; border:1px solid var(--silver-dim); padding:2px 10px; margin-top:6px; font-size:17px; color:var(--silver); font-weight:700; }
   .proficiency-box { border:1px solid var(--silver-dim); padding:10px; text-align:center; background:rgba(96,48,160,0.05); margin-top:4px; }
   .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--silver-light); }
-  .prof-lbl { font-size:7px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-top:2px; }
+  .prof-lbl { font-size:11px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-top:2px; }
   /* MID COL */
   .mid-col { display:flex; flex-direction:column; gap:12px; }
   /* SECTION */
   .section { border:1px solid var(--dark-border); background:var(--dark-panel); position:relative; }
   .section::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--silver-dim),transparent); }
-  .section-title { font-size:7px; letter-spacing:4px; color:var(--silver-dim); text-transform:uppercase; padding:8px 14px; border-bottom:1px solid var(--dark-border); text-align:center; }
+  .section-title { font-size:11px; letter-spacing:4px; color:var(--silver-dim); text-transform:uppercase; padding:8px 14px; border-bottom:1px solid var(--dark-border); text-align:center; }
   .section-body { padding:12px 14px; }
   /* COMBAT */
   .combat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
   .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(96,48,160,0.04); }
   .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--silver-light); display:block; line-height:1; }
-  .cs-lbl { font-size:7px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-top:4px; }
+  .cs-lbl { font-size:11px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; display:block; margin-top:4px; }
   /* SAVES & SKILLS */
   .save-list { display:flex; flex-direction:column; gap:3px; }
-  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-size:11px; }
+  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-size:15px; }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--silver-dim); flex-shrink:0; }
   .dot.filled { background:var(--silver-light); border-color:var(--silver-light); box-shadow:0 0 5px var(--silver-light); }
   .dot.shadow { background:var(--violet-light); border-color:var(--violet-light); box-shadow:0 0 5px var(--violet-light); }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val { color:var(--silver-light); font-weight:700; font-size:12px; }
+  .save-val { color:var(--silver-light); font-weight:700; font-size:15px; }
   .skill-list { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
-  .skill-row { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-size:10px; }
-  .skill-name { flex:1; color:var(--text-cream); font-size:10px; }
-  .skill-ab { font-size:8px; color:var(--text-dim); }
-  .skill-val { color:var(--silver-light); font-weight:700; font-size:11px; }
+  .skill-row { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-size:14px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:14px; }
+  .skill-ab { font-size:12px; color:var(--text-dim); }
+  .skill-val { color:var(--silver-light); font-weight:700; font-size:15px; }
   /* SNEAK ATTACK TRACKER */
   .sneak-pip {
     width:14px; height:14px; border:1px solid var(--silver-dim);
@@ -95,18 +95,18 @@
   .right-col { display:flex; flex-direction:column; gap:12px; }
   .passive-box { border:1px solid var(--dark-border); padding:10px 12px; text-align:center; background:rgba(96,48,160,0.04); }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--silver-light); display:block; }
-  .passive-lbl { font-size:7px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; }
+  .passive-lbl { font-size:11px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; }
   /* ATTACK TABLE */
   .attack-table { width:100%; border-collapse:collapse; }
-  .attack-table th { font-size:7px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; }
-  .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:11px; color:var(--text-cream); }
-  .attack-table td.val { color:var(--silver-light); font-family:'Cinzel Decorative',serif; font-size:13px; }
+  .attack-table th { font-size:11px; letter-spacing:2px; color:var(--silver-dim); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; }
+  .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:15px; color:var(--text-cream); }
+  .attack-table td.val { color:var(--silver-light); font-family:'Cinzel Decorative',serif; font-size:16px; }
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--silver-light); }
-  .atk-chevron { font-size:8px; color:var(--silver-dim); margin-left:4px; transition:transform 0.3s; }
+  .atk-chevron { font-size:12px; color:var(--silver-dim); margin-left:4px; transition:transform 0.3s; }
   .atk-chevron.open { transform:rotate(90deg); color:var(--violet-light); }
   .attack-detail-row td { padding:0 8px; border-bottom:1px solid var(--dark-border); }
-  .attack-expand { font-family:'IM Fell English',serif; font-size:10px; color:var(--text-dim); line-height:1.6; padding:6px 0 8px; display:none; animation:dropIn 0.2s ease; }
+  .attack-expand { font-family:'IM Fell English',serif; font-size:14px; color:var(--text-dim); line-height:1.6; padding:6px 0 8px; display:none; animation:dropIn 0.2s ease; }
   .attack-expand.open { display:block; }
   /* DROPDOWN FEATURES */
   .feature-item { border-bottom:1px solid var(--dark-border); }
@@ -117,28 +117,28 @@
   .feature-gem { width:5px; height:5px; background:var(--silver-light); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--silver-light); }
   .feature-gem.shadow { background:var(--violet-light); box-shadow:0 0 5px var(--violet-light); }
   details[open] .feature-gem { box-shadow:0 0 12px var(--silver-bright); }
-  .feat-name { font-size:10px; color:var(--silver-light); font-weight:600; flex:1; }
+  .feat-name { font-size:14px; color:var(--silver-light); font-weight:600; flex:1; }
   .feat-name.shadow { color:var(--violet-light); }
-  .feat-short { font-family:'IM Fell English',serif; font-size:9px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow { font-size:8px; color:var(--silver-dim); transition:transform 0.3s; flex-shrink:0; }
+  .feat-short { font-family:'IM Fell English',serif; font-size:12px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow { font-size:12px; color:var(--silver-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform:rotate(90deg); color:var(--violet-light); }
-  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(96,48,160,0.1); animation:dropIn 0.2s ease; }
+  .feature-detail { padding:6px 14px 10px 20px; font-family:'IM Fell English',serif; font-size:15px; color:var(--text-dim); line-height:1.7; border-top:1px solid rgba(96,48,160,0.1); animation:dropIn 0.2s ease; }
   .feature-detail strong { color:var(--silver-light); font-style:normal; }
   .feature-detail em { color:var(--violet-light); }
   /* TRAITS */
   .trait-details { border-bottom:1px solid var(--dark-border); }
   .trait-details:last-child { border-bottom:none; }
-  .trait-summary { list-style:none; padding:7px 6px; font-size:7px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
+  .trait-summary { list-style:none; padding:7px 6px; font-size:11px; letter-spacing:3px; color:var(--silver-dim); text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:6px; user-select:none; }
   .trait-summary::-webkit-details-marker { display:none; }
   .trait-summary:hover { color:var(--silver-light); }
-  .trait-arrow { font-size:7px; color:var(--silver-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size:11px; color:var(--silver-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform:rotate(90deg); color:var(--violet-light); }
-  .trait-body { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease; }
+  .trait-body { padding:6px 10px 10px; font-family:'IM Fell English',serif; font-size:15px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease; }
   /* EQUIP */
-  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); }
-  .equip-item::before { content:'◆'; font-size:5px; color:var(--silver-dim); }
+  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(96,48,160,0.08); font-family:'IM Fell English',serif; font-size:15px; color:var(--text-dim); }
+  .equip-item::before { content:'◆'; font-size:8px; color:var(--silver-dim); }
   /* LORE */
-  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(96,48,160,0.04); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.8; font-style:italic; }
+  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(96,48,160,0.04); font-family:'IM Fell English',serif; font-size:15px; color:var(--text-dim); line-height:1.8; font-style:italic; }
   .lore-box strong { color:var(--silver-light); font-style:normal; }
   .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
   @keyframes dropIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
@@ -197,21 +197,21 @@
       <div class="section">
         <div class="section-title">Hit Points</div>
         <div class="section-body" style="text-align:center;">
-          <div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 10</div>
+          <div style="font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 10</div>
           <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--silver-light);line-height:1;">10</div>
           <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
             <div>
-              <div style="font-size:8px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Hit Dice</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--violet-light);margin-top:2px;">1d8</div>
+              <div style="font-size:12px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--violet-light);margin-top:2px;">1d8</div>
             </div>
             <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-              <div style="font-size:8px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+              <div style="font-size:12px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-                <span style="font-size:8px;color:var(--silver-light);min-width:60px;">Successes</span>
+                <span style="font-size:12px;color:var(--silver-light);min-width:60px;">Successes</span>
                 <div style="display:flex;gap:6px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;">
-                <span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
+                <span style="font-size:12px;color:#cc4444;min-width:60px;">Failures</span>
                 <div style="display:flex;gap:6px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
               </div>
             </div>
@@ -258,7 +258,7 @@
             <div class="skill-row"><div class="dot shadow"></div><span class="skill-name">Stealth ✦</span><span class="skill-ab">(Dex)</span><span class="skill-val">+7</span></div>
             <div class="skill-row"><div class="dot"></div><span class="skill-name">Survival</span><span class="skill-ab">(Wis)</span><span class="skill-val">+1</span></div>
           </div>
-          <div style="font-size:8px;letter-spacing:2px;color:var(--violet-light);margin-top:8px;font-family:'Cinzel',serif;">✦ Expertise (double proficiency)</div>
+          <div style="font-size:12px;letter-spacing:2px;color:var(--violet-light);margin-top:8px;font-family:'Cinzel',serif;">✦ Expertise (double proficiency)</div>
         </div>
       </div>
 
@@ -302,10 +302,10 @@
 
           <!-- SNEAK ATTACK TRACKER -->
           <div style="margin-top:12px;padding:8px 10px;background:rgba(96,48,160,0.08);border:1px solid rgba(96,48,160,0.3);">
-            <div style="font-size:7px;letter-spacing:3px;color:var(--violet-light);text-transform:uppercase;margin-bottom:6px;">Sneak Attack — 1d6 (Once per Turn)</div>
+            <div style="font-size:11px;letter-spacing:3px;color:var(--violet-light);text-transform:uppercase;margin-bottom:6px;">Sneak Attack — 1d6 (Once per Turn)</div>
             <div style="display:flex;align-items:center;gap:10px;">
               <div class="sneak-pip" onclick="this.classList.toggle('active')"></div>
-              <span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);">When you have advantage OR an ally is adjacent to the target · No advantage needed if applicable</span>
+              <span style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);">When you have advantage OR an ally is adjacent to the target · No advantage needed if applicable</span>
             </div>
           </div>
         </div>
@@ -315,14 +315,14 @@
       <div class="section">
         <div class="section-title">Proficiencies &amp; Languages</div>
         <div class="section-body">
-          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
-            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">WEAPONS</span><br>
+          <p style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-dim);line-height:1.9;">
+            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">WEAPONS</span><br>
             Simple weapons, Hand Crossbows, Longswords, Rapiers, Shortswords<br><br>
-            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">ARMOR</span><br>
+            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">ARMOR</span><br>
             Light Armor<br><br>
-            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">TOOLS</span><br>
+            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">TOOLS</span><br>
             Thieves' Tools · Disguise Kit · Forgery Kit · Poisoner's Kit<br><br>
-            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">LANGUAGES</span><br>
+            <span style="color:var(--silver-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">LANGUAGES</span><br>
             Common, Elvish, Thieves' Cant
           </p>
         </div>
@@ -505,7 +505,7 @@
 <div class="page">
   <div style="text-align:center;margin-bottom:20px;">
     <div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--silver-bright),var(--silver));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Raven</div>
-    <div style="font-size:8px;letter-spacing:5px;color:var(--silver-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
+    <div style="font-size:12px;letter-spacing:5px;color:var(--silver-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
   </div>
 
   <div class="page2-grid">
@@ -524,12 +524,12 @@
         <div class="section-title">Physical Details</div>
         <div class="section-body">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Size</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Small</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Eyes</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Silver-Green</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Hair</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Long Black</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Skin</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Pale Gray-Ash</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Armor</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Black Leather</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Markings</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Shadow Tattoos</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Size</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Small</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Eyes</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Silver-Green</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Hair</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Long Black</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Skin</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Pale Gray-Ash</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Armor</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Black Leather</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--silver-dim);text-transform:uppercase;">Markings</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Shadow Tattoos</div></div>
           </div>
         </div>
       </div>
