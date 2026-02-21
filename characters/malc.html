@@ -26,7 +26,7 @@
   /* HEADER */
   .hdr{position:relative;text-align:center;padding:60px 20px 0;overflow:hidden}
   .hdr::before{content:'';position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:720px;height:620px;background:radial-gradient(circle,rgba(176,122,42,.12) 0%,transparent 70%);pointer-events:none}
-  .emblem{font-size:11px;letter-spacing:8px;color:var(--ac);text-transform:uppercase;margin-bottom:8px;animation:fi 2s ease}
+  .emblem{font-size:18px;letter-spacing:8px;color:var(--ac);text-transform:uppercase;margin-bottom:8px;animation:fi 2s ease}
   .cname{
     font-family:'Cinzel Decorative',serif;font-size:clamp(48px,8vw,96px);font-weight:900;line-height:.9;
     background:linear-gradient(180deg,var(--st-b) 0%,var(--st-l) 38%,#8b93a2 100%);
@@ -35,7 +35,7 @@
     animation:fi 1.5s ease,gp 6s ease-in-out infinite;position:relative;z-index:1;
   }
   @keyframes gp{0%,100%{filter:drop-shadow(0 0 25px rgba(176,122,42,.35))}50%{filter:drop-shadow(0 0 70px rgba(224,176,96,.65))}}
-  .csub{font-family:'IM Fell English',serif;font-style:italic;font-size:16px;color:var(--td);letter-spacing:4px;margin-top:10px;animation:fi 2.5s ease}
+  .csub{font-family:'IM Fell English',serif;font-style:italic;font-size:20px;color:var(--td);letter-spacing:4px;margin-top:10px;animation:fi 2.5s ease}
   @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
   .div{display:flex;align-items:center;gap:16px;margin:30px auto;max-width:700px;padding:0 30px}
@@ -45,8 +45,8 @@
   /* IDENTITY BAR */
   .ibar{max-width:1300px;margin:0 auto 20px;padding:0 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background-color:rgba(176,122,42,.45);border:1px solid rgba(176,122,42,.45)}
   .ic{background:var(--dk-p);padding:12px 10px;text-align:center}
-  .ilbl{font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:4px}
-  .ival{font-family:'Cinzel Decorative',serif;font-size:10px;color:var(--ac-l);font-weight:700}
+  .ilbl{font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:4px}
+  .ival{font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--ac-l);font-weight:700}
 
   /* LAYOUT */
   .sheet{max-width:1300px;margin:0 auto;padding:0 20px 60px;display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
@@ -74,49 +74,49 @@
   .pp-small{font-family:'IM Fell English',serif;font-style:italic;color:var(--td);margin-top:6px;line-height:1.5}
 
   /* QUOTE */
-  .qbox{border:1px solid rgba(176,122,42,.45);padding:16px 18px;background:rgba(42,59,82,.10);font-family:'IM Fell English',serif;font-style:italic;font-size:14px;color:var(--td);line-height:1.8;text-align:center}
+  .qbox{border:1px solid rgba(176,122,42,.45);padding:16px 18px;background:rgba(42,59,82,.10);font-family:'IM Fell English',serif;font-style:italic;font-size:20px;color:var(--td);line-height:1.8;text-align:center}
 
   /* PANEL */
   .panel{background:var(--dk-p);border:1px solid var(--dk-b);position:relative}
   .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,122,42,.55),transparent)}
-  .pt{font-size:9px;letter-spacing:5px;color:var(--ac);text-transform:uppercase;padding:12px 18px 10px;border-bottom:1px solid var(--dk-b)}
+  .pt{font-size:15px;letter-spacing:5px;color:var(--ac);text-transform:uppercase;padding:12px 18px 10px;border-bottom:1px solid var(--dk-b)}
   .pb{padding:14px 18px}
 
   /* ABILITY GRID */
   .agrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
   .abl{background:rgba(42,59,82,.07);border:1px solid rgba(176,122,42,.25);text-align:center;padding:12px 6px;transition:all .3s}
   .abl:hover{background:rgba(42,59,82,.15);border-color:rgba(176,122,42,.55)}
-  .an{font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:5px}
+  .an{font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:5px}
   .as{font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--st-l);line-height:1;display:block}
-  .am{font-size:13px;color:var(--ac-l);display:block;margin-top:4px;font-weight:600}
+  .am{font-size:18px;color:var(--ac-l);display:block;margin-top:4px;font-weight:600}
 
   /* COMBAT */
   .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
   .cbl{text-align:center;padding:14px 8px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);transition:all .3s}
   .cbl:hover{background:rgba(42,59,82,.14);border-color:rgba(176,122,42,.55)}
   .cv{font-family:'Cinzel Decorative',serif;font-size:26px;color:var(--ac-l);display:block;line-height:1}
-  .cl{font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-top:6px}
+  .cl{font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-top:6px}
 
   /* SAVES */
-  .sr{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:11px}
+  .sr{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:18px}
   .dt{width:8px;height:8px;border-radius:50%;border:1px solid rgba(176,122,42,.45);flex-shrink:0}
   .dt.f{background:var(--st-l);border-color:var(--st-l);box-shadow:0 0 6px rgba(224,176,96,.35)}
   .sn{flex:1;color:var(--tx)}
-  .sv2{color:var(--st-l);font-weight:700;font-size:12px}
+  .sv2{color:var(--st-l);font-weight:700;font-size:17px}
 
   /* SKILLS */
   .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
-  .skr{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:10px}
-  .skn{flex:1;color:var(--tx);font-size:10px}
-  .ska{font-size:8px;color:var(--td)}
-  .skv{color:var(--st-l);font-weight:700;font-size:11px}
+  .skr{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:16px}
+  .skn{flex:1;color:var(--tx);font-size:16px}
+  .ska{font-size:15px;color:var(--td)}
+  .skv{color:var(--st-l);font-weight:700;font-size:18px}
 
   /* WEAPONS TABLE */
   .at{width:100%;border-collapse:collapse}
-  .at th{font-size:7px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;padding:4px 8px;border-bottom:1px solid var(--dk-b);text-align:left}
-  .at td{padding:6px 8px;border-bottom:1px solid var(--dk-b);font-size:11px;color:var(--tx);vertical-align:top}
-  .at td.v{color:var(--ac-l);font-family:'Cinzel Decorative',serif;font-size:13px}
-  .at td.n{font-family:'IM Fell English',serif;font-size:10px;color:var(--td)}
+  .at th{font-size:13px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;padding:4px 8px;border-bottom:1px solid var(--dk-b);text-align:left}
+  .at td{padding:6px 8px;border-bottom:1px solid var(--dk-b);font-size:18px;color:var(--tx);vertical-align:top}
+  .at td.v{color:var(--ac-l);font-family:'Cinzel Decorative',serif;font-size:18px}
+  .at td.n{font-family:'IM Fell English',serif;font-size:16px;color:var(--td)}
 
   /* PIPS */
   .pip{width:14px;height:14px;border:1px solid rgba(176,122,42,.45);border-radius:50%;cursor:pointer;transition:all .3s;display:inline-block}
@@ -132,12 +132,12 @@
   .fg{width:5px;height:5px;background:var(--ac-l);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 6px rgba(224,176,96,.35)}
   .fg.s{background:var(--ac-b);box-shadow:0 0 10px rgba(255,213,138,.55)}
   details[open] .fg{box-shadow:0 0 14px rgba(255,213,138,.65)}
-  .fn{font-size:10px;color:var(--st-l);font-weight:600;flex:1}
+  .fn{font-size:16px;color:var(--st-l);font-weight:600;flex:1}
   .fn.s{color:var(--ac-l)}
-  .fs{font-family:'IM Fell English',serif;font-size:9px;color:var(--td);margin-left:auto;font-style:italic}
-  .fa{font-size:8px;color:var(--ac);transition:transform .3s;flex-shrink:0}
+  .fs{font-family:'IM Fell English',serif;font-size:15px;color:var(--td);margin-left:auto;font-style:italic}
+  .fa{font-size:15px;color:var(--ac);transition:transform .3s;flex-shrink:0}
   details[open] .fa{transform:rotate(90deg);color:var(--ac-l)}
-  .fd{padding:6px 14px 10px 20px;font-family:'IM Fell English',serif;font-size:11px;color:var(--td);line-height:1.7;border-top:1px solid rgba(176,122,42,.12);animation:di .2s ease}
+  .fd{padding:6px 14px 10px 20px;font-family:'IM Fell English',serif;font-size:18px;color:var(--td);line-height:1.7;border-top:1px solid rgba(176,122,42,.12);animation:di .2s ease}
   .fd strong{color:var(--st-l);font-style:normal}
   .fd em{color:var(--ac-l)}
   @keyframes di{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
@@ -145,17 +145,17 @@
   /* TRAITS */
   .tr2{border-bottom:1px solid var(--dk-b)}
   .tr2:last-child{border-bottom:none}
-  .ts{list-style:none;padding:7px 6px;font-size:7px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px;user-select:none}
+  .ts{list-style:none;padding:7px 6px;font-size:13px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px;user-select:none}
   .ts::-webkit-details-marker{display:none}
   .ts:hover{color:var(--ac-l)}
-  .ta{font-size:7px;color:var(--ac);transition:transform .3s}
+  .ta{font-size:13px;color:var(--ac);transition:transform .3s}
   details[open] .ta{transform:rotate(90deg);color:var(--ac-l)}
-  .tb{padding:6px 10px 10px;font-family:'IM Fell English',serif;font-size:11px;color:var(--tx);line-height:1.6;font-style:italic;animation:di .2s ease}
+  .tb{padding:6px 10px 10px;font-family:'IM Fell English',serif;font-size:18px;color:var(--tx);line-height:1.6;font-style:italic;animation:di .2s ease}
 
   /* EQUIP */
   .egrid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-  .ei{font-family:'IM Fell English',serif;font-size:11px;color:var(--td);padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);display:flex;align-items:center;gap:6px}
-  .ei::before{content:'◆';font-size:5px;color:rgba(176,122,42,.55)}
+  .ei{font-family:'IM Fell English',serif;font-size:18px;color:var(--td);padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);display:flex;align-items:center;gap:6px}
+  .ei::before{content:'◆';font-size:9px;color:rgba(176,122,42,.55)}
 
   /* RESPONSIVE */
   @media(max-width:960px){.sheet{grid-template-columns:1fr}.pcol{position:static}.agrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(2,1fr)}}
@@ -226,22 +226,22 @@
 
         <div style="display:flex; gap:12px; align-items:center; margin-top:12px;">
           <div style="flex:1;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Second Wind (2 / Long Rest)</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Second Wind (2 / Long Rest)</div>
             <div style="display:flex;gap:10px;align-items:center;">
               <span id="sw1" class="spip" title="Second Wind use"></span>
               <span id="sw2" class="spip" title="Second Wind use"></span>
-              <span style="font-family:'IM Fell English',serif;color:var(--td);font-size:11px;">1d10 + <span data-path="level">1</span> HP</span>
+              <span style="font-family:'IM Fell English',serif;color:var(--td);font-size:18px;">1d10 + <span data-path="level">1</span> HP</span>
             </div>
           </div>
           <div style="min-width:120px;text-align:right;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Prof</div>
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:20px;margin-top:4px;" data-path="combat.proficiency_bonus">+2</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Prof</div>
+            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;margin-top:4px;" data-path="combat.proficiency_bonus">+2</div>
           </div>
         </div>
 
         <div style="display:flex; gap:10px; align-items:center; margin-top:14px; justify-content:space-between;">
           <div>
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Death Saves</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Death Saves</div>
             <div style="display:flex; gap:8px; margin-top:6px;">
               <span class="pip" data-on="0" title="Success"></span>
               <span class="pip" data-on="0" title="Success"></span>
@@ -253,8 +253,8 @@
             </div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hit Dice</div>
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:16px;margin-top:6px;" data-path="combat.hit_dice">1d10</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hit Dice</div>
+            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:20px;margin-top:6px;" data-path="combat.hit_dice">1d10</div>
           </div>
         </div>
 
@@ -277,7 +277,7 @@
         <div class="sr"><div class="dt"></div><span class="sn">CHA</span><span class="sv2" data-path="saving_throws.cha.bonus">+3</span></div>
       </div>
       <div class="pb" style="padding-top:0;">
-        <div style="font-family:'IM Fell English',serif;color:var(--td);font-size:11px;line-height:1.6;">
+        <div style="font-family:'IM Fell English',serif;color:var(--td);font-size:18px;line-height:1.6;">
           <strong style="color:var(--st-l);font-style:normal;">Gnomish Cunning:</strong>
           Advantage on <em>INT</em>, <em>WIS</em>, and <em>CHA</em> saving throws.
         </div>
@@ -311,16 +311,16 @@
 
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px;">
           <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:18px;" data-path="combat.passive_perception">12</div>
-            <div style="font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Perception</div>
+            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_perception">12</div>
+            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Perception</div>
           </div>
           <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:18px;" data-path="combat.passive_insight">10</div>
-            <div style="font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Insight</div>
+            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_insight">10</div>
+            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Insight</div>
           </div>
           <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:18px;" data-path="combat.passive_investigation">10</div>
-            <div style="font-size:8px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Investigation</div>
+            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_investigation">10</div>
+            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Investigation</div>
           </div>
         </div>
       </div>
@@ -409,27 +409,27 @@
       <div class="pb" style="padding-top:0;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hair</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hair</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Platinum Blonde</div>
           </div>
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Eyes</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Eyes</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Topaz</div>
           </div>
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Skin</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Skin</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Tan</div>
           </div>
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Size</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Size</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Small</div>
           </div>
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Gender</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Gender</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Male</div>
           </div>
           <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Vibe</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Vibe</div>
             <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Energetic</div>
           </div>
         </div>
@@ -441,7 +441,7 @@
       <div class="pb">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
           <div>
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Armor</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Armor</div>
             <div class="egrid">
               <div class="ei">Light Armor</div>
               <div class="ei">Medium Armor</div>
@@ -450,21 +450,21 @@
             </div>
           </div>
           <div>
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Weapons</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Weapons</div>
             <div class="egrid">
               <div class="ei">Simple Weapons</div>
               <div class="ei">Martial Weapons</div>
             </div>
           </div>
           <div>
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Tools</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Tools</div>
             <div class="egrid">
               <div class="ei">Smith's Tools</div>
               <div class="ei">Vehicles (Land)</div>
             </div>
           </div>
           <div>
-            <div style="font-size:8px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Languages</div>
+            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Languages</div>
             <div class="egrid">
               <div class="ei">Common</div>
               <div class="ei">Draconic</div>
@@ -473,7 +473,7 @@
           </div>
         </div>
 
-        <div style="margin-top:12px;font-family:'IM Fell English',serif;color:var(--td);font-size:11px;line-height:1.7;">
+        <div style="margin-top:12px;font-family:'IM Fell English',serif;color:var(--td);font-size:18px;line-height:1.7;">
           <strong style="color:var(--st-l);font-style:normal;">Weight Carried:</strong> 84 lb ·
           <strong style="color:var(--st-l);font-style:normal;">Encumbered:</strong> 270 lb ·
           <strong style="color:var(--st-l);font-style:normal;">Push/Drag/Lift:</strong> 540 lb
@@ -518,7 +518,7 @@
   </div>
 </div>
 
-<div class="footer" style="text-align:center;padding:40px 20px;font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--ac);letter-spacing:2px;">
+<div class="footer" style="text-align:center;padding:40px 20px;font-family:'IM Fell English',serif;font-style:italic;font-size:18px;color:var(--ac);letter-spacing:2px;">
   ✦ &nbsp; The world is soft. I am here to reinforce it. &nbsp; ✦
 </div>
 
