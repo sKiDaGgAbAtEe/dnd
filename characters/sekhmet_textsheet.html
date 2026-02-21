@@ -39,12 +39,12 @@
   }
   .name-box { border-right: 1px solid var(--gold-dim); padding: 14px 20px; }
   .char-name-big {
-    font-family: 'Cinzel Decorative', serif; font-size: 36px; font-weight: 900;
+    font-family: 'Cinzel Decorative', serif; font-size:36px; font-weight: 900;
     background: linear-gradient(180deg, var(--gold-bright), var(--gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; filter: drop-shadow(0 0 20px rgba(200,151,42,0.5)); line-height: 1.1;
   }
-  .name-sub { font-size: 8px; letter-spacing: 4px; color: var(--gold-dim); text-transform: uppercase; margin-top: 4px; }
+  .name-sub { font-size:12px; letter-spacing: 4px; color: var(--gold-dim); text-transform: uppercase; margin-top: 4px; }
   .info-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr;
   }
@@ -53,8 +53,8 @@
     border-left: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border);
   }
   .info-cell:nth-child(n+4) { border-bottom: none; }
-  .info-label { font-size: 7px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; display:block; margin-bottom:2px; }
-  .info-value { font-size: 12px; color: var(--gold-light); font-weight: 600; }
+  .info-label { font-size:11px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; display:block; margin-bottom:2px; }
+  .info-value { font-size:15px; color: var(--gold-light); font-weight: 600; }
 
   /* SHEET BODY */
   .sheet-body { display: grid; grid-template-columns: 160px 1fr 220px; gap: 16px; }
@@ -66,18 +66,18 @@
     padding: 10px 6px 8px; background: rgba(200,151,42,0.04);
   }
   .ability-block:hover { background: rgba(200,151,42,0.1); }
-  .ab-name { font-size: 7px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; display:block; margin-bottom:4px; }
-  .ab-score { font-family: 'Cinzel Decorative', serif; font-size: 32px; color: var(--gold-light); line-height:1; display:block; }
+  .ab-name { font-size:11px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; display:block; margin-bottom:4px; }
+  .ab-score { font-family: 'Cinzel Decorative', serif; font-size:32px; color: var(--gold-light); line-height:1; display:block; }
   .ab-mod-box {
     display: inline-block; border: 1px solid var(--gold-dim);
-    padding: 2px 10px; margin-top: 6px; font-size: 14px; color: var(--gold); font-weight: 700;
+    padding: 2px 10px; margin-top: 6px; font-size:17px; color: var(--gold); font-weight: 700;
   }
   .proficiency-box {
     border: 1px solid var(--gold-dim); padding: 10px; text-align: center;
     background: rgba(200,151,42,0.04); margin-top: 4px;
   }
   .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--gold-light); }
-  .prof-lbl { font-size:7px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; display:block; margin-top:2px; }
+  .prof-lbl { font-size:11px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; display:block; margin-top:2px; }
 
   /* MID COL */
   .mid-col { display: flex; flex-direction: column; gap: 12px; }
@@ -91,7 +91,7 @@
     background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
   }
   .section-title {
-    font-size: 7px; letter-spacing: 4px; color: var(--gold-dim);
+    font-size:11px; letter-spacing: 4px; color: var(--gold-dim);
     text-transform: uppercase; padding: 8px 14px;
     border-bottom: 1px solid var(--dark-border); text-align: center;
   }
@@ -104,39 +104,39 @@
     border: 1px solid var(--dark-border); background: rgba(200,151,42,0.03);
   }
   .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--gold-light); display:block; line-height:1; }
-  .cs-lbl { font-size:7px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; display:block; margin-top:4px; }
+  .cs-lbl { font-size:11px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; display:block; margin-top:4px; }
 
   /* SAVES & SKILLS */
   .save-list { display:flex; flex-direction:column; gap:3px; }
   .save-row {
     display:flex; align-items:center; gap:8px;
-    padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:11px;
+    padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:15px;
   }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--gold-dim); flex-shrink:0; }
   .dot.filled { background:var(--gold); border-color:var(--gold); box-shadow:0 0 5px var(--gold); }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val { color:var(--gold); font-weight:700; font-size:12px; }
+  .save-val { color:var(--gold); font-weight:700; font-size:15px; }
   .skill-list { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
   .skill-row {
     display:flex; align-items:center; gap:6px;
-    padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:10px;
+    padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:14px;
   }
-  .skill-name { flex:1; color:var(--text-cream); font-size:10px; }
-  .skill-ab { font-size:8px; color:var(--text-dim); }
-  .skill-val { color:var(--gold); font-weight:700; font-size:11px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:14px; }
+  .skill-ab { font-size:12px; color:var(--text-dim); }
+  .skill-val { color:var(--gold); font-weight:700; font-size:15px; }
 
   /* ATTACK TABLE */
   .attack-table { width:100%; border-collapse:collapse; }
   .attack-table th {
-    font-size:7px; letter-spacing:2px; color:var(--gold-dim);
+    font-size:11px; letter-spacing:2px; color:var(--gold-dim);
     text-transform:uppercase; padding:4px 8px;
     border-bottom:1px solid var(--dark-border); text-align:left;
   }
   .attack-table td {
     padding:7px 8px; border-bottom:1px solid var(--dark-border);
-    font-size:11px; color:var(--text-cream);
+    font-size:15px; color:var(--text-cream);
   }
-  .attack-table td.val { color:var(--gold); font-family:'Cinzel Decorative',serif; font-size:13px; }
+  .attack-table td.val { color:var(--gold); font-family:'Cinzel Decorative',serif; font-size:16px; }
 
   /* RAGE */
   .rage-pip {
@@ -158,7 +158,7 @@
     text-align:center; background:rgba(200,151,42,0.04);
   }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--gold-light); display:block; }
-  .passive-lbl { font-size:7px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; }
+  .passive-lbl { font-size:11px; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; }
 
   /* ══ DROPDOWN FEATURE ITEMS ══ */
   .feature-item {
@@ -182,11 +182,11 @@
   }
   details[open] .feature-gem { background: var(--gold-bright); box-shadow: 0 0 10px var(--gold-bright); }
 
-  .feat-name { font-size:10px; color:var(--gold-light); font-weight:600; flex:1; }
-  .feat-short { font-family:'IM Fell English',serif; font-size:9px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-name { font-size:14px; color:var(--gold-light); font-weight:600; flex:1; }
+  .feat-short { font-family:'IM Fell English',serif; font-size:12px; color:var(--text-dim); margin-left:auto; font-style:italic; }
 
   .feat-arrow {
-    font-size: 8px; color: var(--gold-dim);
+    font-size:12px; color: var(--gold-dim);
     transition: transform 0.3s; flex-shrink:0;
   }
   details[open] .feat-arrow { transform: rotate(90deg); color: var(--gold); }
@@ -194,7 +194,7 @@
   .feature-detail {
     padding: 6px 14px 10px 20px;
     font-family: 'IM Fell English', serif;
-    font-size: 11px; color: var(--text-dim); line-height: 1.7;
+    font-size:15px; color: var(--text-dim); line-height: 1.7;
     border-top: 1px solid rgba(200,151,42,0.08);
     animation: dropIn 0.2s ease;
   }
@@ -211,19 +211,19 @@
   .trait-details:last-child { border-bottom: none; }
   .trait-summary {
     list-style: none; padding: 7px 6px;
-    font-size: 7px; letter-spacing: 3px; color: var(--gold-dim);
+    font-size:11px; letter-spacing: 3px; color: var(--gold-dim);
     text-transform: uppercase; cursor: pointer;
     display: flex; align-items: center; gap: 6px;
     user-select: none;
   }
   .trait-summary::-webkit-details-marker { display: none; }
   .trait-summary:hover { color: var(--gold); }
-  .trait-arrow { font-size:7px; color:var(--gold-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size:11px; color:var(--gold-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform:rotate(90deg); color:var(--gold); }
   .trait-body {
     padding: 6px 10px 10px;
     font-family: 'IM Fell English', serif;
-    font-size: 11px; color: var(--text-cream); line-height: 1.6; font-style: italic;
+    font-size:15px; color: var(--text-cream); line-height: 1.6; font-style: italic;
     animation: dropIn 0.2s ease;
   }
 
@@ -231,15 +231,15 @@
   .equip-item {
     display:flex; align-items:center; gap:6px;
     padding:4px 0; border-bottom:1px solid rgba(200,151,42,0.06);
-    font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim);
+    font-family:'IM Fell English',serif; font-size:15px; color:var(--text-dim);
   }
-  .equip-item::before { content:'◆'; font-size:5px; color:var(--gold-dim); }
+  .equip-item::before { content:'◆'; font-size:8px; color:var(--gold-dim); }
 
   /* LORE */
   .lore-box {
     border:1px solid var(--dark-border); padding:14px;
     background:rgba(200,151,42,0.03);
-    font-family:'IM Fell English',serif; font-size:11px;
+    font-family:'IM Fell English',serif; font-size:15px;
     color:var(--text-dim); line-height:1.8; font-style:italic;
   }
   .lore-box strong { color:var(--gold); font-style:normal; }
@@ -257,14 +257,14 @@
   }
   .attack-expand {
     font-family: 'IM Fell English', serif;
-    font-size: 10px; color: var(--text-dim); line-height: 1.6;
+    font-size:14px; color: var(--text-dim); line-height: 1.6;
     padding: 6px 0 8px; display: none;
     animation: dropIn 0.2s ease;
   }
   .attack-expand.open { display:block; }
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--gold-light); }
-  .atk-chevron { font-size:8px; color:var(--gold-dim); margin-left:4px; transition:transform 0.3s; }
+  .atk-chevron { font-size:12px; color:var(--gold-dim); margin-left:4px; transition:transform 0.3s; }
   .atk-chevron.open { transform:rotate(90deg); color:var(--gold); }
 </style>
 </head>
@@ -281,7 +281,7 @@
     <div class="info-grid">
       <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL 1 Barbarian</span></div>
       <div class="info-cell"><span class="info-label">Background</span><span class="info-value">Outlander</span></div>
-      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">sKiDa</span></div>
+      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">—</span></div>
       <div class="info-cell"><span class="info-label">Race</span><span class="info-value">Leonin</span></div>
       <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value">True Neutral</span></div>
       <div class="info-cell"><span class="info-label">Experience Points</span><span class="info-value">0</span></div>
@@ -319,21 +319,21 @@
       <div class="section">
         <div class="section-title">Hit Points</div>
         <div class="section-body" style="text-align:center;">
-          <div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 17</div>
+          <div style="font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 17</div>
           <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--gold-light);line-height:1;">17</div>
           <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
             <div>
-              <div style="font-size:8px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Hit Dice</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-light);margin-top:2px;">1d12</div>
+              <div style="font-size:12px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold-light);margin-top:2px;">1d12</div>
             </div>
             <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-              <div style="font-size:8px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+              <div style="font-size:12px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-                <span style="font-size:8px;color:var(--gold-light);min-width:60px;">Successes</span>
+                <span style="font-size:12px;color:var(--gold-light);min-width:60px;">Successes</span>
                 <div style="display:flex;gap:6px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;">
-                <span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
+                <span style="font-size:12px;color:#cc4444;min-width:60px;">Failures</span>
                 <div style="display:flex;gap:6px;"><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
               </div>
             </div>
@@ -404,11 +404,11 @@
           </table>
 
           <div style="margin-top:12px;padding:8px 10px;background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);">
-            <div style="font-size:7px;letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px;">Rage Tracker (2 / Long Rest)</div>
+            <div style="font-size:11px;letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px;">Rage Tracker (2 / Long Rest)</div>
             <div style="display:flex;align-items:center;gap:10px;">
               <div class="rage-pip" onclick="this.classList.toggle('active')"></div>
               <div class="rage-pip" onclick="this.classList.toggle('active')"></div>
-              <span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);margin-left:8px;">+2 dmg · BPS Resistance · Advantage STR</span>
+              <span style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);margin-left:8px;">+2 dmg · BPS Resistance · Advantage STR</span>
             </div>
           </div>
         </div>
@@ -418,11 +418,11 @@
       <div class="section">
         <div class="section-title">Other Proficiencies &amp; Languages</div>
         <div class="section-body">
-          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
-            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">WEAPONS</span><br>Simple Weapons, Martial Weapons<br><br>
-            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">ARMOR</span><br>Light Armor, Medium Armor, Shields<br><br>
-            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">TOOLS</span><br>Desert Drum (Musical Instrument)<br><br>
-            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;">LANGUAGES</span><br>Common, Leonin, Primordial
+          <p style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-dim);line-height:1.9;">
+            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">WEAPONS</span><br>Simple Weapons, Martial Weapons<br><br>
+            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">ARMOR</span><br>Light Armor, Medium Armor, Shields<br><br>
+            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">TOOLS</span><br>Desert Drum (Musical Instrument)<br><br>
+            <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;">LANGUAGES</span><br>Common, Leonin, Primordial
           </p>
         </div>
       </div>
@@ -474,7 +474,7 @@
 <div class="page">
   <div style="text-align:center;margin-bottom:20px;">
     <div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--gold-bright),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Sekhmet</div>
-    <div style="font-size:8px;letter-spacing:5px;color:var(--gold-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
+    <div style="font-size:12px;letter-spacing:5px;color:var(--gold-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
   </div>
 
   <div class="page2-grid">
@@ -493,12 +493,12 @@
         <div class="section-title">Physical Details</div>
         <div class="section-body">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Age</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Unknown</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Height</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">6'4"</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Weight</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">220 lbs</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Eyes</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Amber</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Skin</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Tawny Gold</div></div>
-            <div><div style="font-size:7px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Mane</div><div style="font-size:12px;color:var(--text-cream);margin-top:2px;">Golden Amber</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Age</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Unknown</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Height</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">6'4"</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Weight</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">220 lbs</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Eyes</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Amber</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Skin</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Tawny Gold</div></div>
+            <div><div style="font-size:11px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;">Mane</div><div style="font-size:15px;color:var(--text-cream);margin-top:2px;">Golden Amber</div></div>
           </div>
         </div>
       </div>
