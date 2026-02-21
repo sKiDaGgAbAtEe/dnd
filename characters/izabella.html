@@ -85,8 +85,8 @@
   .combat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
   .combat-block { text-align:center; padding:14px 8px; background:rgba(42,122,74,0.04); border:1px solid var(--dark-border); transition:all 0.3s; }
   .combat-block:hover { background:rgba(42,122,74,0.12); border-color:var(--primary-dim); }
-  .combat-value { font-family:'Cinzel Decorative',serif; font-size:42px; color:var(--primary-light); display:block; line-height:1; }
-  .combat-label { font-size:22px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+  .combat-value { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); display:block; line-height:1; }
+  .combat-label { font-size:11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
 
   /* SAVES */
   .save-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px 16px; }
@@ -186,7 +186,7 @@
 <div class="id-cell"><span class="id-label">Race</span><span class="id-value">Fairy</span></div>
 <div class="id-cell"><span class="id-label">Background</span><span class="id-value">Witherbloom</span></div>
 <div class="id-cell"><span class="id-label">Alignment</span><span class="id-value">True Neutral</span></div>
-<div class="id-cell"><span class="id-label">Player</span><span class="id-value">Izabella</span></div>
+<div class="id-cell"><span class="id-label">Player</span><span class="id-value">Astrica</span></div>
 </div>
 <!-- MAIN SHEET -->
 <div class="sheet">
@@ -270,11 +270,12 @@
 <div class="panel" style="animation:fadeIn 0.6s ease 0.1s both;">
 <div class="panel-title">Combat</div>
 <div class="panel-body">
-<div class="combat-grid">
+<div class="combat-grid" style="grid-template-columns:repeat(5,1fr);">
 <div class="combat-block"><span class="combat-value">7</span><span class="combat-label">Hit Points</span></div>
 <div class="combat-block"><span class="combat-value">12</span><span class="combat-label">Armor Class</span></div>
 <div class="combat-block"><span class="combat-value">10</span><span class="combat-label">Speed (ft)</span></div>
 <div class="combat-block"><span class="combat-value">+2</span><span class="combat-label">Initiative</span></div>
+<div class="combat-block"><span class="combat-value">14</span><span class="combat-label">Passive WIS</span></div>
 </div>
 <div style="display:flex;gap:16px;margin-top:10px;padding:10px;background:rgba(106,42,138,0.06);border:1px solid rgba(106,42,138,0.2);">
 <div>
@@ -291,10 +292,6 @@
 <span style="font-size:24px;color:#cc4444;min-width:60px;">Failures</span>
 <div style="display:flex;gap:5px;"><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div><div class="pip" data-fail="1"></div></div>
 </div>
-</div>
-<div style="text-align:center;padding-left:16px;border-left:1px solid var(--dark-border);">
-<div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--primary-light);">14</div>
-<div style="font-size:20px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Passive WIS</div>
 </div>
 </div>
 </div>
