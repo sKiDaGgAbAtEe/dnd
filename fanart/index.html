@@ -23,7 +23,7 @@
   * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
-    background: var(--dark);
+    background: #0e0c18;
     color: var(--text);
     font-family: 'Cinzel', serif;
     min-height: 100vh;
@@ -40,35 +40,27 @@
   .bg-radial {
     position: fixed; inset:0; z-index:0; pointer-events:none;
     background:
-      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(160,120,255,0.18) 0%, rgba(100,80,200,0.06) 45%, transparent 70%),
-      radial-gradient(ellipse 55% 45% at 8% 75%, rgba(80,160,200,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 45% at 92% 75%, rgba(140,80,220,0.10) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 40% at 50% 105%, rgba(80,120,180,0.10) 0%, transparent 60%);
+      radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255,245,220,0.22) 0%, rgba(220,200,255,0.12) 40%, transparent 70%),
+      radial-gradient(ellipse 55% 40% at 15% 35%, rgba(200,210,255,0.18) 0%, rgba(180,160,255,0.06) 50%, transparent 75%),
+      radial-gradient(ellipse 50% 38% at 85% 30%, rgba(255,220,180,0.15) 0%, rgba(200,170,255,0.07) 50%, transparent 75%),
+      radial-gradient(ellipse 80% 40% at 50% 85%, rgba(160,130,220,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 30% at 50% 5%, rgba(255,235,180,0.18) 0%, transparent 60%);
   }
 
-  /* Subtle wood-panel texture lines */
+  /* Layered cloud wisps */
   .bg-texture {
     position: fixed; inset:0; z-index:0; pointer-events:none;
     background-image:
-      repeating-linear-gradient(
-        92deg,
-        transparent 0px,
-        transparent 80px,
-        rgba(200,151,42,0.018) 80px,
-        rgba(200,151,42,0.018) 81px
-      ),
-      repeating-linear-gradient(
-        180deg,
-        transparent 0px,
-        transparent 200px,
-        rgba(160,120,255,0.012) 200px,
-        rgba(160,120,255,0.012) 201px
-      );
+      radial-gradient(ellipse 30% 12% at 20% 25%, rgba(255,255,255,0.07) 0%, transparent 100%),
+      radial-gradient(ellipse 25% 10% at 75% 18%, rgba(255,255,255,0.06) 0%, transparent 100%),
+      radial-gradient(ellipse 35% 10% at 50% 40%, rgba(220,210,255,0.05) 0%, transparent 100%),
+      radial-gradient(ellipse 20% 8%  at 30% 55%, rgba(255,255,255,0.04) 0%, transparent 100%),
+      radial-gradient(ellipse 28% 9%  at 70% 60%, rgba(200,220,255,0.04) 0%, transparent 100%);
   }
 
   .bg-vignette {
     position: fixed; inset:0; z-index:0; pointer-events:none;
-    background: radial-gradient(ellipse 85% 75% at 50% 40%, transparent 25%, rgba(0,0,0,0.45) 100%);
+    background: radial-gradient(ellipse 90% 80% at 50% 30%, transparent 30%, rgba(5,4,14,0.55) 100%);
   }
 
   /* ── CONTENT ── */
@@ -524,7 +516,7 @@
     font-size: 8px;
     color: var(--gold-dim);
     letter-spacing: 4px;
-    background: var(--dark);
+    background: #0e0c18;
     padding: 0 20px;
   }
   .footer-text {
@@ -580,7 +572,14 @@
         <span class="frame-rosette-tr">✦</span>
         <span class="frame-rosette-bl">✦</span>
         <div class="frame-inner">
-  <img class="artwork" src="/dnd/fanart/fanart1.png" alt="Fan Art I">
+          <div class="artwork-placeholder">
+            <div class="placeholder-rune">⚜</div>
+            <div class="placeholder-ornament">
+              <span class="placeholder-line"></span>
+              <span class="placeholder-gem"></span>
+              <span class="placeholder-line r"></span>
+            </div>
+            <div class="placeholder-text">Coming Soon</div>
           </div>
         </div>
       </div>
@@ -820,12 +819,12 @@
       if (p.glow) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(160, 120, 255, ${alpha * 0.1})`;
+        ctx.fillStyle = `rgba(255, 240, 200, ${alpha * 0.12})`;
         ctx.fill();
       }
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = Math.random() > 0.5 ? `rgba(180,140,255,${alpha})` : `rgba(100,180,220,${alpha})`;
+      ctx.fillStyle = Math.random() > 0.6 ? `rgba(255,235,180,${alpha})` : Math.random() > 0.5 ? `rgba(200,180,255,${alpha})` : `rgba(255,255,240,${alpha})`;
       ctx.fill();
       p.x += p.speedX; p.y += p.speedY;
       if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
@@ -835,6 +834,24 @@
     requestAnimationFrame(drawParticles);
   }
   drawParticles();
+
+  /* ── AUTO-DETECT ARTWORK ── */
+  document.querySelectorAll('.painting').forEach(painting => {
+    const src = painting.getAttribute('onclick').match(/'([^']+\.png)'/)?.[1];
+    if (!src) return;
+    const img = new Image();
+    img.onload = () => {
+      const frameInner = painting.querySelector('.frame-inner');
+      const placeholder = painting.querySelector('.artwork-placeholder');
+      const artImg = document.createElement('img');
+      artImg.className = 'artwork';
+      artImg.src = src;
+      artImg.alt = '';
+      frameInner.insertBefore(artImg, placeholder);
+      placeholder.style.display = 'none';
+    };
+    img.src = src;
+  });
 
   /* ── LIGHTBOX ── */
   function openLightbox(src, title) {
