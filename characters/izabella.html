@@ -163,9 +163,34 @@
     .ability-grid { grid-template-columns:repeat(3,1fr); }
     .combat-grid { grid-template-columns:repeat(2,1fr); }
   }
+  .back-btn {
+  position: fixed;
+  top: 22px;
+  left: 24px;
+  z-index: 999;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(240, 192, 80, 0.80);
+  text-decoration: none;
+  padding: 9px 16px 9px 12px;
+  border: 1px solid rgba(200, 151, 42, 0.30);
+  background: rgba(6, 5, 3, 0.65);
+  backdrop-filter: blur(10px);
+  transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+.back-btn:hover {
+  color: #ffd77a;
+  border-color: rgba(255, 215, 122, 0.65);
+  box-shadow: 0 0 18px rgba(255, 200, 80, 0.22);
+  transform: translateX(-2px);
+}
 </style>
 </head>
 <body data-character="izabella">
+   <!-- BACK BUTTON -->
+  <a href="/dnd/players.html" class="back-btn">Back To The Party</a>
 <!-- HEADER -->
 <div class="header">
 <div class="char-emblem">✦   Witherbloom Student · Izabella   ✦</div>
