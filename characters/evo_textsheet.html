@@ -61,7 +61,7 @@
   /* SECTION */
   .section{border:1px solid var(--dark-border);background:var(--dark-panel);position:relative;}
   .section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary-dim),transparent);}
-  .section-title{font-size:7px;letter-spacing:4px;color:var(--primary-dim);text-transform:uppercase;padding:8px 14px;border-bottom:1px solid var(--dark-border);text-align:center;}
+  .section-title{font-size:8px;letter-spacing:4px;color:var(--primary-dim);text-transform:uppercase;padding:8px 14px;border-bottom:1px solid var(--dark-border);text-align:center;}
   .section-body{padding:12px 14px;}
   /* COMBAT */
   .combat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
@@ -101,11 +101,11 @@
   summary.feature-toggle{list-style:none;cursor:pointer;display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;padding:10px 12px;user-select:none;}
   summary.feature-toggle::-webkit-details-marker{display:none;}
   .feature-gem{width:10px;height:10px;transform:rotate(45deg);background:var(--primary-light);box-shadow:0 0 10px rgba(79,185,255,0.35);}
-  .feat-name{font-size:10px;letter-spacing:2px;color:var(--text-cream);text-transform:uppercase;}
-  .feat-short{font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);}
+  .feat-name{font-size:9px;letter-spacing:2px;color:var(--text-cream);text-transform:uppercase;}
+  .feat-short{font-family:'IM Fell English',serif;font-size:12px;color:var(--text-dim);}
   .feat-arrow{color:var(--primary-dim);font-size:11px;transition:transform .2s ease;}
   details[open] .feat-arrow{transform:rotate(90deg);color:var(--primary-light);}
-  .feature-detail{padding:0 12px 12px;font-family:'IM Fell English',serif;font-size:14px;color:var(--text-cream);line-height:1.6;}
+  .feature-detail{padding:0 12px 12px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);line-height:1.6;}
   /* PAGE 2 GRID */
   .page2-grid{display:grid;grid-template-columns:260px 1fr;gap:20px;}
   .equip-item{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(27,95,138,0.07);font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);}
@@ -429,87 +429,6 @@
   </div>
 </div>
 
-<!-- ══════════ PAGE 3 ══════════ -->
-<div class="page">
-  <div style="text-align:center;margin-bottom:18px;">
-    <div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--primary-bright),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Evo</div>
-    <div style="font-size:12px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;">Cleric Spell List</div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Cantrips</div>
-    <div class="section-body" style="font-family:'IM Fell English',serif;color:var(--text-cream);line-height:1.9;">
-      • <strong style="color:var(--primary-light);font-style:normal;">Toll the Dead</strong> — Necromancy<br/>
-      • <strong style="color:var(--primary-light);font-style:normal;">Word of Radiance</strong> — Evocation<br/>
-      • <strong style="color:var(--primary-light);font-style:normal;">Guidance</strong> — Divination
-    </div>
-  </div>
-
-  <div class="section" style="margin-top:14px;">
-    <div class="section-title">1st-Level Spells (Slots: 2)</div>
-    <div class="section-body" style="padding:0;">
-      <details class="feature-item" open>
-        <summary class="feature-toggle">
-          <div class="feature-gem"></div>
-          <span class="feat-name">Bless</span>
-          <span class="feat-short">Buff · Concentration</span>
-          <span class="feat-arrow">▶</span>
-        </summary>
-        <div class="feature-detail">Up to 3 creatures add <strong>1d4</strong> to attack rolls and saving throws while you maintain concentration (up to 1 minute).</div>
-      </details>
-
-      <details class="feature-item">
-        <summary class="feature-toggle">
-          <div class="feature-gem"></div>
-          <span class="feat-name">Fog Cloud</span>
-          <span class="feat-short">Control</span>
-          <span class="feat-arrow">▶</span>
-        </summary>
-        <div class="feature-detail">Create a 20-ft-radius fog sphere (heavily obscured) for 1 hour (or until wind disperses).</div>
-      </details>
-
-      <details class="feature-item">
-        <summary class="feature-toggle">
-          <div class="feature-gem"></div>
-          <span class="feat-name">Guiding Bolt</span>
-          <span class="feat-short">Attack · Radiant</span>
-          <span class="feat-arrow">▶</span>
-        </summary>
-        <div class="feature-detail">Ranged spell attack (+4). On hit: <strong>4d6 radiant</strong> and next attack vs the target has advantage (before end of your next turn).</div>
-      </details>
-
-      <details class="feature-item">
-        <summary class="feature-toggle">
-          <div class="feature-gem"></div>
-          <span class="feat-name">Healing Word</span>
-          <span class="feat-short">Bonus Action</span>
-          <span class="feat-arrow">▶</span>
-        </summary>
-        <div class="feature-detail">A creature you can see within 60 ft regains <strong>1d4 + WIS</strong> HP (so: 1d4+2). Great pick-me-up.</div>
-      </details>
-
-      <details class="feature-item">
-        <summary class="feature-toggle">
-          <div class="feature-gem"></div>
-          <span class="feat-name">Thunderwave</span>
-          <span class="feat-short">AoE · Thunder</span>
-          <span class="feat-arrow">▶</span>
-        </summary>
-        <div class="feature-detail">15-ft cube emanating from you. CON save or take <strong>2d8 thunder</strong> and be pushed 10 ft (half and no push on success).</div>
-      </details>
-    </div>
-  </div>
-</div>
-
-<script>
-  function toggleAtk(id) {
-    const panel = document.getElementById(id);
-    const num = id.replace('atk','');
-    const chv = document.getElementById('chv'+num);
-    if(panel) panel.classList.toggle('open');
-    if(chv) chv.classList.toggle('open');
-  }
-</script>
 
 </body>
 </html>
