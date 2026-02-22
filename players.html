@@ -10,20 +10,20 @@
     --gold: #c8972a;
     --gold-light: #f0c050;
     --gold-bright: #ffd700;
-    --gold-dim: #5a4010;
+    --gold-dim: #a07828;
     --gold-glow: rgba(200,151,42,0.25);
     --dark: #060503;
     --dark-2: #0d0a06;
     --dark-3: #141008;
     --border: #2a2010;
     --text: #e8dfc0;
-    --text-dim: #8a7a50;
+    --text-dim: #c4ae78;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
-    background: var(--dark);
+    background: #0c0b12;
     color: var(--text);
     font-family: 'Cinzel', serif;
     min-height: 100vh;
@@ -44,24 +44,19 @@
   .bg-radial {
     position: fixed; inset: 0; z-index: 0;
     background:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,151,42,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(200,151,42,0.04) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 40% at 90% 80%, rgba(200,151,42,0.04) 0%, transparent 50%);
+      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(160,120,255,0.18) 0%, rgba(100,80,200,0.06) 45%, transparent 70%),
+      radial-gradient(ellipse 55% 45% at 8% 75%, rgba(80,160,200,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 92% 75%, rgba(140,80,220,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 50% 105%, rgba(80,120,180,0.10) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  .bg-grid {
-    position: fixed; inset: 0; z-index: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,151,42,0.018) 60px, rgba(200,151,42,0.018) 61px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,151,42,0.018) 60px, rgba(200,151,42,0.018) 61px);
-    pointer-events: none;
-  }
+  .bg-grid { display: none; }
 
-  /* vignette burn */
+  /* vignette */
   .bg-vignette {
     position: fixed; inset: 0; z-index: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(0,0,0,0.5) 100%);
+    background: radial-gradient(ellipse 85% 75% at 50% 40%, transparent 25%, rgba(0,0,0,0.35) 100%);
     pointer-events: none;
   }
 
@@ -177,18 +172,25 @@
     max-width: 1400px;
     width: 100%;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     margin-bottom: 80px;
   }
 
+  .char-card {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 420px;
+    min-width: 280px;
+  }
+
   @media (max-width: 1100px) {
-    .char-grid { grid-template-columns: repeat(2, 1fr); max-width: 840px; }
+    .char-card { flex: 0 0 calc(50% - 15px); }
   }
 
   @media (max-width: 700px) {
-    .char-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 80px; }
+    .char-card { flex: 0 0 100%; max-width: 420px; }
   }
 
   /* ── CHARACTER CARD ── */
@@ -832,6 +834,158 @@
   .char-card.revealed {
     animation: cardFadeUp 0.7s ease forwards;
   }
+
+  /* ── FAN ART BUTTON ── */
+  .fanart-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 80px;
+    gap: 18px;
+  }
+  .fanart-section-label {
+    font-size: 9px;
+    letter-spacing: 8px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+  .fanart-btn {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 22px 64px 20px;
+    text-decoration: none;
+    background: linear-gradient(160deg, #060503 0%, #0d0a06 50%, #060503 100%);
+    border: 1px solid var(--gold-dim);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    min-width: 340px;
+  }
+  .fanart-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
+  .fanart-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(200,151,42,0.12) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .fanart-btn:hover {
+    border-color: var(--gold);
+    box-shadow:
+      0 0 24px rgba(200,151,42,0.25),
+      0 0 70px rgba(200,151,42,0.1),
+      inset 0 0 30px rgba(200,151,42,0.05);
+  }
+  .fanart-btn:hover::before { opacity: 1; }
+  .fanart-btn:hover::after { opacity: 1; }
+  .fanart-btn .corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    border-color: var(--gold);
+    border-style: solid;
+    transition: all 0.4s ease;
+    opacity: 0.4;
+  }
+  .fanart-btn:hover .corner { opacity: 1; width: 20px; height: 20px; }
+  .corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+  .btn-gems {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-gem {
+    width: 6px; height: 6px;
+    transform: rotate(45deg);
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    transition: all 0.4s ease;
+  }
+  .btn-gem.sm {
+    background: var(--gold-dim);
+    box-shadow: none;
+    width: 4px; height: 4px;
+  }
+  .fanart-btn:hover .btn-gem {
+    box-shadow: 0 0 16px var(--gold-bright);
+    background: var(--gold-bright);
+  }
+  .fanart-btn:hover .btn-gem.sm {
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+  .gem-line {
+    width: 44px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+    transition: all 0.4s;
+  }
+  .gem-line.r {
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+  }
+  .fanart-btn:hover .gem-line {
+    background: linear-gradient(90deg, transparent, var(--gold));
+    width: 56px;
+  }
+  .fanart-btn:hover .gem-line.r {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .btn-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s;
+  }
+  .fanart-btn:hover .btn-eyebrow { color: var(--text-dim); }
+  .btn-main-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-bright) 30%, var(--gold) 70%, var(--gold-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(200,151,42,0.4));
+    position: relative;
+    z-index: 1;
+    transition: filter 0.4s;
+    line-height: 1.2;
+  }
+  .fanart-btn:hover .btn-main-label {
+    filter: drop-shadow(0 0 24px rgba(255,215,0,0.7));
+  }
+  .btn-sub-label {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s;
+  }
+  .fanart-btn:hover .btn-sub-label { color: var(--gold-light); }
 </style>
 </head>
 <body>
@@ -1207,6 +1361,34 @@
 
   </div>
 
+  <!-- ── FAN ART BUTTON ── -->
+  <div class="fanart-section">
+    <div class="fanart-section-label">◆ &nbsp; The Chronicle &nbsp; ◆</div>
+    <a href="fanart.html" class="fanart-btn">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+      <span class="btn-eyebrow">Community Art</span>
+      <div class="btn-gems">
+        <span class="gem-line"></span>
+        <span class="btn-gem sm"></span>
+        <span class="btn-gem"></span>
+        <span class="btn-gem sm"></span>
+        <span class="gem-line r"></span>
+      </div>
+      <span class="btn-main-label">Fan Art Gallery</span>
+      <span class="btn-sub-label">Art from the party &amp; beyond</span>
+      <div class="btn-gems">
+        <span class="gem-line"></span>
+        <span class="btn-gem sm"></span>
+        <span class="btn-gem"></span>
+        <span class="btn-gem sm"></span>
+        <span class="gem-line r"></span>
+      </div>
+    </a>
+  </div>
+
   <!-- ── FOOTER ── -->
   <div class="footer">
     <div class="footer-title">The world fell. They did not.</div>
@@ -1237,7 +1419,7 @@
       size: Math.random() * 1.8 + 0.2,
       speedX: (Math.random() - 0.5) * 0.25,
       speedY: -Math.random() * 0.35 - 0.08,
-      opacity: Math.random() * 0.35 + 0.05,
+      opacity: Math.random() * 0.55 + 0.15,
       pulse: Math.random() * Math.PI * 2,
       pulseSpeed: 0.01 + Math.random() * 0.02,
       glow: Math.random() > 0.85
@@ -1254,13 +1436,14 @@
       if (p.glow) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 151, 42, ${alpha * 0.08})`;
+        ctx.fillStyle = `rgba(160, 120, 255, ${alpha * 0.1})`;
         ctx.fill();
       }
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200, 151, 42, ${alpha})`;
+      const r = Math.random() > 0.5 ? `rgba(180, 140, 255, ${alpha})` : `rgba(100, 180, 220, ${alpha})`;
+      ctx.fillStyle = r;
       ctx.fill();
 
       p.x += p.speedX;
