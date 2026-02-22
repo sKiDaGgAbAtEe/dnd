@@ -986,6 +986,156 @@
     transition: color 0.4s;
   }
   .fanart-btn:hover .btn-sub-label { color: var(--gold-light); }
+
+  /* ── BACK TO TITLE BUTTON ── */
+  .back-title-btn {
+    position: fixed;
+    top: 28px; left: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    border: 1px solid rgba(160,120,40,0.3);
+    padding: 10px 18px;
+    background: rgba(6,5,3,0.88);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    z-index: 200;
+    font-family: 'Cinzel', serif;
+  }
+  .back-title-btn::before {
+    content: '←';
+    font-size: 14px;
+    transition: transform 0.3s;
+  }
+  .back-title-btn:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 20px rgba(200,151,42,0.15);
+  }
+  .back-title-btn:hover::before { transform: translateX(-4px); }
+
+  /* ── SHEET LIGHTBOX ── */
+  .sheet-lb {
+    position: fixed; inset: 0;
+    background: rgba(3,2,1,0.93);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .sheet-lb.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .sheet-lb-inner {
+    position: relative;
+    width: 92vw;
+    height: 92vh;
+    background: #0a0806;
+    border: 1px solid var(--gold-dim);
+    box-shadow: 0 0 80px rgba(200,151,42,0.18), 0 30px 80px rgba(0,0,0,0.85);
+    transform: scale(0.94);
+    transition: transform 0.35s cubic-bezier(0.19,1,0.22,1);
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-lb.open .sheet-lb-inner { transform: scale(1); }
+
+  /* top bar */
+  .sheet-lb-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(8,6,4,0.98);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+  .sheet-lb-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    flex: 1;
+  }
+  .sheet-lb-close {
+    background: none;
+    border: 1px solid rgba(200,151,42,0.3);
+    color: var(--gold-dim);
+    font-size: 16px;
+    width: 32px; height: 32px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .sheet-lb-close:hover {
+    background: rgba(200,151,42,0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* dots */
+  .sheet-lb-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sheet-dot {
+    width: 6px; height: 6px;
+    background: var(--border);
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+  .sheet-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* iframe */
+  .sheet-lb-frame {
+    flex: 1;
+    width: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* arrow nav */
+  .sheet-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(6,5,3,0.9);
+    border: 1px solid rgba(200,151,42,0.3);
+    color: var(--gold-dim);
+    font-size: 22px;
+    width: 48px; height: 48px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s;
+    backdrop-filter: blur(8px);
+  }
+  .sheet-nav:hover {
+    background: rgba(200,151,42,0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    box-shadow: 0 0 18px rgba(200,151,42,0.2);
+  }
+  .sheet-nav-prev { left: -64px; }
+  .sheet-nav-next { right: -64px; }
+
 </style>
 </head>
 <body>
@@ -1076,10 +1226,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/sekhmet.html" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" onclick="openSheet(0);return false;">
             <span class="btn-icon">🦁</span> Character Sheet
           </a>
-          <a href="/dnd/characters/sekhmet_textsheet.html" class="btn btn-secondary">
+          <a href="#" class="btn btn-secondary" onclick="openSheet(1);return false;">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1144,10 +1294,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/raven.html" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" onclick="openSheet(2);return false;">
             <span class="btn-icon">🗡️</span> Character Sheet
           </a>
-          <a href="/dnd/characters/raven_textsheet.html" class="btn btn-secondary">
+          <a href="#" class="btn btn-secondary" onclick="openSheet(3);return false;">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1212,10 +1362,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/izabella.html" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" onclick="openSheet(4);return false;">
             <span class="btn-icon">✨</span> Character Sheet
           </a>
-          <a href="/dnd/characters/izabella_textsheet.html" class="btn btn-secondary">
+          <a href="#" class="btn btn-secondary" onclick="openSheet(5);return false;">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1281,10 +1431,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/evo.html" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" onclick="openSheet(6);return false;">
             <span class="btn-icon">⚡</span> Character Sheet
           </a>
-          <a href="/dnd/characters/evo_textsheet.html" class="btn btn-secondary">
+          <a href="#" class="btn btn-secondary" onclick="openSheet(7);return false;">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
@@ -1349,10 +1499,10 @@
         </div>
 
         <div class="card-actions">
-          <a href="/dnd/characters/malc.html" class="btn btn-primary">
+          <a href="#" class="btn btn-primary" onclick="openSheet(8);return false;">
             <span class="btn-icon">🧱</span> Character Sheet
           </a>
-          <a href="/dnd/characters/malc_textsheet.html" class="btn btn-secondary">
+          <a href="#" class="btn btn-secondary" onclick="openSheet(9);return false;">
             <span class="btn-icon">📜</span> Text Sheet
           </a>
         </div>
