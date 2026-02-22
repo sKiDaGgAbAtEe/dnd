@@ -1020,6 +1020,196 @@
     transition: color 0.4s;
   }
   .fanart-btn:hover .btn-sub-label { color: var(--gold-light); }
+
+  /* ── DOCUMENT VIEWER MODAL ── */
+  #doc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+  }
+  #doc-modal.open { display: flex; }
+
+  .doc-modal-shell {
+    position: relative;
+    width: 92vw;
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    background: #0c0a07;
+    border: 1px solid var(--gold-dim);
+    box-shadow: 0 0 80px rgba(200,151,42,0.18), 0 30px 80px rgba(0,0,0,0.7);
+    overflow: hidden;
+  }
+
+  /* top bar */
+  .doc-modal-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(13,10,6,0.96);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  /* character tabs */
+  .doc-char-tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .doc-char-tabs::-webkit-scrollbar { display: none; }
+
+  .doc-tab {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .doc-tab:hover { color: var(--text); border-color: var(--gold-dim); }
+  .doc-tab.active {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    background: rgba(200,151,42,0.1);
+  }
+
+  /* sheet type switcher */
+  .doc-type-btns {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .doc-type-btn {
+    padding: 6px 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .doc-type-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .doc-type-btn.active {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    background: rgba(200,151,42,0.1);
+  }
+
+  /* zoom controls */
+  .doc-zoom-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .doc-zoom-btn {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--gold-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+    font-family: monospace;
+  }
+  .doc-zoom-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+  .doc-zoom-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    min-width: 36px;
+    text-align: center;
+  }
+
+  /* close button */
+  .doc-close-btn {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .doc-close-btn:hover { color: #ff8080; border-color: rgba(255,80,80,0.4); background: rgba(255,80,80,0.08); }
+
+  /* iframe wrapper */
+  .doc-iframe-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #f5f0e8;
+  }
+
+  .doc-iframe-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  #doc-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    transform-origin: top left;
+    display: block;
+  }
+
+  /* nav arrows */
+  .doc-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(13,10,6,0.85);
+    border: 1px solid rgba(200,151,42,0.3);
+    color: var(--gold-dim);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.25s;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+  .doc-nav-arrow:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(13,10,6,0.95); }
+  .doc-nav-arrow.prev { left: 0; border-left: none; border-radius: 0 2px 2px 0; }
+  .doc-nav-arrow.next { right: 0; border-right: none; border-radius: 2px 0 0 2px; }
+  .doc-nav-arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+
+  /* char name in bar */
+  .doc-bar-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    margin-right: 6px;
+  }
+
+  .doc-sep { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; margin: 0 2px; }
 </style>
 </head>
 <body>
@@ -1661,6 +1851,205 @@
 <audio id="bg-audio" loop>
   <source src="/dnd/background2.mp3" type="audio/mpeg">
 </audio>
+
+<!-- ── DOCUMENT VIEWER MODAL ── -->
+<div id="doc-modal" role="dialog" aria-modal="true">
+  <div class="doc-modal-shell">
+
+    <!-- Top bar -->
+    <div class="doc-modal-bar">
+      <span class="doc-bar-name" id="doc-bar-name">Character</span>
+      <div class="doc-sep"></div>
+
+      <!-- Character tabs -->
+      <div class="doc-char-tabs" id="doc-char-tabs">
+        <!-- populated by JS -->
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Sheet type -->
+      <div class="doc-type-btns">
+        <button class="doc-type-btn active" id="btn-type-sheet" onclick="switchDocType('sheet')">⚔ Sheet</button>
+        <button class="doc-type-btn" id="btn-type-text" onclick="switchDocType('text')">📜 Text</button>
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Zoom -->
+      <div class="doc-zoom-group">
+        <button class="doc-zoom-btn" onclick="changeZoom(-10)" title="Zoom out">−</button>
+        <span class="doc-zoom-label" id="doc-zoom-label">100%</span>
+        <button class="doc-zoom-btn" onclick="changeZoom(+10)" title="Zoom in">+</button>
+        <button class="doc-zoom-btn" onclick="resetZoom()" title="Reset zoom" style="font-size:11px;letter-spacing:0;font-family:'Cinzel',serif;">↺</button>
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Close -->
+      <button class="doc-close-btn" onclick="closeDocModal()" title="Close">✕</button>
+    </div>
+
+    <!-- iframe area with nav arrows -->
+    <div class="doc-iframe-wrap">
+      <button class="doc-nav-arrow prev" id="doc-prev" onclick="navigateChar(-1)" title="Previous character">‹</button>
+      <div class="doc-iframe-scroll" id="doc-scroll">
+        <iframe id="doc-iframe" src="about:blank" title="Character document"></iframe>
+      </div>
+      <button class="doc-nav-arrow next" id="doc-next" onclick="navigateChar(+1)" title="Next character">›</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── CHARACTER DATA ──
+  const PARTY = [
+    { key:'sekhmet', name:'Sekhmet',   emoji:'🦁', sheet:'/dnd/characters/sekhmet.html',  text:'/dnd/characters/sekhmet_textsheet.html' },
+    { key:'raven',   name:'Raven',     emoji:'🗡️', sheet:'/dnd/characters/raven.html',    text:'/dnd/characters/raven_textsheet.html' },
+    { key:'izabella',name:'Izabella',  emoji:'✨', sheet:'/dnd/characters/izabella.html', text:'/dnd/characters/izabella_textsheet.html' },
+    { key:'evo',     name:'Evo',       emoji:'⚡', sheet:'/dnd/characters/evo.html',      text:'/dnd/characters/evo_textsheet.html' },
+    { key:'malc',    name:'Malc Grann',emoji:'🧱', sheet:'/dnd/characters/malc.html',     text:'/dnd/characters/malc_textsheet.html' },
+  ];
+
+  let currentCharIdx = 0;
+  let currentDocType = 'sheet'; // 'sheet' or 'text'
+  let zoomLevel = 100;
+
+  // Build character tabs
+  const tabContainer = document.getElementById('doc-char-tabs');
+  PARTY.forEach((char, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'doc-tab' + (i === 0 ? ' active' : '');
+    btn.id = `doc-tab-${char.key}`;
+    btn.textContent = `${char.emoji} ${char.name}`;
+    btn.onclick = () => openDocModal(i, currentDocType);
+    tabContainer.appendChild(btn);
+  });
+
+  function openDocModal(charIdx, docType = 'sheet') {
+    currentCharIdx = charIdx;
+    currentDocType = docType;
+    updateModal();
+    document.getElementById('doc-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDocModal() {
+    document.getElementById('doc-modal').classList.remove('open');
+    document.getElementById('doc-iframe').src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+
+  function updateModal() {
+    const char = PARTY[currentCharIdx];
+
+    // Update bar name
+    document.getElementById('doc-bar-name').textContent = char.name;
+
+    // Update tabs
+    document.querySelectorAll('.doc-tab').forEach((t, i) => t.classList.toggle('active', i === currentCharIdx));
+
+    // Update type buttons
+    document.getElementById('btn-type-sheet').classList.toggle('active', currentDocType === 'sheet');
+    document.getElementById('btn-type-text').classList.toggle('active', currentDocType === 'text');
+
+    // Update nav arrows
+    document.getElementById('doc-prev').disabled = currentCharIdx === 0;
+    document.getElementById('doc-next').disabled = currentCharIdx === PARTY.length - 1;
+
+    // Load iframe
+    const url = currentDocType === 'sheet' ? char.sheet : char.text;
+    const iframe = document.getElementById('doc-iframe');
+    iframe.src = url;
+
+    // Apply zoom
+    applyZoom();
+  }
+
+  function switchDocType(type) {
+    currentDocType = type;
+    updateModal();
+  }
+
+  function navigateChar(dir) {
+    const next = currentCharIdx + dir;
+    if (next < 0 || next >= PARTY.length) return;
+    currentCharIdx = next;
+    updateModal();
+  }
+
+  function applyZoom() {
+    const iframe = document.getElementById('doc-iframe');
+    const scroll = document.getElementById('doc-scroll');
+    const scale = zoomLevel / 100;
+
+    if (zoomLevel === 100) {
+      iframe.style.transform = '';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+    } else if (zoomLevel > 100) {
+      // Scale up: iframe stays 100% of scroll area, content inside zooms
+      iframe.style.transform = '';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+    } else {
+      iframe.style.transform = `scale(${scale})`;
+      iframe.style.transformOrigin = 'top left';
+      iframe.style.width = `${10000 / zoomLevel}%`;
+      iframe.style.height = `${10000 / zoomLevel}%`;
+    }
+
+    // Use CSS zoom on the iframe for simple scaling
+    iframe.style.zoom = scale;
+    iframe.style.transform = '';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+
+    document.getElementById('doc-zoom-label').textContent = zoomLevel + '%';
+  }
+
+  function changeZoom(delta) {
+    zoomLevel = Math.min(200, Math.max(50, zoomLevel + delta));
+    applyZoom();
+  }
+
+  function resetZoom() {
+    zoomLevel = 100;
+    applyZoom();
+  }
+
+  // ── INTERCEPT CARD BUTTONS ──
+  document.querySelectorAll('.card-actions .btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      // Find which character this belongs to
+      const card = this.closest('.char-card');
+      const key = card?.getAttribute('data-character');
+      const idx = PARTY.findIndex(c => c.key === key);
+      if (idx === -1) return;
+
+      // Determine if primary (sheet) or secondary (text)
+      const type = this.classList.contains('btn-secondary') ? 'text' : 'sheet';
+      openDocModal(idx, type);
+    });
+  });
+
+  // Close on backdrop click
+  document.getElementById('doc-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeDocModal();
+  });
+
+  // Keyboard nav
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('doc-modal');
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeDocModal();
+    if (e.key === 'ArrowLeft') navigateChar(-1);
+    if (e.key === 'ArrowRight') navigateChar(+1);
+  });
+</script>
 
 <script>
   function toggleAudio() {
