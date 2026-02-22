@@ -53,6 +53,40 @@
 
   .bg-grid { display: none; }
 
+  /* ── BACK TO HUB BUTTON ── */
+  .back-btn {
+    position: fixed;
+    top: 22px;
+    left: 24px;
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 18px 9px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(240, 192, 80, 0.80);
+    text-decoration: none;
+    border: 1px solid rgba(200, 151, 42, 0.30);
+    background: rgba(6, 5, 3, 0.65);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover {
+    color: #ffd77a;
+    border-color: rgba(255, 215, 122, 0.65);
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.22), 0 4px 20px rgba(0,0,0,0.40);
+    transform: translateX(-2px);
+  }
+  .back-btn svg {
+    flex-shrink: 0;
+    transition: transform 220ms ease;
+  }
+  .back-btn:hover svg { transform: translateX(-3px); }
+
   /* vignette */
   .bg-vignette {
     position: fixed; inset: 0; z-index: 0;
@@ -989,6 +1023,14 @@
 </style>
 </head>
 <body>
+
+  <!-- Back to Hub -->
+  <a class="back-btn" href="/dnd/index.html">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to the Hub
+  </a>
 
 <!-- BACKGROUND LAYERS -->
 <canvas id="particles"></canvas>
