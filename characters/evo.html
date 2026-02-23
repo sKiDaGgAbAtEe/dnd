@@ -18,7 +18,7 @@
     --dark-panel:     #0f0d08;
     --dark-border:    #1e1a10;
     --text-cream:     #e8dfc0;
-    --text-dim:       #c8b88a;
+    --text-dim: #d4c090;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,7 +50,7 @@
     pointer-events: none;
   }
   .char-emblem {
-    font-size: 13px; letter-spacing: 8px; color: var(--primary-dim);
+    font-size:18px; letter-spacing: 8px; color: var(--primary-dim);
     text-transform: uppercase; margin-bottom: 8px;
     animation: fadeIn 2s ease;
   }
@@ -65,7 +65,7 @@
   }
   .char-subtitle {
     font-family: 'IM Fell English', serif; font-style: italic;
-    font-size: 16px; color: var(--text-dim); letter-spacing: 4px;
+    font-size:18px; color: var(--text-dim); letter-spacing: 4px;
     margin-top: 10px; animation: fadeIn 2.5s ease;
   }
 
@@ -91,8 +91,8 @@
     border: 1px solid var(--primary-dim);
   }
   .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
-  .id-label { font-size: 11px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
-  .id-value { font-family: 'Cinzel Decorative', serif; font-size: 13px; color: var(--primary-light); font-weight: 700; }
+  .id-label { font-size:18px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .id-value { font-family: 'Cinzel Decorative', serif; font-size:18px; color: var(--primary-light); font-weight: 700; }
 
   /* ─── MAIN LAYOUT ─── */
   .sheet {
@@ -125,7 +125,7 @@
   /* ─── PANEL ─── */
   .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
   .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
-  .panel-title { font-size: 12px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
+  .panel-title { font-size:17px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
   .panel-body { padding: 14px 18px; }
 
   /* ─── ABILITY SCORES ─── */
@@ -135,9 +135,9 @@
     text-align: center; padding: 12px 6px; transition: all 0.3s;
   }
   .ability-block:hover { background: rgba(200,151,42,0.14); border-color: var(--primary-dim); }
-  .ab-name  { font-size:11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-name  { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
   .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
-  .ab-mod   { font-size:13px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
+  .ab-mod   { font-size:18px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
 
   /* ─── COMBAT STATS ─── */
   .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -147,7 +147,7 @@
   }
   .combat-block:hover { background: rgba(200,151,42,0.12); border-color: var(--primary-dim); }
   .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
-  .combat-label { font-size:11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+  .combat-label { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
 
   /* ─── HP BAR ─── */
   .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
@@ -161,12 +161,12 @@
   .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
   .save-row {
     display: flex; align-items: center; gap: 8px;
-    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.07); font-size: 13px;
+    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.07); font-size:18px;
   }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
   .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val  { color:var(--primary-light); font-weight:700; font-size:14px; }
+  .save-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
 
   /* ─── FEATURES (right col) ─── */
   .feature-item { border-bottom: 1px solid var(--dark-border); }
@@ -184,13 +184,13 @@
     box-shadow: 0 0 5px var(--primary); transition: all 0.3s;
   }
   details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
-  .feat-name  { font-size:13px; color:var(--primary-light); font-weight:600; flex:1; }
-  .feat-source { font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow { font-size:10px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  .feat-name  { font-size:18px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-source { font-family:'IM Fell English',serif; font-size:18px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
   .feature-detail {
     padding: 6px 14px 12px 20px;
-    font-family: 'IM Fell English', serif; font-size:13px; color:var(--text-dim); line-height:1.7;
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim); line-height:1.7;
     border-top: 1px solid rgba(200,151,42,0.08); animation: dropIn 0.2s ease;
   }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
@@ -201,17 +201,17 @@
   .trait-details:last-child { border-bottom: none; }
   .trait-summary {
     list-style: none; padding: 8px 6px;
-    font-size: 11px; letter-spacing: 3px; color: var(--primary-dim);
+    font-size:18px; letter-spacing: 3px; color: var(--primary-dim);
     text-transform: uppercase; cursor: pointer;
     display: flex; align-items: center; gap: 6px; user-select: none;
   }
   .trait-summary::-webkit-details-marker { display: none; }
   .trait-summary:hover { color: var(--primary); }
-  .trait-arrow { font-size:10px; color:var(--primary-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
   .trait-body {
     padding: 6px 10px 12px;
-    font-family: 'IM Fell English', serif; font-size:14px; color:var(--text-cream);
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-cream);
     line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
   }
 
@@ -219,16 +219,16 @@
   .equip-item {
     display: flex; align-items: center; gap: 6px;
     padding: 5px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
-    font-family: 'IM Fell English', serif; font-size:13px; color:var(--text-dim);
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
   }
-  .equip-item::before { content:'◆'; font-size:5px; color:var(--primary-dim); }
-  .equip-qty { font-size:11px; color:var(--primary-dim); margin-left:auto; }
+  .equip-item::before { content:'◆'; font-size:18px; color:var(--primary-dim); }
+  .equip-qty { font-size:18px; color:var(--primary-dim); margin-left:auto; }
 
   /* ─── BACKSTORY ─── */
   .backstory-box {
     border: 1px solid var(--dark-border); padding: 16px;
     background: rgba(200,151,42,0.03);
-    font-family: 'IM Fell English', serif; font-size:14px;
+    font-family: 'IM Fell English', serif; font-size:18px;
     color: var(--text-dim); line-height: 1.9; font-style: italic;
   }
   .backstory-box strong { color:var(--primary); font-style:normal; }
@@ -237,7 +237,7 @@
   .changelog-item {
     display: flex; align-items: flex-start; gap: 8px;
     padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
-    font-family: 'IM Fell English', serif; font-size:13px; color:var(--text-dim);
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
   }
   .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
 
@@ -248,12 +248,12 @@
   .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
   .skill-row {
     display: flex; align-items: center; gap: 6px;
-    padding: 3px 0; border-bottom: 1px solid rgba(200,151,42,0.06); font-size: 12px;
+    padding: 3px 0; border-bottom: 1px solid rgba(200,151,42,0.06); font-size:17px;
   }
   .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
-  .skill-name { flex:1; color:var(--text-cream); font-size:12px; }
-  .skill-ab   { font-size:11px; color:var(--text-dim); }
-  .skill-val  { color:var(--primary-light); font-weight:700; font-size:13px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:17px; }
+  .skill-ab   { font-size:18px; color:var(--text-dim); }
+  .skill-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
 
   @keyframes dropIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
 
@@ -261,12 +261,12 @@
   .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
   .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03); }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
-  .passive-lbl { font-size:10px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+  .passive-lbl { font-size:19px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
 
   /* ─── SPELL SLOTS ─── */
   .slot-grid { display:flex; flex-direction:column; gap:6px; }
   .slot-row { display:flex; align-items:center; gap:8px; }
-  .slot-level { font-size:11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
+  .slot-level { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
   .slot-pips { display:flex; gap:5px; flex-wrap:wrap; }
   .slot-pip {
     width:14px; height:14px; border:1px solid var(--primary-dim);
@@ -345,7 +345,7 @@
         <div class="hp-bar-bg">
           <div class="hp-bar-fill" id="hp-bar" style="width:100%;"></div>
         </div>
-        <div style="display:flex;gap:12px;margin-top:10px;font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:17px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
           <span>Hit Dice: <span style="color:var(--primary-light);" data-path="combat.hit_dice_total">1d8</span></span>
           <span>Temp: <span style="color:var(--primary-light);" data-path="combat.hp_temp">0</span></span>
         </div>
@@ -467,7 +467,7 @@
     <div class="panel">
       <div class="panel-title">Equipment &amp; Inventory</div>
       <div class="panel-body">
-        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:13px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:18px;color:var(--text-dim);font-family:'IM Fell English',serif;">
           <span>PP: <span style="color:var(--primary-light);" data-path="equipment.currency.pp">0</span></span>
           <span>GP: <span style="color:var(--primary-light);" data-path="equipment.currency.gp">0</span></span>
           <span>EP: <span style="color:var(--primary-light);" data-path="equipment.currency.ep">0</span></span>
@@ -636,7 +636,7 @@
       if (equipContainer && char.equipment && char.equipment.carried) {
         equipContainer.innerHTML = char.equipment.carried.map(item => `
           <div class="equip-item">
-            ${item.name}${item.description ? ` <span style="font-size:9px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
+            ${item.name}${item.description ? ` <span style="font-size:19px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
             <span class="equip-qty">×${item.quantity}</span>
           </div>
         `).join('');
@@ -652,8 +652,8 @@
           resContainer.innerHTML = entries.map(([key, res]) => `
             <div style="margin-bottom:12px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-size:10px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
-                <span style="font-size:9px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
+                <span style="font-size:19px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
+                <span style="font-size:19px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
               </div>
               <div style="display:flex;gap:6px;flex-wrap:wrap;">
                 ${Array.from({length: res.max}, (_, i) => `
@@ -661,7 +661,7 @@
                        onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
                 `).join('')}
               </div>
-              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
+              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:19px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
             </div>
           `).join('');
         }
