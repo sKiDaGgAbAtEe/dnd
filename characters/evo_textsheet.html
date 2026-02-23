@@ -6,12 +6,13 @@
 <title>Evo — Character Sheet</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
-  /* ── THEME: defaults overwritten at runtime by JS from identity.theme_color_* ── */
+  /* ── THEME: defaults overridden at runtime by JS from identity.theme_color_* ── */
   :root {
     --primary:        #1b5f8a;
     --primary-light:  #4fb9ff;
     --primary-bright: #b8f3ff;
     --primary-dim:    #0f3a57;
+    --primary-rgb:    79,185,255;
     --arcane-light:   #73a8ff;
     --dark:           #060a08;
     --dark-panel:     #080e0a;
@@ -24,10 +25,10 @@
     background:var(--dark); color:var(--text-cream);
     font-family:'Cinzel',serif; min-height:100vh;
     background-image:
-      radial-gradient(ellipse at 50% 0%,  rgba(27,95,138,0.10) 0%, transparent 60%),
-      radial-gradient(ellipse at 85% 85%, rgba(30,74,168,0.06) 0%, transparent 45%),
-      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(27,95,138,0.012) 50px, rgba(27,95,138,0.012) 51px),
-      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(27,95,138,0.012) 50px, rgba(27,95,138,0.012) 51px);
+      radial-gradient(ellipse at 50% 0%,  rgba(var(--primary-rgb),0.10) 0%, transparent 60%),
+      radial-gradient(ellipse at 85% 85%, rgba(var(--primary-rgb),0.06) 0%, transparent 45%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb),0.012) 50px, rgba(var(--primary-rgb),0.012) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb),0.012) 50px, rgba(var(--primary-rgb),0.012) 51px);
   }
   .page {
     max-width:900px; margin:30px auto;
@@ -44,7 +45,7 @@
     font-family:'Cinzel Decorative',serif; font-size:36px; font-weight:900; line-height:1.1;
     background:linear-gradient(180deg, var(--primary-bright), var(--primary));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    filter:drop-shadow(0 0 18px rgba(79,185,255,0.45));
+    filter:drop-shadow(0 0 18px rgba(var(--primary-rgb, 79,185,255),0.45));
   }
   .name-sub { font-size:8px; letter-spacing:4px; color:var(--primary-light); text-transform:uppercase; margin-top:4px; opacity:0.5; }
   .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; }
@@ -56,11 +57,11 @@
   .sheet-top-row   { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; align-items:start; }
   .sheet-bottom-row { /* features spanning full width */ }
   .ability-col { display:flex; flex-direction:column; gap:8px; }
-  .ability-block { border:1px solid var(--primary-dim); text-align:center; padding:10px 6px 8px; background:rgba(27,95,138,0.04); }
+  .ability-block { border:1px solid var(--primary-dim); text-align:center; padding:10px 6px 8px; background:rgba(var(--primary-rgb),0.04); }
   .ab-name    { font-size:7px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; display:block; margin-bottom:4px; opacity:0.6; }
   .ab-score   { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--primary-light); line-height:1; display:block; }
   .ab-mod-box { display:inline-block; border:1px solid var(--primary-dim); padding:2px 10px; margin-top:6px; font-size:14px; color:var(--primary-light); font-weight:700; }
-  .proficiency-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(27,95,138,0.04); margin-top:4px; }
+  .proficiency-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(var(--primary-rgb),0.04); margin-top:4px; }
   .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); }
   .prof-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
   .mid-col { display:flex; flex-direction:column; gap:12px; }
@@ -69,13 +70,13 @@
   .section-title { font-size:8px; letter-spacing:4px; color:var(--primary-light); text-transform:uppercase; padding:8px 14px; border-bottom:1px solid var(--dark-border); text-align:center; opacity:0.7; }
   .section-body  { padding:12px 14px; }
   .combat-row  { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(27,95,138,0.03); }
+  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.03); }
   .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; line-height:1; }
   .cs-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; display:block; margin-top:4px; opacity:0.6; }
   .save-list, .skill-list { display:flex; flex-direction:column; gap:3px; }
-  .save-row,  .skill-row  { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(27,95,138,0.12); }
+  .save-row,  .skill-row  { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(var(--primary-rgb),0.12); }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
-  .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 8px rgba(79,185,255,0.35); }
+  .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 8px rgba(var(--primary-rgb, 79,185,255),0.35); }
   .dot.failure    { border-color: rgba(180,40,40,0.45); }
   .dot.success.active { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
   .dot.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 6px rgba(204,34,34,0.7); }
@@ -83,10 +84,10 @@
   .save-val,  .skill-val  { color:var(--primary-light); font-weight:700; font-size:11px; }
   .skill-ab { font-size:10px; color:var(--text-dim); }
   .right-col { display:flex; flex-direction:column; gap:12px; }
-  .passive-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(27,95,138,0.04); }
+  .passive-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(var(--primary-rgb),0.04); }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); display:block; line-height:1; }
   .passive-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; display:block; margin-top:4px; opacity:0.6; }
-  details.trait-details { border:1px solid var(--dark-border); background:rgba(27,95,138,0.02); }
+  details.trait-details { border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.02); }
   .trait-summary {
     padding:10px 12px; font-size:9px; letter-spacing:3px; color:var(--primary-light);
     text-transform:uppercase; cursor:pointer; display:flex; align-items:center;
@@ -96,16 +97,16 @@
   .trait-body { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.55; font-style:italic; word-wrap:break-word; overflow-wrap:break-word; }
   .attack-table { width:100%; border-collapse:collapse; }
   .attack-table th { font-size:9px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; opacity:0.65; }
-  .attack-table td { padding:6px 8px; border-bottom:1px solid rgba(27,95,138,0.15); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
+  .attack-table td { padding:6px 8px; border-bottom:1px solid rgba(var(--primary-rgb),0.15); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--primary-light); }
   .val { color:var(--primary-light); font-weight:700; }
   .attack-detail-row td { padding:0; border-bottom:none; }
-  .attack-expand { display:none; padding:10px 10px 12px; background:rgba(27,95,138,0.03); border-top:1px solid var(--dark-border); font-size:11px; line-height:1.55; color:var(--text-dim); }
+  .attack-expand { display:none; padding:10px 10px 12px; background:rgba(var(--primary-rgb),0.03); border-top:1px solid var(--dark-border); font-size:11px; line-height:1.55; color:var(--text-dim); }
   .attack-expand.open { display:block; }
   .atk-chevron { float:right; color:var(--primary-dim); transition:transform .2s ease; }
   .atk-chevron.open { transform:rotate(90deg); color:var(--primary-light); }
-  details.feature-item { border:1px solid var(--dark-border); background:rgba(27,95,138,0.02); margin-bottom:8px; }
+  details.feature-item { border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.02); margin-bottom:8px; }
   details.feature-item:last-child { margin-bottom:0; }
   summary.feature-toggle {
     list-style:none; cursor:pointer; display:grid;
@@ -113,7 +114,7 @@
     align-items:center; padding:10px 12px; user-select:none; min-height:32px; line-height:1;
   }
   summary.feature-toggle::-webkit-details-marker { display:none; }
-  .feature-gem  { width:10px; height:10px; transform:rotate(45deg); background:var(--primary-light); box-shadow:0 0 10px rgba(79,185,255,0.35); }
+  .feature-gem  { width:10px; height:10px; transform:rotate(45deg); background:var(--primary-light); box-shadow:0 0 10px rgba(var(--primary-rgb, 79,185,255),0.35); }
   .feat-name    { font-size:9px; letter-spacing:2px; color:var(--text-cream); text-transform:uppercase; }
   .feat-short   { font-family:'IM Fell English',serif; font-size:12px; color:var(--text-dim); white-space:nowrap; }
   .feat-arrow   { color:var(--primary-light); font-size:11px; transition:transform .2s ease; white-space:nowrap; justify-self:end; opacity:0.5; }
@@ -121,24 +122,24 @@
   .feature-detail { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.55; word-wrap:break-word; overflow-wrap:break-word; }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
   .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
-  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(27,95,138,0.12); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
+  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(var(--primary-rgb),0.12); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
   .equip-item::before { content:'◆'; font-size:8px; color:var(--primary-light); opacity:0.4; }
-  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(27,95,138,0.04); font-family:'IM Fell English',serif; font-size:12px; color:var(--text-cream); line-height:1.8; font-style:italic; }
+  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(var(--primary-rgb),0.04); font-family:'IM Fell English',serif; font-size:12px; color:var(--text-cream); line-height:1.8; font-style:italic; }
   .lore-box strong { color:var(--primary-light); font-style:normal; }
   .spell-level-block  { margin-bottom:14px; }
-  .spell-level-header { font-size:8px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; padding:6px 10px; border:1px solid var(--dark-border); background:rgba(27,95,138,0.05); display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; opacity:0.8; }
+  .spell-level-header { font-size:8px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; padding:6px 10px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.05); display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; opacity:0.8; }
   .spell-slots-pips   { display:flex; gap:4px; }
   .spell-slot-pip { width:10px; height:10px; border:1px solid var(--primary-dim); transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block; }
   .spell-slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 5px var(--primary); }
-  .spell-slot-pip.used      { background:transparent; border-color:rgba(27,95,138,0.2); }
-  details.spell-entry { border-bottom:1px solid rgba(27,95,138,0.06); }
+  .spell-slot-pip.used      { background:transparent; border-color:rgba(var(--primary-rgb),0.2); }
+  details.spell-entry { border-bottom:1px solid rgba(var(--primary-rgb),0.06); }
   details.spell-entry:last-child { border-bottom:none; }
   summary.spell-toggle { display:flex; align-items:center; gap:8px; padding:6px 6px 6px 10px; cursor:pointer; user-select:none; list-style:none; }
   summary.spell-toggle::-webkit-details-marker { display:none; }
   .spell-name  { font-size:11px; color:var(--primary-light); flex:1; font-weight:600; }
   .spell-arrow { font-size:7px; color:var(--primary-light); transition:transform 0.3s; opacity:0.5; }
   details[open] .spell-arrow { transform:rotate(90deg); color:var(--primary-light); opacity:1; }
-  .spell-detail { padding:6px 10px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.7; border-top:1px solid rgba(27,95,138,0.1); }
+  .spell-detail { padding:6px 10px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.7; border-top:1px solid rgba(var(--primary-rgb),0.1); }
   .resource-pip { width:14px; height:14px; border:1px solid var(--primary-dim); transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block; }
   .resource-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
   .prof-category { color:var(--primary-light); font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; }
@@ -150,16 +151,16 @@
   .back-btn {
     position:fixed; top:22px; left:24px; z-index:999;
     font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px; text-transform:uppercase;
-    color:rgba(79,185,255,0.80); text-decoration:none; padding:9px 16px 9px 12px;
-    border:1px solid rgba(27,95,138,0.45); background:rgba(6,10,8,0.65); backdrop-filter:blur(10px);
+    color:var(--primary-light); opacity:0.8; text-decoration:none; padding:9px 16px 9px 12px;
+    border:1px solid rgba(var(--primary-rgb, 79,185,255),0.45); background:rgba(6,10,8,0.65); backdrop-filter:blur(10px);
     transition:color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   }
-  .back-btn:hover { color:#b8f3ff; border-color:rgba(79,185,255,0.65); box-shadow:0 0 18px rgba(79,185,255,0.22); transform:translateX(-2px); }
+  .back-btn:hover { color:var(--primary-bright); border-color:rgba(var(--primary-rgb, 79,185,255),0.65); box-shadow:0 0 18px rgba(var(--primary-rgb, 79,185,255),0.22); transform:translateX(-2px); }
 </style>
 </head>
 <body>
 
-<a href="/dnd/players.html" class="back-btn">← Back To The Party</a>
+<a href="./index.html" class="back-btn">← Back To The Party</a>
 
 <!-- ══════════ PAGE 1 ══════════ -->
 <div class="page" id="page-1">
@@ -170,7 +171,7 @@
       <div class="name-sub" id="js-race">Bronze Dragonborn</div>
     </div>
     <div class="info-grid">
-      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL <span id="js-level">1</span> <span id="js-class">Cleric</span></span></div>
+      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL <span id="js-level">1</span> <span id="js-class">Cleric (Tempest Domain)</span></span></div>
       <div class="info-cell"><span class="info-label">Background</span><span class="info-value" id="js-background">Rival Intern</span></div>
       <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value" id="js-player">Illyasviel</span></div>
       <div class="info-cell"><span class="info-label">Race</span><span class="info-value" id="js-race2">Bronze Dragonborn</span></div>
@@ -200,12 +201,10 @@
       </div>
 
       <div class="section">
-        <div class="section-title">Hit Point Maximum</div>
+        <div class="section-title">Vitality</div>
         <div class="section-body" style="text-align:center;">
-          <div style="font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">
-            Hit Point Maximum: <span id="js-hp-max">10</span>
-          </div>
-          <div style="font-size:12px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:4px;">Current Hit Points</div>
+          <div style="font-size:7px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;opacity:0.6;margin-bottom:2px;">Max: <span id="js-hp-max">10</span></div>
+          <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;opacity:0.7;margin-bottom:4px;">Current Hit Points</div>
           <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;" id="js-hp-current">10</div>
           <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
             <div>
@@ -216,7 +215,7 @@
               <div style="font-size:7px;letter-spacing:3px;color:var(--primary-light);text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Death Saves</div>
               <!-- Successes -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#4fb9ff;opacity:0.8;min-width:52px;text-align:right;">Success</span>
+                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--primary-light);opacity:0.8;min-width:52px;text-align:right;">Success</span>
                 <div style="display:flex;gap:5px;">
                   <div class="dot success" onclick="this.classList.toggle('active')"></div>
                   <div class="dot success" onclick="this.classList.toggle('active')"></div>
@@ -244,7 +243,7 @@
             <thead><tr><th>Name</th><th>Atk</th><th>Damage / Type</th></tr></thead>
             <tbody id="js-attacks"><!-- Built by JS --></tbody>
           </table>
-          <div id="js-spell-dc-bar" style="display:none;padding:10px 12px;background:rgba(30,74,168,0.08);border-top:1px solid var(--dark-border);">
+          <div id="js-spell-dc-bar" style="display:none;padding:10px 12px;background:rgba(var(--primary-rgb),0.08);border-top:1px solid var(--dark-border);">
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <div style="font-size:11px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Save DC</div>
               <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);" id="js-spell-dc">—</div>
@@ -336,7 +335,7 @@
       <div class="section" id="js-page2-spell-header" style="display:none;">
         <div class="section-title">Spellcasting</div>
         <div class="section-body">
-          <div style="display:flex;gap:20px;padding:10px 14px;border:1px solid var(--dark-border);background:rgba(27,95,138,0.03);">
+          <div style="display:flex;gap:20px;padding:10px 14px;border:1px solid var(--dark-border);background:rgba(var(--primary-rgb),0.03);">
             <div style="text-align:center;">
               <span style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--primary-light);display:block;" id="js-spell-ability">WIS</span>
               <span style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Ability</span>
@@ -374,8 +373,9 @@
 
 <script>
 // ── CONFIG ──────────────────────────────────
+// !! SET THESE TWO VALUES FOR EACH NEW CHARACTER !!
 window.CHARACTER_ID = "evo";
-window.JSON_PATH    = "../player.json"; // adjust path as needed
+window.JSON_PATH    = "../player.json";
 
 // ── HELPERS ─────────────────────────────────
 function set(id, val) {
@@ -403,11 +403,18 @@ fetch(window.JSON_PATH)
 
     // 0. THEME — inject CSS variables from identity block
     const id = char.identity || {};
+    document.title = (id.name || 'Character') + ' — Character Sheet';
     const root = document.documentElement.style;
     if (id.theme_color)        root.setProperty('--primary',        id.theme_color);
     if (id.theme_color_light)  root.setProperty('--primary-light',  id.theme_color_light);
     if (id.theme_color_bright) root.setProperty('--primary-bright', id.theme_color_bright);
     if (id.theme_color_dim)    root.setProperty('--primary-dim',    id.theme_color_dim);
+    // Derive --primary-rgb for use in rgba() calls throughout the CSS
+    if (id.theme_color_light) {
+      const hex = id.theme_color_light.replace('#','');
+      const r = parseInt(hex.slice(0,2),16), g = parseInt(hex.slice(2,4),16), b = parseInt(hex.slice(4,6),16);
+      root.setProperty('--primary-rgb', `${r},${g},${b}`);
+    }
 
     // 1. IDENTITY
     set('js-name',       id.name);
@@ -575,7 +582,8 @@ fetch(window.JSON_PATH)
         };
 
         const slots = spell.spell_slots || {};
-        let html = `<div class="section"><div class="section-title">Cleric Spells</div><div class="section-body" style="padding:10px 12px;">`;
+        const spellClass = id.class || 'Character';
+        let html = `<div class="section"><div class="section-title">${spellClass} Spells</div><div class="section-body" style="padding:10px 12px;">`;
         if (spell.cantrips?.length) {
           html += `<div class="spell-level-block"><div class="spell-level-header"><span>Cantrips</span></div>` +
             spell.cantrips.map(name => `
@@ -720,7 +728,7 @@ fetch(window.JSON_PATH)
     if (changeEl) {
       changeEl.innerHTML = changes.length
         ? changes.map(ch =>
-            `<div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(27,95,138,0.07);display:flex;gap:6px;">
+            `<div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(128,128,128,0.12);display:flex;gap:6px;">
               <span style="color:var(--primary-light);">▸</span>${ch}
             </div>`).join('')
         : `<div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">No changes logged yet.</div>`;
