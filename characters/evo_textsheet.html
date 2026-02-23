@@ -39,7 +39,7 @@
     background:linear-gradient(90deg, transparent, var(--primary-light), transparent);
   }
   .name-banner { display:grid; grid-template-columns:280px 1fr; border:1px solid var(--primary-dim); margin-bottom:24px; }
-  .name-box    { border-right:1px solid var(--primary-dim); padding:14px 20px; }
+  .name-box    { border-right:1px solid var(--primary-dim); padding:14px 20px; display:flex; flex-direction:column; justify-content:center; }
   .char-name-big {
     font-family:'Cinzel Decorative',serif; font-size:36px; font-weight:900; line-height:1.1;
     background:linear-gradient(180deg, var(--primary-bright), var(--primary));
@@ -52,7 +52,9 @@
   .info-cell:nth-child(n+4) { border-bottom:none; }
   .info-label { font-size:7px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; display:block; margin-bottom:2px; opacity:0.55; }
   .info-value { font-size:12px; color:var(--primary-light); font-weight:600; }
-  .sheet-body { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; }
+  .sheet-body      { display:flex; flex-direction:column; gap:16px; }
+  .sheet-top-row   { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; align-items:start; }
+  .sheet-bottom-row { /* features spanning full width */ }
   .ability-col { display:flex; flex-direction:column; gap:8px; }
   .ability-block { border:1px solid var(--primary-dim); text-align:center; padding:10px 6px 8px; background:rgba(27,95,138,0.04); }
   .ab-name    { font-size:7px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; display:block; margin-bottom:4px; opacity:0.6; }
@@ -74,8 +76,9 @@
   .save-row,  .skill-row  { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(27,95,138,0.12); }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
   .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 8px rgba(79,185,255,0.35); }
+  .dot.failure    { border-color: rgba(180,40,40,0.45); }
   .dot.success.active { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
-  .dot.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 5px #cc2222; }
+  .dot.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 6px rgba(204,34,34,0.7); }
   .save-name, .skill-name { flex:1; color:var(--text-cream); font-family:'IM Fell English',serif; font-size:11px; }
   .save-val,  .skill-val  { color:var(--primary-light); font-weight:700; font-size:11px; }
   .skill-ab { font-size:10px; color:var(--text-dim); }
@@ -139,9 +142,11 @@
   .resource-pip { width:14px; height:14px; border:1px solid var(--primary-dim); transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block; }
   .resource-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
   .prof-category { color:var(--primary-light); font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; }
-  /* Right column overflow protection */
-  .right-col .section { overflow:hidden; }
-  .right-col .section-body { overflow-wrap:break-word; word-wrap:break-word; }
+  /* Full-width features section */
+  .features-full { }
+  .features-full .feature-detail { font-size:11px; }
+  /* Features laid out in 2 columns when full width */
+  #js-features { display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:start; }
   .back-btn {
     position:fixed; top:22px; left:24px; z-index:999;
     font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px; text-transform:uppercase;
@@ -167,7 +172,7 @@
     <div class="info-grid">
       <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL <span id="js-level">1</span> <span id="js-class">Cleric</span></span></div>
       <div class="info-cell"><span class="info-label">Background</span><span class="info-value" id="js-background">Rival Intern</span></div>
-      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value" id="js-player">Nikkelz</span></div>
+      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value" id="js-player">Illyasviel</span></div>
       <div class="info-cell"><span class="info-label">Race</span><span class="info-value" id="js-race2">Bronze Dragonborn</span></div>
       <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value" id="js-alignment">Lawful Evil</span></div>
       <div class="info-cell"><span class="info-label">Experience</span><span class="info-value" id="js-xp">0</span></div>
@@ -175,6 +180,8 @@
   </div>
 
   <div class="sheet-body">
+
+  <div class="sheet-top-row">
 
     <!-- LEFT: Ability Scores -->
     <div class="ability-col" id="js-abilities"><!-- Built by JS --></div>
@@ -206,18 +213,25 @@
               <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);margin-top:2px;" id="js-hit-dice">1d8</div>
             </div>
             <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-              <div style="font-size:12px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Death Saves</div>
-              <div style="display:flex;gap:6px;justify-content:center;margin-top:6px;">
-                <div class="dot success" onclick="this.classList.toggle('active')"></div>
-                <div class="dot success" onclick="this.classList.toggle('active')"></div>
-                <div class="dot success" onclick="this.classList.toggle('active')"></div>
+              <div style="font-size:7px;letter-spacing:3px;color:var(--primary-light);text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Death Saves</div>
+              <!-- Successes -->
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#4fb9ff;opacity:0.8;min-width:52px;text-align:right;">Success</span>
+                <div style="display:flex;gap:5px;">
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                </div>
               </div>
-              <div style="display:flex;gap:6px;justify-content:center;margin-top:6px;">
-                <div class="dot failure" onclick="this.classList.toggle('active')"></div>
-                <div class="dot failure" onclick="this.classList.toggle('active')"></div>
-                <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+              <!-- Failures -->
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#cc4444;opacity:0.9;min-width:52px;text-align:right;">Failure</span>
+                <div style="display:flex;gap:5px;">
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                </div>
               </div>
-              <div style="font-size:10px;color:var(--text-dim);margin-top:6px;">(Top: successes · Bottom: failures)</div>
             </div>
           </div>
         </div>
@@ -250,7 +264,7 @@
 
     </div><!-- end mid-col -->
 
-    <!-- RIGHT -->
+    <!-- RIGHT: Saves, Skills, Traits only (no features) -->
     <div class="right-col">
 
       <div class="passive-box">
@@ -275,14 +289,19 @@
 
       <div class="section" id="js-traits"><!-- Built by JS --></div>
 
-      <div class="section">
-        <div class="section-title">Features &amp; Traits</div>
-        <div class="section-body" style="padding:8px 10px;" id="js-features"><!-- Built by JS --></div>
-      </div>
+    </div><!-- end right-col -->
 
+  </div><!-- end sheet-top-row -->
+
+  <!-- FEATURES: full-width row spanning all 3 columns -->
+  <div class="sheet-bottom-row">
+    <div class="section features-full">
+      <div class="section-title">Features &amp; Traits</div>
+      <div class="section-body" style="padding:8px 10px;" id="js-features"><!-- Built by JS --></div>
     </div>
-  </div>
-</div>
+  </div><!-- end sheet-bottom-row -->
+
+</div><!-- end page-1 -->
 
 
 <!-- ══════════ PAGE 2 ══════════ -->
@@ -712,5 +731,3 @@ fetch(window.JSON_PATH)
 </script>
 </body>
 </html>
-
-
