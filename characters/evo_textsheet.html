@@ -1,530 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Evo — Text Sheet (Corrected)</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evo — Character Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{
-    /* Evo theme — bronze/sea-storm */
-    --primary:#1b5f8a; --primary-light:#4fb9ff; --primary-bright:#b8f3ff;
-    --primary-dim:#0f3a57; --arcane:#1e4aa8; --arcane-light:#73a8ff;
-    --dark:#060a08; --dark-panel:#080e0a; --dark-border:#101a12;
-    --text-cream:#d0e8d8; --text-dim:#7aa0a0;
+
+  /* ─── CHARACTER THEME (overridden by JS from JSON) ─── */
+  :root {
+    --primary:        #c8972a;
+    --primary-light:  #f0c050;
+    --primary-bright: #ffd700;
+    --primary-dim:    #7a5a18;
+    --accent:         #8b1a1a;
+    --dark:           #0a0806;
+    --dark-panel:     #0f0d08;
+    --dark-border:    #1e1a10;
+    --text-cream:     #e8dfc0;
+    --text-dim: #d4c090;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    background:var(--dark); color:var(--text-cream);
-    font-family:'Cinzel',serif; min-height:100vh;
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text-cream);
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 50% 0%, rgba(27,95,138,0.10) 0%, transparent 60%),
-      radial-gradient(ellipse at 85% 85%, rgba(30,74,168,0.06) 0%, transparent 45%),
-      repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(27,95,138,0.012) 50px, rgba(27,95,138,0.012) 51px),
-      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(27,95,138,0.012) 50px, rgba(27,95,138,0.012) 51px);
+      radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb, 200,151,42), 0.08) 0%, transparent 60%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 51px);
   }
-  .page{
-    max-width:900px; margin:30px auto;
-    background:#060e07; border:1px solid var(--primary-dim);
-    position:relative; padding:30px; page-break-after:always;
+
+  /* ─── HEADER ─── */
+  .header {
+    position: relative;
+    text-align: center;
+    padding: 60px 20px 0;
+    overflow: hidden;
   }
-  .page::before{
-    content:''; position:absolute; top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  .header::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,151,42,0.1) 0%, transparent 70%);
+    pointer-events: none;
   }
-  /* NAME BANNER */
-  .name-banner{display:grid;grid-template-columns:280px 1fr;border:1px solid var(--primary-dim);margin-bottom:24px;}
-  .name-box{border-right:1px solid var(--primary-dim);padding:14px 20px;}
-  .char-name-big{
-    font-family:'Cinzel Decorative',serif;font-size:36px;font-weight:900;line-height:1.1;
-    background:linear-gradient(180deg,var(--primary-bright),var(--primary));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    filter:drop-shadow(0 0 18px rgba(79,185,255,0.45));
+  .char-emblem {
+    font-size:18px; letter-spacing: 8px; color: var(--primary-dim);
+    text-transform: uppercase; margin-bottom: 8px;
+    animation: fadeIn 2s ease;
   }
-  .name-sub{font-size:8px;letter-spacing:4px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;}
-  .info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;}
-  .info-cell{padding:8px 14px;border-left:1px solid var(--dark-border);border-bottom:1px solid var(--dark-border);}
-  .info-cell:nth-child(n+4){border-bottom:none;}
-  .info-label{font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;display:block;margin-bottom:2px;}
-  .info-value{font-size:12px;color:var(--primary-light);font-weight:600;}
-  /* BODY GRID */
-  .sheet-body{display:grid;grid-template-columns:160px 1fr 220px;gap:16px;}
-  /* ABILITIES */
-  .ability-col{display:flex;flex-direction:column;gap:8px;}
-  .ability-block{border:1px solid var(--primary-dim);text-align:center;padding:10px 6px 8px;background:rgba(27,95,138,0.04);}
-  .ab-name{font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;display:block;margin-bottom:4px;}
-  .ab-score{font-family:'Cinzel Decorative',serif;font-size:32px;color:var(--primary-light);line-height:1;display:block;}
-  .ab-mod-box{display:inline-block;border:1px solid var(--primary-dim);padding:2px 10px;margin-top:6px;font-size:14px;color:var(--primary-light);font-weight:700;}
-  .proficiency-box{border:1px solid var(--primary-dim);padding:10px;text-align:center;background:rgba(27,95,138,0.04);margin-top:4px;}
-  .prof-val{font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--primary-light);}
-  .prof-lbl{font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;display:block;margin-top:2px;}
-  /* SECTION */
-  .section{border:1px solid var(--dark-border);background:var(--dark-panel);position:relative;}
-  .section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary-dim),transparent);}
-  .section-title{font-size:8px;letter-spacing:4px;color:var(--primary-dim);text-transform:uppercase;padding:8px 14px;border-bottom:1px solid var(--dark-border);text-align:center;}
-  .section-body{padding:12px 14px;}
-  /* COMBAT */
-  .combat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-  .combat-stat{text-align:center;padding:10px 4px;border:1px solid var(--dark-border);background:rgba(27,95,138,0.03);}
-  .cs-val{font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--primary-light);display:block;line-height:1;}
-  .cs-lbl{font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;display:block;margin-top:4px;}
-  /* LISTS */
-  .save-list,.skill-list{display:flex;flex-direction:column;gap:3px;}
-  .save-row,.skill-row{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid rgba(27,95,138,0.07);font-size:11px;}
-  .dot{width:8px;height:8px;border-radius:50%;border:1px solid var(--primary-dim);flex-shrink:0;}
-  .dot.filled{background:var(--primary-light);border-color:var(--primary-light);box-shadow:0 0 8px rgba(79,185,255,0.35);}
-  .save-name,.skill-name{flex:1;color:var(--text-cream);font-family:'IM Fell English',serif;font-size:13px;}
-  .save-val,.skill-val{color:var(--primary-light);font-weight:700;font-size:13px;}
-  /* RIGHT */
-  .right-col{display:flex;flex-direction:column;gap:12px;}
-  .passive-box{border:1px solid var(--primary-dim);padding:10px;text-align:center;background:rgba(27,95,138,0.04);}
-  .passive-val{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--primary-light);display:block;line-height:1;}
-  .passive-lbl{font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;display:block;margin-top:4px;}
-  details.trait-details{border:1px solid var(--dark-border);background:rgba(27,95,138,0.02);}
-  .trait-summary{padding:10px 12px;font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;min-height:28px;line-height:1;}
-  .trait-summary::-webkit-details-marker{display:none;}
-  .trait-body{padding:0 12px 12px;font-family:'IM Fell English',serif;font-size:14px;color:var(--text-cream);line-height:1.6;font-style:italic;}
-  /* ATTACK TABLE */
-  .attack-table{width:100%;border-collapse:collapse;}
-  .attack-table th{font-size:9px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;padding:4px 8px;border-bottom:1px solid var(--dark-border);text-align:left;}
-  .attack-table td{padding:6px 8px;border-bottom:1px solid rgba(16,26,18,0.7);font-family:'IM Fell English',serif;font-size:14px;color:var(--text-cream);}
-  .attack-name-cell{cursor:pointer;}
-  .val{color:var(--primary-light);font-weight:700;}
-  .attack-detail-row td{padding:0;border-bottom:none;}
-  .attack-expand{display:none;padding:10px 10px 12px;background:rgba(27,95,138,0.03);border-top:1px solid var(--dark-border);font-size:13px;line-height:1.55;color:var(--text-dim);}
-  .attack-expand.open{display:block;}
-  .atk-chevron{float:right;color:var(--primary-dim);transition:transform .2s ease;}
-  .atk-chevron.open{transform:rotate(90deg);color:var(--primary-light);}
-  /* FEATURES */
-  details.feature-item{border:1px solid var(--dark-border);background:rgba(27,95,138,0.02);margin-bottom:8px;}
-  details.feature-item:last-child{margin-bottom:0;}
-  summary.feature-toggle{list-style:none;cursor:pointer;display:grid;grid-template-columns:14px 1fr auto 14px;gap:10px;align-items:center;padding:10px 12px;user-select:none;min-height:32px;line-height:1;}
-  summary.feature-toggle::-webkit-details-marker{display:none;}
-  .feature-gem{width:10px;height:10px;transform:rotate(45deg);background:var(--primary-light);box-shadow:0 0 10px rgba(79,185,255,0.35);}
-  .feat-name{font-size:9px;letter-spacing:2px;color:var(--text-cream);text-transform:uppercase;}
-  .feat-short{font-family:'IM Fell English',serif;font-size:12px;color:var(--text-dim);white-space:nowrap;}
-  .feat-arrow{color:var(--primary-dim);font-size:11px;transition:transform .2s ease;white-space:nowrap;justify-self:end;}
-  details[open] .feat-arrow{transform:rotate(90deg);color:var(--primary-light);}
-  .feature-detail{padding:0 12px 12px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);line-height:1.6;}
-  /* PAGE 2 GRID */
-  .page2-grid{display:grid;grid-template-columns:260px 1fr;gap:20px;}
-  .equip-item{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(27,95,138,0.07);font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);}
-  .equip-item::before{content:'◆';font-size:8px;color:var(--primary-dim);}
-  .lore-box{border:1px solid var(--dark-border);padding:14px;background:rgba(27,95,138,0.03);font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);line-height:1.8;font-style:italic;}
-  .lore-box strong{color:var(--primary-light);font-style:normal;}
-  .back-btn {
-  position: fixed;
-  top: 22px;
-  left: 24px;
-  z-index: 999;
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(240, 192, 80, 0.80);
-  text-decoration: none;
-  padding: 9px 16px 9px 12px;
-  border: 1px solid rgba(200, 151, 42, 0.30);
-  background: rgba(6, 5, 3, 0.65);
-  backdrop-filter: blur(10px);
-  transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-}
-.back-btn:hover {
-  color: #ffd77a;
-  border-color: rgba(255, 215, 122, 0.65);
-  box-shadow: 0 0 18px rgba(255, 200, 80, 0.22);
-  transform: translateX(-2px);
-}
+  .char-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 0.9;
+    background: linear-gradient(180deg, var(--primary-bright) 0%, var(--primary-light) 40%, var(--primary) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(200,151,42,0.7));
+    animation: fadeIn 1.5s ease, glowPulse 5s ease-in-out infinite;
+    position: relative; z-index: 1;
+  }
+  .char-subtitle {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size:18px; color: var(--text-dim); letter-spacing: 4px;
+    margin-top: 10px; animation: fadeIn 2.5s ease;
+  }
+
+  @keyframes glowPulse {
+    0%,100% { filter: drop-shadow(0 0 30px rgba(200,151,42,0.5)); }
+    50%      { filter: drop-shadow(0 0 70px rgba(200,151,42,0.8)); }
+  }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 30px auto; max-width: 700px; padding: 0 30px;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-dim), transparent); }
+  .divider-gem { width: 8px; height: 8px; background: var(--primary-light); transform: rotate(45deg); box-shadow: 0 0 10px var(--primary-light); }
+
+  /* ─── IDENTITY BAR ─── */
+  .identity-bar {
+    max-width: 1300px; margin: 0 auto 20px; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 1px; background-color: var(--primary-dim);
+    border: 1px solid var(--primary-dim);
+  }
+  .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
+  .id-label { font-size:18px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .id-value { font-family: 'Cinzel Decorative', serif; font-size:18px; color: var(--primary-light); font-weight: 700; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .sheet {
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid; grid-template-columns: 420px 1fr;
+    gap: 24px; align-items: start;
+  }
+
+  /* ─── PORTRAIT COLUMN ─── */
+  .portrait-col { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+  .portrait-frame {
+    position: relative;
+    border: 1px solid var(--primary-dim); overflow: hidden;
+  }
+  .portrait-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, var(--dark) 100%);
+    pointer-events: none;
+  }
+  .portrait-corner { position: absolute; width: 22px; height: 22px; z-index: 2; }
+  .portrait-corner.tl { top:0; left:0;  border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+  .portrait-corner.bl { bottom:0; left:0;  border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+
+  .portrait-img { width: 100%; display: block; filter: brightness(1.04) saturate(1.1); }
+
+  /* ─── PANEL ─── */
+  .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
+  .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .panel-title { font-size:17px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
+  .panel-body { padding: 14px 18px; }
+
+  /* ─── ABILITY SCORES ─── */
+  .ability-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .ability-block {
+    background: rgba(200,151,42,0.05); border: 1px solid var(--dark-border);
+    text-align: center; padding: 12px 6px; transition: all 0.3s;
+  }
+  .ability-block:hover { background: rgba(200,151,42,0.14); border-color: var(--primary-dim); }
+  .ab-name  { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod   { font-size:18px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
+
+  /* ─── COMBAT STATS ─── */
+  .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .combat-block {
+    text-align: center; padding: 14px 8px;
+    background: rgba(200,151,42,0.04); border: 1px solid var(--dark-border); transition: all 0.3s;
+  }
+  .combat-block:hover { background: rgba(200,151,42,0.12); border-color: var(--primary-dim); }
+  .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
+  .combat-label { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+
+  /* ─── HP BAR ─── */
+  .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .hp-current { font-family:'Cinzel Decorative',serif; font-size:48px; color:var(--primary-light); line-height:1; }
+  .hp-sep     { font-size:24px; color:var(--primary-dim); }
+  .hp-max     { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-dim); }
+  .hp-bar-bg  { height:4px; background:var(--dark-border); position:relative; margin-top:4px; }
+  .hp-bar-fill { height:100%; background:linear-gradient(90deg,var(--primary-dim),var(--primary-light)); transition: width 0.5s ease; }
+
+  /* ─── SAVES (compact, portrait column) ─── */
+  .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
+  .save-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.07); font-size:18px;
+  }
+  .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
+  .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .save-name { flex:1; color:var(--text-cream); }
+  .save-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
+
+  /* ─── FEATURES (right col) ─── */
+  .feature-item { border-bottom: 1px solid var(--dark-border); }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-toggle {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 0; cursor: pointer; user-select: none; list-style: none;
+    transition: background 0.2s;
+  }
+  .feature-toggle::-webkit-details-marker { display: none; }
+  .feature-toggle:hover { background: rgba(200,151,42,0.05); }
+  .feature-gem {
+    width: 5px; height: 5px; background: var(--primary);
+    transform: rotate(45deg); flex-shrink: 0;
+    box-shadow: 0 0 5px var(--primary); transition: all 0.3s;
+  }
+  details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
+  .feat-name  { font-size:18px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-source { font-family:'IM Fell English',serif; font-size:18px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
+  .feature-detail {
+    padding: 6px 14px 12px 20px;
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim); line-height:1.7;
+    border-top: 1px solid rgba(200,151,42,0.08); animation: dropIn 0.2s ease;
+  }
+  .feature-detail strong { color:var(--primary-light); font-style:normal; }
+  .feature-detail em { color:var(--primary); }
+
+  /* ─── TRAITS ─── */
+  .trait-details { border-bottom: 1px solid var(--dark-border); }
+  .trait-details:last-child { border-bottom: none; }
+  .trait-summary {
+    list-style: none; padding: 8px 6px;
+    font-size:18px; letter-spacing: 3px; color: var(--primary-dim);
+    text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  .trait-summary::-webkit-details-marker { display: none; }
+  .trait-summary:hover { color: var(--primary); }
+  .trait-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; }
+  details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
+  .trait-body {
+    padding: 6px 10px 12px;
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-cream);
+    line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
+  }
+
+  /* ─── EQUIPMENT ─── */
+  .equip-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
+  }
+  .equip-item::before { content:'◆'; font-size:18px; color:var(--primary-dim); }
+  .equip-qty { font-size:18px; color:var(--primary-dim); margin-left:auto; }
+
+  /* ─── BACKSTORY ─── */
+  .backstory-box {
+    border: 1px solid var(--dark-border); padding: 16px;
+    background: rgba(200,151,42,0.03);
+    font-family: 'IM Fell English', serif; font-size:18px;
+    color: var(--text-dim); line-height: 1.9; font-style: italic;
+  }
+  .backstory-box strong { color:var(--primary); font-style:normal; }
+
+  /* ─── SESSION CHANGELOG ─── */
+  .changelog-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
+    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
+  }
+  .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
+
+  /* ─── RIGHT COLUMN ─── */
+  .stats-col { display: flex; flex-direction: column; gap: 16px; }
+
+  /* ─── SKILLS (right col) ─── */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
+  .skill-row {
+    display: flex; align-items: center; gap: 6px;
+    padding: 3px 0; border-bottom: 1px solid rgba(200,151,42,0.06); font-size:17px;
+  }
+  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
+  .skill-name { flex:1; color:var(--text-cream); font-size:17px; }
+  .skill-ab   { font-size:18px; color:var(--text-dim); }
+  .skill-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
+
+  @keyframes dropIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─── PASSIVE STATS ─── */
+  .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03); }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
+  .passive-lbl { font-size:19px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+
+  /* ─── SPELL SLOTS ─── */
+  .slot-grid { display:flex; flex-direction:column; gap:6px; }
+  .slot-row { display:flex; align-items:center; gap:8px; }
+  .slot-level { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
+  .slot-pips { display:flex; gap:5px; flex-wrap:wrap; }
+  .slot-pip {
+    width:14px; height:14px; border:1px solid var(--primary-dim);
+    cursor:pointer; transition:all 0.3s; transform:rotate(45deg);
+  }
+  .slot-pip.used { background:transparent; border-color:rgba(200,151,42,0.2); box-shadow:none; }
+  .slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .sheet { grid-template-columns:1fr; }
+    .portrait-col { position:static; }
+    .identity-bar { grid-template-columns:repeat(3,1fr); }
+    .ability-grid { grid-template-columns:repeat(3,1fr); }
+    .combat-grid  { grid-template-columns:repeat(2,1fr); }
+    .passive-grid { grid-template-columns:repeat(2,1fr); }
+  }
+
 </style>
 </head>
+<body>
 
-<body data-character="evo">
-    <!-- BACK BUTTON -->
-  <a href="/dnd/players.html" class="back-btn">Back To The Party</a>
-
-<!-- ══════════ PAGE 1 ══════════ -->
-<div class="page">
-  <div class="name-banner">
-    <div class="name-box">
-      <div class="char-name-big">Evo</div>
-      <div class="name-sub">Character Name</div>
-    </div>
-    <div class="info-grid">
-      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL 1 Cleric</span></div>
-      <div class="info-cell"><span class="info-label">Background</span><span class="info-value">Rival Intern</span></div>
-      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value">Nikkelz</span></div>
-      <div class="info-cell"><span class="info-label">Race</span><span class="info-value">Bronze Dragonborn</span></div>
-      <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value">True Neutral</span></div>
-      <div class="info-cell"><span class="info-label">Experience Points</span><span class="info-value">0</span></div>
-    </div>
-  </div>
-
-  <div class="sheet-body">
-    <!-- ABILITY SCORES -->
-    <div class="ability-col">
-      <div class="ability-block"><span class="ab-name">Strength</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
-      <div class="ability-block"><span class="ab-name">Dexterity</span><span class="ab-score">13</span><div class="ab-mod-box">+1</div></div>
-      <div class="ability-block"><span class="ab-name">Constitution</span><span class="ab-score">14</span><div class="ab-mod-box">+2</div></div>
-      <div class="ability-block"><span class="ab-name">Intelligence</span><span class="ab-score">12</span><div class="ab-mod-box">+1</div></div>
-      <div class="ability-block"><span class="ab-name">Wisdom</span><span class="ab-score">15</span><div class="ab-mod-box">+2</div></div>
-      <div class="ability-block"><span class="ab-name">Charisma</span><span class="ab-score">17</span><div class="ab-mod-box">+3</div></div>
-      <div class="proficiency-box"><div class="prof-val">+2</div><span class="prof-lbl">Proficiency Bonus</span></div>
-    </div>
-
-    <!-- MIDDLE COL -->
-    <div class="mid-col">
-      <div class="section">
-        <div class="section-body" style="padding:10px 12px;">
-          <div class="combat-row">
-            <div class="combat-stat"><span class="cs-val">18</span><span class="cs-lbl">Armor Class</span></div>
-            <div class="combat-stat"><span class="cs-val">+1</span><span class="cs-lbl">Initiative</span></div>
-            <div class="combat-stat"><span class="cs-val">30</span><span class="cs-lbl">Speed (ft)</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Hit Point Maximum</div>
-        <div class="section-body" style="text-align:center;">
-          <div style="font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Hit Point Maximum: 10</div>
-          <div style="font-size:12px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:4px;">Current Hit Points</div>
-          <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;">10</div>
-          <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
-            <div>
-              <div style="font-size:12px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);margin-top:2px;">1d10</div>
-            </div>
-            <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-              <div style="font-size:12px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Death Saves</div>
-              <div style="display:flex;gap:6px;justify-content:center;margin-top:6px;">
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-              </div>
-              <div style="display:flex;gap:6px;justify-content:center;margin-top:6px;">
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-              </div>
-              <div style="font-size:10px;color:var(--text-dim);margin-top:6px;">(Top row: successes · bottom row: failures)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Attacks &amp; Spellcasting</div>
-        <div class="section-body" style="padding:0;">
-          <table class="attack-table">
-            <thead><tr><th>Name</th><th>Atk</th><th>Damage / Type</th></tr></thead>
-            <tbody>
-              <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk1',this)">Unarmed Strike <span class="atk-chevron" id="chv1">▶</span></td>
-                <td class="val">+4</td><td>1d4 + 2 Bludgeoning</td>
-              </tr>
-              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk1">
-                Basic melee attack.
-              </div></td></tr>
-
-              <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk2',this)">Mace <span class="atk-chevron" id="chv2">▶</span></td>
-                <td class="val">+4</td><td>1d6 + 2 Bludgeoning</td>
-              </tr>
-              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk2">
-                Standard cleric melee weapon.
-              </div></td></tr>
-
-              <tr>
-                <td class="attack-name-cell" onclick="toggleAtk('atk3',this)">Channel Divinity: Turn Undead <span class="atk-chevron" id="chv3">▶</span></td>
-                <td class="val">DC 12</td><td>Wisdom-based</td>
-              </tr>
-              <tr class="attack-detail-row"><td colspan="3"><div class="attack-expand" id="atk3">
-                As an action, each undead that can see/hear you within 30 ft must make a Wisdom save or be turned for 1 minute.
-              </div></td></tr>
-            </tbody>
-          </table>
-
-          <div style="margin-top:10px;padding:10px;background:rgba(30,74,168,0.08);border-top:1px solid var(--dark-border);">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div style="font-size:11px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Save DC</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);">12</div>
-              <div style="font-size:11px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Attack</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);">+4</div>
-            </div>
-            <div style="margin-top:8px;font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);">
-              Prepared: Bless · Fog Cloud · Guiding Bolt · Healing Word · Thunderwave
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Proficiencies &amp; Languages</div>
-        <div class="section-body">
-          <p style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);line-height:1.9;">
-            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">WEAPONS</span><br/>
-            All simple weapons<br/><br/>
-            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">ARMOR</span><br/>
-            Light armor, medium armor, heavy armor, shields<br/><br/>
-            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">TOOLS</span><br/>
-            Cartographer's Tools<br/><br/>
-            <span style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;">LANGUAGES</span><br/>
-            Common, Draconic
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT COL -->
-    <div class="right-col">
-      <div class="passive-box">
-        <span class="passive-val">12</span>
-        <span class="passive-lbl">Passive Wisdom (Perception)</span>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Saving Throws</div>
-        <div class="section-body">
-          <div class="save-list">
-            <div class="save-row"><span class="dot filled"></span><span class="save-name">Strength</span><span class="save-val">+4</span></div>
-            <div class="save-row"><span class="dot"></span><span class="save-name">Dexterity</span><span class="save-val">+1</span></div>
-            <div class="save-row"><span class="dot filled"></span><span class="save-name">Constitution</span><span class="save-val">+4</span></div>
-            <div class="save-row"><span class="dot"></span><span class="save-name">Intelligence</span><span class="save-val">+1</span></div>
-            <div class="save-row"><span class="dot"></span><span class="save-name">Wisdom</span><span class="save-val">+2</span></div>
-            <div class="save-row"><span class="dot"></span><span class="save-name">Charisma</span><span class="save-val">+3</span></div>
-          </div>
-          <div style="margin-top:10px;font-size:10px;color:var(--text-dim);font-family:'IM Fell English',serif;">
-            Proficient: <strong style="color:var(--primary-light);font-style:normal;">STR, CON</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <details class="trait-details">
-          <summary class="trait-summary">Personality Traits <span>▶</span></summary>
-          <div class="trait-body">Bright-eyed and competitive. Takes notes on everything and treats every encounter like a lesson he refuses to fail.</div>
-        </details>
-        <details class="trait-details">
-          <summary class="trait-summary">Ideals <span>▶</span></summary>
-          <div class="trait-body">Prove your worth through service. Power is meant to protect, not posture.</div>
-        </details>
-        <details class="trait-details">
-          <summary class="trait-summary">Bonds <span>▶</span></summary>
-          <div class="trait-body">The internship that brought him here — and the rival who thinks he doesn’t belong — are both storms he intends to outlast.</div>
-        </details>
-        <details class="trait-details">
-          <summary class="trait-summary">Flaws <span>▶</span></summary>
-          <div class="trait-body">Pride. If challenged, he’ll push too hard and forget to ask for help until lightning has already struck.</div>
-        </details>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Features &amp; Traits</div>
-        <div class="section-body" style="padding:8px 10px;">
-          <details class="feature-item">
-            <summary class="feature-toggle">
-              <div class="feature-gem"></div>
-              <span class="feat-name">Channel Divinity</span>
-              <span class="feat-short">1/Rest (Lv1+)</span>
-              <span class="feat-arrow">▶</span>
-            </summary>
-            <div class="feature-detail">
-              Once you use Channel Divinity, you must finish a short or long rest to use it again. Used for <strong>Turn Undead</strong> and Tempest options.
-            </div>
-          </details>
-
-          <details class="feature-item">
-            <summary class="feature-toggle">
-              <div class="feature-gem"></div>
-              <span class="feat-name">Tempest Domain</span>
-              <span class="feat-short">Storm-flavored cleric</span>
-              <span class="feat-arrow">▶</span>
-            </summary>
-            <div class="feature-detail">
-              Grants domain spells (always prepared) and storm-themed powers.
-            </div>
-          </details>
-
-          <details class="feature-item">
-            <summary class="feature-toggle">
-              <div class="feature-gem"></div>
-              <span class="feat-name">Wrath of the Storm</span>
-              <span class="feat-short">Reaction · 2/Long Rest</span>
-              <span class="feat-arrow">▶</span>
-            </summary>
-            <div class="feature-detail">
-              When a creature within 5 ft hits you, you can use your reaction to force a DEX save (DC 12) or take <strong>2d8 lightning or thunder</strong> (half on success).
-            </div>
-          </details>
-
-          <details class="feature-item">
-            <summary class="feature-toggle">
-              <div class="feature-gem"></div>
-              <span class="feat-name">Divine Intervention</span>
-              <span class="feat-short">Not yet (Lv10)</span>
-              <span class="feat-arrow">▶</span>
-            </summary>
-            <div class="feature-detail">
-              Placeholder for later levels — included here only as a reminder.
-            </div>
-          </details>
-
-          <div style="margin-top:10px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.7;">
-            <strong style="color:var(--primary-light);font-style:normal;">Notes:</strong>
-            
-          </div>
-        </div>
-      </div>
-
-    </div>
+<!-- ════════════════════════════════
+     HEADER
+════════════════════════════════ -->
+<div class="header">
+  <div class="char-emblem" data-path="identity.race">Race</div>
+  <div class="char-name"   data-path="identity.name">Character Name</div>
+  <div class="char-subtitle">
+    <span data-path="identity.subclass">Subclass</span>
+    &nbsp;·&nbsp;
+    <span data-path="identity.class">Class</span>
+    &nbsp;·&nbsp;
+    Level <span data-path="identity.level">1</span>
   </div>
 </div>
 
-<!-- ══════════ PAGE 2 ══════════ -->
-<div class="page">
-  <div style="text-align:center;margin-bottom:20px;">
-    <div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--primary-bright),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Evo</div>
-    <div style="font-size:12px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
-  </div>
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
 
-  <div class="page2-grid">
-    <!-- LEFT -->
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      <div style="border:1px solid var(--primary-dim);position:relative;overflow:hidden;aspect-ratio:3/4;">
-        <img alt="Evo" src="/dnd/Evo.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,var(--dark) 100%);pointer-events:none;"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Physical Details</div>
-        <div class="section-body">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Age</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">—</div></div>
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Height</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">—</div></div>
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Eyes</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">—</div></div>
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Skin</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">Bronze scales</div></div>
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hair</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">—</div></div>
-            <div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Build</div><div style="font-size:14px;color:var(--text-cream);margin-top:2px;">—</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Equipment</div>
-        <div class="section-body">
-          <div class="equip-item">Chain Mail</div>
-          <div class="equip-item">Shield</div>
-          <div class="equip-item">Mace</div>
-          <div class="equip-item">Club</div>
-          <div class="equip-item">Holy Symbol Emblem</div>
-          <div class="equip-item">Explorer’s Pack</div>
-          <div class="equip-item">Cartographer’s Tools</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT -->
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      <div class="section">
-        <div class="section-title">Spellcasting</div>
-        <div class="section-body">
-          <div class="lore-box">
-            <strong>Spellcasting Ability:</strong> Wisdom (WIS 15 · +2)<br/>
-            <strong>Spell Attack:</strong> +4 · <strong>Save DC:</strong> 12<br/><br/>
-            <strong>Cantrips:</strong> Toll the Dead · Word of Radiance · Guidance<br/>
-            <strong>1st-level:</strong> Bless · Fog Cloud · Guiding Bolt · Healing Word · Thunderwave
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Cleric Spells</div>
-        <div class="section-body" style="padding:10px 12px;">
-          <div style="font-family:'IM Fell English',serif;color:var(--text-cream);line-height:1.55;font-size:13px;">
-            <div style="margin-bottom:6px;">
-              <span style="color:var(--primary-light);font-style:normal;font-weight:700;">Cantrips:</span>
-              Toll the Dead · Word of Radiance · Guidance
-            </div>
-            <div style="margin-bottom:8px;">
-              <span style="color:var(--primary-light);font-style:normal;font-weight:700;">1st-level (Slots: 2):</span>
-            </div>
-          </div>
-
-          <div style="padding:0;">
-            <details class="feature-item">
-              <summary class="feature-toggle">
-                <div class="feature-gem"></div>
-                <span class="feat-name">Bless</span>
-                <span class="feat-short">Buff · Concentration</span>
-                <span class="feat-arrow">▶</span>
-              </summary>
-              <div class="feature-detail">Up to 3 creatures add <strong>1d4</strong> to attack rolls and saving throws (concentration, up to 1 minute).</div>
-            </details>
-
-            <details class="feature-item">
-              <summary class="feature-toggle">
-                <div class="feature-gem"></div>
-                <span class="feat-name">Fog Cloud</span>
-                <span class="feat-short">Control</span>
-                <span class="feat-arrow">▶</span>
-              </summary>
-              <div class="feature-detail">Create a 20-ft-radius fog sphere (heavily obscured) for 1 hour (or until wind disperses).</div>
-            </details>
-
-            <details class="feature-item">
-              <summary class="feature-toggle">
-                <div class="feature-gem"></div>
-                <span class="feat-name">Guiding Bolt</span>
-                <span class="feat-short">Attack · Radiant</span>
-                <span class="feat-arrow">▶</span>
-              </summary>
-              <div class="feature-detail">Ranged spell attack (+4). On hit: <strong>4d6 radiant</strong>, and the next attack vs the target has advantage (before end of your next turn).</div>
-            </details>
-
-            <details class="feature-item">
-              <summary class="feature-toggle">
-                <div class="feature-gem"></div>
-                <span class="feat-name">Healing Word</span>
-                <span class="feat-short">Bonus Action</span>
-                <span class="feat-arrow">▶</span>
-              </summary>
-              <div class="feature-detail">A creature within 60 ft regains <strong>1d4 + 2</strong> HP.</div>
-            </details>
-
-            <details class="feature-item">
-              <summary class="feature-toggle">
-                <div class="feature-gem"></div>
-                <span class="feat-name">Thunderwave</span>
-                <span class="feat-short">AoE · Thunder</span>
-                <span class="feat-arrow">▶</span>
-              </summary>
-              <div class="feature-detail">15-ft cube from you. CON save or take <strong>2d8 thunder</strong> and be pushed 10 ft (half and no push on success).</div>
-            </details>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="section">
-        <div class="section-title">Backstory</div>
-        <div class="section-body">
-          <div class="lore-box">
-            (Drop Evo’s backstory here when you’re ready. This page was previously filled with Izabella/Astrica “Witherbloom fairy wizard” details — now cleared.)
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Notes</div>
-        <div class="section-body">
-          <div class="lore-box">
-            Rival Intern vibes: ambitious, competitive, storms-in-the-blood cleric. Add faction, mentors, and rival name when decided.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- IDENTITY BAR -->
+<div class="identity-bar">
+  <div class="id-cell"><span class="id-label">Class &amp; Level</span><span class="id-value"><span data-path="identity.class">Class</span> <span data-path="identity.level">1</span></span></div>
+  <div class="id-cell"><span class="id-label">Background</span><span class="id-value" data-path="identity.background">Background</span></div>
+  <div class="id-cell"><span class="id-label">Race</span><span class="id-value" data-path="identity.race">Race</span></div>
+  <div class="id-cell"><span class="id-label">Alignment</span><span class="id-value" data-path="identity.alignment">Alignment</span></div>
+  <div class="id-cell"><span class="id-label">Player</span><span class="id-value" data-path="meta.player">Player</span></div>
+  <div class="id-cell"><span class="id-label">Experience</span><span class="id-value"><span data-path="identity.experience">0</span> XP</span></div>
 </div>
 
+<!-- ════════════════════════════════
+     MAIN SHEET
+════════════════════════════════ -->
+<div class="sheet">
 
+  <!-- ── LEFT: PORTRAIT COLUMN ── -->
+  <div class="portrait-col">
+
+    <!-- Portrait Image -->
+    <div class="portrait-frame">
+      <div class="portrait-corner tl"></div>
+      <div class="portrait-corner tr"></div>
+      <div class="portrait-corner bl"></div>
+      <div class="portrait-corner br"></div>
+      <img class="portrait-img" data-src-path="identity.portrait_url" src="" alt="Character Portrait" id="portrait-img">
+    </div>
+
+    <!-- Hit Points -->
+    <div class="panel">
+      <div class="panel-title">Hit Points</div>
+      <div class="panel-body">
+        <div class="hp-display">
+          <span class="hp-current" data-path="combat.hp_current">10</span>
+          <span class="hp-sep">/</span>
+          <span class="hp-max" data-path="combat.hp_max">10</span>
+        </div>
+        <div class="hp-bar-bg">
+          <div class="hp-bar-fill" id="hp-bar" style="width:100%;"></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:17px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
+          <span>Hit Dice: <span style="color:var(--primary-light);" data-path="combat.hit_dice_total">1d8</span></span>
+          <span>Temp: <span style="color:var(--primary-light);" data-path="combat.hp_temp">0</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saving Throws -->
+    <div class="panel">
+      <div class="panel-title">Saving Throws</div>
+      <div class="panel-body">
+        <div class="save-grid" id="saves-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Ability Scores -->
+    <div class="panel">
+      <div class="panel-title">Ability Scores</div>
+      <div class="panel-body">
+        <div class="ability-grid" id="abilities-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Backstory -->
+    <div class="panel">
+      <div class="panel-title">Background &amp; Lore</div>
+      <div class="panel-body">
+        <div class="backstory-box" data-path="backstory.summary">...</div>
+      </div>
+    </div>
+
+    <!-- Session Changelog -->
+    <div class="panel">
+      <div class="panel-title">Last Updated: <span data-path="meta.last_session_updated">Session 00</span></div>
+      <div class="panel-body" id="changelog-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div><!-- end portrait-col -->
+
+
+  <!-- ── RIGHT: STATS COLUMN ── -->
+  <div class="stats-col">
+
+    <!-- Combat Stats -->
+    <div class="panel">
+      <div class="panel-title">Combat</div>
+      <div class="panel-body">
+        <div class="combat-grid">
+          <div class="combat-block"><span class="combat-value" data-path="combat.ac">10</span><span class="combat-label">Armor Class</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.initiative">+0</span><span class="combat-label">Initiative</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.speed">30</span><span class="combat-label">Speed (ft)</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.proficiency_bonus">+2</span><span class="combat-label">Proficiency</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Passive Stats -->
+    <div class="panel">
+      <div class="panel-title">Passive Senses</div>
+      <div class="panel-body">
+        <div class="passive-grid">
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_perception">10</span><span class="passive-lbl">Perception</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_investigation">10</span><span class="passive-lbl">Investigation</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_insight">10</span><span class="passive-lbl">Insight</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="panel">
+      <div class="panel-title">Skills</div>
+      <div class="panel-body">
+        <div class="skills-grid" id="skills-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Spellcasting (hidden if not enabled) -->
+    <div class="panel" id="spellcasting-panel" style="display:none;">
+      <div class="panel-title">Spellcasting — DC <span data-path="spellcasting.spell_save_dc">10</span> · Atk <span data-path="spellcasting.spell_attack_bonus">+0</span></div>
+      <div class="panel-body">
+        <div class="slot-grid" id="spell-slots-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Resources -->
+    <div class="panel" id="resources-panel">
+      <div class="panel-title">Class Resources</div>
+      <div class="panel-body" id="resources-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Features & Traits -->
+    <div class="panel">
+      <div class="panel-title">Features &amp; Abilities</div>
+      <div class="panel-body" id="features-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Character Traits -->
+    <div class="panel">
+      <div class="panel-title">Character Traits</div>
+      <div class="panel-body" id="traits-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Equipment -->
+    <div class="panel">
+      <div class="panel-title">Equipment &amp; Inventory</div>
+      <div class="panel-body">
+        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:18px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+          <span>PP: <span style="color:var(--primary-light);" data-path="equipment.currency.pp">0</span></span>
+          <span>GP: <span style="color:var(--primary-light);" data-path="equipment.currency.gp">0</span></span>
+          <span>EP: <span style="color:var(--primary-light);" data-path="equipment.currency.ep">0</span></span>
+          <span>SP: <span style="color:var(--primary-light);" data-path="equipment.currency.sp">0</span></span>
+          <span>CP: <span style="color:var(--primary-light);" data-path="equipment.currency.cp">0</span></span>
+        </div>
+        <div id="equipment-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end stats-col -->
+</div><!-- end sheet -->
+
+
+<!-- ════════════════════════════════
+     LOADER SCRIPT
+════════════════════════════════ -->
+<script>
+
+  // ── CONFIG ── Set these two variables for each character page
+  window.CHARACTER_ID = "evo";   // must match key in party.json
+  window.JSON_PATH    = "/dnd/player.json";   // path relative to this HTML file
+
+  // ─────────────────────────────────────────────────────────────────
+  const SKILL_LABELS = {
+    acrobatics:      "Acrobatics",      animal_handling: "Animal Handling",
+    arcana:          "Arcana",          athletics:       "Athletics",
+    deception:       "Deception",       history:         "History",
+    insight:         "Insight",         intimidation:    "Intimidation",
+    investigation:   "Investigation",   medicine:        "Medicine",
+    nature:          "Nature",          perception:      "Perception",
+    performance:     "Performance",     persuasion:      "Persuasion",
+    religion:        "Religion",        sleight_of_hand: "Sleight of Hand",
+    stealth:         "Stealth",         survival:        "Survival"
+  };
+
+  const SAVE_LABELS = { str:"Strength", dex:"Dexterity", con:"Constitution", int:"Intelligence", wis:"Wisdom", cha:"Charisma" };
+  const AB_LABELS   = { str:"STR", dex:"DEX", con:"CON", int:"INT", wis:"WIS", cha:"CHA" };
+
+  function get(obj, path) {
+    return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
+  }
+
+  function mod(score) {
+    const m = Math.floor((score - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+
+  function dot(filled, expertise) {
+    const cls = expertise ? 'dot expertise' : filled ? 'dot filled' : 'dot';
+    return `<div class="${cls}"></div>`;
+  }
+
+  fetch(window.JSON_PATH)
+    .then(r => r.json())
+    .then(json => {
+      const char     = json.characters[window.CHARACTER_ID];
+      const campaign = json.campaign;
+
+      if (!char) { console.error("CHARACTER_ID not found in party.json"); return; }
+
+      // ── 1. THEME COLORS from JSON ──
+      const root = document.documentElement;
+      root.style.setProperty('--primary',        char.identity.theme_color        || '#c8972a');
+      root.style.setProperty('--primary-light',  char.identity.theme_color_light  || '#f0c050');
+      root.style.setProperty('--primary-dim',    char.identity.theme_color_dim    || '#7a5a18');
+      root.style.setProperty('--primary-bright', char.identity.theme_color_bright || '#ffd700');
+
+      // ── 2. SIMPLE data-path INJECTION ──
+      document.querySelectorAll("[data-path]").forEach(el => {
+        const val = get(char, el.dataset.path);
+        if (val !== undefined) el.textContent = val;
+      });
+
+      // ── 3. PORTRAIT IMAGE ──
+      const portraitEl = document.getElementById('portrait-img');
+      if (portraitEl && char.identity.portrait_url) {
+        portraitEl.src = char.identity.portrait_url;
+        portraitEl.alt = char.identity.name + " portrait";
+      }
+
+      // ── 4. PAGE TITLE ──
+      document.title = char.identity.name + " — Character Sheet";
+
+      // ── 5. HP BAR ──
+      const hpBar = document.getElementById('hp-bar');
+      if (hpBar && char.combat.hp_max > 0) {
+        const pct = Math.max(0, Math.min(100, (char.combat.hp_current / char.combat.hp_max) * 100));
+        hpBar.style.width = pct + '%';
+        if (pct < 25) hpBar.style.background = '#8b1a1a';
+        else if (pct < 50) hpBar.style.background = '#8b6a1a';
+      }
+
+      // ── 6. ABILITY SCORES ──
+      const abGrid = document.getElementById('abilities-container');
+      if (abGrid) {
+        abGrid.innerHTML = Object.entries(char.abilities).map(([ab, score]) => `
+          <div class="ability-block">
+            <span class="ab-name">${AB_LABELS[ab]}</span>
+            <span class="ab-score">${score}</span>
+            <span class="ab-mod">${mod(score)}</span>
+          </div>
+        `).join('');
+      }
+
+      // ── 7. SAVING THROWS ──
+      const savesContainer = document.getElementById('saves-container');
+      if (savesContainer) {
+        savesContainer.innerHTML = Object.entries(char.saving_throws).map(([ab, data]) => `
+          <div class="save-row">
+            ${dot(data.proficient, false)}
+            <span class="save-name">${SAVE_LABELS[ab]}</span>
+            <span class="save-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // ── 8. SKILLS ──
+      const skillsContainer = document.getElementById('skills-container');
+      if (skillsContainer) {
+        skillsContainer.innerHTML = Object.entries(char.skills).map(([key, data]) => `
+          <div class="skill-row">
+            ${dot(data.proficient || data.expertise, data.expertise)}
+            <span class="skill-name">${SKILL_LABELS[key]}</span>
+            <span class="skill-ab">(${data.ability.toUpperCase()})</span>
+            <span class="skill-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // ── 9. FEATURES ──
+      const featContainer = document.getElementById('features-container');
+      if (featContainer && char.features) {
+        featContainer.innerHTML = char.features.map(f => `
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem"></div>
+              <span class="feat-name">${f.name}</span>
+              <span class="feat-source">${f.source}</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">${f.description}</div>
+          </details>
+        `).join('');
+      }
+
+      // ── 10. TRAITS ──
+      const traitsContainer = document.getElementById('traits-container');
+      const traitMap = { personality:"Personality", ideal:"Ideal", bond:"Bond", flaw:"Flaw" };
+      if (traitsContainer && char.traits) {
+        traitsContainer.innerHTML = Object.entries(traitMap).map(([key, label]) => `
+          <details class="trait-details">
+            <summary class="trait-summary">
+              <span class="trait-arrow">▶</span>
+              ${label}
+            </summary>
+            <div class="trait-body">${char.traits[key] || '—'}</div>
+          </details>
+        `).join('');
+      }
+
+      // ── 11. EQUIPMENT ──
+      const equipContainer = document.getElementById('equipment-container');
+      if (equipContainer && char.equipment && char.equipment.carried) {
+        equipContainer.innerHTML = char.equipment.carried.map(item => `
+          <div class="equip-item">
+            ${item.name}${item.description ? ` <span style="font-size:19px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
+            <span class="equip-qty">×${item.quantity}</span>
+          </div>
+        `).join('');
+      }
+
+      // ── 12. CLASS RESOURCES ──
+      const resContainer = document.getElementById('resources-container');
+      if (resContainer && char.class_resources) {
+        const entries = Object.entries(char.class_resources);
+        if (entries.length === 0) {
+          document.getElementById('resources-panel').style.display = 'none';
+        } else {
+          resContainer.innerHTML = entries.map(([key, res]) => `
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:19px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
+                <span style="font-size:19px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                ${Array.from({length: res.max}, (_, i) => `
+                  <div class="slot-pip ${i < res.current ? 'available' : 'used'}"
+                       onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                `).join('')}
+              </div>
+              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:19px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      // ── 13. SPELLCASTING ──
+      const spellPanel = document.getElementById('spellcasting-panel');
+      const slotsContainer = document.getElementById('spell-slots-container');
+      if (char.spellcasting && char.spellcasting.enabled && spellPanel && slotsContainer) {
+        spellPanel.style.display = '';
+        const slots = char.spellcasting.spell_slots;
+        slotsContainer.innerHTML = Object.entries(slots)
+          .filter(([, s]) => s.max > 0)
+          .map(([key, s]) => {
+            const lvl = key.replace('level_', '');
+            return `
+              <div class="slot-row">
+                <span class="slot-level">Level ${lvl}</span>
+                <div class="slot-pips">
+                  ${Array.from({length: s.max}, (_, i) => `
+                    <div class="slot-pip ${i < s.current ? 'available' : 'used'}"
+                         onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('');
+      }
+
+      // ── 14. SESSION CHANGELOG ──
+      const changelogContainer = document.getElementById('changelog-container');
+      if (changelogContainer && char.meta.session_changes) {
+        changelogContainer.innerHTML = char.meta.session_changes.map(c => `
+          <div class="changelog-item">${c}</div>
+        `).join('');
+      }
+
+    })
+    .catch(err => console.error("Failed to load party.json:", err));
+
+</script>
 </body>
 </html>
-
-
-
