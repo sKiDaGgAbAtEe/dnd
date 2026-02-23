@@ -54,20 +54,20 @@
   }
   .name-box { border-right: 1px solid var(--primary-dim); padding: 14px 20px; }
   .char-name-big {
-    font-family: 'Cinzel Decorative', serif; font-size:30px; font-weight: 900; line-height: 1.1;
+    font-family: 'Cinzel Decorative', serif; font-size: 36px; font-weight: 900; line-height: 1.1;
     background: linear-gradient(180deg, var(--primary-bright), var(--primary));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     filter: drop-shadow(0 0 20px rgba(200,151,42,0.5));
   }
-  .name-sub { font-size:16px; letter-spacing:4px; color:var(--primary-dim); text-transform:uppercase; margin-top:4px; }
+  .name-sub { font-size:8px; letter-spacing:4px; color:var(--primary-dim); text-transform:uppercase; margin-top:4px; }
   .info-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
   }
   .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); }
   .info-cell:nth-child(n+4) { border-bottom:none; }
-  .info-label { font-size:16px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
-  .info-value { font-size:15px; color:var(--primary-light); font-weight:600; }
+  .info-label { font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
+  .info-value { font-size:12px; color:var(--primary-light); font-weight:600; }
 
   /* ─── THREE-COLUMN BODY ─── */
   .sheet-body { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; }
@@ -79,18 +79,18 @@
     padding:10px 6px 8px; background:rgba(200,151,42,0.04); transition:background 0.3s;
   }
   .ability-block:hover { background:rgba(200,151,42,0.1); }
-  .ab-name  { font-size:16px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
-  .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-name  { font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--primary-light); line-height:1; display:block; }
   .ab-mod-box {
     display:inline-block; border:1px solid var(--primary-dim);
-    padding:2px 10px; margin-top:6px; font-size:16px; color:var(--primary); font-weight:700;
+    padding:2px 10px; margin-top:6px; font-size:14px; color:var(--primary); font-weight:700;
   }
   .proficiency-box {
     border:1px solid var(--primary-dim); padding:10px; text-align:center;
     background:rgba(200,151,42,0.04);
   }
-  .prof-val { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); }
-  .prof-lbl { font-size:16px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
+  .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); }
+  .prof-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
 
   /* ─── MID COLUMN ─── */
   .mid-col { display:flex; flex-direction:column; gap:12px; }
@@ -99,7 +99,7 @@
   .section { border:1px solid var(--dark-border); background:var(--dark-panel); position:relative; }
   .section::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
   .section-title {
-    font-size:16px; letter-spacing:4px; color:var(--primary-dim);
+    font-size:7px; letter-spacing:4px; color:var(--primary-dim);
     text-transform:uppercase; padding:8px 14px;
     border-bottom:1px solid var(--dark-border); text-align:center;
   }
@@ -108,8 +108,8 @@
   /* ─── COMBAT STATS (mid) ─── */
   .combat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
   .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03); }
-  .cs-val { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); display:block; line-height:1; }
-  .cs-lbl { font-size:16px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+  .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; line-height:1; }
+  .cs-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
 
   /* ─── HIT POINTS (mid) ─── */
   .hp-bar-bg  { height:3px; background:var(--dark-border); margin-top:6px; }
@@ -122,32 +122,32 @@
 
   /* ─── SAVING THROWS ─── */
   .save-list { display:flex; flex-direction:column; gap:3px; }
-  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:16px; }
+  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:11px; }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val  { color:var(--primary); font-weight:700; font-size:15px; }
+  .save-val  { color:var(--primary); font-weight:700; font-size:12px; }
 
   /* ─── SKILLS ─── */
   .skill-list { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
-  .skill-row  { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:16px; }
-  .skill-name { flex:1; color:var(--text-cream); font-size:15px; }
-  .skill-ab   { font-size:16px; color:var(--text-dim); }
-  .skill-val  { color:var(--primary); font-weight:700; font-size:16px; }
+  .skill-row  { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:10px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:10px; }
+  .skill-ab   { font-size:8px; color:var(--text-dim); }
+  .skill-val  { color:var(--primary); font-weight:700; font-size:11px; }
 
   /* ─── ATTACKS ─── */
   .attack-table { width:100%; border-collapse:collapse; }
   .attack-table th {
-    font-size:16px; letter-spacing:2px; color:var(--primary-dim);
+    font-size:7px; letter-spacing:2px; color:var(--primary-dim);
     text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left;
   }
-  .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:16px; color:var(--text-cream); }
-  .attack-table td.val { color:var(--primary); font-family:'Cinzel Decorative',serif; font-size:16px; }
+  .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:11px; color:var(--text-cream); }
+  .attack-table td.val { color:var(--primary); font-family:'Cinzel Decorative',serif; font-size:13px; }
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--primary-light); }
-  .atk-chevron { font-size:16px; color:var(--primary-dim); margin-left:4px; transition:transform 0.3s; }
+  .atk-chevron { font-size:8px; color:var(--primary-dim); margin-left:4px; transition:transform 0.3s; }
   .atk-chevron.open { transform:rotate(90deg); color:var(--primary); }
   .attack-detail-row td { padding:0 8px; border-bottom:1px solid var(--dark-border); }
   .attack-expand {
-    font-family:'IM Fell English',serif; font-size:16px; color:var(--text-dim);
+    font-family:'IM Fell English',serif; font-size:10px; color:var(--text-dim);
     line-height:1.6; padding:6px 0 8px; display:none; animation:dropIn 0.2s ease;
   }
   .attack-expand.open { display:block; }
@@ -172,8 +172,8 @@
   .right-col { display:flex; flex-direction:column; gap:12px; }
 
   .passive-box { border:1px solid var(--dark-border); padding:10px 12px; text-align:center; background:rgba(200,151,42,0.04); }
-  .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
-  .passive-lbl { font-size:16px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); display:block; }
+  .passive-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
 
   /* ─── FEATURES (right col) ─── */
   .feature-item { border-bottom:1px solid var(--dark-border); }
@@ -186,13 +186,13 @@
   .feature-toggle:hover { background:rgba(200,151,42,0.05); }
   .feature-gem { width:5px; height:5px; background:var(--primary); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--primary); transition:all 0.3s; }
   details[open] .feature-gem { background:var(--primary-bright); box-shadow:0 0 10px var(--primary-bright); }
-  .feat-name   { font-size:16px; color:var(--primary-light); font-weight:600; flex:1; }
-  .feat-short  { font-family:'IM Fell English',serif; font-size:16px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow  { font-size:16px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  .feat-name   { font-size:10px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-short  { font-family:'IM Fell English',serif; font-size:9px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow  { font-size:8px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary); }
   .feature-detail {
     padding:6px 14px 10px 20px; font-family:'IM Fell English',serif;
-    font-size:16px; color:var(--text-dim); line-height:1.7;
+    font-size:11px; color:var(--text-dim); line-height:1.7;
     border-top:1px solid rgba(200,151,42,0.08); animation:dropIn 0.2s ease;
   }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
@@ -202,37 +202,37 @@
   .trait-details { border-bottom:1px solid var(--dark-border); }
   .trait-details:last-child { border-bottom:none; }
   .trait-summary {
-    list-style:none; padding:7px 6px; font-size:16px; letter-spacing:3px;
+    list-style:none; padding:7px 6px; font-size:7px; letter-spacing:3px;
     color:var(--primary-dim); text-transform:uppercase; cursor:pointer;
     display:flex; align-items:center; gap:6px; user-select:none;
   }
   .trait-summary::-webkit-details-marker { display:none; }
   .trait-summary:hover { color:var(--primary); }
-  .trait-arrow { font-size:16px; color:var(--primary-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size:7px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform:rotate(90deg); color:var(--primary); }
   .trait-body {
     padding:6px 10px 10px; font-family:'IM Fell English',serif;
-    font-size:16px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease;
+    font-size:11px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease;
   }
 
   /* ─── EQUIPMENT (right col) ─── */
   .equip-item {
     display:flex; align-items:center; gap:6px; padding:4px 0;
     border-bottom:1px solid rgba(200,151,42,0.06);
-    font-family:'IM Fell English',serif; font-size:16px; color:var(--text-dim);
+    font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim);
   }
-  .equip-item::before { content:'◆'; font-size:16px; color:var(--primary-dim); }
+  .equip-item::before { content:'◆'; font-size:5px; color:var(--primary-dim); }
 
   /* ─── PROFICIENCIES (right col) ─── */
   .prof-block { margin-bottom:8px; }
-  .prof-category { font-size:16px; letter-spacing:2px; color:var(--primary-light); font-family:'Cinzel',serif; display:block; margin-bottom:2px; }
-  .prof-list { font-family:'IM Fell English',serif; font-size:16px; color:var(--text-dim); line-height:1.6; }
+  .prof-category { font-size:8px; letter-spacing:2px; color:var(--primary-light); font-family:'Cinzel',serif; display:block; margin-bottom:2px; }
+  .prof-list { font-family:'IM Fell English',serif; font-size:11px; color:var(--text-dim); line-height:1.6; }
 
   /* ═══════════════════════════════════
      PAGE 2 — FEATURES & SPELLS
   ═══════════════════════════════════ */
   .page2-header {
-    font-family:'Cinzel Decorative',serif; font-size:16px; font-weight:700;
+    font-family:'Cinzel Decorative',serif; font-size:14px; font-weight:700;
     color:var(--primary-light); letter-spacing:4px; text-transform:uppercase;
     text-align:center; padding-bottom:16px; border-bottom:1px solid var(--dark-border); margin-bottom:20px;
   }
@@ -241,7 +241,7 @@
   /* ─── SPELLS ─── */
   .spell-level-block { margin-bottom:16px; }
   .spell-level-header {
-    font-size:16px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase;
+    font-size:7px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase;
     padding:6px 10px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03);
     display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;
   }
@@ -261,30 +261,30 @@
   }
   .spell-toggle::-webkit-details-marker { display:none; }
   .spell-toggle:hover { background:rgba(200,151,42,0.04); }
-  .spell-name   { font-size:16px; color:var(--primary-light); flex:1; font-weight:600; }
+  .spell-name   { font-size:11px; color:var(--primary-light); flex:1; font-weight:600; }
   .spell-tags   { display:flex; gap:5px; }
-  .spell-tag    { font-size:16px; letter-spacing:1px; color:var(--text-dim); padding:1px 5px; border:1px solid var(--dark-border); text-transform:uppercase; }
+  .spell-tag    { font-size:7px; letter-spacing:1px; color:var(--text-dim); padding:1px 5px; border:1px solid var(--dark-border); text-transform:uppercase; }
   .spell-tag.conc { border-color:rgba(106,42,138,0.4); color:rgba(192,96,224,0.8); }
   .spell-tag.ritual { border-color:rgba(200,151,42,0.4); color:var(--primary); }
-  .spell-arrow  { font-size:16px; color:var(--primary-dim); transition:transform 0.3s; }
+  .spell-arrow  { font-size:8px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .spell-arrow { transform:rotate(90deg); color:var(--primary); }
   .spell-detail {
     padding:6px 10px 10px 20px; font-family:'IM Fell English',serif;
-    font-size:16px; color:var(--text-dim); line-height:1.7;
+    font-size:11px; color:var(--text-dim); line-height:1.7;
     border-top:1px solid rgba(200,151,42,0.06); animation:dropIn 0.2s ease;
   }
   .spell-meta { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:6px; }
-  .spell-meta-item { font-size:16px; }
-  .spell-meta-label { color:var(--primary-dim); text-transform:uppercase; letter-spacing:1px; }
+  .spell-meta-item { font-size:9px; }
+  .spell-meta-label { color:var(--primary-dim); text-transform:uppercase; letter-spacing:1px; font-size:8px; }
   .spell-meta-val   { color:var(--primary-light); }
-  .spell-detail p   { margin-top:4px; }
-  .spell-detail .higher { margin-top:6px; padding-top:6px; border-top:1px solid rgba(200,151,42,0.08); color:rgba(192,96,224,0.8); }
+  .spell-detail p   { margin-top:4px; font-size:11px; }
+  .spell-detail .higher { margin-top:6px; padding-top:6px; border-top:1px solid rgba(200,151,42,0.08); color:rgba(192,96,224,0.8); font-size:10px; }
 
   /* ─── BACKSTORY (page 2) ─── */
   .lore-box {
     border:1px solid var(--dark-border); padding:14px;
     background:rgba(200,151,42,0.03); font-family:'IM Fell English',serif;
-    font-size:16px; color:var(--text-dim); line-height:1.8; font-style:italic;
+    font-size:11px; color:var(--text-dim); line-height:1.8; font-style:italic;
   }
   .lore-box strong { color:var(--primary); font-style:normal; }
 
@@ -295,60 +295,7 @@
   }
   .spell-hstat { text-align:center; }
   .spell-hstat-val { font-family:'Cinzel Decorative',serif; font-size:18px; color:var(--primary-light); display:block; }
-  .spell-hstat-lbl { font-size:16px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
-
-
-  /* ── PORTRAIT (page 2) ── */
-  .page2-portrait {
-    position: relative;
-    border: 1px solid var(--primary-dim);
-    overflow: hidden;
-    margin-bottom: 16px;
-    max-height: 320px;
-  }
-  .page2-portrait::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 55%, var(--dark) 100%);
-    pointer-events: none;
-  }
-  .page2-portrait img {
-    width: 100%;
-    display: block;
-    filter: brightness(1.04) saturate(1.1);
-    object-fit: cover;
-    object-position: center 20%;
-    max-height: 320px;
-  }
-  .portrait-corner { position: absolute; width: 16px; height: 16px; z-index: 2; }
-  .portrait-corner.tl { top:0; left:0;  border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
-  .portrait-corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
-  .portrait-corner.bl { bottom:0; left:0;  border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
-  .portrait-corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
-
-  /* ── APPEARANCE TABLE ── */
-  .appearance-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 16px;
-  }
-  .appearance-row {
-    display: flex;
-    flex-direction: column;
-    padding: 4px 0;
-    border-bottom: 1px solid rgba(200,151,42,0.08);
-  }
-  .appearance-label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--primary-dim);
-    text-transform: uppercase;
-  }
-  .appearance-value {
-    font-family: 'IM Fell English', serif;
-    font-size: 15px;
-    color: var(--text-cream);
-  }
+  .spell-hstat-lbl { font-size:7px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
 
 </style>
 </head>
@@ -408,18 +355,18 @@
       <div class="section">
         <div class="section-title">Hit Points</div>
         <div class="section-body" style="text-align:center;">
-          <div style="font-size:16px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Maximum: <span data-path="combat.hp_max">10</span></div>
+          <div style="font-size:8px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Maximum: <span data-path="combat.hp_max">10</span></div>
           <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;" data-path="combat.hp_max">10</div>
           <div class="hp-bar-bg"><div class="hp-bar-fill" id="text-hp-bar" style="width:100%;"></div></div>
           <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
             <div>
-              <div style="font-size:16px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
-              <div style="font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--primary-light);margin-top:2px;" data-path="combat.hit_dice_total">1d8</div>
+              <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--primary-light);margin-top:2px;" data-path="combat.hit_dice_total">1d8</div>
             </div>
             <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
-              <div style="font-size:16px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+              <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-                <span style="font-size:16px;color:var(--primary-light);min-width:60px;">Successes</span>
+                <span style="font-size:8px;color:var(--primary-light);min-width:60px;">Successes</span>
                 <div style="display:flex;gap:6px;">
                   <div class="pip success" onclick="togglePip(this,'success')"></div>
                   <div class="pip success" onclick="togglePip(this,'success')"></div>
@@ -427,7 +374,7 @@
                 </div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;">
-                <span style="font-size:16px;color:#cc4444;min-width:60px;">Failures</span>
+                <span style="font-size:8px;color:#cc4444;min-width:60px;">Failures</span>
                 <div style="display:flex;gap:6px;">
                   <div class="pip failure" onclick="togglePip(this,'failure')"></div>
                   <div class="pip failure" onclick="togglePip(this,'failure')"></div>
@@ -533,7 +480,7 @@
       <div class="section">
         <div class="section-title">Equipment</div>
         <div class="section-body" style="padding:8px 10px;">
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:16px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:11px;color:var(--text-dim);font-family:'IM Fell English',serif;">
             <span>PP:<span style="color:var(--primary-light);" data-path="equipment.currency.pp"> 0</span></span>
             <span>GP:<span style="color:var(--primary-light);" data-path="equipment.currency.gp"> 0</span></span>
             <span>SP:<span style="color:var(--primary-light);" data-path="equipment.currency.sp"> 0</span></span>
@@ -606,22 +553,11 @@
         </div>
       </div>
 
-      <!-- Portrait -->
-      <div class="page2-portrait" id="text-portrait-frame" style="display:none;">
-        <div class="portrait-corner tl"></div>
-        <div class="portrait-corner tr"></div>
-        <div class="portrait-corner bl"></div>
-        <div class="portrait-corner br"></div>
-        <img id="text-portrait-img" src="" alt="Character Portrait">
-      </div>
-
       <!-- Appearance -->
       <div class="section">
         <div class="section-title">Appearance &amp; Notes</div>
         <div class="section-body">
-          <div class="appearance-grid" id="appearance-container">
-            <!-- Populated by JS -->
-          </div>
+          <div class="lore-box" data-path="traits.appearance">...</div>
         </div>
       </div>
 
@@ -778,12 +714,12 @@
           `).join('');
           return `
             <div style="padding:8px 10px;border:1px solid rgba(200,151,42,0.2);margin-bottom:6px;">
-              <div style="font-size:16px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">
+              <div style="font-size:18px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">
                 ${res.label} (${res.max} / ${res.recharge})
               </div>
               <div style="display:flex;align-items:center;gap:8px;">
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">${pips}</div>
-                ${res.description ? `<span style="font-family:'IM Fell English',serif;font-size:16px;color:var(--text-dim);font-style:italic;">${res.description}</span>` : ''}
+                ${res.description ? `<span style="font-family:'IM Fell English',serif;font-size:10px;color:var(--text-dim);font-style:italic;">${res.description}</span>` : ''}
               </div>
             </div>
           `;
@@ -795,7 +731,7 @@
       if (profEl && char.proficiencies) {
         const p = char.proficiencies;
         profEl.innerHTML = `
-          <p style="font-family:'IM Fell English',serif;font-size:16px;color:var(--text-dim);line-height:1.9;">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
             ${p.weapons?.length ? `<span class="prof-category">Weapons</span>${p.weapons.join(', ')}<br><br>` : ''}
             ${p.armor?.length   ? `<span class="prof-category">Armor</span>${p.armor.join(', ')}<br><br>` : ''}
             ${p.tools?.length   ? `<span class="prof-category">Tools</span>${p.tools.join(', ')}<br><br>` : ''}
@@ -839,7 +775,7 @@
       const equipEl = document.getElementById('text-equipment-container');
       if (equipEl && char.equipment?.carried) {
         equipEl.innerHTML = char.equipment.carried.map(item => `
-          <div class="equip-item">${item.name} <span style="font-size:16px;color:var(--text-dim);margin-left:4px;">×${item.quantity}</span></div>
+          <div class="equip-item">${item.name} <span style="font-size:9px;color:var(--text-dim);margin-left:4px;">×${item.quantity}</span></div>
         `).join('');
       }
 
@@ -847,7 +783,7 @@
       const changeEl = document.getElementById('text-changelog-container');
       if (changeEl && char.meta.session_changes) {
         changeEl.innerHTML = char.meta.session_changes.map(c => `
-          <div style="font-family:'IM Fell English',serif;font-size:16px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(200,151,42,0.06);display:flex;gap:6px;">
+          <div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(200,151,42,0.06);display:flex;gap:6px;">
             <span style="color:var(--primary);">▸</span>${c}
           </div>
         `).join('');
@@ -926,34 +862,11 @@
         spellsCol.innerHTML = `
           <div class="section">
             <div class="section-title">Extended Features</div>
-            <div class="section-body" style="font-family:'IM Fell English',serif;font-size:16px;color:var(--text-dim);line-height:1.8;font-style:italic;">
+            <div class="section-body" style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.8;font-style:italic;">
               No spellcasting. Class features listed on page one.
             </div>
           </div>
         `;
-      }
-
-      // ── PORTRAIT ──
-      const textPortraitImg   = document.getElementById('text-portrait-img');
-      const textPortraitFrame = document.getElementById('text-portrait-frame');
-      if (textPortraitImg && char.identity && char.identity.portrait_url) {
-        textPortraitImg.src = char.identity.portrait_url;
-        textPortraitImg.alt = char.identity.name + ' portrait';
-        if (textPortraitFrame) textPortraitFrame.style.display = '';
-      }
-
-      // ── APPEARANCE ──
-      const appearanceContainer = document.getElementById('appearance-container');
-      if (appearanceContainer && char.appearance) {
-        const labels = { age:'Age', height:'Height', weight:'Weight', eyes:'Eyes', skin:'Skin', hair:'Hair', build:'Build' };
-        appearanceContainer.innerHTML = Object.entries(labels)
-          .filter(([k]) => char.appearance[k])
-          .map(([k, label]) => `
-            <div class="appearance-row">
-              <span class="appearance-label">${label}</span>
-              <span class="appearance-value">${char.appearance[k]}</span>
-            </div>
-          `).join('');
       }
 
     })
