@@ -76,8 +76,8 @@
   .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 8px rgba(79,185,255,0.35); }
   .dot.success.active { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
   .dot.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 5px #cc2222; }
-  .save-name, .skill-name { flex:1; color:var(--text-cream); font-family:'IM Fell English',serif; font-size:13px; }
-  .save-val,  .skill-val  { color:var(--primary-light); font-weight:700; font-size:13px; }
+  .save-name, .skill-name { flex:1; color:var(--text-cream); font-family:'IM Fell English',serif; font-size:11px; }
+  .save-val,  .skill-val  { color:var(--primary-light); font-weight:700; font-size:11px; }
   .skill-ab { font-size:10px; color:var(--text-dim); }
   .right-col { display:flex; flex-direction:column; gap:12px; }
   .passive-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(27,95,138,0.04); }
@@ -90,15 +90,15 @@
     justify-content:space-between; user-select:none; min-height:28px; line-height:1; opacity:0.75;
   }
   .trait-summary::-webkit-details-marker { display:none; }
-  .trait-body { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); line-height:1.6; font-style:italic; }
+  .trait-body { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.55; font-style:italic; word-wrap:break-word; overflow-wrap:break-word; }
   .attack-table { width:100%; border-collapse:collapse; }
   .attack-table th { font-size:9px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; opacity:0.65; }
-  .attack-table td { padding:6px 8px; border-bottom:1px solid rgba(27,95,138,0.15); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); }
+  .attack-table td { padding:6px 8px; border-bottom:1px solid rgba(27,95,138,0.15); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
   .attack-name-cell { cursor:pointer; }
   .attack-name-cell:hover { color:var(--primary-light); }
   .val { color:var(--primary-light); font-weight:700; }
   .attack-detail-row td { padding:0; border-bottom:none; }
-  .attack-expand { display:none; padding:10px 10px 12px; background:rgba(27,95,138,0.03); border-top:1px solid var(--dark-border); font-size:13px; line-height:1.55; color:var(--text-dim); }
+  .attack-expand { display:none; padding:10px 10px 12px; background:rgba(27,95,138,0.03); border-top:1px solid var(--dark-border); font-size:11px; line-height:1.55; color:var(--text-dim); }
   .attack-expand.open { display:block; }
   .atk-chevron { float:right; color:var(--primary-dim); transition:transform .2s ease; }
   .atk-chevron.open { transform:rotate(90deg); color:var(--primary-light); }
@@ -115,12 +115,12 @@
   .feat-short   { font-family:'IM Fell English',serif; font-size:12px; color:var(--text-dim); white-space:nowrap; }
   .feat-arrow   { color:var(--primary-light); font-size:11px; transition:transform .2s ease; white-space:nowrap; justify-self:end; opacity:0.5; }
   details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary-light); opacity:1; }
-  .feature-detail { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:13px; color:var(--text-cream); line-height:1.6; }
+  .feature-detail { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.55; word-wrap:break-word; overflow-wrap:break-word; }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
   .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
-  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(27,95,138,0.12); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); }
+  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(27,95,138,0.12); font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); }
   .equip-item::before { content:'◆'; font-size:8px; color:var(--primary-light); opacity:0.4; }
-  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(27,95,138,0.04); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); line-height:1.8; font-style:italic; }
+  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(27,95,138,0.04); font-family:'IM Fell English',serif; font-size:12px; color:var(--text-cream); line-height:1.8; font-style:italic; }
   .lore-box strong { color:var(--primary-light); font-style:normal; }
   .spell-level-block  { margin-bottom:14px; }
   .spell-level-header { font-size:8px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; padding:6px 10px; border:1px solid var(--dark-border); background:rgba(27,95,138,0.05); display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; opacity:0.8; }
@@ -138,7 +138,10 @@
   .spell-detail { padding:6px 10px 10px 20px; font-family:'IM Fell English',serif; font-size:11px; color:var(--text-cream); line-height:1.7; border-top:1px solid rgba(27,95,138,0.1); }
   .resource-pip { width:14px; height:14px; border:1px solid var(--primary-dim); transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block; }
   .resource-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
-  .prof-category { color:var(--primary-light); font-family:'Cinzel',serif; font-size:11px; letter-spacing:2px; }
+  .prof-category { color:var(--primary-light); font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; }
+  /* Right column overflow protection */
+  .right-col .section { overflow:hidden; }
+  .right-col .section-body { overflow-wrap:break-word; word-wrap:break-word; }
   .back-btn {
     position:fixed; top:22px; left:24px; z-index:999;
     font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px; text-transform:uppercase;
@@ -274,7 +277,7 @@
 
       <div class="section">
         <div class="section-title">Features &amp; Traits</div>
-        <div class="section-body" style="padding:6px 8px;" id="js-features"><!-- Built by JS --></div>
+        <div class="section-body" style="padding:8px 10px;" id="js-features"><!-- Built by JS --></div>
       </div>
 
     </div>
@@ -353,7 +356,7 @@
 <script>
 // ── CONFIG ──────────────────────────────────
 window.CHARACTER_ID = "evo";
-window.JSON_PATH    = "../player.json"; // adjust path as needed
+window.JSON_PATH    = "../player_1_.json"; // adjust path as needed
 
 // ── HELPERS ─────────────────────────────────
 function set(id, val) {
@@ -532,9 +535,26 @@ fetch(window.JSON_PATH)
           (p1 ? `${cantrips ? '<br>' : ''}<em>Prepared:</em> ${p1}` : '');
       }
 
-      // Page 2 spells
+      // Page 2 spells — build lookup from spells array for rich detail
       const spellsCol = document.getElementById('js-page2-spells');
       if (spellsCol) {
+        const spellLookup = {};
+        (spell.spells || []).forEach(s => { spellLookup[s.name] = s; });
+
+        const renderSpellDetail = (name) => {
+          const s = spellLookup[name];
+          if (!s) return `<div class="spell-detail">See Player's Handbook for details.</div>`;
+          return `<div class="spell-detail">
+            <div style="font-size:9px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;margin-bottom:4px;opacity:0.7;">
+              ${s.school || ''} · CT: ${s.casting_time || '—'} · Range: ${s.range || '—'} · ${s.components || ''}
+              ${s.concentration ? ' · <strong>Concentration</strong>' : ''}${s.duration ? ' · ' + s.duration : ''}
+            </div>
+            <div>${s.description || ''}</div>
+            ${s.higher_levels ? `<div style="margin-top:6px;color:var(--text-dim);"><em><strong>At Higher Levels:</strong> ${s.higher_levels}</em></div>` : ''}
+            ${s.source ? `<div style="margin-top:4px;font-size:9px;color:var(--primary-dim);opacity:0.6;">${s.source}</div>` : ''}
+          </div>`;
+        };
+
         const slots = spell.spell_slots || {};
         let html = `<div class="section"><div class="section-title">Cleric Spells</div><div class="section-body" style="padding:10px 12px;">`;
         if (spell.cantrips?.length) {
@@ -542,7 +562,7 @@ fetch(window.JSON_PATH)
             spell.cantrips.map(name => `
               <details class="spell-entry">
                 <summary class="spell-toggle"><span class="spell-name">${name}</span><span class="spell-arrow">▶</span></summary>
-                <div class="spell-detail">See Player's Handbook for details.</div>
+                ${renderSpellDetail(name)}
               </details>`).join('') + `</div>`;
         }
         Object.entries(spell.prepared || {}).forEach(([lvl, names]) => {
@@ -556,7 +576,7 @@ fetch(window.JSON_PATH)
             names.map(name => `
               <details class="spell-entry">
                 <summary class="spell-toggle"><span class="spell-name">${name}</span><span class="spell-arrow">▶</span></summary>
-                <div class="spell-detail">See Player's Handbook for details.</div>
+                ${renderSpellDetail(name)}
               </details>`).join('') + `</div>`;
         });
         html += `</div></div>`;
@@ -586,7 +606,7 @@ fetch(window.JSON_PATH)
     const profEl = document.getElementById('js-proficiencies');
     const profs  = char.proficiencies || {};
     if (profEl && Object.keys(profs).length) {
-      profEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);line-height:1.9;">
+      profEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
         ${profs.weapons?.length ? `<span class="prof-category">WEAPONS</span><br>${profs.weapons.join(', ')}<br><br>` : ''}
         ${profs.armor?.length   ? `<span class="prof-category">ARMOR</span><br>${profs.armor.join(', ')}<br><br>` : ''}
         ${profs.tools?.length   ? `<span class="prof-category">TOOLS</span><br>${profs.tools.join(', ')}<br><br>` : ''}
@@ -657,11 +677,11 @@ fetch(window.JSON_PATH)
     if (physEl) {
       // Evo's JSON has traits.appearance as a string; other chars may have physical object
       if (traits.appearance) {
-        physEl.innerHTML = `<div style="font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.8;">${traits.appearance}</div>`;
+        physEl.innerHTML = `<div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.8;">${traits.appearance}</div>`;
       } else if (char.physical && typeof char.physical === 'object') {
         const rows = Object.entries(char.physical).map(([k,v]) =>
-          `<div><div style="font-size:11px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">${k.charAt(0).toUpperCase()+k.slice(1)}</div>
-           <div style="font-size:14px;color:var(--text-cream);margin-top:2px;">${v}</div></div>`
+          `<div><div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">${k.charAt(0).toUpperCase()+k.slice(1)}</div>
+           <div style="font-size:12px;color:var(--text-cream);margin-top:2px;">${v}</div></div>`
         ).join('');
         physEl.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">${rows}</div>`;
       }
@@ -692,6 +712,3 @@ fetch(window.JSON_PATH)
 </script>
 </body>
 </html>
-
-
-
