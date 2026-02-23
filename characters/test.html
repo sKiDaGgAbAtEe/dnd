@@ -48,7 +48,7 @@
     pointer-events: none;
   }
   .char-emblem {
-    font-size: 11px; letter-spacing: 8px; color: var(--primary-dim);
+    font-size: 14px; letter-spacing: 8px; color: var(--primary-dim);
     text-transform: uppercase; margin-bottom: 8px;
     animation: fadeIn 2s ease;
   }
@@ -90,8 +90,8 @@
     border: 1px solid var(--primary-dim);
   }
   .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
-  .id-label { font-size: 9px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
-  .id-value { font-family: 'Cinzel Decorative', serif; font-size: 11px; color: var(--primary-light); font-weight: 700; }
+  .id-label { font-size: 11px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .id-value { font-family: 'Cinzel Decorative', serif; font-size: 13px; color: var(--primary-light); font-weight: 700; }
 
   /* ─── MAIN LAYOUT ─── */
   .sheet {
@@ -128,7 +128,7 @@
   /* ─── PANEL ─── */
   .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
   .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
-  .panel-title { font-size: 10px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
+  .panel-title { font-size: 12px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
   .panel-body  { padding: 14px 18px; }
 
   /* ─── ABILITY SCORES ─── */
@@ -138,9 +138,9 @@
     text-align: center; padding: 12px 6px; transition: all 0.3s;
   }
   .ability-block:hover { background: rgba(var(--primary-rgb),0.14); border-color: var(--primary-dim); }
-  .ab-name  { font-size: 9px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-name  { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
   .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
-  .ab-mod   { font-size: 13px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
+  .ab-mod   { font-size: 15px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
 
   /* ─── COMBAT STATS ─── */
   .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -150,7 +150,7 @@
   }
   .combat-block:hover { background: rgba(var(--primary-rgb),0.12); border-color: var(--primary-dim); }
   .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
-  .combat-label { font-size: 9px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+  .combat-label { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
 
   /* ─── HP BAR ─── */
   .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
@@ -162,25 +162,25 @@
 
   /* ─── SAVING THROWS ─── */
   .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
-  .save-row  { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.07); font-size: 12px; }
+  .save-row  { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.07); font-size: 14px; }
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
   .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
   .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val  { color:var(--primary-light); font-weight:700; }
+  .save-val  { color:var(--primary-light); font-weight:700; font-size:14px; }
 
   /* ─── SKILLS ─── */
   .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
-  .skill-row   { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06); font-size: 12px; }
+  .skill-row   { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06); font-size: 14px; }
   .skill-name  { flex:1; color:var(--text-cream); }
-  .skill-ab    { font-size: 11px; color:var(--text-dim); }
-  .skill-val   { color:var(--primary-light); font-weight:700; }
+  .skill-ab    { font-size: 13px; color:var(--text-dim); }
+  .skill-val   { color:var(--primary-light); font-weight:700; font-size:14px; }
 
   /* ─── PASSIVE STATS ─── */
   .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
   .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.03); }
   .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
-  .passive-lbl { font-size: 9px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+  .passive-lbl { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
 
   /* ─── FEATURES ─── */
   .feature-item { border-bottom: 1px solid var(--dark-border); }
@@ -194,13 +194,13 @@
   .feature-toggle:hover { background: rgba(var(--primary-rgb),0.05); }
   .feature-gem { width: 5px; height: 5px; background: var(--primary); transform: rotate(45deg); flex-shrink: 0; box-shadow: 0 0 5px var(--primary); transition: all 0.3s; }
   details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
-  .feat-name   { font-size: 13px; color:var(--primary-light); font-weight:600; flex:1; }
-  .feat-source { font-family:'IM Fell English',serif; font-size: 12px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow  { font-size: 11px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  .feat-name   { font-size: 15px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-source { font-family:'IM Fell English',serif; font-size: 14px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow  { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
   details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
   .feature-detail {
     padding: 6px 14px 12px 20px;
-    font-family: 'IM Fell English', serif; font-size: 13px; color:var(--text-dim); line-height:1.7;
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim); line-height:1.7;
     border-top: 1px solid rgba(var(--primary-rgb),0.08); animation: dropIn 0.2s ease;
   }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
@@ -210,17 +210,17 @@
   .trait-details:last-child { border-bottom: none; }
   .trait-summary {
     list-style: none; padding: 8px 6px;
-    font-size: 10px; letter-spacing: 3px; color: var(--primary-dim);
+    font-size: 12px; letter-spacing: 3px; color: var(--primary-dim);
     text-transform: uppercase; cursor: pointer;
     display: flex; align-items: center; gap: 6px; user-select: none;
   }
   .trait-summary::-webkit-details-marker { display: none; }
   .trait-summary:hover { color: var(--primary); }
-  .trait-arrow { font-size: 11px; color:var(--primary-dim); transition:transform 0.3s; }
+  .trait-arrow { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; }
   details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
   .trait-body {
     padding: 6px 10px 12px;
-    font-family: 'IM Fell English', serif; font-size: 13px; color:var(--text-cream);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-cream);
     line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
   }
 
@@ -228,16 +228,16 @@
   .equip-item {
     display: flex; align-items: center; gap: 6px;
     padding: 5px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
-    font-family: 'IM Fell English', serif; font-size: 13px; color:var(--text-dim);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
   }
-  .equip-item::before { content:'◆'; font-size: 9px; color:var(--primary-dim); }
-  .equip-qty { font-size: 11px; color:var(--primary-dim); margin-left:auto; }
+  .equip-item::before { content:'◆'; font-size: 10px; color:var(--primary-dim); }
+  .equip-qty { font-size: 13px; color:var(--primary-dim); margin-left:auto; }
 
   /* ─── BACKSTORY ─── */
   .backstory-box {
     border: 1px solid var(--dark-border); padding: 16px;
     background: rgba(var(--primary-rgb),0.03);
-    font-family: 'IM Fell English', serif; font-size: 13px;
+    font-family: 'IM Fell English', serif; font-size: 15px;
     color: var(--text-dim); line-height: 1.9; font-style: italic;
   }
 
@@ -245,14 +245,14 @@
   .changelog-item {
     display: flex; align-items: flex-start; gap: 8px;
     padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
-    font-family: 'IM Fell English', serif; font-size: 13px; color:var(--text-dim);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
   }
   .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
 
   /* ─── SPELL SLOTS ─── */
   .slot-grid { display:flex; flex-direction:column; gap:6px; }
   .slot-row  { display:flex; align-items:center; gap:8px; }
-  .slot-level { font-size: 10px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
+  .slot-level { font-size: 12px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
   .slot-pips  { display:flex; gap:5px; flex-wrap:wrap; }
   .slot-pip {
     width:14px; height:14px; border:1px solid var(--primary-dim);
@@ -580,7 +580,7 @@
             </details>
           `).join('');
         } else {
-          featContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:13px;">No features recorded.</div>`;
+          featContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No features recorded.</div>`;
         }
       }
 
@@ -604,7 +604,7 @@
       if (equipContainer && char.equipment && char.equipment.carried) {
         equipContainer.innerHTML = char.equipment.carried.map(item => `
           <div class="equip-item">
-            ${item.name}${item.description ? ` <span style="font-size:12px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
+            ${item.name}${item.description ? ` <span style="font-size:14px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
             <span class="equip-qty">×${item.quantity || 1}</span>
           </div>
         `).join('');
@@ -620,8 +620,8 @@
           resContainer.innerHTML = entries.map(([, res]) => `
             <div style="margin-bottom:12px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-size:12px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
-                <span style="font-size:12px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
+                <span style="font-size:14px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
+                <span style="font-size:14px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
               </div>
               <div style="display:flex;gap:6px;flex-wrap:wrap;">
                 ${Array.from({length: res.max}, (_, i) => `
@@ -629,7 +629,7 @@
                        onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
                 `).join('')}
               </div>
-              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:12px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
+              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
             </div>
           `).join('');
         }
@@ -667,7 +667,7 @@
             <div class="changelog-item">${c}</div>
           `).join('');
         } else {
-          changelogContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:13px;">No changes logged yet.</div>`;
+          changelogContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No changes logged yet.</div>`;
         }
       }
 
