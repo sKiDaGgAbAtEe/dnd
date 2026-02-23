@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evo — Character Sheet</title>
+<title>Character Sheet — Reference</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
 
@@ -21,467 +21,550 @@
     --text-dim: #d4c090;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
-    background: var(--dark);
-    color: var(--text-cream);
-    font-family: 'Cinzel', serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background: var(--dark); color: var(--text-cream);
+    font-family: 'Cinzel', serif; min-height: 100vh;
     background-image:
-      radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb, 200,151,42), 0.08) 0%, transparent 60%),
-      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 51px),
-      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 50px, rgba(var(--primary-rgb, 200,151,42), 0.012) 51px);
+      radial-gradient(ellipse at 50% 0%, rgba(200,151,42,0.08) 0%, transparent 60%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(200,151,42,0.015) 50px, rgba(200,151,42,0.015) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(200,151,42,0.015) 50px, rgba(200,151,42,0.015) 51px);
   }
 
-  /* ─── HEADER ─── */
-  .header {
-    position: relative;
-    text-align: center;
-    padding: 60px 20px 0;
-    overflow: hidden;
+  /* ─── PAGE WRAPPER ─── */
+  .page {
+    max-width: 920px; margin: 30px auto;
+    background: #0d0b07; border: 1px solid var(--primary-dim);
+    position: relative; padding: 30px; page-break-after: always;
+    animation: fadeIn 0.8s ease;
   }
-  .header::before {
-    content: '';
-    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,151,42,0.1) 0%, transparent 70%);
-    pointer-events: none;
+  .page::before {
+    content:''; position:absolute; top:0;left:0;right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
   }
-  .char-emblem {
-    font-size:18px; letter-spacing: 8px; color: var(--primary-dim);
-    text-transform: uppercase; margin-bottom: 8px;
-    animation: fadeIn 2s ease;
+
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes dropIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ─── NAME BANNER ─── */
+  .name-banner {
+    display: grid; grid-template-columns: 280px 1fr;
+    border: 1px solid var(--primary-dim); margin-bottom: 24px;
   }
-  .char-name {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 0.9;
-    background: linear-gradient(180deg, var(--primary-bright) 0%, var(--primary-light) 40%, var(--primary) 100%);
+  .name-box { border-right: 1px solid var(--primary-dim); padding: 14px 20px; }
+  .char-name-big {
+    font-family: 'Cinzel Decorative', serif; font-size: 36px; font-weight: 900; line-height: 1.1;
+    background: linear-gradient(180deg, var(--primary-bright), var(--primary));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    filter: drop-shadow(0 0 40px rgba(200,151,42,0.7));
-    animation: fadeIn 1.5s ease, glowPulse 5s ease-in-out infinite;
-    position: relative; z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(200,151,42,0.5));
   }
-  .char-subtitle {
-    font-family: 'IM Fell English', serif; font-style: italic;
-    font-size:18px; color: var(--text-dim); letter-spacing: 4px;
-    margin-top: 10px; animation: fadeIn 2.5s ease;
+  .name-sub { font-size:18px; letter-spacing:4px; color:var(--primary-dim); text-transform:uppercase; margin-top:4px; }
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
+  .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); }
+  .info-cell:nth-child(n+4) { border-bottom:none; }
+  .info-label { font-size:18px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:2px; }
+  .info-value { font-size:17px; color:var(--primary-light); font-weight:600; }
 
-  @keyframes glowPulse {
-    0%,100% { filter: drop-shadow(0 0 30px rgba(200,151,42,0.5)); }
-    50%      { filter: drop-shadow(0 0 70px rgba(200,151,42,0.8)); }
-  }
-  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+  /* ─── THREE-COLUMN BODY ─── */
+  .sheet-body { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; }
 
-  /* ─── DIVIDER ─── */
-  .divider {
-    display: flex; align-items: center; gap: 16px;
-    margin: 30px auto; max-width: 700px; padding: 0 30px;
-  }
-  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-dim), transparent); }
-  .divider-gem { width: 8px; height: 8px; background: var(--primary-light); transform: rotate(45deg); box-shadow: 0 0 10px var(--primary-light); }
-
-  /* ─── IDENTITY BAR ─── */
-  .identity-bar {
-    max-width: 1300px; margin: 0 auto 20px; padding: 0 20px;
-    display: grid; grid-template-columns: repeat(6, 1fr);
-    gap: 1px; background-color: var(--primary-dim);
-    border: 1px solid var(--primary-dim);
-  }
-  .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
-  .id-label { font-size:18px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
-  .id-value { font-family: 'Cinzel Decorative', serif; font-size:18px; color: var(--primary-light); font-weight: 700; }
-
-  /* ─── MAIN LAYOUT ─── */
-  .sheet {
-    max-width: 1300px; margin: 0 auto;
-    padding: 0 20px 60px;
-    display: grid; grid-template-columns: 420px 1fr;
-    gap: 24px; align-items: start;
-  }
-
-  /* ─── PORTRAIT COLUMN ─── */
-  .portrait-col { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px; }
-
-  .portrait-frame {
-    position: relative;
-    border: 1px solid var(--primary-dim); overflow: hidden;
-  }
-  .portrait-frame::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 55%, var(--dark) 100%);
-    pointer-events: none;
-  }
-  .portrait-corner { position: absolute; width: 22px; height: 22px; z-index: 2; }
-  .portrait-corner.tl { top:0; left:0;  border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
-  .portrait-corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
-  .portrait-corner.bl { bottom:0; left:0;  border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
-  .portrait-corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
-
-  .portrait-img { width: 100%; display: block; filter: brightness(1.04) saturate(1.1); }
-
-  /* ─── PANEL ─── */
-  .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
-  .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
-  .panel-title { font-size:17px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
-  .panel-body { padding: 14px 18px; }
-
-  /* ─── ABILITY SCORES ─── */
-  .ability-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  /* ─── LEFT COLUMN: ABILITY SCORES ─── */
+  .ability-col { display:flex; flex-direction:column; gap:8px; }
   .ability-block {
-    background: rgba(200,151,42,0.05); border: 1px solid var(--dark-border);
-    text-align: center; padding: 12px 6px; transition: all 0.3s;
+    border:1px solid var(--primary-dim); text-align:center;
+    padding:10px 6px 8px; background:rgba(200,151,42,0.04); transition:background 0.3s;
   }
-  .ability-block:hover { background: rgba(200,151,42,0.14); border-color: var(--primary-dim); }
-  .ab-name  { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
-  .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
-  .ab-mod   { font-size:18px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
-
-  /* ─── COMBAT STATS ─── */
-  .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .combat-block {
-    text-align: center; padding: 14px 8px;
-    background: rgba(200,151,42,0.04); border: 1px solid var(--dark-border); transition: all 0.3s;
+  .ability-block:hover { background:rgba(200,151,42,0.1); }
+  .ab-name  { font-size:18px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:4px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod-box {
+    display:inline-block; border:1px solid var(--primary-dim);
+    padding:2px 10px; margin-top:6px; font-size:18px; color:var(--primary); font-weight:700;
   }
-  .combat-block:hover { background: rgba(200,151,42,0.12); border-color: var(--primary-dim); }
-  .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
-  .combat-label { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
-
-  /* ─── HP BAR ─── */
-  .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
-  .hp-current { font-family:'Cinzel Decorative',serif; font-size:48px; color:var(--primary-light); line-height:1; }
-  .hp-sep     { font-size:24px; color:var(--primary-dim); }
-  .hp-max     { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-dim); }
-  .hp-bar-bg  { height:4px; background:var(--dark-border); position:relative; margin-top:4px; }
-  .hp-bar-fill { height:100%; background:linear-gradient(90deg,var(--primary-dim),var(--primary-light)); transition: width 0.5s ease; }
-
-  /* ─── SAVES (compact, portrait column) ─── */
-  .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
-  .save-row {
-    display: flex; align-items: center; gap: 8px;
-    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.07); font-size:18px;
+  .proficiency-box {
+    border:1px solid var(--primary-dim); padding:10px; text-align:center;
+    background:rgba(200,151,42,0.04);
   }
+  .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); }
+  .prof-lbl { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
+
+  /* ─── MID COLUMN ─── */
+  .mid-col { display:flex; flex-direction:column; gap:12px; }
+
+  /* ─── SECTION ─── */
+  .section { border:1px solid var(--dark-border); background:var(--dark-panel); position:relative; }
+  .section::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .section-title {
+    font-size:18px; letter-spacing:4px; color:var(--primary-dim);
+    text-transform:uppercase; padding:8px 14px;
+    border-bottom:1px solid var(--dark-border); text-align:center;
+  }
+  .section-body { padding:12px 14px; }
+
+  /* ─── COMBAT STATS (mid) ─── */
+  .combat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03); }
+  .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; line-height:1; }
+  .cs-lbl { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+
+  /* ─── HIT POINTS (mid) ─── */
+  .hp-bar-bg  { height:3px; background:var(--dark-border); margin-top:6px; }
+  .hp-bar-fill { height:100%; background:linear-gradient(90deg,var(--primary-dim),var(--primary-light)); transition:width 0.5s ease; }
+
+  /* ─── DOTS ─── */
   .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
-  .dot.filled { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .dot.filled   { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
+
+  /* ─── SAVING THROWS ─── */
+  .save-list { display:flex; flex-direction:column; gap:3px; }
+  .save-row { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:18px; }
   .save-name { flex:1; color:var(--text-cream); }
-  .save-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
+  .save-val  { color:var(--primary); font-weight:700; font-size:17px; }
+
+  /* ─── SKILLS ─── */
+  .skill-list { display:grid; grid-template-columns:1fr 1fr; gap:2px 12px; }
+  .skill-row  { display:flex; align-items:center; gap:6px; padding:3px 0; border-bottom:1px solid rgba(200,151,42,0.06); font-size:19px; }
+  .skill-name { flex:1; color:var(--text-cream); font-size:17px; }
+  .skill-ab   { font-size:18px; color:var(--text-dim); }
+  .skill-val  { color:var(--primary); font-weight:700; font-size:18px; }
+
+  /* ─── ATTACKS ─── */
+  .attack-table { width:100%; border-collapse:collapse; }
+  .attack-table th {
+    font-size:18px; letter-spacing:2px; color:var(--primary-dim);
+    text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left;
+  }
+  .attack-table td { padding:7px 8px; border-bottom:1px solid var(--dark-border); font-size:18px; color:var(--text-cream); }
+  .attack-table td.val { color:var(--primary); font-family:'Cinzel Decorative',serif; font-size:18px; }
+  .attack-name-cell { cursor:pointer; }
+  .attack-name-cell:hover { color:var(--primary-light); }
+  .atk-chevron { font-size:18px; color:var(--primary-dim); margin-left:4px; transition:transform 0.3s; }
+  .atk-chevron.open { transform:rotate(90deg); color:var(--primary); }
+  .attack-detail-row td { padding:0 8px; border-bottom:1px solid var(--dark-border); }
+  .attack-expand {
+    font-family:'IM Fell English',serif; font-size:19px; color:var(--text-dim);
+    line-height:1.6; padding:6px 0 8px; display:none; animation:dropIn 0.2s ease;
+  }
+  .attack-expand.open { display:block; }
+
+  /* ─── RESOURCE PIPS ─── */
+  .resource-pip {
+    width:14px; height:14px; border:1px solid var(--primary-dim);
+    transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block;
+  }
+  .resource-pip.active { background:var(--accent); border-color:#cc2222; box-shadow:0 0 8px rgba(139,26,26,0.8); }
+  .resource-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
+
+  /* ─── DEATH SAVES ─── */
+  .pip {
+    width:13px; height:13px; border:1px solid var(--primary-dim);
+    border-radius:50%; cursor:pointer; transition:all 0.3s; display:inline-block;
+  }
+  .pip.success.active { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .pip.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 5px #cc2222; }
+
+  /* ─── RIGHT COLUMN ─── */
+  .right-col { display:flex; flex-direction:column; gap:12px; }
+
+  .passive-box { border:1px solid var(--dark-border); padding:10px 12px; text-align:center; background:rgba(200,151,42,0.04); }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); display:block; }
+  .passive-lbl { font-size:19px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
 
   /* ─── FEATURES (right col) ─── */
-  .feature-item { border-bottom: 1px solid var(--dark-border); }
-  .feature-item:last-child { border-bottom: none; }
+  .feature-item { border-bottom:1px solid var(--dark-border); }
+  .feature-item:last-child { border-bottom:none; }
   .feature-toggle {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 0; cursor: pointer; user-select: none; list-style: none;
-    transition: background 0.2s;
+    display:flex; align-items:center; gap:8px; padding:8px 0;
+    cursor:pointer; user-select:none; list-style:none; transition:background 0.2s;
   }
-  .feature-toggle::-webkit-details-marker { display: none; }
-  .feature-toggle:hover { background: rgba(200,151,42,0.05); }
-  .feature-gem {
-    width: 5px; height: 5px; background: var(--primary);
-    transform: rotate(45deg); flex-shrink: 0;
-    box-shadow: 0 0 5px var(--primary); transition: all 0.3s;
-  }
-  details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
-  .feat-name  { font-size:18px; color:var(--primary-light); font-weight:600; flex:1; }
-  .feat-source { font-family:'IM Fell English',serif; font-size:18px; color:var(--text-dim); margin-left:auto; font-style:italic; }
-  .feat-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
-  details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
+  .feature-toggle::-webkit-details-marker { display:none; }
+  .feature-toggle:hover { background:rgba(200,151,42,0.05); }
+  .feature-gem { width:5px; height:5px; background:var(--primary); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 5px var(--primary); transition:all 0.3s; }
+  details[open] .feature-gem { background:var(--primary-bright); box-shadow:0 0 10px var(--primary-bright); }
+  .feat-name   { font-size:19px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-short  { font-family:'IM Fell English',serif; font-size:19px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow  { font-size:18px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary); }
   .feature-detail {
-    padding: 6px 14px 12px 20px;
-    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim); line-height:1.7;
-    border-top: 1px solid rgba(200,151,42,0.08); animation: dropIn 0.2s ease;
+    padding:6px 14px 10px 20px; font-family:'IM Fell English',serif;
+    font-size:18px; color:var(--text-dim); line-height:1.7;
+    border-top:1px solid rgba(200,151,42,0.08); animation:dropIn 0.2s ease;
   }
   .feature-detail strong { color:var(--primary-light); font-style:normal; }
   .feature-detail em { color:var(--primary); }
 
-  /* ─── TRAITS ─── */
-  .trait-details { border-bottom: 1px solid var(--dark-border); }
-  .trait-details:last-child { border-bottom: none; }
+  /* ─── TRAITS (right col) ─── */
+  .trait-details { border-bottom:1px solid var(--dark-border); }
+  .trait-details:last-child { border-bottom:none; }
   .trait-summary {
-    list-style: none; padding: 8px 6px;
-    font-size:18px; letter-spacing: 3px; color: var(--primary-dim);
-    text-transform: uppercase; cursor: pointer;
-    display: flex; align-items: center; gap: 6px; user-select: none;
+    list-style:none; padding:7px 6px; font-size:18px; letter-spacing:3px;
+    color:var(--primary-dim); text-transform:uppercase; cursor:pointer;
+    display:flex; align-items:center; gap:6px; user-select:none;
   }
-  .trait-summary::-webkit-details-marker { display: none; }
-  .trait-summary:hover { color: var(--primary); }
+  .trait-summary::-webkit-details-marker { display:none; }
+  .trait-summary:hover { color:var(--primary); }
   .trait-arrow { font-size:19px; color:var(--primary-dim); transition:transform 0.3s; }
-  details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
+  details[open] .trait-arrow { transform:rotate(90deg); color:var(--primary); }
   .trait-body {
-    padding: 6px 10px 12px;
-    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-cream);
-    line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
+    padding:6px 10px 10px; font-family:'IM Fell English',serif;
+    font-size:18px; color:var(--text-cream); line-height:1.6; font-style:italic; animation:dropIn 0.2s ease;
   }
 
-  /* ─── EQUIPMENT ─── */
+  /* ─── EQUIPMENT (right col) ─── */
   .equip-item {
-    display: flex; align-items: center; gap: 6px;
-    padding: 5px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
-    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
+    display:flex; align-items:center; gap:6px; padding:4px 0;
+    border-bottom:1px solid rgba(200,151,42,0.06);
+    font-family:'IM Fell English',serif; font-size:18px; color:var(--text-dim);
   }
   .equip-item::before { content:'◆'; font-size:18px; color:var(--primary-dim); }
-  .equip-qty { font-size:18px; color:var(--primary-dim); margin-left:auto; }
 
-  /* ─── BACKSTORY ─── */
-  .backstory-box {
-    border: 1px solid var(--dark-border); padding: 16px;
-    background: rgba(200,151,42,0.03);
-    font-family: 'IM Fell English', serif; font-size:18px;
-    color: var(--text-dim); line-height: 1.9; font-style: italic;
+  /* ─── PROFICIENCIES (right col) ─── */
+  .prof-block { margin-bottom:8px; }
+  .prof-category { font-size:18px; letter-spacing:2px; color:var(--primary-light); font-family:'Cinzel',serif; display:block; margin-bottom:2px; }
+  .prof-list { font-family:'IM Fell English',serif; font-size:18px; color:var(--text-dim); line-height:1.6; }
+
+  /* ═══════════════════════════════════
+     PAGE 2 — FEATURES & SPELLS
+  ═══════════════════════════════════ */
+  .page2-header {
+    font-family:'Cinzel Decorative',serif; font-size:18px; font-weight:700;
+    color:var(--primary-light); letter-spacing:4px; text-transform:uppercase;
+    text-align:center; padding-bottom:16px; border-bottom:1px solid var(--dark-border); margin-bottom:20px;
   }
-  .backstory-box strong { color:var(--primary); font-style:normal; }
+  .page2-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
 
-  /* ─── SESSION CHANGELOG ─── */
-  .changelog-item {
-    display: flex; align-items: flex-start; gap: 8px;
-    padding: 4px 0; border-bottom: 1px solid rgba(200,151,42,0.06);
-    font-family: 'IM Fell English', serif; font-size:18px; color:var(--text-dim);
+  /* ─── SPELLS ─── */
+  .spell-level-block { margin-bottom:16px; }
+  .spell-level-header {
+    font-size:18px; letter-spacing:3px; color:var(--primary-dim); text-transform:uppercase;
+    padding:6px 10px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03);
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;
   }
-  .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
-
-  /* ─── RIGHT COLUMN ─── */
-  .stats-col { display: flex; flex-direction: column; gap: 16px; }
-
-  /* ─── SKILLS (right col) ─── */
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
-  .skill-row {
-    display: flex; align-items: center; gap: 6px;
-    padding: 3px 0; border-bottom: 1px solid rgba(200,151,42,0.06); font-size:17px;
+  .spell-slots-pips { display:flex; gap:4px; }
+  .spell-slot-pip {
+    width:10px; height:10px; border:1px solid var(--primary-dim);
+    transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block;
   }
-  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
-  .skill-name { flex:1; color:var(--text-cream); font-size:17px; }
-  .skill-ab   { font-size:18px; color:var(--text-dim); }
-  .skill-val  { color:var(--primary-light); font-weight:700; font-size:18px; }
+  .spell-slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 5px var(--primary); }
+  .spell-slot-pip.used { background:transparent; border-color:rgba(200,151,42,0.2); }
 
-  @keyframes dropIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
-
-  /* ─── PASSIVE STATS ─── */
-  .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-  .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(200,151,42,0.03); }
-  .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
-  .passive-lbl { font-size:19px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
-
-  /* ─── SPELL SLOTS ─── */
-  .slot-grid { display:flex; flex-direction:column; gap:6px; }
-  .slot-row { display:flex; align-items:center; gap:8px; }
-  .slot-level { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
-  .slot-pips { display:flex; gap:5px; flex-wrap:wrap; }
-  .slot-pip {
-    width:14px; height:14px; border:1px solid var(--primary-dim);
-    cursor:pointer; transition:all 0.3s; transform:rotate(45deg);
+  .spell-entry { border-bottom:1px solid rgba(200,151,42,0.06); }
+  .spell-entry:last-child { border-bottom:none; }
+  .spell-toggle {
+    display:flex; align-items:center; gap:8px; padding:6px 6px 6px 10px;
+    cursor:pointer; user-select:none; list-style:none; transition:background 0.2s;
   }
-  .slot-pip.used { background:transparent; border-color:rgba(200,151,42,0.2); box-shadow:none; }
-  .slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .sheet { grid-template-columns:1fr; }
-    .portrait-col { position:static; }
-    .identity-bar { grid-template-columns:repeat(3,1fr); }
-    .ability-grid { grid-template-columns:repeat(3,1fr); }
-    .combat-grid  { grid-template-columns:repeat(2,1fr); }
-    .passive-grid { grid-template-columns:repeat(2,1fr); }
+  .spell-toggle::-webkit-details-marker { display:none; }
+  .spell-toggle:hover { background:rgba(200,151,42,0.04); }
+  .spell-name   { font-size:18px; color:var(--primary-light); flex:1; font-weight:600; }
+  .spell-tags   { display:flex; gap:5px; }
+  .spell-tag    { font-size:18px; letter-spacing:1px; color:var(--text-dim); padding:1px 5px; border:1px solid var(--dark-border); text-transform:uppercase; }
+  .spell-tag.conc { border-color:rgba(106,42,138,0.4); color:rgba(192,96,224,0.8); }
+  .spell-tag.ritual { border-color:rgba(200,151,42,0.4); color:var(--primary); }
+  .spell-arrow  { font-size:18px; color:var(--primary-dim); transition:transform 0.3s; }
+  details[open] .spell-arrow { transform:rotate(90deg); color:var(--primary); }
+  .spell-detail {
+    padding:6px 10px 10px 20px; font-family:'IM Fell English',serif;
+    font-size:18px; color:var(--text-dim); line-height:1.7;
+    border-top:1px solid rgba(200,151,42,0.06); animation:dropIn 0.2s ease;
   }
+  .spell-meta { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:6px; }
+  .spell-meta-item { font-size:19px; }
+  .spell-meta-label { color:var(--primary-dim); text-transform:uppercase; letter-spacing:1px; }
+  .spell-meta-val   { color:var(--primary-light); }
+  .spell-detail p   { margin-top:4px; }
+  .spell-detail .higher { margin-top:6px; padding-top:6px; border-top:1px solid rgba(200,151,42,0.08); color:rgba(192,96,224,0.8); }
+
+  /* ─── BACKSTORY (page 2) ─── */
+  .lore-box {
+    border:1px solid var(--dark-border); padding:14px;
+    background:rgba(200,151,42,0.03); font-family:'IM Fell English',serif;
+    font-size:18px; color:var(--text-dim); line-height:1.8; font-style:italic;
+  }
+  .lore-box strong { color:var(--primary); font-style:normal; }
+
+  /* ─── SPELLCASTING HEADER (page 2 DC bar) ─── */
+  .spell-header-stats {
+    display:flex; gap:20px; margin-bottom:14px; padding:10px 14px;
+    border:1px solid var(--dark-border); background:rgba(200,151,42,0.03);
+  }
+  .spell-hstat { text-align:center; }
+  .spell-hstat-val { font-family:'Cinzel Decorative',serif; font-size:20px; color:var(--primary-light); display:block; }
+  .spell-hstat-lbl { font-size:18px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; }
 
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════
-     HEADER
-════════════════════════════════ -->
-<div class="header">
-  <div class="char-emblem" data-path="identity.race">Race</div>
-  <div class="char-name"   data-path="identity.name">Character Name</div>
-  <div class="char-subtitle">
-    <span data-path="identity.subclass">Subclass</span>
-    &nbsp;·&nbsp;
-    <span data-path="identity.class">Class</span>
-    &nbsp;·&nbsp;
-    Level <span data-path="identity.level">1</span>
+
+<!-- ══════════════════════════════════
+     PAGE 1 — CORE STATS
+══════════════════════════════════ -->
+<div class="page" id="page-1">
+
+  <!-- Name Banner -->
+  <div class="name-banner">
+    <div class="name-box">
+      <div class="char-name-big" data-path="identity.name">Character Name</div>
+      <div class="name-sub">Character Name</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL <span data-path="identity.level">1</span> <span data-path="identity.class">Class</span></span></div>
+      <div class="info-cell"><span class="info-label">Background</span><span class="info-value" data-path="identity.background">Background</span></div>
+      <div class="info-cell"><span class="info-label">Player</span><span class="info-value" data-path="meta.player">Player</span></div>
+      <div class="info-cell"><span class="info-label">Race</span><span class="info-value" data-path="identity.race">Race</span></div>
+      <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value" data-path="identity.alignment">Alignment</span></div>
+      <div class="info-cell"><span class="info-label">Subclass</span><span class="info-value" data-path="identity.subclass">Subclass</span></div>
+    </div>
   </div>
-</div>
 
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+  <!-- Three-Column Sheet Body -->
+  <div class="sheet-body">
 
-<!-- IDENTITY BAR -->
-<div class="identity-bar">
-  <div class="id-cell"><span class="id-label">Class &amp; Level</span><span class="id-value"><span data-path="identity.class">Class</span> <span data-path="identity.level">1</span></span></div>
-  <div class="id-cell"><span class="id-label">Background</span><span class="id-value" data-path="identity.background">Background</span></div>
-  <div class="id-cell"><span class="id-label">Race</span><span class="id-value" data-path="identity.race">Race</span></div>
-  <div class="id-cell"><span class="id-label">Alignment</span><span class="id-value" data-path="identity.alignment">Alignment</span></div>
-  <div class="id-cell"><span class="id-label">Player</span><span class="id-value" data-path="meta.player">Player</span></div>
-  <div class="id-cell"><span class="id-label">Experience</span><span class="id-value"><span data-path="identity.experience">0</span> XP</span></div>
-</div>
+    <!-- ── LEFT: ABILITY SCORES ── -->
+    <div class="ability-col" id="text-abilities-container">
+      <!-- Populated by JS -->
 
-<!-- ════════════════════════════════
-     MAIN SHEET
-════════════════════════════════ -->
-<div class="sheet">
-
-  <!-- ── LEFT: PORTRAIT COLUMN ── -->
-  <div class="portrait-col">
-
-    <!-- Portrait Image -->
-    <div class="portrait-frame">
-      <div class="portrait-corner tl"></div>
-      <div class="portrait-corner tr"></div>
-      <div class="portrait-corner bl"></div>
-      <div class="portrait-corner br"></div>
-      <img class="portrait-img" data-src-path="identity.portrait_url" src="" alt="Character Portrait" id="portrait-img">
-    </div>
-
-    <!-- Hit Points -->
-    <div class="panel">
-      <div class="panel-title">Hit Points</div>
-      <div class="panel-body">
-        <div class="hp-display">
-          <span class="hp-current" data-path="combat.hp_current">10</span>
-          <span class="hp-sep">/</span>
-          <span class="hp-max" data-path="combat.hp_max">10</span>
-        </div>
-        <div class="hp-bar-bg">
-          <div class="hp-bar-fill" id="hp-bar" style="width:100%;"></div>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:10px;font-size:17px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
-          <span>Hit Dice: <span style="color:var(--primary-light);" data-path="combat.hit_dice_total">1d8</span></span>
-          <span>Temp: <span style="color:var(--primary-light);" data-path="combat.hp_temp">0</span></span>
-        </div>
+      <div class="proficiency-box" style="margin-top:4px;">
+        <span class="prof-val" data-path="combat.proficiency_bonus">+2</span>
+        <span class="prof-lbl">Proficiency Bonus</span>
       </div>
     </div>
 
-    <!-- Saving Throws -->
-    <div class="panel">
-      <div class="panel-title">Saving Throws</div>
-      <div class="panel-body">
-        <div class="save-grid" id="saves-container">
+    <!-- ── MID: MAIN STATS ── -->
+    <div class="mid-col">
+
+      <!-- Combat Stats -->
+      <div class="section">
+        <div class="section-title">Combat</div>
+        <div class="section-body">
+          <div class="combat-row">
+            <div class="combat-stat"><span class="cs-val" data-path="combat.ac">10</span><span class="cs-lbl">Armor Class</span></div>
+            <div class="combat-stat"><span class="cs-val" data-path="combat.initiative">+0</span><span class="cs-lbl">Initiative</span></div>
+            <div class="combat-stat"><span class="cs-val" data-path="combat.speed">30</span><span class="cs-lbl">Speed</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hit Points -->
+      <div class="section">
+        <div class="section-title">Hit Points</div>
+        <div class="section-body" style="text-align:center;">
+          <div style="font-size:18px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;">Maximum: <span data-path="combat.hp_max">10</span></div>
+          <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;" data-path="combat.hp_max">10</div>
+          <div class="hp-bar-bg"><div class="hp-bar-fill" id="text-hp-bar" style="width:100%;"></div></div>
+          <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
+            <div>
+              <div style="font-size:18px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--primary-light);margin-top:2px;" data-path="combat.hit_dice_total">1d8</div>
+            </div>
+            <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
+              <div style="font-size:18px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">Death Saves</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:18px;color:var(--primary-light);min-width:60px;">Successes</span>
+                <div style="display:flex;gap:6px;">
+                  <div class="pip success" onclick="togglePip(this,'success')"></div>
+                  <div class="pip success" onclick="togglePip(this,'success')"></div>
+                  <div class="pip success" onclick="togglePip(this,'success')"></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:18px;color:#cc4444;min-width:60px;">Failures</span>
+                <div style="display:flex;gap:6px;">
+                  <div class="pip failure" onclick="togglePip(this,'failure')"></div>
+                  <div class="pip failure" onclick="togglePip(this,'failure')"></div>
+                  <div class="pip failure" onclick="togglePip(this,'failure')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saving Throws -->
+      <div class="section">
+        <div class="section-title">Saving Throws</div>
+        <div class="section-body">
+          <div class="save-list" id="text-saves-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="section-body">
+          <div class="skill-list" id="text-skills-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Attacks -->
+      <div class="section">
+        <div class="section-title">Attacks &amp; Actions</div>
+        <div class="section-body">
+          <table class="attack-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Atk Bonus</th>
+                <th>Damage / Type</th>
+              </tr>
+            </thead>
+            <tbody id="text-attacks-container">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+
+          <!-- Class Resources (inline, below attacks) -->
+          <div id="text-resources-container" style="margin-top:12px;">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Proficiencies & Languages -->
+      <div class="section">
+        <div class="section-title">Proficiencies &amp; Languages</div>
+        <div class="section-body">
+          <div id="text-proficiencies-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end mid-col -->
+
+
+    <!-- ── RIGHT: FEATURES, TRAITS, EQUIPMENT ── -->
+    <div class="right-col">
+
+      <!-- Passive Senses -->
+      <div class="passive-box">
+        <span class="passive-val" data-path="combat.passive_perception">10</span>
+        <span class="passive-lbl">Passive Perception</span>
+      </div>
+      <div class="passive-box" style="margin-top:-1px;">
+        <span class="passive-val" data-path="combat.passive_investigation">10</span>
+        <span class="passive-lbl">Passive Investigation</span>
+      </div>
+      <div class="passive-box" style="margin-top:-1px;">
+        <span class="passive-val" data-path="combat.passive_insight">10</span>
+        <span class="passive-lbl">Passive Insight</span>
+      </div>
+
+      <!-- Features -->
+      <div class="section">
+        <div class="section-title">Features &amp; Abilities</div>
+        <div class="section-body" id="text-features-container" style="padding:6px 8px;">
           <!-- Populated by JS -->
         </div>
       </div>
-    </div>
 
-    <!-- Ability Scores -->
-    <div class="panel">
-      <div class="panel-title">Ability Scores</div>
-      <div class="panel-body">
-        <div class="ability-grid" id="abilities-container">
+      <!-- Traits -->
+      <div class="section">
+        <div class="section-title">Character Traits</div>
+        <div class="section-body" style="padding:4px 8px;" id="text-traits-container">
           <!-- Populated by JS -->
         </div>
       </div>
-    </div>
 
-    <!-- Backstory -->
-    <div class="panel">
-      <div class="panel-title">Background &amp; Lore</div>
-      <div class="panel-body">
-        <div class="backstory-box" data-path="backstory.summary">...</div>
-      </div>
-    </div>
-
-    <!-- Session Changelog -->
-    <div class="panel">
-      <div class="panel-title">Last Updated: <span data-path="meta.last_session_updated">Session 00</span></div>
-      <div class="panel-body" id="changelog-container">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-
-  </div><!-- end portrait-col -->
-
-
-  <!-- ── RIGHT: STATS COLUMN ── -->
-  <div class="stats-col">
-
-    <!-- Combat Stats -->
-    <div class="panel">
-      <div class="panel-title">Combat</div>
-      <div class="panel-body">
-        <div class="combat-grid">
-          <div class="combat-block"><span class="combat-value" data-path="combat.ac">10</span><span class="combat-label">Armor Class</span></div>
-          <div class="combat-block"><span class="combat-value" data-path="combat.initiative">+0</span><span class="combat-label">Initiative</span></div>
-          <div class="combat-block"><span class="combat-value" data-path="combat.speed">30</span><span class="combat-label">Speed (ft)</span></div>
-          <div class="combat-block"><span class="combat-value" data-path="combat.proficiency_bonus">+2</span><span class="combat-label">Proficiency</span></div>
+      <!-- Equipment -->
+      <div class="section">
+        <div class="section-title">Equipment</div>
+        <div class="section-body" style="padding:8px 10px;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:19px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+            <span>PP:<span style="color:var(--primary-light);" data-path="equipment.currency.pp"> 0</span></span>
+            <span>GP:<span style="color:var(--primary-light);" data-path="equipment.currency.gp"> 0</span></span>
+            <span>SP:<span style="color:var(--primary-light);" data-path="equipment.currency.sp"> 0</span></span>
+            <span>CP:<span style="color:var(--primary-light);" data-path="equipment.currency.cp"> 0</span></span>
+          </div>
+          <div id="text-equipment-container">
+            <!-- Populated by JS -->
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Passive Stats -->
-    <div class="panel">
-      <div class="panel-title">Passive Senses</div>
-      <div class="panel-body">
-        <div class="passive-grid">
-          <div class="passive-block"><span class="passive-val" data-path="combat.passive_perception">10</span><span class="passive-lbl">Perception</span></div>
-          <div class="passive-block"><span class="passive-val" data-path="combat.passive_investigation">10</span><span class="passive-lbl">Investigation</span></div>
-          <div class="passive-block"><span class="passive-val" data-path="combat.passive_insight">10</span><span class="passive-lbl">Insight</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Skills -->
-    <div class="panel">
-      <div class="panel-title">Skills</div>
-      <div class="panel-body">
-        <div class="skills-grid" id="skills-container">
+      <!-- Session Log -->
+      <div class="section">
+        <div class="section-title">Last Updated · <span data-path="meta.last_session_updated">Session 00</span></div>
+        <div class="section-body" style="padding:8px 10px;" id="text-changelog-container">
           <!-- Populated by JS -->
         </div>
       </div>
-    </div>
 
-    <!-- Spellcasting (hidden if not enabled) -->
-    <div class="panel" id="spellcasting-panel" style="display:none;">
-      <div class="panel-title">Spellcasting — DC <span data-path="spellcasting.spell_save_dc">10</span> · Atk <span data-path="spellcasting.spell_attack_bonus">+0</span></div>
-      <div class="panel-body">
-        <div class="slot-grid" id="spell-slots-container">
-          <!-- Populated by JS -->
+    </div><!-- end right-col -->
+
+  </div><!-- end sheet-body -->
+</div><!-- end page-1 -->
+
+
+<!-- ══════════════════════════════════
+     PAGE 2 — FEATURES & SPELLS
+══════════════════════════════════ -->
+<div class="page" id="page-2">
+  <div class="page2-header" data-path="identity.name">Character Name — Extended Reference</div>
+
+  <div class="page2-grid">
+
+    <!-- LEFT: SPELLS (hidden if not caster) -->
+    <div id="page2-spells-col">
+
+      <!-- Spellcasting header stats -->
+      <div id="page2-spell-header" style="display:none;">
+        <div class="spell-header-stats">
+          <div class="spell-hstat">
+            <span class="spell-hstat-val" data-path="spellcasting.spell_save_dc">10</span>
+            <span class="spell-hstat-lbl">Spell Save DC</span>
+          </div>
+          <div class="spell-hstat">
+            <span class="spell-hstat-val" data-path="spellcasting.spell_attack_bonus">+0</span>
+            <span class="spell-hstat-lbl">Spell Attack</span>
+          </div>
+          <div class="spell-hstat">
+            <span class="spell-hstat-val" id="spell-ability-display">INT</span>
+            <span class="spell-hstat-lbl">Casting Ability</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Class Resources -->
-    <div class="panel" id="resources-panel">
-      <div class="panel-title">Class Resources</div>
-      <div class="panel-body" id="resources-container">
-        <!-- Populated by JS -->
+      <div id="page2-spells-container">
+        <!-- Populated by JS for casters -->
+        <!-- For non-casters: extended features fill this column -->
       </div>
+
     </div>
 
-    <!-- Features & Traits -->
-    <div class="panel">
-      <div class="panel-title">Features &amp; Abilities</div>
-      <div class="panel-body" id="features-container">
-        <!-- Populated by JS -->
-      </div>
-    </div>
+    <!-- RIGHT: BACKSTORY & FULL FEATURES -->
+    <div>
 
-    <!-- Character Traits -->
-    <div class="panel">
-      <div class="panel-title">Character Traits</div>
-      <div class="panel-body" id="traits-container">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-
-    <!-- Equipment -->
-    <div class="panel">
-      <div class="panel-title">Equipment &amp; Inventory</div>
-      <div class="panel-body">
-        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:18px;color:var(--text-dim);font-family:'IM Fell English',serif;">
-          <span>PP: <span style="color:var(--primary-light);" data-path="equipment.currency.pp">0</span></span>
-          <span>GP: <span style="color:var(--primary-light);" data-path="equipment.currency.gp">0</span></span>
-          <span>EP: <span style="color:var(--primary-light);" data-path="equipment.currency.ep">0</span></span>
-          <span>SP: <span style="color:var(--primary-light);" data-path="equipment.currency.sp">0</span></span>
-          <span>CP: <span style="color:var(--primary-light);" data-path="equipment.currency.cp">0</span></span>
-        </div>
-        <div id="equipment-container">
-          <!-- Populated by JS -->
+      <!-- Full Backstory -->
+      <div class="section" style="margin-bottom:16px;">
+        <div class="section-title">History &amp; Lore</div>
+        <div class="section-body">
+          <div class="lore-box" id="text-backstory-container" data-path="backstory.full">...</div>
         </div>
       </div>
+
+      <!-- Appearance -->
+      <div class="section">
+        <div class="section-title">Appearance &amp; Notes</div>
+        <div class="section-body">
+          <div class="lore-box" data-path="traits.appearance">...</div>
+        </div>
+      </div>
+
     </div>
 
-  </div><!-- end stats-col -->
-</div><!-- end sheet -->
+  </div>
+</div><!-- end page-2 -->
 
 
 <!-- ════════════════════════════════
@@ -489,7 +572,7 @@
 ════════════════════════════════ -->
 <script>
 
-  // ── CONFIG ── Set these two variables for each character page
+  // ── CONFIG ── Set these for each character's text sheet
   window.CHARACTER_ID = "evo";   // must match key in party.json
   window.JSON_PATH    = "/dnd/player.json";   // path relative to this HTML file
 
@@ -505,33 +588,43 @@
     religion:        "Religion",        sleight_of_hand: "Sleight of Hand",
     stealth:         "Stealth",         survival:        "Survival"
   };
-
   const SAVE_LABELS = { str:"Strength", dex:"Dexterity", con:"Constitution", int:"Intelligence", wis:"Wisdom", cha:"Charisma" };
   const AB_LABELS   = { str:"STR", dex:"DEX", con:"CON", int:"INT", wis:"WIS", cha:"CHA" };
+  const AB_FULL     = { str:"Strength", dex:"Dexterity", con:"Constitution", int:"Intelligence", wis:"Wisdom", cha:"Charisma" };
 
   function get(obj, path) {
     return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
   }
-
   function mod(score) {
     const m = Math.floor((score - 10) / 2);
     return (m >= 0 ? "+" : "") + m;
   }
-
   function dot(filled, expertise) {
     const cls = expertise ? 'dot expertise' : filled ? 'dot filled' : 'dot';
     return `<div class="${cls}"></div>`;
   }
 
+  // Attack toggle (clickable row expand)
+  let atkCounter = 0;
+  function toggleAtk(id, cell) {
+    const box = document.getElementById(id);
+    const chv = cell.querySelector('.atk-chevron');
+    if (box) box.classList.toggle('open');
+    if (chv) chv.classList.toggle('open');
+  }
+
+  // Death save pip toggle
+  function togglePip(el, type) {
+    el.classList.toggle('active');
+  }
+
   fetch(window.JSON_PATH)
     .then(r => r.json())
     .then(json => {
-      const char     = json.characters[window.CHARACTER_ID];
-      const campaign = json.campaign;
-
+      const char = json.characters[window.CHARACTER_ID];
       if (!char) { console.error("CHARACTER_ID not found in party.json"); return; }
 
-      // ── 1. THEME COLORS from JSON ──
+      // ── 1. THEME COLORS ──
       const root = document.documentElement;
       root.style.setProperty('--primary',        char.identity.theme_color        || '#c8972a');
       root.style.setProperty('--primary-light',  char.identity.theme_color_light  || '#f0c050');
@@ -544,41 +637,27 @@
         if (val !== undefined) el.textContent = val;
       });
 
-      // ── 3. PORTRAIT IMAGE ──
-      const portraitEl = document.getElementById('portrait-img');
-      if (portraitEl && char.identity.portrait_url) {
-        portraitEl.src = char.identity.portrait_url;
-        portraitEl.alt = char.identity.name + " portrait";
-      }
+      // ── 3. PAGE TITLE ──
+      document.title = char.identity.name + " — Reference Sheet";
 
-      // ── 4. PAGE TITLE ──
-      document.title = char.identity.name + " — Character Sheet";
-
-      // ── 5. HP BAR ──
-      const hpBar = document.getElementById('hp-bar');
-      if (hpBar && char.combat.hp_max > 0) {
-        const pct = Math.max(0, Math.min(100, (char.combat.hp_current / char.combat.hp_max) * 100));
-        hpBar.style.width = pct + '%';
-        if (pct < 25) hpBar.style.background = '#8b1a1a';
-        else if (pct < 50) hpBar.style.background = '#8b6a1a';
-      }
-
-      // ── 6. ABILITY SCORES ──
-      const abGrid = document.getElementById('abilities-container');
-      if (abGrid) {
-        abGrid.innerHTML = Object.entries(char.abilities).map(([ab, score]) => `
+      // ── 4. ABILITY SCORES ──
+      const abContainer = document.getElementById('text-abilities-container');
+      if (abContainer) {
+        const abHTML = Object.entries(char.abilities).map(([ab, score]) => `
           <div class="ability-block">
             <span class="ab-name">${AB_LABELS[ab]}</span>
             <span class="ab-score">${score}</span>
-            <span class="ab-mod">${mod(score)}</span>
+            <div class="ab-mod-box">${mod(score)}</div>
           </div>
         `).join('');
+        // Insert before the proficiency box (which is hardcoded in HTML)
+        abContainer.insertAdjacentHTML('afterbegin', abHTML);
       }
 
-      // ── 7. SAVING THROWS ──
-      const savesContainer = document.getElementById('saves-container');
-      if (savesContainer) {
-        savesContainer.innerHTML = Object.entries(char.saving_throws).map(([ab, data]) => `
+      // ── 5. SAVING THROWS ──
+      const savesEl = document.getElementById('text-saves-container');
+      if (savesEl) {
+        savesEl.innerHTML = Object.entries(char.saving_throws).map(([ab, data]) => `
           <div class="save-row">
             ${dot(data.proficient, false)}
             <span class="save-name">${SAVE_LABELS[ab]}</span>
@@ -587,10 +666,10 @@
         `).join('');
       }
 
-      // ── 8. SKILLS ──
-      const skillsContainer = document.getElementById('skills-container');
-      if (skillsContainer) {
-        skillsContainer.innerHTML = Object.entries(char.skills).map(([key, data]) => `
+      // ── 6. SKILLS ──
+      const skillsEl = document.getElementById('text-skills-container');
+      if (skillsEl) {
+        skillsEl.innerHTML = Object.entries(char.skills).map(([key, data]) => `
           <div class="skill-row">
             ${dot(data.proficient || data.expertise, data.expertise)}
             <span class="skill-name">${SKILL_LABELS[key]}</span>
@@ -600,15 +679,76 @@
         `).join('');
       }
 
-      // ── 9. FEATURES ──
-      const featContainer = document.getElementById('features-container');
-      if (featContainer && char.features) {
-        featContainer.innerHTML = char.features.map(f => `
+      // ── 7. ATTACKS ──
+      const atksEl = document.getElementById('text-attacks-container');
+      if (atksEl && char.attacks) {
+        atksEl.innerHTML = char.attacks.map((atk, i) => {
+          const id = `atk_row_${i}`;
+          return `
+            <tr>
+              <td class="attack-name-cell" onclick="toggleAtk('${id}', this)">
+                ${atk.name} <span class="atk-chevron" id="chv_${i}">▶</span>
+              </td>
+              <td class="val">${atk.attack_bonus}</td>
+              <td>${atk.damage} ${atk.damage_type}</td>
+            </tr>
+            <tr class="attack-detail-row">
+              <td colspan="3">
+                <div class="attack-expand" id="${id}">
+                  ${atk.description}
+                  ${atk.enhanced_label ? `<br><br><strong>${atk.enhanced_label}:</strong> <em>${atk.enhanced_damage}</em>` : ''}
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // ── 8. CLASS RESOURCES ──
+      const resEl = document.getElementById('text-resources-container');
+      if (resEl && char.class_resources) {
+        resEl.innerHTML = Object.entries(char.class_resources).map(([key, res]) => {
+          const pips = Array.from({length: res.max}, (_, i) => `
+            <div class="resource-pip ${i < res.current ? 'active' : ''}"
+                 onclick="this.classList.toggle('active')"></div>
+          `).join('');
+          return `
+            <div style="padding:8px 10px;border:1px solid rgba(200,151,42,0.2);margin-bottom:6px;">
+              <div style="font-size:18px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">
+                ${res.label} (${res.max} / ${res.recharge})
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">${pips}</div>
+                ${res.description ? `<span style="font-family:'IM Fell English',serif;font-size:19px;color:var(--text-dim);font-style:italic;">${res.description}</span>` : ''}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // ── 9. PROFICIENCIES ──
+      const profEl = document.getElementById('text-proficiencies-container');
+      if (profEl && char.proficiencies) {
+        const p = char.proficiencies;
+        profEl.innerHTML = `
+          <p style="font-family:'IM Fell English',serif;font-size:18px;color:var(--text-dim);line-height:1.9;">
+            ${p.weapons?.length ? `<span class="prof-category">Weapons</span>${p.weapons.join(', ')}<br><br>` : ''}
+            ${p.armor?.length   ? `<span class="prof-category">Armor</span>${p.armor.join(', ')}<br><br>` : ''}
+            ${p.tools?.length   ? `<span class="prof-category">Tools</span>${p.tools.join(', ')}<br><br>` : ''}
+            ${p.languages?.length ? `<span class="prof-category">Languages</span>${p.languages.join(', ')}` : ''}
+          </p>
+        `;
+      }
+
+      // ── 10. FEATURES ──
+      const featEl = document.getElementById('text-features-container');
+      if (featEl && char.features) {
+        featEl.innerHTML = char.features.map(f => `
           <details class="feature-item">
             <summary class="feature-toggle">
               <div class="feature-gem"></div>
               <span class="feat-name">${f.name}</span>
-              <span class="feat-source">${f.source}</span>
+              <span class="feat-short">${f.source}</span>
               <span class="feat-arrow">▶</span>
             </summary>
             <div class="feature-detail">${f.description}</div>
@@ -616,11 +756,11 @@
         `).join('');
       }
 
-      // ── 10. TRAITS ──
-      const traitsContainer = document.getElementById('traits-container');
+      // ── 11. TRAITS ──
+      const traitsEl = document.getElementById('text-traits-container');
       const traitMap = { personality:"Personality", ideal:"Ideal", bond:"Bond", flaw:"Flaw" };
-      if (traitsContainer && char.traits) {
-        traitsContainer.innerHTML = Object.entries(traitMap).map(([key, label]) => `
+      if (traitsEl && char.traits) {
+        traitsEl.innerHTML = Object.entries(traitMap).map(([key, label]) => `
           <details class="trait-details">
             <summary class="trait-summary">
               <span class="trait-arrow">▶</span>
@@ -631,72 +771,102 @@
         `).join('');
       }
 
-      // ── 11. EQUIPMENT ──
-      const equipContainer = document.getElementById('equipment-container');
-      if (equipContainer && char.equipment && char.equipment.carried) {
-        equipContainer.innerHTML = char.equipment.carried.map(item => `
-          <div class="equip-item">
-            ${item.name}${item.description ? ` <span style="font-size:19px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
-            <span class="equip-qty">×${item.quantity}</span>
+      // ── 12. EQUIPMENT ──
+      const equipEl = document.getElementById('text-equipment-container');
+      if (equipEl && char.equipment?.carried) {
+        equipEl.innerHTML = char.equipment.carried.map(item => `
+          <div class="equip-item">${item.name} <span style="font-size:19px;color:var(--text-dim);margin-left:4px;">×${item.quantity}</span></div>
+        `).join('');
+      }
+
+      // ── 13. SESSION CHANGELOG ──
+      const changeEl = document.getElementById('text-changelog-container');
+      if (changeEl && char.meta.session_changes) {
+        changeEl.innerHTML = char.meta.session_changes.map(c => `
+          <div style="font-family:'IM Fell English',serif;font-size:19px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(200,151,42,0.06);display:flex;gap:6px;">
+            <span style="color:var(--primary);">▸</span>${c}
           </div>
         `).join('');
       }
 
-      // ── 12. CLASS RESOURCES ──
-      const resContainer = document.getElementById('resources-container');
-      if (resContainer && char.class_resources) {
-        const entries = Object.entries(char.class_resources);
-        if (entries.length === 0) {
-          document.getElementById('resources-panel').style.display = 'none';
-        } else {
-          resContainer.innerHTML = entries.map(([key, res]) => `
-            <div style="margin-bottom:12px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-size:19px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
-                <span style="font-size:19px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
-              </div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                ${Array.from({length: res.max}, (_, i) => `
-                  <div class="slot-pip ${i < res.current ? 'available' : 'used'}"
-                       onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
-                `).join('')}
-              </div>
-              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:19px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
-            </div>
-          `).join('');
-        }
-      }
+      // ── 14. SPELLCASTING (Page 2) ──
+      const spellHeader = document.getElementById('page2-spell-header');
+      const spellsCol   = document.getElementById('page2-spells-container');
+      if (char.spellcasting && char.spellcasting.enabled && spellsCol) {
+        if (spellHeader) spellHeader.style.display = '';
 
-      // ── 13. SPELLCASTING ──
-      const spellPanel = document.getElementById('spellcasting-panel');
-      const slotsContainer = document.getElementById('spell-slots-container');
-      if (char.spellcasting && char.spellcasting.enabled && spellPanel && slotsContainer) {
-        spellPanel.style.display = '';
+        // Casting ability display
+        const abilityEl = document.getElementById('spell-ability-display');
+        if (abilityEl) abilityEl.textContent = (char.spellcasting.ability || 'int').toUpperCase();
+
+        // Group spells by level
+        const spells = char.spellcasting.spells || [];
+        const byLevel = {};
+        spells.forEach(s => {
+          const lvl = s.level;
+          if (!byLevel[lvl]) byLevel[lvl] = [];
+          byLevel[lvl].push(s);
+        });
+
         const slots = char.spellcasting.spell_slots;
-        slotsContainer.innerHTML = Object.entries(slots)
-          .filter(([, s]) => s.max > 0)
-          .map(([key, s]) => {
-            const lvl = key.replace('level_', '');
-            return `
-              <div class="slot-row">
-                <span class="slot-level">Level ${lvl}</span>
-                <div class="slot-pips">
-                  ${Array.from({length: s.max}, (_, i) => `
-                    <div class="slot-pip ${i < s.current ? 'available' : 'used'}"
-                         onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
-                  `).join('')}
-                </div>
-              </div>
-            `;
-          }).join('');
-      }
 
-      // ── 14. SESSION CHANGELOG ──
-      const changelogContainer = document.getElementById('changelog-container');
-      if (changelogContainer && char.meta.session_changes) {
-        changelogContainer.innerHTML = char.meta.session_changes.map(c => `
-          <div class="changelog-item">${c}</div>
-        `).join('');
+        spellsCol.innerHTML = Object.keys(byLevel).sort((a,b) => a-b).map(lvl => {
+          const slotKey = lvl == 0 ? null : `level_${lvl}`;
+          const slotData = slotKey && slots[slotKey];
+          const levelLabel = lvl == 0 ? 'Cantrips' : `Level ${lvl} Spells`;
+
+          const pips = slotData && slotData.max > 0
+            ? `<div class="spell-slots-pips">${Array.from({length: slotData.max}, (_, i) => `
+                <div class="spell-slot-pip ${i < slotData.current ? 'available' : 'used'}"
+                     onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+              `).join('')}</div>`
+            : '';
+
+          const spellEntries = byLevel[lvl].map(s => `
+            <details class="spell-entry">
+              <summary class="spell-toggle">
+                <span class="spell-name">${s.name}</span>
+                <div class="spell-tags">
+                  ${s.concentration ? '<span class="spell-tag conc">C</span>' : ''}
+                  ${s.ritual        ? '<span class="spell-tag ritual">R</span>' : ''}
+                  ${s.school        ? `<span class="spell-tag">${s.school.slice(0,4)}</span>` : ''}
+                </div>
+                <span class="spell-arrow">▶</span>
+              </summary>
+              <div class="spell-detail">
+                <div class="spell-meta">
+                  <div class="spell-meta-item"><span class="spell-meta-label">Cast: </span><span class="spell-meta-val">${s.casting_time || '—'}</span></div>
+                  <div class="spell-meta-item"><span class="spell-meta-label">Range: </span><span class="spell-meta-val">${s.range || '—'}</span></div>
+                  <div class="spell-meta-item"><span class="spell-meta-label">Duration: </span><span class="spell-meta-val">${s.duration || '—'}</span></div>
+                  <div class="spell-meta-item"><span class="spell-meta-label">Components: </span><span class="spell-meta-val">${s.components || '—'}</span></div>
+                </div>
+                <p>${s.description}</p>
+                ${s.higher_levels ? `<p class="higher"><em>Higher Levels:</em> ${s.higher_levels}</p>` : ''}
+              </div>
+            </details>
+          `).join('');
+
+          return `
+            <div class="spell-level-block">
+              <div class="spell-level-header">
+                <span>${levelLabel}</span>
+                ${pips}
+              </div>
+              ${spellEntries}
+            </div>
+          `;
+        }).join('');
+
+      } else if (spellsCol) {
+        // Non-caster: show additional features on page 2 left col
+        spellsCol.innerHTML = `
+          <div class="section">
+            <div class="section-title">Extended Features</div>
+            <div class="section-body" style="font-family:'IM Fell English',serif;font-size:18px;color:var(--text-dim);line-height:1.8;font-style:italic;">
+              No spellcasting. Class features listed on page one.
+            </div>
+          </div>
+        `;
       }
 
     })
