@@ -1327,8 +1327,7 @@
         "personality": "The best way to get me to do something is to tell me I can't.",
         "ideal": "I will do whatever it takes to become wealthy.",
         "bond": "I will do anything to prove myself superior to my hated rival (moogle).",
-        "flaw": "I'm quick to assume that someone is trying to cheat me.",
-        "appearance": "Age: 25 · Height: 6'7\" · Weight: 240 lbs · Eyes: Blue · Skin: Bronze · Hair: None"
+        "flaw": "I'm quick to assume that someone is trying to cheat me."
       },
       "spellcasting": {
         "enabled": true,
@@ -1465,7 +1464,15 @@
       },
       "backstory": {
         "summary": "A lowly intern. Evo saw a job ad for Moogle, a Fortune 5000 company, and got hired on the spot — but misread the description. They didn't want a cleric; they wanted a clerk. He spent his time in the archives learning their secrets, and now aims to undercut them by starting his own information company: Duck Duck Dragon. He joined a random party to get startup funds.",
-        "full": "A lowly intern who stumbled into the wrong career and decided to own it. Evo applied to Moogle, misread the job description, and arrived as a Cleric when they wanted a clerk. The mockery was immediate. Rather than quit, he spent every spare hour in the company archives, memorizing partner lists, contracts, and leverage. When he finally walked out, he had a plan: Duck Duck Dragon, his own information brokerage. He joined an adventuring party for seed money."
+        "full": "A lowly intern. I saw a job ad for a big fortune 5000 company called Moogle & got hired on the spot. But I read the job description wrong — they didn't want a cleric, they wanted a clerc(k). They all made fun of me for that. I used my time in the archives to learn most of their partners and I aim to undercut them in the global markets by starting my own information company called Duck Duck Dragon. I need money for my startup so I joined a random party to get funds."
+      },
+      "appearance": {
+        "age": "25",
+        "height": "6'7\"",
+        "weight": "240 lbs",
+        "eyes": "Blue",
+        "skin": "Bronze",
+        "hair": "None"
       }
     }
   }
