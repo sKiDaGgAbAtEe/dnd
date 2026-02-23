@@ -236,7 +236,7 @@
     color:var(--primary-light); letter-spacing:4px; text-transform:uppercase;
     text-align:center; padding-bottom:16px; border-bottom:1px solid var(--dark-border); margin-bottom:20px;
   }
-  .page2-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
 
   /* ─── SPELLS ─── */
   .spell-level-block { margin-bottom:16px; }
@@ -514,8 +514,45 @@
 
   <div class="page2-grid">
 
-    <!-- LEFT: SPELLS (hidden if not caster) -->
-    <div id="page2-spells-col">
+    <!-- LEFT (260px): TRAITS, FEATURES, EQUIPMENT -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <!-- Character Traits -->
+      <div class="section">
+        <div class="section-title">Character Traits</div>
+        <div class="section-body" style="padding:4px 8px;" id="text-traits-container-p2">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Features & Abilities -->
+      <div class="section">
+        <div class="section-title">Features &amp; Abilities</div>
+        <div class="section-body" style="padding:6px 8px;" id="text-features-container-p2">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Equipment -->
+      <div class="section">
+        <div class="section-title">Equipment</div>
+        <div class="section-body" style="padding:8px 10px;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:19px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+            <span>PP:<span style="color:var(--primary-light);" data-path="equipment.currency.pp"> 0</span></span>
+            <span>GP:<span style="color:var(--primary-light);" data-path="equipment.currency.gp"> 0</span></span>
+            <span>SP:<span style="color:var(--primary-light);" data-path="equipment.currency.sp"> 0</span></span>
+            <span>CP:<span style="color:var(--primary-light);" data-path="equipment.currency.cp"> 0</span></span>
+          </div>
+          <div id="text-equipment-container-p2">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end left -->
+
+    <!-- RIGHT (1fr): SPELLS + BACKSTORY -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
 
       <!-- Spellcasting header stats -->
       <div id="page2-spell-header" style="display:none;">
@@ -535,18 +572,15 @@
         </div>
       </div>
 
-      <div id="page2-spells-container">
-        <!-- Populated by JS for casters -->
-        <!-- For non-casters: extended features fill this column -->
+      <!-- Spells / Extended Features -->
+      <div id="page2-spells-col">
+        <div id="page2-spells-container">
+          <!-- Populated by JS for casters -->
+        </div>
       </div>
 
-    </div>
-
-    <!-- RIGHT: BACKSTORY & FULL FEATURES -->
-    <div>
-
       <!-- Full Backstory -->
-      <div class="section" style="margin-bottom:16px;">
+      <div class="section">
         <div class="section-title">History &amp; Lore</div>
         <div class="section-body">
           <div class="lore-box" id="text-backstory-container" data-path="backstory.full">...</div>
@@ -561,7 +595,7 @@
         </div>
       </div>
 
-    </div>
+    </div><!-- end right -->
 
   </div>
 </div><!-- end page-2 -->
@@ -742,8 +776,8 @@
 
       // ── 10. FEATURES ──
       const featEl = document.getElementById('text-features-container');
-      if (featEl && char.features) {
-        featEl.innerHTML = char.features.map(f => `
+      const featElP2 = document.getElementById('text-features-container-p2');
+      const featHTML = char.features ? char.features.map(f => `
           <details class="feature-item">
             <summary class="feature-toggle">
               <div class="feature-gem"></div>
@@ -753,14 +787,15 @@
             </summary>
             <div class="feature-detail">${f.description}</div>
           </details>
-        `).join('');
-      }
+        `).join('') : '';
+      if (featEl) featEl.innerHTML = featHTML;
+      if (featElP2) featElP2.innerHTML = featHTML;
 
       // ── 11. TRAITS ──
-      const traitsEl = document.getElementById('text-traits-container');
       const traitMap = { personality:"Personality", ideal:"Ideal", bond:"Bond", flaw:"Flaw" };
-      if (traitsEl && char.traits) {
-        traitsEl.innerHTML = Object.entries(traitMap).map(([key, label]) => `
+      const traitsEl = document.getElementById('text-traits-container');
+      const traitsElP2 = document.getElementById('text-traits-container-p2');
+      const traitsHTML = char.traits ? Object.entries(traitMap).map(([key, label]) => `
           <details class="trait-details">
             <summary class="trait-summary">
               <span class="trait-arrow">▶</span>
@@ -768,16 +803,18 @@
             </summary>
             <div class="trait-body">${char.traits[key] || '—'}</div>
           </details>
-        `).join('');
-      }
+        `).join('') : '';
+      if (traitsEl) traitsEl.innerHTML = traitsHTML;
+      if (traitsElP2) traitsElP2.innerHTML = traitsHTML;
 
       // ── 12. EQUIPMENT ──
       const equipEl = document.getElementById('text-equipment-container');
-      if (equipEl && char.equipment?.carried) {
-        equipEl.innerHTML = char.equipment.carried.map(item => `
+      const equipElP2 = document.getElementById('text-equipment-container-p2');
+      const equipHTML = char.equipment?.carried ? char.equipment.carried.map(item => `
           <div class="equip-item">${item.name} <span style="font-size:19px;color:var(--text-dim);margin-left:4px;">×${item.quantity}</span></div>
-        `).join('');
-      }
+        `).join('') : '';
+      if (equipEl) equipEl.innerHTML = equipHTML;
+      if (equipElP2) equipElP2.innerHTML = equipHTML;
 
       // ── 13. SESSION CHANGELOG ──
       const changeEl = document.getElementById('text-changelog-container');
