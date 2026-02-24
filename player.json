@@ -711,397 +711,249 @@
         "summary": "She arrived at Witherbloom with pressed flowers already in her spellbook and a question she hadn't told anyone yet. The swamp suited her — it didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does life end and death begin, and is anything actually living in that gap? She is very small. She compensates with extraordinary thoroughness. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index."
       }
     },
-    "slot3": {
+   "slot3": {
   "identity": {
     "name": "Raven",
-    "race": "Reborn (formerly Human)",
-    "class": "Sorcerer",
-    "subclass": "Draconic Bloodline (Black)",
+    "race": "Shadar-kai",
+    "class": "Rogue",
+    "subclass": "Assassin",
     "level": 1,
-    "background": "Haunted One",
-    "alignment": "Chaotic Neutral",
+    "background": "Spy",
+    "alignment": "True Neutral",
     "experience": 0,
     "portrait_url": "/dnd/raven.png",
-    "theme_color": "#4a4a7a",
-"theme_color":        "#6060a0",
-"theme_color_light":  "#9090c8",
-"theme_color_bright": "#c8c8e8",
-"theme_color_dim":    "#2d2d4a",
-"theme_rgb":          "96,96,160"
+    "theme_color": "#5a5a7a",
+    "theme_color_light": "#9090b8",
+    "theme_color_bright": "#c8c8e8",
+    "theme_color_dim": "#2d2d4a",
+    "theme_rgb": "90,90,122"
   },
   "meta": {
-    "player": "Rose",
+    "player": "Ilyasviel",
     "last_session_updated": "Session 00",
     "session_changes": []
   },
   "abilities": {
-    "str": 8,
-    "dex": 14,
+    "str": 15,
+    "dex": 18,
     "con": 15,
-    "int": 13,
-    "wis": 10,
-    "cha": 16
+    "int": 11,
+    "wis": 16,
+    "cha": 14
   },
   "saving_throws": {
-    "str": {
-      "proficient": false,
-      "value": "-1"
-    },
-    "dex": {
-      "proficient": false,
-      "value": "+2"
-    },
-    "con": {
-      "proficient": true,
-      "value": "+4"
-    },
-    "int": {
-      "proficient": false,
-      "value": "+1"
-    },
-    "wis": {
-      "proficient": false,
-      "value": "+0"
-    },
-    "cha": {
-      "proficient": true,
-      "value": "+5"
-    }
+    "str": { "proficient": false, "value": "+2" },
+    "dex": { "proficient": true,  "value": "+6" },
+    "con": { "proficient": false, "value": "+2" },
+    "int": { "proficient": true,  "value": "+2" },
+    "wis": { "proficient": false, "value": "+3" },
+    "cha": { "proficient": false, "value": "+2" }
   },
   "combat": {
-    "hp_max": 8,
-    "hp_current": 8,
+    "hp_max": 10,
+    "hp_current": 10,
     "hp_temp": 0,
-    "ac": 12,
-    "initiative": "+2",
+    "ac": 15,
+    "initiative": "+4",
     "speed": 30,
     "proficiency_bonus": "+2",
-    "hit_dice_total": "1d6",
-    "passive_perception": 10,
-    "passive_investigation": 13,
-    "passive_insight": 10
+    "hit_dice_total": "1d8",
+    "passive_perception": 15,
+    "passive_investigation": 10,
+    "passive_insight": 13
   },
   "skills": {
-    "acrobatics": {
-      "ability": "dex",
-      "proficient": false,
-      "expertise": false,
-      "value": "+2"
-    },
-    "animal_handling": {
-      "ability": "wis",
-      "proficient": false,
-      "expertise": false,
-      "value": "+0"
-    },
-    "arcana": {
-      "ability": "int",
-      "proficient": true,
-      "expertise": false,
-      "value": "+3"
-    },
-    "athletics": {
-      "ability": "str",
-      "proficient": false,
-      "expertise": false,
-      "value": "-1"
-    },
-    "deception": {
-      "ability": "cha",
-      "proficient": true,
-      "expertise": false,
-      "value": "+5"
-    },
-    "history": {
-      "ability": "int",
-      "proficient": false,
-      "expertise": false,
-      "value": "+1"
-    },
-    "insight": {
-      "ability": "wis",
-      "proficient": false,
-      "expertise": false,
-      "value": "+0"
-    },
-    "intimidation": {
-      "ability": "cha",
-      "proficient": false,
-      "expertise": false,
-      "value": "+3"
-    },
-    "investigation": {
-      "ability": "int",
-      "proficient": true,
-      "expertise": false,
-      "value": "+3"
-    },
-    "medicine": {
-      "ability": "wis",
-      "proficient": false,
-      "expertise": false,
-      "value": "+0"
-    },
-    "nature": {
-      "ability": "int",
-      "proficient": false,
-      "expertise": false,
-      "value": "+1"
-    },
-    "perception": {
-      "ability": "wis",
-      "proficient": false,
-      "expertise": false,
-      "value": "+0"
-    },
-    "performance": {
-      "ability": "cha",
-      "proficient": false,
-      "expertise": false,
-      "value": "+3"
-    },
-    "persuasion": {
-      "ability": "cha",
-      "proficient": true,
-      "expertise": false,
-      "value": "+5"
-    },
-    "religion": {
-      "ability": "int",
-      "proficient": false,
-      "expertise": false,
-      "value": "+1"
-    },
-    "sleight_of_hand": {
-      "ability": "dex",
-      "proficient": false,
-      "expertise": false,
-      "value": "+2"
-    },
-    "stealth": {
-      "ability": "dex",
-      "proficient": false,
-      "expertise": false,
-      "value": "+2"
-    },
-    "survival": {
-      "ability": "wis",
-      "proficient": true,
-      "expertise": false,
-      "value": "+2"
-    }
+    "acrobatics":      { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+    "deception":       { "ability": "cha", "proficient": true,  "expertise": true,  "value": "+6" },
+    "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
+    "performance":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "sleight_of_hand": { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+    "stealth":         { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+    "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
   },
   "attacks": [
     {
+      "name": "Shortsword",
+      "type": "Simple Melee Weapon",
+      "attack": "+6",
+      "damage": "1d6+4",
+      "damage_type": "Piercing",
+      "detail": "Melee Weapon Attack. Finesse, light. Primary blade."
+    },
+    {
       "name": "Dagger",
-      "type": "Simple Melee/Ranged",
+      "type": "Simple Melee/Ranged Weapon",
+      "attack": "+6",
+      "damage": "1d4+4",
+      "damage_type": "Piercing",
+      "detail": "Melee or Ranged (20/60 ft). Finesse, light, thrown. Carries two."
+    },
+    {
+      "name": "Shortbow",
+      "type": "Simple Ranged Weapon",
+      "attack": "+6",
+      "damage": "1d6+4",
+      "damage_type": "Piercing",
+      "detail": "Ranged Weapon Attack. Range 80/320 ft. 20 arrows carried."
+    },
+    {
+      "name": "Crowbar",
+      "type": "Improvised Melee",
       "attack": "+4",
       "damage": "1d4+2",
-      "damage_type": "Piercing",
-      "detail": "Melee or Ranged Weapon Attack (range 20/60). Finesse, light, thrown."
+      "damage_type": "Bludgeoning",
+      "detail": "Improvised weapon. Also grants advantage on STR checks to force open doors and containers."
     },
     {
-      "name": "Light Crossbow",
-      "type": "Simple Ranged",
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
       "attack": "+4",
-      "damage": "1d8+2",
-      "damage_type": "Piercing",
-      "detail": "Ranged Weapon Attack (range 80/320). Loading, two-handed."
-    },
-    {
-      "name": "Acid Splash",
-      "type": "Cantrip",
-      "attack": "—",
-      "damage": "1d6",
-      "damage_type": "Acid",
-      "detail": "DEX Save DC 13. One or two creatures within 5 ft of each other. Range 60 ft."
-    },
-    {
-      "name": "Ray of Frost",
-      "type": "Cantrip",
-      "attack": "+5",
-      "damage": "1d8",
-      "damage_type": "Cold",
-      "detail": "Ranged Spell Attack. Range 60 ft. Target speed reduced by 10 ft until start of your next turn."
-    },
-    {
-      "name": "Fire Bolt",
-      "type": "Cantrip",
-      "attack": "+5",
-      "damage": "1d10",
-      "damage_type": "Fire",
-      "detail": "Ranged Spell Attack. Range 120 ft. Can ignite flammable objects."
-    },
-    {
-      "name": "Shocking Grasp",
-      "type": "Cantrip",
-      "attack": "+5",
-      "damage": "1d8",
-      "damage_type": "Lightning",
-      "detail": "Melee Spell Attack. Advantage on attack if target is wearing metal armor. Target can't take reactions until start of its next turn."
+      "damage": "1d1+2",
+      "damage_type": "Bludgeoning",
+      "detail": "Last resort."
     }
   ],
   "spellcasting": {
-    "enabled": true,
-    "ability": "cha",
-    "spell_save_dc": 13,
-    "spell_attack_bonus": "+5",
+    "enabled": false,
+    "ability": "wis",
+    "spell_save_dc": 0,
+    "spell_attack_bonus": "+0",
     "spell_slots": {
-      "level_1": {
-        "max": 2,
-        "current": 2
-      },
-      "level_2": {
-        "max": 0,
-        "current": 0
-      },
-      "level_3": {
-        "max": 0,
-        "current": 0
-      },
-      "level_4": {
-        "max": 0,
-        "current": 0
-      },
-      "level_5": {
-        "max": 0,
-        "current": 0
-      }
-    },
-    "cantrips": [
-      "Acid Splash",
-      "Ray of Frost",
-      "Fire Bolt",
-      "Shocking Grasp"
-    ],
-    "spells_known": {
-      "level_1": [
-        "Mage Armor",
-        "Chromatic Orb"
-      ]
+      "level_1": { "max": 0, "current": 0 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
     }
   },
   "class_resources": {
-    "sorcery_points": {
-      "label": "Sorcery Points",
+    "sneak_attack": {
+      "label": "Sneak Attack",
       "max": 1,
       "current": 1,
+      "recharge": "Per Turn",
+      "description": "Once per turn. Extra 1d6 damage on a hit with a finesse or ranged weapon if you have advantage, or an ally is adjacent to the target and you don't have disadvantage."
+    },
+    "blessing_of_the_raven_queen": {
+      "label": "Blessing of the Raven Queen",
+      "max": 2,
+      "current": 2,
       "recharge": "Long Rest",
-      "description": "Flexible Casting and Metamagic fuel. Gained at level 2, but tracked here."
+      "description": "Bonus action: teleport up to 30 ft to an unoccupied space you can see. Uses = proficiency bonus. At level 3, gain resistance to all damage until the start of your next turn when you teleport."
     }
   },
   "features": [
     {
-      "name": "Draconic Resilience",
-      "source": "Sorcerer 1 (Draconic Bloodline)",
-      "description": "HP max increases by 1 per sorcerer level. When not wearing armor, AC = 13 + DEX modifier (currently 15, but using 12 due to equipment choice)."
+      "name": "Expertise",
+      "source": "Rogue 1",
+      "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics — the full suite of someone who was never where you thought she was."
     },
     {
-      "name": "Draconic Ancestor: Black Dragon",
-      "source": "Sorcerer 1 (Draconic Bloodline)",
-      "description": "You can speak, read, and write Draconic. Whenever you make a CHA check when interacting with dragons, your proficiency bonus is doubled if it applies. Damage type associated with ancestor: Acid."
+      "name": "Sneak Attack",
+      "source": "Rogue 1",
+      "description": "Once per turn, deal extra 1d6 damage with a finesse or ranged weapon when you have advantage on the attack roll, or when an ally is within 5 ft of the target and you don't have disadvantage. Scales with rogue level."
     },
     {
-      "name": "Deathless Nature",
-      "source": "Reborn",
-      "description": "You have escaped death. You have advantage on saving throws against disease and being poisoned, and you have resistance to poison damage. You don't need to eat, drink, breathe, or sleep. You finish a long rest in 4 hours if you spend it in an inactive, motionless state."
+      "name": "Thieves' Cant",
+      "source": "Rogue 1",
+      "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols — safe houses, territorial markers, danger warnings. Only other Thieves' Cant speakers understand the hidden layer."
     },
     {
-      "name": "Knowledge from a Past Life",
-      "source": "Reborn",
-      "description": "You can add 1d6 to an ability check using a skill you're not proficient in. You can use this feature a number of times equal to your proficiency bonus (+2). You regain all expended uses on a long rest."
+      "name": "Blessing of the Raven Queen",
+      "source": "Shadar-kai",
+      "description": "Bonus action: teleport up to 30 ft to any unoccupied space in sight. Uses = proficiency bonus (2) per long rest. At level 3, she becomes ghostly and translucent, gaining resistance to all damage until the start of her next turn after teleporting."
     },
     {
-      "name": "Heart of Darkness",
-      "source": "Haunted One",
-      "description": "Those who look into your eyes can see you have faced unimaginable horror and are not easily broken. Common folk go out of their way to help you, though they may be fearful. They will offer shelter, aid, and assistance—not out of kindness, but out of fear of what might happen if they don't."
+      "name": "Darkvision",
+      "source": "Shadar-kai",
+      "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness — only shades of grey."
     },
     {
-      "name": "Harrowing Event",
-      "source": "Haunted One",
-      "description": "Prior to becoming a Reborn, you witnessed something that still haunts you. You escaped, but others weren't so lucky. The memory consumes you, and you've dedicated yourself to understanding what happened—and preventing it from happening again."
+      "name": "Fey Ancestry",
+      "source": "Shadar-kai",
+      "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
+    },
+    {
+      "name": "Necrotic Resistance",
+      "source": "Shadar-kai",
+      "description": "Resistance to necrotic damage."
+    },
+    {
+      "name": "Trance",
+      "source": "Shadar-kai",
+      "description": "Does not sleep. Meditates for 4 hours instead, gaining the benefit of a full 8-hour rest."
+    },
+    {
+      "name": "Criminal Contact",
+      "source": "Spy Background",
+      "description": "A reliable network contact who acts as liaison to a broader criminal web. Can send and receive messages across great distances through local messengers, corrupt caravan masters, and seedy sailors."
     }
   ],
   "proficiencies": {
-    "armor": [],
+    "armor": ["Light Armor"],
     "weapons": [
-      "Daggers",
-      "Darts",
-      "Slings",
-      "Quarterstaffs",
-      "Light Crossbows"
+      "Simple Weapons",
+      "Hand Crossbow",
+      "Longsword",
+      "Rapier",
+      "Shortsword"
     ],
-    "tools": [],
-    "languages": [
-      "Common",
-      "Draconic",
-      "Infernal"
-    ]
+    "tools": ["Thieves' Tools"],
+    "languages": ["Common", "Thieves' Cant", "Undercommon"]
   },
   "traits": {
-    "personality": "She speaks in riddles and metaphors, not because she's trying to be cryptic, but because literal language feels too small for what she's trying to express. She's patient with those willing to think, and dismissive of those who prefer easy answers.",
-    "ideal": "Knowledge is survival. The world hides its rules behind assumptions and tradition. She will find the truth underneath—no matter how uncomfortable it makes people.",
-    "bond": "She carries a black feather that never decays. It's a fragment of the moment she died—and the moment she came back. She doesn't know what it means yet, but it hums when magic is near.",
-    "flaw": "She has difficulty connecting with others emotionally. Death rewrote something fundamental in her—she can't feel fear the way she used to, and joy feels muted. She envies those who still burn with life."
+    "personality": "Moves through a room like she was never in it. Helpful to the party in ways that are difficult to trace back to her. Denies taking things even when they are visibly in her belt pouch.",
+    "ideal": "Information and positioning. She is never the most powerful person in the room — she is the one who knows where all the exits are.",
+    "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts — never admits it.",
+    "flaw": "If it catches the light, she wants it. She is aware this is a problem. She has decided it is not a problem."
+  },
+  "physical": {
+    "age": null,
+    "height": null,
+    "weight": null,
+    "eyes": null,
+    "skin": "Ashen grey",
+    "hair": null
   },
   "equipment": {
     "currency": {
       "pp": 0,
-      "gp": 3,
+      "gp": 15,
       "ep": 0,
-      "sp": 5,
+      "sp": 0,
       "cp": 0
     },
+    "encumbrance": {
+      "total_weight": 78.5,
+      "light_threshold": 75,
+      "heavy_threshold": 150,
+      "max_threshold": 300
+    },
     "carried": [
-      {
-        "name": "Light Crossbow",
-        "quantity": 1,
-        "description": "Simple ranged weapon"
-      },
-      {
-        "name": "Crossbow Bolts",
-        "quantity": 20,
-        "description": "Ammunition"
-      },
-      {
-        "name": "Dagger",
-        "quantity": 2,
-        "description": "Simple melee/thrown weapon"
-      },
-      {
-        "name": "Arcane Focus (Crystal)",
-        "quantity": 1,
-        "description": "Black crystal that reflects no light"
-      },
-      {
-        "name": "Dungeoneer's Pack",
-        "quantity": 1,
-        "description": "Includes backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, rope"
-      },
-      {
-        "name": "Monster Hunter's Pack",
-        "quantity": 1,
-        "description": "Chest, crowbar, hammer, stakes, holy symbol, holy water, manacles, mirror, oil, tinderbox, torches"
-      },
-      {
-        "name": "Dark Common Clothes",
-        "quantity": 1,
-        "description": "Worn and travel-stained"
-      },
-      {
-        "name": "Black Feather (Trinket)",
-        "quantity": 1,
-        "description": "Never decays. Hums near magic. Fragment of death and rebirth."
-      },
-      {
-        "name": "Belt Pouch",
-        "quantity": 1,
-        "description": "Contains currency"
-      }
+      { "name": "Shortsword",            "quantity": 1, "description": "Primary blade." },
+      { "name": "Dagger",                "quantity": 2, "description": "Finesse, light, thrown." },
+      { "name": "Shortbow",              "quantity": 1, "description": "Range 80/320 ft." },
+      { "name": "Arrows",               "quantity": 20, "description": "Standard ammunition." },
+      { "name": "Crowbar",               "quantity": 1, "description": "Advantage on STR checks to force open things. Also a weapon if it comes to it." },
+      { "name": "Leather Armor",         "quantity": 1, "description": "AC 15." },
+      { "name": "Thieves' Tools",        "quantity": 1, "description": "Tool proficiency." },
+      { "name": "Burglar's Pack",        "quantity": 1, "description": "Standard adventuring supplies." },
+      { "name": "Dark Hooded Clothes",   "quantity": 1, "description": "Common clothes. Functional. Preferred." }
     ]
   },
   "backstory": {
-    "summary": "She died. That much she remembers—the cold, the dark, the way sound fell away like water draining from a basin. Then she woke. Not in a grave. Not in a temple. In a ruin older than any map she's seen since. Something brought her back, but it wasn't kindness. It was purpose. She doesn't know what that purpose is yet, but she can feel it in her bones—a low hum, a direction without a destination. She speaks to the dead more easily than the living now. Not because she's morbid, but because they're honest. The living lie. The living forget. The dead remember everything, even if they no longer care. She's searching for the thing that pulled her back across the threshold. Not to thank it. Not to destroy it. To understand it. Because if death isn't the end, then the world is operating under rules no one bothered to write down—and she will not be caught unprepared again."
+    "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost — organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
   }
 },
    "slot4": {
