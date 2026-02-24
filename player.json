@@ -680,11 +680,11 @@
         "alignment": "Lawful Evil",
         "experience": 0,
         "portrait_url": "/dnd/Evo.png",
-        "theme_color": "#cd7f32",
-        "theme_color_light": "#e8a050",
-        "theme_color_bright": "#f0c070",
-        "theme_color_dim": "#9c6a2c",
-        "theme_rgb": "205,127,50"
+  "theme_color":        "#4a6080",
+"theme_color_light":  "#8aaece",
+"theme_color_bright": "#c8dff0",
+"theme_color_dim":    "#4a6882",
+"theme_rgb":          "74,96,128"
       },
       "meta": {
         "player": "Nikkelz",
