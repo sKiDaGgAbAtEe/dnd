@@ -1465,8 +1465,8 @@
       { "name": "Chain",       "quantity": 0, "weight_lb": 0,  "description": "" }
     ]
   },
- "backstory": {
-  "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
+  "backstory": {
+    "verbatim": "“Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!”"
   }
 },
     "slot6": {
