@@ -2,7 +2,7 @@
   "campaign": {
     "name": "Unnamed Chronicle",
     "session_count": 0,
-    "last_updated": "2026-02-23"
+    "last_updated": "2026-02-24"
   },
   "slots": {
     "slot1": {
@@ -27,6 +27,21 @@
         "last_session_updated": "Session 00",
         "session_changes": []
       },
+      "physical": {
+        "gender": "Male",
+        "age": null,
+        "size": "Medium",
+        "height": null,
+        "weight": null,
+        "eyes": "Amber",
+        "skin": "Golden-furred",
+        "hair": "Dark mane",
+        "faith": null,
+        "distinguishing_features": "Gold ceremonial arm cuff. Mane braided with bone and stone fragments from the First Land."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
       "abilities": {
         "str": 16,
         "dex": 14,
@@ -36,30 +51,12 @@
         "cha": 14
       },
       "saving_throws": {
-        "str": {
-          "proficient": true,
-          "value": "+5"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+2"
-        },
-        "con": {
-          "proficient": true,
-          "value": "+4"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+1"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+1"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+2"
-        }
+        "str": { "proficient": true,  "value": "+5" },
+        "dex": { "proficient": false, "value": "+2" },
+        "con": { "proficient": true,  "value": "+4" },
+        "int": { "proficient": false, "value": "+1" },
+        "wis": { "proficient": false, "value": "+1" },
+        "cha": { "proficient": false, "value": "+2" }
       },
       "combat": {
         "hp_max": 17,
@@ -75,114 +72,24 @@
         "passive_insight": 11
       },
       "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": true,
-          "expertise": false,
-          "value": "+5"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": true,
-          "expertise": false,
-          "value": "+4"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": true,
-          "expertise": false,
-          "value": "+3"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": true,
-          "expertise": false,
-          "value": "+3"
-        }
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+5" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+        "intimidation":    { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" }
       },
       "attacks": [
         {
@@ -208,26 +115,11 @@
         "spell_save_dc": 0,
         "spell_attack_bonus": "+0",
         "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
+          "level_1": { "max": 0, "current": 0 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
         }
       },
       "class_resources": {
@@ -272,20 +164,10 @@
         }
       ],
       "proficiencies": {
-        "armor": [
-          "Light Armor",
-          "Medium Armor",
-          "Shields"
-        ],
-        "weapons": [
-          "Simple Weapons",
-          "Martial Weapons"
-        ],
+        "armor": ["Light Armor", "Medium Armor", "Shields"],
+        "weapons": ["Simple Weapons", "Martial Weapons"],
         "tools": [],
-        "languages": [
-          "Common",
-          "Leonin"
-        ]
+        "languages": ["Common", "Leonin"]
       },
       "traits": {
         "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
@@ -294,54 +176,16 @@
         "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
       },
       "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 10,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
+        "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
         "carried": [
-          {
-            "name": "Sun-Disc Club",
-            "quantity": 1,
-            "description": "Greatclub — The Fist of the First Land"
-          },
-          {
-            "name": "Explorer's Pack",
-            "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "Hunting Trap",
-            "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "First-Land Stone Fragment",
-            "quantity": 1,
-            "description": "A petrified shard of his homeland"
-          },
-          {
-            "name": "Traveler's Clothes",
-            "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "Gold Ceremonial Arm Cuff",
-            "quantity": 1,
-            "description": "Marks victories of the First Land"
-          },
-          {
-            "name": "Desert Drum",
-            "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "Belt Pouch",
-            "quantity": 1,
-            "description": ""
-          }
+          { "name": "Sun-Disc Club",             "quantity": 1, "description": "Greatclub — The Fist of the First Land" },
+          { "name": "Explorer's Pack",            "quantity": 1, "description": "" },
+          { "name": "Hunting Trap",               "quantity": 1, "description": "" },
+          { "name": "First-Land Stone Fragment",  "quantity": 1, "description": "A petrified shard of his homeland" },
+          { "name": "Traveler's Clothes",         "quantity": 1, "description": "" },
+          { "name": "Gold Ceremonial Arm Cuff",   "quantity": 1, "description": "Marks victories of the First Land" },
+          { "name": "Desert Drum",                "quantity": 1, "description": "" },
+          { "name": "Belt Pouch",                 "quantity": 1, "description": "" }
         ]
       },
       "backstory": {
@@ -370,6 +214,21 @@
         "last_session_updated": "Session 00",
         "session_changes": []
       },
+      "physical": {
+        "gender": "Female",
+        "age": null,
+        "size": "Tiny",
+        "height": null,
+        "weight": null,
+        "eyes": null,
+        "skin": null,
+        "hair": null,
+        "faith": null,
+        "distinguishing_features": "Wings. Carries a pressed-flower spellbook at all times. Easily underestimated."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
       "abilities": {
         "str": 13,
         "dex": 14,
@@ -379,30 +238,12 @@
         "cha": 15
       },
       "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+1"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+2"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+1"
-        },
-        "int": {
-          "proficient": true,
-          "value": "+3"
-        },
-        "wis": {
-          "proficient": true,
-          "value": "+4"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+2"
-        }
+        "str": { "proficient": false, "value": "+1" },
+        "dex": { "proficient": false, "value": "+2" },
+        "con": { "proficient": false, "value": "+1" },
+        "int": { "proficient": true,  "value": "+3" },
+        "wis": { "proficient": true,  "value": "+4" },
+        "cha": { "proficient": false, "value": "+2" }
       },
       "combat": {
         "hp_max": 7,
@@ -418,164 +259,81 @@
         "passive_insight": 14
       },
       "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+3"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": true,
-          "expertise": false,
-          "value": "+4"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": true,
-          "expertise": false,
-          "value": "+4"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+1"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+2"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": true,
-          "expertise": false,
-          "value": "+4"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": true,
-          "expertise": false,
-          "value": "+4"
-        }
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+2" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+3" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+1" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "insight":         { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+2" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "stealth":         { "ability": "dex", "proficient": true,  "expertise": false, "value": "+4" },
+        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" }
       },
       "attacks": [
         {
           "name": "Quarterstaff",
-          "bonus": "+3",
+          "type": "Simple Melee Weapon",
+          "attack": "+3",
           "damage": "1d6+1",
           "damage_type": "Bludgeoning",
-          "notes": "Versatile: 1d8+1 when two-handed."
+          "detail": "Versatile: 1d8+1 when two-handed."
         },
         {
           "name": "Unarmed Strike",
-          "bonus": "+1",
+          "type": "Unarmed",
+          "attack": "+1",
           "damage": "1d1+1",
           "damage_type": "Bludgeoning",
-          "notes": "Basic melee strike."
+          "detail": "Basic melee strike."
         },
         {
           "name": "Fire Bolt",
-          "bonus": "+3",
+          "type": "Cantrip",
+          "attack": "+3",
           "damage": "1d10",
           "damage_type": "Fire",
-          "notes": "Ranged spell attack. Range 120 ft. Cantrip."
+          "detail": "Ranged spell attack. Range 120 ft. Cantrip."
         },
         {
           "name": "Chill Touch",
-          "bonus": "+3",
+          "type": "Cantrip",
+          "attack": "+3",
           "damage": "1d8",
           "damage_type": "Necrotic",
-          "notes": "Range 120 ft. Target can't regain HP until start of your next turn. Cantrip."
+          "detail": "Range 120 ft. Target can't regain HP until start of your next turn. Cantrip."
         },
         {
           "name": "Ray of Frost",
-          "bonus": "+3",
+          "type": "Cantrip",
+          "attack": "+3",
           "damage": "1d8",
           "damage_type": "Cold",
-          "notes": "Range 60 ft. Target speed reduced by 10 ft until start of your next turn. Cantrip."
+          "detail": "Range 60 ft. Target speed reduced by 10 ft until start of your next turn. Cantrip."
         },
         {
           "name": "Thunderclap",
-          "bonus": "—",
+          "type": "Cantrip",
+          "attack": "—",
           "damage": "1d6",
           "damage_type": "Thunder",
-          "notes": "CON Save DC 11. Each creature within 5 ft. Cantrip."
+          "detail": "CON Save DC 11. Each creature within 5 ft. Cantrip."
         },
         {
           "name": "Druidcraft",
-          "bonus": "—",
+          "type": "Cantrip",
+          "attack": "—",
           "damage": "—",
           "damage_type": "Utility",
-          "notes": "Cantrip. Simple nature magic — predict weather, light/snuff small flames, harmless effects."
+          "detail": "Cantrip. Simple nature magic — predict weather, light/snuff small flames, harmless effects."
         }
       ],
       "spellcasting": {
@@ -584,41 +342,24 @@
         "spell_save_dc": 11,
         "spell_attack_bonus": "+3",
         "spell_slots": {
-          "level_1": {
-            "max": 2,
-            "current": 2
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
+          "level_1": { "max": 2, "current": 2 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
         },
         "cantrips": [
-          "Fire Bolt",
-          "Chill Touch",
-          "Ray of Frost",
-          "Thunderclap",
-          "Druidcraft"
+          { "name": "Fire Bolt",    "school": "Evocation",   "casting_time": "1 action",  "range": "120 ft.",   "components": "V, S",       "duration": "Instantaneous", "description": "Ranged spell attack. Hit: 1d10 fire damage. Scales at 5th, 11th, and 17th level." },
+          { "name": "Chill Touch",  "school": "Necromancy",  "casting_time": "1 action",  "range": "120 ft.",   "components": "V, S",       "duration": "1 round",       "description": "Ranged spell attack. Hit: 1d8 necrotic. Target can't regain HP until start of your next turn. Undead also have disadvantage on attacks against you." },
+          { "name": "Ray of Frost", "school": "Evocation",   "casting_time": "1 action",  "range": "60 ft.",    "components": "V, S",       "duration": "Instantaneous", "description": "Ranged spell attack. Hit: 1d8 cold damage. Target speed -10 ft until start of your next turn." },
+          { "name": "Thunderclap",  "school": "Evocation",   "casting_time": "1 action",  "range": "Self 5 ft.","components": "S",          "duration": "Instantaneous", "description": "CON save DC 11. Each creature within 5 ft takes 1d6 thunder on a failed save. Audible 100 ft." },
+          { "name": "Druidcraft",   "school": "Transmutation","casting_time": "1 action", "range": "30 ft.",    "components": "V, S",       "duration": "Instantaneous", "description": "Predict weather, create harmless sensory effects, light/snuff small flames, wilt or cause to bloom a plant no larger than 1 cubic foot." }
         ],
-        "spells_known": {
-          "level_1": [
-            "Catapult",
-            "Witch Bolt",
-            "Magic Missile"
-          ]
-        }
+        "spells_prepared": [
+          { "name": "Catapult",      "level": 1, "school": "Transmutation", "casting_time": "1 action",       "range": "60 ft.",  "components": "S",       "duration": "Instantaneous",          "description": "Choose an object weighing 1–5 lbs. It flies up to 90 ft in a straight line, then falls. Each creature in its path makes a DEX save or takes 3d8 bludgeoning. +1d8 per slot level above 1st." },
+          { "name": "Witch Bolt",    "level": 1, "school": "Evocation",     "casting_time": "1 action",       "range": "30 ft.",  "components": "V, S, M", "duration": "Concentration, 1 min",   "description": "Ranged spell attack. Hit: 1d12 lightning. On subsequent turns, use action to deal 1d12 automatically while in range. Ends if target is out of range or you use action for something else. +1d12 per slot level above 1st." },
+          { "name": "Magic Missile", "level": 1, "school": "Evocation",     "casting_time": "1 action",       "range": "120 ft.", "components": "V, S",    "duration": "Instantaneous",          "description": "Create 3 darts of magical force. Each hits a creature of your choice automatically for 1d4+1 force. All darts can target the same creature or different ones. +1 dart per slot level above 1st." }
+        ]
       },
       "class_resources": {
         "arcane_recovery": {
@@ -626,21 +367,47 @@
           "max": 1,
           "current": 1,
           "recharge": "Short Rest",
-          "description": "Recover spell slots totaling ≤ 1 (half wizard level rounded up). Cannot recover 6th level or higher."
+          "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
         }
       },
       "features": [
         {
           "name": "Arcane Recovery",
-          "source": "Wizard",
+          "source": "Wizard 1",
           "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
         },
         {
           "name": "Wizard Spellbook",
-          "source": "Wizard",
+          "source": "Wizard 1",
           "description": "Contains 6 prepared 1st-level spells. Gain 2 new spells per wizard level. Copy from scrolls and tomes (2 hrs + 50 gp/spell level). Spellbook is a pressed-flower diary that also happens to contain the secrets of arcane reality."
+        },
+        {
+          "name": "Fairy Flight",
+          "source": "Fairy",
+          "description": "Has a flying speed equal to walking speed (10 ft). Cannot fly while wearing medium or heavy armor."
+        },
+        {
+          "name": "Fairy Magic",
+          "source": "Fairy",
+          "description": "Can cast Druidcraft cantrip for free. At level 3: cast Faerie Fire once per long rest. At level 5: cast Enlarge/Reduce once per long rest."
+        },
+        {
+          "name": "Fey Ancestry",
+          "source": "Fairy",
+          "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
+        },
+        {
+          "name": "Witherbloom Initiate",
+          "source": "Witherbloom Student",
+          "description": "Learned to weave life and death energies. Gains the Druidcraft cantrip and two 1st-level spells from the Druid or Wizard spell list. Life and death magic comes naturally to her — the swamp taught her that nothing truly ends."
         }
       ],
+      "proficiencies": {
+        "armor": [],
+        "weapons": ["Daggers", "Darts", "Slings", "Quarterstaffs", "Light Crossbows"],
+        "tools": ["Herbalism Kit"],
+        "languages": ["Common", "Elvish", "Sylvan"]
+      },
       "traits": {
         "personality": "Small in stature, enormous in presence. Her curiosity is insatiable — she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
         "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there — something the world is pretending not to notice.",
@@ -648,827 +415,772 @@
         "flaw": "She occasionally forgets that other people cannot fly, hide instantly, or talk to mushrooms — which leads to plans that only work if you're her. She also underestimates her own size in situations requiring physical presence."
       },
       "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 1,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
+        "currency": { "pp": 0, "gp": 1, "ep": 0, "sp": 0, "cp": 0 },
         "carried": [
-          {
-            "name": "Quarterstaff (Witherbloom-etched)",
-            "quantity": 1
-          },
-          {
-            "name": "Arcane Focus Rod",
-            "quantity": 1
-          },
-          {
-            "name": "Spellbook",
-            "quantity": 1,
-            "description": "pressed flowers inside"
-          },
-          {
-            "name": "Explorer's Pack",
-            "quantity": 1
-          },
-          {
-            "name": "Herbalism Kit",
-            "quantity": 1
-          },
-          {
-            "name": "Ink Bottle & Ink Pen",
-            "quantity": 1
-          },
-          {
-            "name": "School Uniform",
-            "quantity": 1
-          },
-          {
-            "name": "Book — Plant Identification",
-            "quantity": 1
-          },
-          {
-            "name": "Iron Pot",
-            "quantity": 1
-          },
-          {
-            "name": "Dagger",
-            "quantity": 1
-          },
-          {
-            "name": "Dart",
-            "quantity": 5
-          },
-          {
-            "name": "Sling",
-            "quantity": 1
-          }
+          { "name": "Quarterstaff (Witherbloom-etched)", "quantity": 1, "description": "" },
+          { "name": "Arcane Focus Rod",                  "quantity": 1, "description": "" },
+          { "name": "Spellbook",                         "quantity": 1, "description": "Pressed flowers inside" },
+          { "name": "Explorer's Pack",                   "quantity": 1, "description": "" },
+          { "name": "Herbalism Kit",                     "quantity": 1, "description": "" },
+          { "name": "Ink Bottle & Ink Pen",              "quantity": 1, "description": "" },
+          { "name": "School Uniform",                    "quantity": 1, "description": "" },
+          { "name": "Book — Plant Identification",       "quantity": 1, "description": "" },
+          { "name": "Iron Pot",                          "quantity": 1, "description": "" },
+          { "name": "Dagger",                            "quantity": 1, "description": "" },
+          { "name": "Dart",                              "quantity": 5, "description": "" },
+          { "name": "Sling",                             "quantity": 1, "description": "" }
         ]
       },
       "backstory": {
         "summary": "She arrived at Witherbloom with pressed flowers already in her spellbook and a question she hadn't told anyone yet. The swamp suited her — it didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does life end and death begin, and is anything actually living in that gap? She is very small. She compensates with extraordinary thoroughness. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index."
       }
     },
-   "slot3": {
-  "identity": {
-    "name": "Raven",
-    "race": "Shadar-kai",
-    "class": "Rogue",
-    "subclass": "Assassin",
-    "level": 1,
-    "background": "Spy",
-    "alignment": "True Neutral",
-    "experience": 0,
-    "portrait_url": "/dnd/raven.png",
-    "theme_color": "#5a5a7a",
-    "theme_color_light": "#9090b8",
-    "theme_color_bright": "#c8c8e8",
-    "theme_color_dim": "#2d2d4a",
-    "theme_rgb": "90,90,122"
-  },
-  "meta": {
-    "player": "Rose",
-    "last_session_updated": "Session 00",
-    "session_changes": []
-  },
-  "abilities": {
-    "str": 15,
-    "dex": 18,
-    "con": 15,
-    "int": 11,
-    "wis": 16,
-    "cha": 14
-  },
-  "saving_throws": {
-    "str": { "proficient": false, "value": "+2" },
-    "dex": { "proficient": true,  "value": "+6" },
-    "con": { "proficient": false, "value": "+2" },
-    "int": { "proficient": true,  "value": "+2" },
-    "wis": { "proficient": false, "value": "+3" },
-    "cha": { "proficient": false, "value": "+2" }
-  },
-  "combat": {
-    "hp_max": 10,
-    "hp_current": 10,
-    "hp_temp": 0,
-    "ac": 15,
-    "initiative": "+4",
-    "speed": 30,
-    "proficiency_bonus": "+2",
-    "hit_dice_total": "1d8",
-    "passive_perception": 15,
-    "passive_investigation": 10,
-    "passive_insight": 13
-  },
-  "skills": {
-    "acrobatics":      { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
-    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
-    "deception":       { "ability": "cha", "proficient": true,  "expertise": true,  "value": "+6" },
-    "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
-    "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
-    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
-    "performance":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
-    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
-    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "sleight_of_hand": { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
-    "stealth":         { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
-    "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
-  },
-  "attacks": [
-    {
-      "name": "Shortsword",
-      "type": "Simple Melee Weapon",
-      "attack": "+6",
-      "damage": "1d6+4",
-      "damage_type": "Piercing",
-      "detail": "Melee Weapon Attack. Finesse, light. Primary blade."
-    },
-    {
-      "name": "Dagger",
-      "type": "Simple Melee/Ranged Weapon",
-      "attack": "+6",
-      "damage": "1d4+4",
-      "damage_type": "Piercing",
-      "detail": "Melee or Ranged (20/60 ft). Finesse, light, thrown. Carries two."
-    },
-    {
-      "name": "Shortbow",
-      "type": "Simple Ranged Weapon",
-      "attack": "+6",
-      "damage": "1d6+4",
-      "damage_type": "Piercing",
-      "detail": "Ranged Weapon Attack. Range 80/320 ft. 20 arrows carried."
-    },
-    {
-      "name": "Crowbar",
-      "type": "Improvised Melee",
-      "attack": "+4",
-      "damage": "1d4+2",
-      "damage_type": "Bludgeoning",
-      "detail": "Improvised weapon. Also grants advantage on STR checks to force open doors and containers."
-    },
-    {
-      "name": "Unarmed Strike",
-      "type": "Unarmed",
-      "attack": "+4",
-      "damage": "1d1+2",
-      "damage_type": "Bludgeoning",
-      "detail": "Last resort."
-    }
-  ],
-  "spellcasting": {
-    "enabled": false,
-    "ability": "wis",
-    "spell_save_dc": 0,
-    "spell_attack_bonus": "+0",
-    "spell_slots": {
-      "level_1": { "max": 0, "current": 0 },
-      "level_2": { "max": 0, "current": 0 },
-      "level_3": { "max": 0, "current": 0 },
-      "level_4": { "max": 0, "current": 0 },
-      "level_5": { "max": 0, "current": 0 }
-    }
-  },
-  "class_resources": {
-    "sneak_attack": {
-      "label": "Sneak Attack",
-      "max": 1,
-      "current": 1,
-      "recharge": "Per Turn",
-      "description": "Once per turn. Extra 1d6 damage on a hit with a finesse or ranged weapon if you have advantage, or an ally is adjacent to the target and you don't have disadvantage."
-    },
-    "blessing_of_the_raven_queen": {
-      "label": "Blessing of the Raven Queen",
-      "max": 2,
-      "current": 2,
-      "recharge": "Long Rest",
-      "description": "Bonus action: teleport up to 30 ft to an unoccupied space you can see. Uses = proficiency bonus. At level 3, gain resistance to all damage until the start of your next turn when you teleport."
-    }
-  },
-  "features": [
-    {
-      "name": "Expertise",
-      "source": "Rogue 1",
-      "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics — the full suite of someone who was never where you thought she was."
-    },
-    {
-      "name": "Sneak Attack",
-      "source": "Rogue 1",
-      "description": "Once per turn, deal extra 1d6 damage with a finesse or ranged weapon when you have advantage on the attack roll, or when an ally is within 5 ft of the target and you don't have disadvantage. Scales with rogue level."
-    },
-    {
-      "name": "Thieves' Cant",
-      "source": "Rogue 1",
-      "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols — safe houses, territorial markers, danger warnings. Only other Thieves' Cant speakers understand the hidden layer."
-    },
-    {
-      "name": "Blessing of the Raven Queen",
-      "source": "Shadar-kai",
-      "description": "Bonus action: teleport up to 30 ft to any unoccupied space in sight. Uses = proficiency bonus (2) per long rest. At level 3, she becomes ghostly and translucent, gaining resistance to all damage until the start of her next turn after teleporting."
-    },
-    {
-      "name": "Darkvision",
-      "source": "Shadar-kai",
-      "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness — only shades of grey."
-    },
-    {
-      "name": "Fey Ancestry",
-      "source": "Shadar-kai",
-      "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
-    },
-    {
-      "name": "Necrotic Resistance",
-      "source": "Shadar-kai",
-      "description": "Resistance to necrotic damage."
-    },
-    {
-      "name": "Trance",
-      "source": "Shadar-kai",
-      "description": "Does not sleep. Meditates for 4 hours instead, gaining the benefit of a full 8-hour rest."
-    },
-    {
-      "name": "Criminal Contact",
-      "source": "Spy Background",
-      "description": "A reliable network contact who acts as liaison to a broader criminal web. Can send and receive messages across great distances through local messengers, corrupt caravan masters, and seedy sailors."
-    }
-  ],
-  "proficiencies": {
-    "armor": ["Light Armor"],
-    "weapons": [
-      "Simple Weapons",
-      "Hand Crossbow",
-      "Longsword",
-      "Rapier",
-      "Shortsword"
-    ],
-    "tools": ["Thieves' Tools"],
-    "languages": ["Common", "Thieves' Cant", "Undercommon"]
-  },
-  "traits": {
-    "personality": "Moves through a room like she was never in it. Helpful to the party in ways that are difficult to trace back to her. Denies taking things even when they are visibly in her belt pouch.",
-    "ideal": "Information and positioning. She is never the most powerful person in the room — she is the one who knows where all the exits are.",
-    "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts — never admits it.",
-    "flaw": "If it catches the light, she wants it. She is aware this is a problem. She has decided it is not a problem."
-  },
-  "physical": {
-    "age": null,
-    "height": null,
-    "weight": null,
-    "eyes": null,
-    "skin": "Ashen grey",
-    "hair": null
-  },
-  "equipment": {
-    "currency": {
-      "pp": 0,
-      "gp": 15,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
-    },
-    "encumbrance": {
-      "total_weight": 78.5,
-      "light_threshold": 75,
-      "heavy_threshold": 150,
-      "max_threshold": 300
-    },
-    "carried": [
-      { "name": "Shortsword",            "quantity": 1, "description": "Primary blade." },
-      { "name": "Dagger",                "quantity": 2, "description": "Finesse, light, thrown." },
-      { "name": "Shortbow",              "quantity": 1, "description": "Range 80/320 ft." },
-      { "name": "Arrows",               "quantity": 20, "description": "Standard ammunition." },
-      { "name": "Crowbar",               "quantity": 1, "description": "Advantage on STR checks to force open things. Also a weapon if it comes to it." },
-      { "name": "Leather Armor",         "quantity": 1, "description": "AC 15." },
-      { "name": "Thieves' Tools",        "quantity": 1, "description": "Tool proficiency." },
-      { "name": "Burglar's Pack",        "quantity": 1, "description": "Standard adventuring supplies." },
-      { "name": "Dark Hooded Clothes",   "quantity": 1, "description": "Common clothes. Functional. Preferred." }
-    ]
-  },
-  "backstory": {
-    "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost — organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
-  }
-},
-   "slot4": {
-  "identity": {
-    "name": "Evo",
-    "race": "Bronze Dragonborn",
-    "class": "Cleric",
-    "subclass": "Tempest Domain",
-    "level": 1,
-    "background": "Rival Intern",
-    "alignment": "Lawful Evil",
-    "experience": 0,
-    "portrait_url": "/dnd/Evo.png",
-    "theme_color": "#cd7f32",
-    "theme_color_light": "#e8a050",
-    "theme_color_bright": "#f0c070",
-    "theme_color_dim": "#7a4a18",
-    "theme_rgb": "205,127,50"
-  },
-  "meta": {
-    "player": "Nikkelz",
-    "last_session_updated": "Session 00",
-    "session_changes": []
-  },
-  "abilities": {
-    "str": 15,
-    "dex": 13,
-    "con": 14,
-    "int": 12,
-    "wis": 16,
-    "cha": 16
-  },
-  "saving_throws": {
-    "str": { "proficient": false, "value": "+2" },
-    "dex": { "proficient": false, "value": "+1" },
-    "con": { "proficient": false, "value": "+2" },
-    "int": { "proficient": false, "value": "+1" },
-    "wis": { "proficient": true,  "value": "+5" },
-    "cha": { "proficient": true,  "value": "+5" }
-  },
-  "combat": {
-    "hp_max": 10,
-    "hp_current": 10,
-    "hp_temp": 0,
-    "ac": 18,
-    "initiative": "+1",
-    "speed": 30,
-    "proficiency_bonus": "+2",
-    "hit_dice_total": "1d8",
-    "passive_perception": 13,
-    "passive_investigation": 13,
-    "passive_insight": 13
-  },
-  "skills": {
-    "acrobatics":     { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "animal_handling":{ "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "arcana":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-    "athletics":      { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
-    "deception":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "history":        { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
-    "insight":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "intimidation":   { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "investigation":  { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
-    "medicine":       { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "nature":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-    "perception":     { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
-    "performance":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "persuasion":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+5" },
-    "religion":       { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
-    "sleight_of_hand":{ "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "stealth":        { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "survival":       { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
-  },
-  "attacks": [
-    {
-      "name": "Mace",
-      "type": "Simple Melee Weapon",
-      "attack": "+4",
-      "damage": "1d6+2",
-      "damage_type": "Bludgeoning",
-      "detail": "Melee Weapon Attack. The preferred instrument of divine correction."
-    },
-    {
-      "name": "Light Crossbow",
-      "type": "Simple Ranged Weapon",
-      "attack": "+3",
-      "damage": "1d8+1",
-      "damage_type": "Piercing",
-      "detail": "Ranged Weapon Attack. Range 80/320 ft."
-    },
-    {
-      "name": "Unarmed Strike",
-      "type": "Unarmed",
-      "attack": "+4",
-      "damage": "1d1+2",
-      "damage_type": "Bludgeoning",
-      "detail": "Last resort. Still hurts."
-    }
-  ],
-  "spellcasting": {
-    "enabled": true,
-    "ability": "wis",
-    "spell_save_dc": 13,
-    "spell_attack_bonus": "+5",
-    "spell_slots": {
-      "level_1": { "max": 2, "current": 2 },
-      "level_2": { "max": 0, "current": 0 },
-      "level_3": { "max": 0, "current": 0 },
-      "level_4": { "max": 0, "current": 0 },
-      "level_5": { "max": 0, "current": 0 }
-    },
-    "cantrips": [
-      {
-        "name": "Toll the Dead",
-        "school": "Necromancy",
-        "casting_time": "1 action",
-        "range": "60 ft.",
-        "components": "V, S",
-        "duration": "Instantaneous",
-        "description": "A creature you can see must pass a Wisdom save or take 1d8 necrotic damage, or 1d12 if it's missing any hit points. Scales at 5th, 11th, and 17th level."
+    "slot3": {
+      "identity": {
+        "name": "Raven",
+        "race": "Shadar-kai",
+        "class": "Rogue",
+        "subclass": "Assassin",
+        "level": 1,
+        "background": "Spy",
+        "alignment": "True Neutral",
+        "experience": 0,
+        "portrait_url": "/dnd/raven.png",
+        "theme_color": "#5a5a7a",
+        "theme_color_light": "#9090b8",
+        "theme_color_bright": "#c8c8e8",
+        "theme_color_dim": "#2d2d4a",
+        "theme_rgb": "90,90,122"
       },
-      {
-        "name": "Word of Radiance",
-        "school": "Evocation",
-        "casting_time": "1 action",
-        "range": "5 ft.",
-        "components": "V, M (holy symbol)",
-        "duration": "Instantaneous",
-        "description": "Each creature of your choice within 5 ft must succeed on a CON save or take 1d6 radiant damage. Scales at 5th, 11th, and 17th level."
+      "meta": {
+        "player": "Rose",
+        "last_session_updated": "Session 00",
+        "session_changes": []
       },
-      {
-        "name": "Guidance",
-        "school": "Divination",
-        "casting_time": "1 action",
-        "range": "Touch",
-        "components": "V, S",
-        "duration": "Concentration, up to 1 minute",
-        "description": "Touch one willing creature. Once before the spell ends, the target adds 1d4 to one ability check of its choice."
+      "physical": {
+        "gender": "Female",
+        "age": null,
+        "size": "Medium",
+        "height": null,
+        "weight": null,
+        "eyes": null,
+        "skin": "Ashen grey",
+        "hair": null,
+        "faith": null,
+        "distinguishing_features": "Shadow-lined pouch of carefully wrapped trinkets. Moves like she was never in the room."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 15,
+        "dex": 18,
+        "con": 15,
+        "int": 11,
+        "wis": 16,
+        "cha": 14
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+2" },
+        "dex": { "proficient": true,  "value": "+6" },
+        "con": { "proficient": false, "value": "+2" },
+        "int": { "proficient": true,  "value": "+2" },
+        "wis": { "proficient": false, "value": "+3" },
+        "cha": { "proficient": false, "value": "+2" }
+      },
+      "combat": {
+        "hp_max": 10,
+        "hp_current": 10,
+        "hp_temp": 0,
+        "ac": 15,
+        "initiative": "+4",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d8",
+        "passive_perception": 15,
+        "passive_investigation": 10,
+        "passive_insight": 13
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+        "deception":       { "ability": "cha", "proficient": true,  "expertise": true,  "value": "+6" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
+        "performance":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "stealth":         { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
+      },
+      "attacks": [
+        {
+          "name": "Shortsword",
+          "type": "Simple Melee Weapon",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Melee Weapon Attack. Finesse, light. Primary blade."
+        },
+        {
+          "name": "Dagger",
+          "type": "Simple Melee/Ranged Weapon",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Piercing",
+          "detail": "Melee or Ranged (20/60 ft). Finesse, light, thrown. Carries two."
+        },
+        {
+          "name": "Shortbow",
+          "type": "Simple Ranged Weapon",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Ranged Weapon Attack. Range 80/320 ft. 20 arrows carried."
+        },
+        {
+          "name": "Crowbar",
+          "type": "Improvised Melee",
+          "attack": "+4",
+          "damage": "1d4+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Improvised weapon. Also grants advantage on STR checks to force open doors and containers."
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+4",
+          "damage": "1d1+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Last resort."
+        }
+      ],
+      "spellcasting": {
+        "enabled": false,
+        "ability": "wis",
+        "spell_save_dc": 0,
+        "spell_attack_bonus": "+0",
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {
+        "sneak_attack": {
+          "label": "Sneak Attack",
+          "max": 1,
+          "current": 1,
+          "recharge": "Per Turn",
+          "description": "Once per turn. Extra 1d6 damage on a hit with a finesse or ranged weapon if you have advantage, or an ally is adjacent to the target and you don't have disadvantage."
+        },
+        "blessing_of_the_raven_queen": {
+          "label": "Blessing of the Raven Queen",
+          "max": 2,
+          "current": 2,
+          "recharge": "Long Rest",
+          "description": "Bonus action: teleport up to 30 ft to an unoccupied space you can see. Uses = proficiency bonus. At level 3, gain resistance to all damage until the start of your next turn when you teleport."
+        }
+      },
+      "features": [
+        {
+          "name": "Expertise",
+          "source": "Rogue 1",
+          "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics — the full suite of someone who was never where you thought she was."
+        },
+        {
+          "name": "Sneak Attack",
+          "source": "Rogue 1",
+          "description": "Once per turn, deal extra 1d6 damage with a finesse or ranged weapon when you have advantage on the attack roll, or when an ally is within 5 ft of the target and you don't have disadvantage. Scales with rogue level."
+        },
+        {
+          "name": "Thieves' Cant",
+          "source": "Rogue 1",
+          "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols — safe houses, territorial markers, danger warnings."
+        },
+        {
+          "name": "Blessing of the Raven Queen",
+          "source": "Shadar-kai",
+          "description": "Bonus action: teleport up to 30 ft to any unoccupied space in sight. Uses = proficiency bonus (2) per long rest. At level 3, becomes ghostly and translucent, gaining resistance to all damage until the start of her next turn after teleporting."
+        },
+        {
+          "name": "Darkvision",
+          "source": "Shadar-kai",
+          "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness — only shades of grey."
+        },
+        {
+          "name": "Fey Ancestry",
+          "source": "Shadar-kai",
+          "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
+        },
+        {
+          "name": "Necrotic Resistance",
+          "source": "Shadar-kai",
+          "description": "Resistance to necrotic damage."
+        },
+        {
+          "name": "Trance",
+          "source": "Shadar-kai",
+          "description": "Does not sleep. Meditates for 4 hours instead, gaining the benefit of a full 8-hour rest."
+        },
+        {
+          "name": "Criminal Contact",
+          "source": "Spy Background",
+          "description": "A reliable network contact who acts as liaison to a broader criminal web. Can send and receive messages across great distances through local messengers, corrupt caravan masters, and seedy sailors."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Light Armor"],
+        "weapons": ["Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"],
+        "tools": ["Thieves' Tools"],
+        "languages": ["Common", "Thieves' Cant", "Undercommon"]
+      },
+      "traits": {
+        "personality": "Moves through a room like she was never in it. Helpful to the party in ways that are difficult to trace back to her. Denies taking things even when they are visibly in her belt pouch.",
+        "ideal": "Information and positioning. She is never the most powerful person in the room — she is the one who knows where all the exits are.",
+        "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts — never admits it.",
+        "flaw": "If it catches the light, she wants it. She is aware this is a problem. She has decided it is not a problem."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 15, "ep": 0, "sp": 0, "cp": 0 },
+        "carried": [
+          { "name": "Shortsword",          "quantity": 1,  "description": "Primary blade." },
+          { "name": "Dagger",              "quantity": 2,  "description": "Finesse, light, thrown." },
+          { "name": "Shortbow",            "quantity": 1,  "description": "Range 80/320 ft." },
+          { "name": "Arrows",              "quantity": 20, "description": "Standard ammunition." },
+          { "name": "Crowbar",             "quantity": 1,  "description": "Advantage on STR checks to force open things. Also a weapon if it comes to it." },
+          { "name": "Leather Armor",       "quantity": 1,  "description": "AC 15." },
+          { "name": "Thieves' Tools",      "quantity": 1,  "description": "Tool proficiency." },
+          { "name": "Burglar's Pack",      "quantity": 1,  "description": "Standard adventuring supplies." },
+          { "name": "Dark Hooded Clothes", "quantity": 1,  "description": "Common clothes. Functional. Preferred." }
+        ]
+      },
+      "backstory": {
+        "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost — organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
       }
-    ],
-    "spells_prepared": [
-      {
-        "name": "Bless",
+    },
+    "slot4": {
+      "identity": {
+        "name": "Evo",
+        "race": "Bronze Dragonborn",
+        "class": "Cleric",
+        "subclass": "Tempest Domain",
         "level": 1,
-        "school": "Enchantment",
-        "casting_time": "1 action",
-        "range": "30 ft.",
-        "components": "V, S, M (holy water)",
-        "duration": "Concentration, up to 1 minute",
-        "description": "Bless up to 3 creatures. Each adds 1d4 to attack rolls and saving throws. +1 target per slot level above 1st."
+        "background": "Rival Intern",
+        "alignment": "Lawful Evil",
+        "experience": 0,
+        "portrait_url": "/dnd/Evo.png",
+        "theme_color": "#cd7f32",
+        "theme_color_light": "#e8a050",
+        "theme_color_bright": "#f0c070",
+        "theme_color_dim": "#7a4a18",
+        "theme_rgb": "205,127,50"
       },
-      {
-        "name": "Cure Wounds",
-        "level": 1,
-        "school": "Evocation",
-        "casting_time": "1 action",
-        "range": "Touch",
-        "components": "V, S",
-        "duration": "Instantaneous",
-        "description": "A touched creature regains 1d8 + WIS modifier HP. No effect on undead or constructs. +1d8 per slot level above 1st."
+      "meta": {
+        "player": "Illyasviel",
+        "last_session_updated": "Session 00",
+        "session_changes": []
       },
-      {
-        "name": "Fog Cloud",
-        "level": 1,
-        "school": "Conjuration",
-        "casting_time": "1 action",
-        "range": "120 ft.",
-        "components": "V, S",
-        "duration": "Concentration, up to 1 hour",
-        "description": "20-foot-radius sphere of fog, heavily obscured. +20 ft. radius per slot level above 1st. [Tempest Domain]"
+      "physical": {
+        "gender": null,
+        "age": 25,
+        "size": "Medium",
+        "height": "6'7\"",
+        "weight": 240,
+        "eyes": "Blue",
+        "skin": "Bronze",
+        "hair": "None",
+        "faith": null,
+        "distinguishing_features": "Bronze draconic scales. No hair. Carries Cartographer's Tools from his archival days at Moogle & Co."
       },
-      {
-        "name": "Guiding Bolt",
-        "level": 1,
-        "school": "Evocation",
-        "casting_time": "1 action",
-        "range": "120 ft.",
-        "components": "V, S",
-        "duration": "1 round",
-        "description": "Ranged spell attack. Hit: 4d6 radiant damage. Next attack against the target has advantage. +1d6 per slot level above 1st."
+      "senses": {
+        "darkvision_ft": 60
       },
-      {
-        "name": "Healing Word",
-        "level": 1,
-        "school": "Evocation",
-        "casting_time": "1 bonus action",
-        "range": "60 ft.",
-        "components": "V",
-        "duration": "Instantaneous",
-        "description": "A visible creature regains 1d4 + WIS modifier HP. No effect on undead or constructs. +1d4 per slot level above 1st."
+      "abilities": {
+        "str": 15,
+        "dex": 13,
+        "con": 14,
+        "int": 12,
+        "wis": 16,
+        "cha": 16
       },
-      {
-        "name": "Thunderwave",
-        "level": 1,
-        "school": "Evocation",
-        "casting_time": "1 action",
-        "range": "Self (15-foot cube)",
-        "components": "V, S",
-        "duration": "Instantaneous",
-        "description": "Each creature in a 15-ft cube makes a CON save. Fail: 2d8 thunder damage, pushed 10 ft. Success: half damage. Audible 300 ft. +1d8 per slot level above 1st. [Tempest Domain]"
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+2" },
+        "dex": { "proficient": false, "value": "+1" },
+        "con": { "proficient": false, "value": "+2" },
+        "int": { "proficient": false, "value": "+1" },
+        "wis": { "proficient": true,  "value": "+5" },
+        "cha": { "proficient": true,  "value": "+5" }
+      },
+      "combat": {
+        "hp_max": 10,
+        "hp_current": 10,
+        "hp_temp": 0,
+        "ac": 18,
+        "initiative": "+1",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d8",
+        "passive_perception": 13,
+        "passive_investigation": 13,
+        "passive_insight": 13
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "persuasion":      { "ability": "cha", "proficient": true,  "expertise": false, "value": "+5" },
+        "religion":        { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
+      },
+      "attacks": [
+        {
+          "name": "Mace",
+          "type": "Simple Melee Weapon",
+          "attack": "+4",
+          "damage": "1d6+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Melee Weapon Attack. The preferred instrument of divine correction."
+        },
+        {
+          "name": "Light Crossbow",
+          "type": "Simple Ranged Weapon",
+          "attack": "+3",
+          "damage": "1d8+1",
+          "damage_type": "Piercing",
+          "detail": "Ranged Weapon Attack. Range 80/320 ft."
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+4",
+          "damage": "1d1+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Last resort. Still hurts."
+        }
+      ],
+      "spellcasting": {
+        "enabled": true,
+        "ability": "wis",
+        "spell_save_dc": 13,
+        "spell_attack_bonus": "+5",
+        "spell_slots": {
+          "level_1": { "max": 2, "current": 2 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        },
+        "cantrips": [
+          {
+            "name": "Toll the Dead",
+            "school": "Necromancy",
+            "casting_time": "1 action",
+            "range": "60 ft.",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "A creature you can see must pass a Wisdom save or take 1d8 necrotic damage, or 1d12 if it's missing any hit points. Scales at 5th, 11th, and 17th level."
+          },
+          {
+            "name": "Word of Radiance",
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "5 ft.",
+            "components": "V, M (holy symbol)",
+            "duration": "Instantaneous",
+            "description": "Each creature of your choice within 5 ft must succeed on a CON save or take 1d6 radiant damage. Scales at 5th, 11th, and 17th level."
+          },
+          {
+            "name": "Guidance",
+            "school": "Divination",
+            "casting_time": "1 action",
+            "range": "Touch",
+            "components": "V, S",
+            "duration": "Concentration, up to 1 minute",
+            "description": "Touch one willing creature. Once before the spell ends, the target adds 1d4 to one ability check of its choice."
+          }
+        ],
+        "spells_prepared": [
+          {
+            "name": "Bless",
+            "level": 1,
+            "school": "Enchantment",
+            "casting_time": "1 action",
+            "range": "30 ft.",
+            "components": "V, S, M (holy water)",
+            "duration": "Concentration, up to 1 minute",
+            "description": "Bless up to 3 creatures. Each adds 1d4 to attack rolls and saving throws. +1 target per slot level above 1st."
+          },
+          {
+            "name": "Cure Wounds",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "Touch",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "A touched creature regains 1d8 + WIS modifier HP. No effect on undead or constructs. +1d8 per slot level above 1st."
+          },
+          {
+            "name": "Fog Cloud",
+            "level": 1,
+            "school": "Conjuration",
+            "casting_time": "1 action",
+            "range": "120 ft.",
+            "components": "V, S",
+            "duration": "Concentration, up to 1 hour",
+            "description": "20-foot-radius sphere of fog, heavily obscured. +20 ft. radius per slot level above 1st. [Tempest Domain]"
+          },
+          {
+            "name": "Guiding Bolt",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "120 ft.",
+            "components": "V, S",
+            "duration": "1 round",
+            "description": "Ranged spell attack. Hit: 4d6 radiant damage. Next attack against the target has advantage. +1d6 per slot level above 1st."
+          },
+          {
+            "name": "Healing Word",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 bonus action",
+            "range": "60 ft.",
+            "components": "V",
+            "duration": "Instantaneous",
+            "description": "A visible creature regains 1d4 + WIS modifier HP. No effect on undead or constructs. +1d4 per slot level above 1st."
+          },
+          {
+            "name": "Thunderwave",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "Self (15-foot cube)",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "Each creature in a 15-ft cube makes a CON save. Fail: 2d8 thunder damage, pushed 10 ft. Success: half damage. Audible 300 ft. +1d8 per slot level above 1st. [Tempest Domain]"
+          }
+        ]
+      },
+      "class_resources": {
+        "wrath_of_the_storm": {
+          "label": "Wrath of the Storm",
+          "max": 3,
+          "current": 3,
+          "recharge": "Long Rest",
+          "description": "Reaction when hit by a creature within 5 ft. Deal 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier."
+        }
+      },
+      "features": [
+        {
+          "name": "Bonus Proficiencies",
+          "source": "Tempest Domain 1",
+          "description": "Proficiency with martial weapons and heavy armor. Evo walked in expecting a desk job. He got a war portfolio instead."
+        },
+        {
+          "name": "Wrath of the Storm",
+          "source": "Tempest Domain 1",
+          "description": "Reaction triggered when a creature within 5 ft hits you. It takes 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier (3) per long rest."
+        },
+        {
+          "name": "Domain Spells",
+          "source": "Tempest Domain 1",
+          "description": "Fog Cloud and Thunderwave are always prepared and don't count against prepared spell limit. Higher-level domain spells unlock as Evo levels."
+        },
+        {
+          "name": "Lightning Breath Weapon",
+          "source": "Bronze Dragonborn",
+          "description": "Exhale a 5×30 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
+        },
+        {
+          "name": "Lightning Damage Resistance",
+          "source": "Bronze Dragonborn",
+          "description": "Resistance to lightning damage."
+        },
+        {
+          "name": "Inside Informant",
+          "source": "Rival Intern Background",
+          "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon — his as-yet-unfunded information startup."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
+        "weapons": ["Simple Weapons", "Martial Weapons"],
+        "tools": ["Cartographer's Tools"],
+        "languages": ["Common", "Draconic", "Gnomish"]
+      },
+      "traits": {
+        "personality": "Radiates the quiet confidence of someone who definitely belongs here and absolutely did not misread the job posting.",
+        "ideal": "Information is currency. The right leverage at the right moment is worth more than any spell slot.",
+        "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer — for now, interests align.",
+        "flaw": "Lawful Evil wrapped in a support role. He will absolutely sell you out if the market conditions are right."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
+        "encumbrance": {
+          "total_weight_lb": 76.5,
+          "encumbered_lb": 150,
+          "push_drag_lift_lb": 300
+        },
+        "carried": [
+          { "name": "Chain Mail",           "quantity": 1,  "description": "AC 16. Heavy armor." },
+          { "name": "Shield",               "quantity": 1,  "description": "+2 AC." },
+          { "name": "Mace",                 "quantity": 1,  "description": "1d6 bludgeoning." },
+          { "name": "Light Crossbow",        "quantity": 1,  "description": "1d8 piercing. Range 80/320 ft." },
+          { "name": "Crossbow Bolts",        "quantity": 20, "description": "Standard ammunition." },
+          { "name": "Cartographer's Tools",  "quantity": 1,  "description": "Tool proficiency. Holdover from the archives." }
+        ]
+      },
+      "backstory": {
+        "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding.",
+        "verbatim": "A lowly intern. I saw a job ad for a big fortune 5000 company called moogle & got hired on the spot. But I read the job description wrong, they didn't want a cleric they wanted a clerc(k). They all made fun of me for that. I used my time in the archives to learn most of their partners and I aim to undercut them in the global markets by starting my own information company called duck duck dragon. I need money for my startup so i joined a random party to get funds."
       }
-    ]
-  },
-  "class_resources": {
-    "wrath_of_the_storm": {
-      "label": "Wrath of the Storm",
-      "max": 3,
-      "current": 3,
-      "recharge": "Long Rest",
-      "description": "Reaction when hit by a creature within 5 ft. Deal 2d8 lightning or thunder damage (DEX save DC 13 for half). Uses = WIS modifier."
-    }
-  },
-  "features": [
-    {
-      "name": "Bonus Proficiencies",
-      "source": "Tempest Domain 1",
-      "description": "Proficiency with martial weapons and heavy armor. Evo walked in expecting a desk job. He got a war portfolio instead."
     },
-    {
-      "name": "Wrath of the Storm",
-      "source": "Tempest Domain 1",
-      "description": "Reaction triggered when a creature within 5 ft hits you. It takes 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier (3) per long rest."
-    },
-    {
-      "name": "Domain Spells",
-      "source": "Tempest Domain 1",
-      "description": "Fog Cloud and Thunderwave are always prepared and don't count against prepared spell limit. Higher-level domain spells unlock as Evo levels."
-    },
-    {
-      "name": "Lightning Breath Weapon",
-      "source": "Bronze Dragonborn",
-      "description": "Exhale a 5x30 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
-    },
-    {
-      "name": "Lightning Damage Resistance",
-      "source": "Bronze Dragonborn",
-      "description": "Resistance to lightning damage."
-    },
-    {
-      "name": "Inside Informant",
-      "source": "Rival Intern Background",
-      "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon — his as-yet-unfunded information startup."
-    }
-  ],
-  "proficiencies": {
-    "armor": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
-    "weapons": ["Simple Weapons", "Martial Weapons"],
-    "tools": ["Cartographer's Tools"],
-    "languages": ["Common", "Draconic", "Gnomish"]
-  },
-  "traits": {
-    "personality": "Radiates the quiet confidence of someone who definitely belongs here and absolutely did not misread the job posting.",
-    "ideal": "Information is currency. The right leverage at the right moment is worth more than any spell slot.",
-    "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer — for now, interests align.",
-    "flaw": "Lawful Evil wrapped in a support role. He will absolutely sell you out if the market conditions are right."
-  },
-  "physical": {
-    "age": 25,
-    "height": "6'7\"",
-    "weight": "240 lbs",
-    "eyes": "Blue",
-    "skin": "Bronze",
-    "hair": "None"
-  },
-  "equipment": {
-    "currency": {
-      "pp": 0,
-      "gp": 5,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
-    },
-    "encumbrance": {
-      "total_weight": 76.5,
-      "light_threshold": 75,
-      "heavy_threshold": 150,
-      "max_threshold": 300
-    },
-    "carried": [
-      { "name": "Chain Mail",          "quantity": 1, "description": "AC 16. Heavy armor. Proficient." },
-      { "name": "Shield",              "quantity": 1, "description": "+2 AC." },
-      { "name": "Mace",               "quantity": 1, "description": "1d6 bludgeoning." },
-      { "name": "Light Crossbow",      "quantity": 1, "description": "1d8 piercing. Range 80/320 ft." },
-      { "name": "Crossbow Bolts",      "quantity": 20, "description": "Standard ammunition." },
-      { "name": "Cartographer's Tools","quantity": 1, "description": "Tool proficiency. Holdover from the archives." }
-    ]
-  },
-  "backstory": {
-    "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding."
-  }
-},
     "slot5": {
-  "identity": {
-    "name": "Malc Grann",
-    "race": "Rock Gnome",
-    "class": "Fighter",
-    "subclass": "Battle Master (Planned)",
-    "level": 1,
-    "background": "Folk Hero",
-    "alignment": "Neutral",
-    "experience": "Milestone",
-    "portrait_url": "/dnd/malc.png",
-    "theme_color": "#5a3f2a",
-    "theme_color_light": "#8b6f47",
-    "theme_color_bright": "#d4a574",
-    "theme_color_dim": "#3d2817",
-    "theme_rgb": "90,63,42"
-  },
-  "meta": {
-    "player": "SirMoosen",
-    "last_session_updated": "Session 00",
-    "session_changes": []
-  },
-  "abilities": {
-    "str": 18,
-    "dex": 12,
-    "con": 18,
-    "int": 10,
-    "wis": 10,
-    "cha": 16
-  },
-  "saving_throws": {
-    "str": { "proficient": true,  "value": "+6" },
-    "dex": { "proficient": false, "value": "+1" },
-    "con": { "proficient": true,  "value": "+6" },
-    "int": { "proficient": false, "value": "+0" },
-    "wis": { "proficient": false, "value": "+0" },
-    "cha": { "proficient": false, "value": "+3" }
-  },
-  "combat": {
-    "hp_max": 14,
-    "hp_current": 14,
-    "hp_temp": 0,
-    "ac": 19,
-    "initiative": "+1",
-    "speed": 30,
-    "proficiency_bonus": "+2",
-    "hit_dice_total": "1d10",
-    "passive_perception": 12,
-    "passive_investigation": 10,
-    "passive_insight": 10
-  },
-  "skills": {
-    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "animal_handling": { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
-    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+4" },
-    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
-    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
-    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
-    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
-    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" }
-  },
-  "senses": {
-    "darkvision_ft": 60
-  },
-  "attacks": [
-    {
-      "name": "Whip",
-      "type": "Martial Melee Weapon",
-      "attack": "+6",
-      "damage": "1d4+4",
-      "damage_type": "Slashing",
-      "detail": "Martial · Finesse · Reach · Slow"
-    },
-    {
-      "name": "Unarmed Strike",
-      "type": "Unarmed",
-      "attack": "+6",
-      "damage": "5",
-      "damage_type": "Bludgeoning",
-      "detail": ""
-    }
-  ],
-  "actions": {
-    "standard_actions": [
-      "Attack",
-      "Magic",
-      "Dash",
-      "Disengage",
-      "Dodge",
-      "Help",
-      "Hide",
-      "Ready",
-      "Search",
-      "Utilize",
-      "Opportunity Attack",
-      "Grapple",
-      "Shove",
-      "Improvise",
-      "Two-Weapon Fighting",
-      "Interact with an Object",
-      "Study",
-      "Influence"
-    ],
-    "bonus_actions": [
-      "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
-    ],
-    "special": [
-      "Tiny Clockwork Device: Activate whenever you or another creature activates it with a touch, the device produces the effect chosen at the time of creation."
-    ]
-  },
-  "spellcasting": {
-    "enabled": true,
-    "type": "lineage",
-    "ability": "int",
-    "spell_save_dc": 0,
-    "spell_attack_bonus": "+0",
-    "cantrips": [
-      {
-        "name": "Mending",
-        "source": "Gnomish Lineage Spells",
-        "cast": "1m",
-        "range": "Touch",
-        "components": "V,S,M",
-        "duration": "Instantaneous",
-        "ref": "PHB-2024 297"
+      "identity": {
+        "name": "Malc Grann",
+        "race": "Rock Gnome",
+        "class": "Fighter",
+        "subclass": "Battle Master (Planned)",
+        "level": 1,
+        "background": "Folk Hero",
+        "alignment": "Neutral",
+        "experience": "Milestone",
+        "portrait_url": "/dnd/malc.png",
+        "theme_color": "#5a3f2a",
+        "theme_color_light": "#8b6f47",
+        "theme_color_bright": "#d4a574",
+        "theme_color_dim": "#3d2817",
+        "theme_rgb": "90,63,42"
       },
-      {
-        "name": "Prestidigitation",
-        "source": "Gnomish Lineage Spells",
-        "cast": "1A",
-        "range": "10 ft.",
-        "components": "V,S",
-        "duration": "1 hour",
-        "ref": "PHB-2024 307"
+      "meta": {
+        "player": "SirMoosen",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "Male",
+        "age": 67,
+        "size": "Small",
+        "height": "3'6\"",
+        "weight": 42,
+        "eyes": "Topaz",
+        "skin": "Tan",
+        "hair": "Platinum Blonde",
+        "faith": "Malc Grann",
+        "distinguishing_features": "Self-proclaimed Wall God. Always visibly excited when near a structurally significant wall."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 18,
+        "dex": 12,
+        "con": 18,
+        "int": 10,
+        "wis": 10,
+        "cha": 16
+      },
+      "saving_throws": {
+        "str": { "proficient": true,  "value": "+6" },
+        "dex": { "proficient": false, "value": "+1" },
+        "con": { "proficient": true,  "value": "+6" },
+        "int": { "proficient": false, "value": "+0", "note": "Advantage vs magic (Gnomish Cunning)" },
+        "wis": { "proficient": false, "value": "+0", "note": "Advantage vs magic (Gnomish Cunning)" },
+        "cha": { "proficient": false, "value": "+3", "note": "Advantage vs magic (Gnomish Cunning)" }
+      },
+      "combat": {
+        "hp_max": 14,
+        "hp_current": 14,
+        "hp_temp": 0,
+        "ac": 19,
+        "initiative": "+1",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d10",
+        "passive_perception": 12,
+        "passive_investigation": 10,
+        "passive_insight": 10
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "animal_handling": { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+4" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" }
+      },
+      "attacks": [
+        {
+          "name": "Whip",
+          "type": "Martial Melee Weapon",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Slashing",
+          "detail": "Martial · Finesse · Reach · Slow"
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+6",
+          "damage": "5",
+          "damage_type": "Bludgeoning",
+          "detail": ""
+        }
+      ],
+      "actions": {
+        "standard_actions": [
+          "Attack", "Magic", "Dash", "Disengage", "Dodge", "Help", "Hide",
+          "Ready", "Search", "Utilize", "Opportunity Attack", "Grapple",
+          "Shove", "Improvise", "Two-Weapon Fighting", "Interact with an Object",
+          "Study", "Influence"
+        ],
+        "bonus_actions": [
+          "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
+        ],
+        "special": [
+          "Tiny Clockwork Device: Activate whenever you or another creature activates it with a touch; the device produces the effect chosen at the time of creation."
+        ]
+      },
+      "spellcasting": {
+        "enabled": true,
+        "type": "lineage",
+        "ability": "int",
+        "spell_save_dc": 0,
+        "spell_attack_bonus": "+0",
+        "cantrips": [
+          {
+            "name": "Mending",
+            "source": "Gnomish Lineage Spells",
+            "school": "Transmutation",
+            "casting_time": "1 minute",
+            "range": "Touch",
+            "components": "V, S, M",
+            "duration": "Instantaneous",
+            "description": "Repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, or a torn cloak. Does not restore magic to a magic item.",
+            "ref": "PHB-2024 297"
+          },
+          {
+            "name": "Prestidigitation",
+            "source": "Gnomish Lineage Spells",
+            "school": "Transmutation",
+            "casting_time": "1 action",
+            "range": "10 ft.",
+            "components": "V, S",
+            "duration": "1 hour",
+            "description": "Minor magical trick: create a small sensory effect, light or snuff a candle, clean or soil an object, chill/warm/flavor up to 1 cubic foot of material, make a symbol appear on a surface, or produce a small trinket.",
+            "ref": "PHB-2024 307"
+          }
+        ],
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {
+        "second_wind": {
+          "label": "Second Wind",
+          "max": 2,
+          "current": 2,
+          "recharge": "Long Rest",
+          "notes": "Regain one use on a Short Rest.",
+          "description": "Bonus Action: regain 1d10 + 1 HP."
+        }
+      },
+      "features": [
+        {
+          "name": "Gnomish Cunning",
+          "source": "Rock Gnome",
+          "description": "Advantage on INT, WIS, and CHA saving throws against magic."
+        },
+        {
+          "name": "Darkvision",
+          "source": "Rock Gnome",
+          "description": "Darkvision 60 ft."
+        },
+        {
+          "name": "Tiny Clockwork Device",
+          "source": "Rock Gnome",
+          "description": "Activate whenever you or another creature activates it with a touch; it produces the effect chosen at the time of creation."
+        },
+        {
+          "name": "Second Wind",
+          "source": "Fighter 1",
+          "description": "Bonus Action: regain 1d10 + 1 HP. 2 uses per long rest; regain one use on a short rest."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Heavy Armor", "Light Armor", "Medium Armor", "Shields"],
+        "weapons": ["Martial Weapons", "Simple Weapons"],
+        "tools": ["Smith's Tools", "Vehicles (Land)"],
+        "languages": ["Common", "Draconic", "Gnomish"]
+      },
+      "traits": {
+        "personality": "Bright-eyed and excited to discuss any sufficiently sturdy-looking wall. Believes himself to be of divinity walking among mortals.",
+        "ideal": "The greatest wall ever built will be his temple. Every structure he encounters is evaluated for its potential.",
+        "bond": "His name means Strong Wall. He intends to live up to it — literally.",
+        "flaw": "Cannot pass a notable wall without stopping to examine it, regardless of circumstances."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
+        "encumbrance": {
+          "total_weight_lb": 84,
+          "encumbered_lb": 270,
+          "push_drag_lift_lb": 540
+        },
+        "carried": [
+          { "name": "Shield",       "quantity": 1, "weight_lb": 6,  "description": "" },
+          { "name": "Chain Mail",   "quantity": 1, "weight_lb": 55, "description": "" },
+          { "name": "Whip",         "quantity": 1, "weight_lb": 3,  "description": "" },
+          { "name": "Backpack",     "quantity": 1, "weight_lb": 5,  "description": "" },
+          { "name": "Bedroll",      "quantity": 1, "weight_lb": 7,  "description": "" },
+          { "name": "Mason's Tools","quantity": 1, "weight_lb": 8,  "description": "" },
+          { "name": "Chain",        "quantity": 1, "weight_lb": 0,  "description": "" }
+        ]
+      },
+      "backstory": {
+        "summary": "Malc Grann — meaning Strong Wall — is what this gnome calls himself. Self-proclaimed Wall God. Believes himself to be of divinity walking among mortals. Bright-eyed and excited to discuss and examine any sufficiently sturdy-looking wall. His dream is to build the biggest and best wall anyone has ever seen and declare it his temple.",
+        "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
       }
-    ],
-    "spell_slots": {
-      "level_1": { "max": 0, "current": 0 },
-      "level_2": { "max": 0, "current": 0 },
-      "level_3": { "max": 0, "current": 0 },
-      "level_4": { "max": 0, "current": 0 },
-      "level_5": { "max": 0, "current": 0 }
-    }
-  },
-  "class_resources": {
-    "second_wind": {
-      "label": "Second Wind",
-      "max": 2,
-      "current": 2,
-      "recharge": "Long Rest",
-      "notes": "Regain one use on a Short Rest.",
-      "description": "Bonus Action: regain 1d10 + 1 HP."
-    }
-  },
-  "features": [
-    {
-      "name": "Gnomish Cunning",
-      "source": "Rock Gnome",
-      "description": "Advantage on INT, WIS, CHA saving throws against magic."
     },
-    {
-      "name": "Darkvision",
-      "source": "Rock Gnome",
-      "description": "Darkvision 60 ft."
-    },
-    {
-      "name": "Second Wind",
-      "source": "Fighter 1",
-      "description": "Bonus Action: regain 1d10 + 1 HP. 2 uses per long rest; regain one use on a short rest."
-    },
-    {
-      "name": "Tiny Clockwork Device",
-      "source": "Rock Gnome",
-      "description": "Activate whenever you or another creature activates it with a touch; it produces the effect chosen at the time of creation."
-    }
-  ],
-  "proficiencies": {
-    "armor": ["Heavy Armor", "Light Armor", "Medium Armor", "Shields"],
-    "weapons": ["Martial Weapons", "Simple Weapons"],
-    "tools": ["Smith's Tools", "Vehicles (Land)"],
-    "languages": ["Common", "Draconic", "Gnomish"]
-  },
-  "physical": {
-    "gender": "Male",
-    "age": 67,
-    "size": "Small",
-    "height": "3'6\"",
-    "weight": 42,
-    "skin": "Tan",
-    "eyes": "Topaz",
-    "hair": "Platinum Blonde",
-    "faith": "Malc Grann"
-  },
-  "equipment": {
-    "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
-    "encumbrance": {
-      "total_weight_lb": 84,
-      "encumbered_lb": 270,
-      "push_drag_lift_lb": 540
-    },
-    "carried": [
-      { "name": "Shield",      "quantity": 1, "weight_lb": 6,  "description": "" },
-      { "name": "Chain Mail",  "quantity": 1, "weight_lb": 55, "description": "" },
-      { "name": "Whip",        "quantity": 1, "weight_lb": 3,  "description": "" },
-      { "name": "Backpack",    "quantity": 1, "weight_lb": 5,  "description": "" },
-      { "name": "Bedroll",     "quantity": 1, "weight_lb": 7,  "description": "" },
-      { "name": "Mason's Tools","quantity": 1, "weight_lb": 8, "description": "" },
-      { "name": "Chain",       "quantity": 0, "weight_lb": 0,  "description": "" }
-    ]
-  },
-  "backstory": {
-    "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
-  }
-},
     "slot6": {
       "identity": {
         "name": "",
@@ -1491,213 +1203,78 @@
         "last_session_updated": "Session 00",
         "session_changes": []
       },
+      "physical": {
+        "gender": "",
+        "age": null,
+        "size": "",
+        "height": "",
+        "weight": null,
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "faith": "",
+        "distinguishing_features": ""
+      },
+      "senses": {
+        "darkvision_ft": 0
+      },
       "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
+        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
       },
       "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
+        "str": { "proficient": false, "value": "+0" },
+        "dex": { "proficient": false, "value": "+0" },
+        "con": { "proficient": false, "value": "+0" },
+        "int": { "proficient": false, "value": "+0" },
+        "wis": { "proficient": false, "value": "+0" },
+        "cha": { "proficient": false, "value": "+0" }
       },
       "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
+        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
+        "ac": 10, "initiative": "+0", "speed": 30,
+        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
+        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
       },
       "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
       },
       "attacks": [],
       "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
+        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
+        "cantrips": [],
+        "spells_prepared": [],
         "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
+          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
         }
       },
       "class_resources": {},
       "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
+      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
+      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
       "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
+        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
         "carried": []
       },
-      "backstory": {
-        "summary": ""
-      }
+      "backstory": { "summary": "", "verbatim": "" }
     },
     "slot7": {
       "identity": {
@@ -1721,213 +1298,78 @@
         "last_session_updated": "Session 00",
         "session_changes": []
       },
+      "physical": {
+        "gender": "",
+        "age": null,
+        "size": "",
+        "height": "",
+        "weight": null,
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "faith": "",
+        "distinguishing_features": ""
+      },
+      "senses": {
+        "darkvision_ft": 0
+      },
       "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
+        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
       },
       "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
+        "str": { "proficient": false, "value": "+0" },
+        "dex": { "proficient": false, "value": "+0" },
+        "con": { "proficient": false, "value": "+0" },
+        "int": { "proficient": false, "value": "+0" },
+        "wis": { "proficient": false, "value": "+0" },
+        "cha": { "proficient": false, "value": "+0" }
       },
       "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
+        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
+        "ac": 10, "initiative": "+0", "speed": 30,
+        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
+        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
       },
       "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
       },
       "attacks": [],
       "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
+        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
+        "cantrips": [],
+        "spells_prepared": [],
         "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
+          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
         }
       },
       "class_resources": {},
       "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
+      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
+      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
       "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
+        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
         "carried": []
       },
-      "backstory": {
-        "summary": ""
-      }
+      "backstory": { "summary": "", "verbatim": "" }
     },
     "slot8": {
       "identity": {
@@ -1951,213 +1393,78 @@
         "last_session_updated": "Session 00",
         "session_changes": []
       },
+      "physical": {
+        "gender": "",
+        "age": null,
+        "size": "",
+        "height": "",
+        "weight": null,
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "faith": "",
+        "distinguishing_features": ""
+      },
+      "senses": {
+        "darkvision_ft": 0
+      },
       "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
+        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
       },
       "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
+        "str": { "proficient": false, "value": "+0" },
+        "dex": { "proficient": false, "value": "+0" },
+        "con": { "proficient": false, "value": "+0" },
+        "int": { "proficient": false, "value": "+0" },
+        "wis": { "proficient": false, "value": "+0" },
+        "cha": { "proficient": false, "value": "+0" }
       },
       "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
+        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
+        "ac": 10, "initiative": "+0", "speed": 30,
+        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
+        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
       },
       "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
       },
       "attacks": [],
       "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
+        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
+        "cantrips": [],
+        "spells_prepared": [],
         "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
+          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
         }
       },
       "class_resources": {},
       "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
+      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
+      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
       "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
+        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
         "carried": []
       },
-      "backstory": {
-        "summary": ""
-      }
+      "backstory": { "summary": "", "verbatim": "" }
     }
   }
 }
