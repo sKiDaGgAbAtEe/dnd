@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Malc Grann — Reference Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  /* ── THEME: defaults overridden at runtime from JSON ── */
+  :root {
+    --primary:        #c8972a;
+    --primary-light:  #f0c050;
+    --primary-bright: #ffd700;
+    --primary-dim:    #7a5a18;
+    --primary-rgb:    200,151,42;
+    --arcane-light:   #f0c050;
+    --dark:           #0a0806;
+    --dark-panel:     #0f0d08;
+    --dark-border:    #1e1a10;
+    --text-cream:     #e8dfc0;
+    --text-dim:       #d4c090;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--dark); color:var(--text-cream);
+    font-family:'Cinzel',serif; min-height:100vh;
+    background-image:
+      radial-gradient(ellipse at 50% 0%,  rgba(var(--primary-rgb),0.10) 0%, transparent 60%),
+      radial-gradient(ellipse at 85% 85%, rgba(var(--primary-rgb),0.06) 0%, transparent 45%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb),0.012) 50px, rgba(var(--primary-rgb),0.012) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb),0.012) 50px, rgba(var(--primary-rgb),0.012) 51px);
+  }
+  .page {
+    max-width:900px; margin:30px auto;
+    background:#0a0806; border:1px solid var(--primary-dim);
+    position:relative; padding:30px; page-break-after:always;
+  }
+  .page::before {
+    content:''; position:absolute; top:0;left:0;right:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  }
+
+  /* ── NAME BANNER ── */
+  .name-banner { display:grid; grid-template-columns:280px 1fr; border:1px solid var(--primary-dim); margin-bottom:24px; }
+  .name-box    { border-right:1px solid var(--primary-dim); padding:14px 20px; display:flex; flex-direction:column; justify-content:center; }
+  .char-name-big {
+    font-family:'Cinzel Decorative',serif; font-size:36px; font-weight:900; line-height:1.1;
+    background:linear-gradient(180deg, var(--primary-bright), var(--primary));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 18px rgba(var(--primary-rgb),0.45));
+    min-height:42px;
+  }
+  .name-sub { font-size:11px; letter-spacing:4px; color:var(--primary-light); text-transform:uppercase; margin-top:4px; opacity:0.5; }
+  .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; }
+  .info-cell { padding:8px 14px; border-left:1px solid var(--dark-border); border-bottom:1px solid var(--dark-border); }
+  .info-cell:nth-child(n+4) { border-bottom:none; }
+  .info-label { font-size:10px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; display:block; margin-bottom:2px; opacity:0.55; }
+  .info-value { font-size:13px; color:var(--primary-light); font-weight:600; }
+
+  /* ── LAYOUT ── */
+  .sheet-body       { display:flex; flex-direction:column; gap:16px; }
+  .sheet-top-row    { display:grid; grid-template-columns:160px 1fr 220px; gap:16px; align-items:start; }
+  .ability-col      { display:flex; flex-direction:column; gap:8px; }
+  .ability-block    { border:1px solid var(--primary-dim); text-align:center; padding:10px 6px 8px; background:rgba(var(--primary-rgb),0.04); }
+  .ab-name    { font-size:10px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; display:block; margin-bottom:4px; opacity:0.6; }
+  .ab-score   { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod-box { display:inline-block; border:1px solid var(--primary-dim); padding:2px 10px; margin-top:6px; font-size:15px; color:var(--primary-light); font-weight:700; }
+  .proficiency-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(var(--primary-rgb),0.04); margin-top:4px; }
+  .prof-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); }
+  .prof-lbl { font-size:10px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:2px; }
+  .mid-col { display:flex; flex-direction:column; gap:12px; }
+  .section { border:1px solid var(--dark-border); background:var(--dark-panel); position:relative; }
+  .section::before { content:''; position:absolute; top:0;left:0;right:0; height:1px; background:linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .section-title { font-size:11px; letter-spacing:4px; color:var(--primary-light); text-transform:uppercase; padding:8px 14px; border-bottom:1px solid var(--dark-border); text-align:center; opacity:0.7; }
+  .section-body  { padding:12px 14px; }
+  .combat-row  { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .combat-stat { text-align:center; padding:10px 4px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.03); }
+  .cs-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; line-height:1; }
+  .cs-lbl { font-size:11px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; display:block; margin-top:4px; opacity:0.6; }
+  .save-list, .skill-list { display:flex; flex-direction:column; gap:3px; }
+  .save-row, .skill-row   { display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid rgba(var(--primary-rgb),0.12); }
+  .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
+  .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 8px rgba(var(--primary-rgb),0.35); }
+  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
+  .dot.success   { border-color: rgba(100,220,100,0.4); }
+  .dot.failure   { border-color: rgba(180,40,40,0.45); }
+  .dot.success.active { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .dot.failure.active { background:#cc2222; border-color:#cc2222; box-shadow:0 0 6px rgba(204,34,34,0.7); }
+  .save-name, .skill-name { flex:1; color:var(--text-cream); font-family:'IM Fell English',serif; font-size:14px; }
+  .save-val, .skill-val   { color:var(--primary-light); font-weight:700; font-size:14px; }
+  .skill-ab { font-size:13px; color:var(--text-dim); }
+  .right-col { display:flex; flex-direction:column; gap:12px; }
+  .passive-box { border:1px solid var(--primary-dim); padding:10px; text-align:center; background:rgba(var(--primary-rgb),0.04); }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:22px; color:var(--primary-light); display:block; line-height:1; }
+  .passive-lbl { font-size:11px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; display:block; margin-top:4px; opacity:0.6; }
+  details.trait-details { border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.02); }
+  .trait-summary {
+    padding:10px 12px; font-size:12px; letter-spacing:3px; color:var(--primary-light);
+    text-transform:uppercase; cursor:pointer; display:flex; align-items:center;
+    justify-content:space-between; user-select:none; min-height:28px; line-height:1; opacity:0.75;
+  }
+  .trait-summary::-webkit-details-marker { display:none; }
+  .trait-body { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); line-height:1.55; font-style:italic; word-wrap:break-word; }
+
+  /* ── ATTACKS ── */
+  .attack-table { width:100%; border-collapse:collapse; }
+  .attack-table th { font-size:12px; letter-spacing:2px; color:var(--primary-light); text-transform:uppercase; padding:4px 8px; border-bottom:1px solid var(--dark-border); text-align:left; opacity:0.65; }
+  .attack-table td { padding:6px 8px; border-bottom:1px solid rgba(var(--primary-rgb),0.15); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); }
+  .attack-name-cell { cursor:pointer; }
+  .attack-name-cell:hover { color:var(--primary-light); }
+  .val { color:var(--primary-light); font-weight:700; }
+  .attack-detail-row td { padding:0; border-bottom:none; }
+  .attack-expand { display:none; padding:10px 10px 12px; background:rgba(var(--primary-rgb),0.03); border-top:1px solid var(--dark-border); font-size:14px; line-height:1.55; color:var(--text-dim); }
+  .attack-expand.open { display:block; }
+  .atk-chevron { float:right; color:var(--primary-dim); transition:transform .2s ease; }
+  .atk-chevron.open { transform:rotate(90deg); color:var(--primary-light); }
+
+  /* ── FEATURES ── */
+  details.feature-item { border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.02); margin-bottom:8px; }
+  details.feature-item:last-child { margin-bottom:0; }
+  summary.feature-toggle {
+    list-style:none; cursor:pointer; display:grid;
+    grid-template-columns:14px 1fr auto 14px; gap:10px;
+    align-items:center; padding:10px 12px; user-select:none; min-height:32px; line-height:1;
+  }
+  summary.feature-toggle::-webkit-details-marker { display:none; }
+  .feature-gem  { width:10px; height:10px; transform:rotate(45deg); background:var(--primary-light); box-shadow:0 0 10px rgba(var(--primary-rgb),0.35); }
+  .feat-name    { font-size:12px; letter-spacing:2px; color:var(--text-cream); text-transform:uppercase; }
+  .feat-short   { font-family:'IM Fell English',serif; font-size:14px; color:var(--text-dim); white-space:nowrap; }
+  .feat-arrow   { color:var(--primary-light); font-size:13px; transition:transform .2s ease; opacity:0.5; }
+  details[open] .feat-arrow { transform:rotate(90deg); color:var(--primary-light); opacity:1; }
+  .feature-detail { padding:0 12px 12px; font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); line-height:1.55; word-wrap:break-word; }
+  .feature-detail strong { color:var(--primary-light); font-style:normal; }
+
+  /* ── PAGE 2 ── */
+  .page2-grid { display:grid; grid-template-columns:260px 1fr; gap:20px; }
+  .equip-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(var(--primary-rgb),0.12); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); }
+  .equip-item::before { content:'◆'; font-size:11px; color:var(--primary-light); opacity:0.4; }
+  .lore-box { border:1px solid var(--dark-border); padding:14px; background:rgba(var(--primary-rgb),0.04); font-family:'IM Fell English',serif; font-size:14px; color:var(--text-cream); line-height:1.8; font-style:italic; }
+
+  /* ── SPELL SLOTS ── */
+  .spell-level-block  { margin-bottom:14px; }
+  .spell-level-header { font-size:11px; letter-spacing:3px; color:var(--primary-light); text-transform:uppercase; padding:6px 10px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.05); display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; opacity:0.8; }
+  .spell-slots-pips   { display:flex; gap:4px; }
+  .spell-slot-pip { width:10px; height:10px; border:1px solid var(--primary-dim); transform:rotate(45deg); cursor:pointer; transition:all 0.3s; display:inline-block; }
+  .spell-slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 5px var(--primary); }
+  .spell-slot-pip.used      { background:transparent; border-color:rgba(var(--primary-rgb),0.2); }
+
+  /* ── FEATURES 2-COL ── */
+  #js-features { display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:start; }
+
+  /* ── PROFICIENCIES ── */
+  .prof-category { color:var(--primary-light); font-family:'Cinzel',serif; font-size:11px; letter-spacing:2px; }
+
+  /* ── BACK BUTTON ── */
+  .back-btn {
+    position:fixed; top:22px; left:24px; z-index:999;
+    font-family:'Cinzel',serif; font-size:12px; letter-spacing:4px; text-transform:uppercase;
+    color:var(--primary-light); opacity:0.8; text-decoration:none; padding:9px 16px 9px 12px;
+    border:1px solid rgba(var(--primary-rgb),0.45); background:rgba(10,8,6,0.65); backdrop-filter:blur(10px);
+    transition:color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover { color:var(--primary-bright); border-color:rgba(var(--primary-rgb),0.65); box-shadow:0 0 18px rgba(var(--primary-rgb),0.22); transform:translateX(-2px); }
+<!-- ── STEP 1: ADD THESE STYLES to your existing <style> block ── -->
+<style id="PASTE-INTO-STYLE-TAG">
+
+  /* ── SCROLL NOTE (Malc Grann — Fighter / Rock Gnome / Folk Hero) ── */
+  details.scroll-note {
+    max-width: 900px;
+    margin: 20px auto 0;
+    border: 1px solid var(--primary-dim);
+    background: var(--dark-panel);
+    position: relative;
+    overflow: hidden;
+  }
+  details.scroll-note::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  }
+
+  /* Tab / summary bar */
+  summary.scroll-note-tab {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  summary.scroll-note-tab::-webkit-details-marker { display: none; }
+  details.scroll-note[open] summary.scroll-note-tab {
+    border-bottom-color: var(--dark-border);
+    background: rgba(var(--primary-rgb), 0.04);
+  }
+  .scroll-gem {
+    width: 8px; height: 8px;
+    transform: rotate(45deg);
+    background: var(--primary-dim);
+    box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.3);
+    flex-shrink: 0;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  details.scroll-note[open] .scroll-gem {
+    background: var(--primary-light);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.55);
+  }
+  .scroll-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    opacity: 0.8;
+  }
+  .scroll-hint {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    flex: 1;
+    opacity: 0.6;
+  }
+  .scroll-arrow {
+    color: var(--primary-dim);
+    font-size: 12px;
+    transition: transform 0.25s ease, color 0.2s ease;
+    opacity: 0.7;
+  }
+  details.scroll-note[open] .scroll-arrow {
+    transform: rotate(90deg);
+    color: var(--primary-light);
+    opacity: 1;
+  }
+
+  /* Scroll body: two-column layout */
+  .scroll-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  /* Full-width divider between sections */
+  .scroll-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-dim), transparent);
+    margin: 4px 0;
+  }
+
+  /* Section headers */
+  .scroll-section {
+    padding: 16px 20px 14px;
+    border-right: 1px solid var(--dark-border);
+  }
+  .scroll-section:last-child,
+  .scroll-section.scroll-section-full {
+    border-right: none;
+  }
+  /* Full-width section (spans both columns) */
+  .scroll-section-full {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid var(--dark-border);
+  }
+  .scroll-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.18);
+    opacity: 0.85;
+  }
+
+  /* Individual entries */
+  .scroll-entry {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.08);
+  }
+  .scroll-entry:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .scroll-entry-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--text-cream);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .scroll-entry-tag {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    color: var(--primary-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0;
+  }
+  .scroll-entry-tag-ref {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    color: var(--primary-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0;
+    opacity: 0.6;
+  }
+  .scroll-entry-desc {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .scroll-entry-desc strong {
+    color: var(--primary-light);
+    font-style: normal;
+  }
+
+  /* Sub-label rows (action cost lines) */
+  .scroll-action-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0 3px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.07);
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+  }
+  .scroll-action-row:last-child { border-bottom: none; }
+  .scroll-action-name { color: var(--text-cream); flex: 1; }
+  .scroll-action-cost {
+    font-size: 11px;
+    color: var(--primary-light);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* Header-only label (no desc) */
+  .scroll-label-row {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--primary-dim);
+    text-transform: uppercase;
+    padding: 4px 0 2px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+  }
+
+  /* Mastery property pill */
+  .scroll-mastery-prop {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--primary-dim);
+    padding: 1px 6px;
+    margin-left: 4px;
+    position: relative;
+    top: -1px;
+  }
+
+</style>
+<!-- ── END STYLES ── -->
+</style>
+</head>
+<body>
+
+<a href="../players(mobile).html" class="back-btn">← Back To The Party</a>
+
+<!-- ══════════ PAGE 1 ══════════ -->
+<div class="page" id="page-1">
+
+  <div class="name-banner">
+    <div class="name-box">
+      <div class="char-name-big" id="js-name">&nbsp;</div>
+      <div class="name-sub" id="js-race">&nbsp;</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell"><span class="info-label">Class &amp; Level</span><span class="info-value">LVL <span id="js-level">—</span> <span id="js-class">—</span></span></div>
+      <div class="info-cell"><span class="info-label">Background</span><span class="info-value" id="js-background">—</span></div>
+      <div class="info-cell"><span class="info-label">Player Name</span><span class="info-value" id="js-player">—</span></div>
+      <div class="info-cell"><span class="info-label">Race</span><span class="info-value" id="js-race2">—</span></div>
+      <div class="info-cell"><span class="info-label">Alignment</span><span class="info-value" id="js-alignment">—</span></div>
+      <div class="info-cell"><span class="info-label">Experience</span><span class="info-value" id="js-xp">0</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-body">
+  <div class="sheet-top-row">
+
+    <!-- LEFT: Ability Scores -->
+    <div class="ability-col" id="js-abilities"><!-- Built by JS --></div>
+
+    <!-- MID -->
+    <div class="mid-col">
+
+      <div class="section">
+        <div class="section-body" style="padding:10px 12px;">
+          <div class="combat-row">
+            <div class="combat-stat"><span class="cs-val" id="js-ac">—</span><span class="cs-lbl">Armor Class</span></div>
+            <div class="combat-stat"><span class="cs-val" id="js-initiative">—</span><span class="cs-lbl">Initiative</span></div>
+            <div class="combat-stat"><span class="cs-val" id="js-speed">—</span><span class="cs-lbl">Speed (ft)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Vitality</div>
+        <div class="section-body" style="text-align:center;">
+          <div style="font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;opacity:0.6;margin-bottom:2px;">Max: <span id="js-hp-max">—</span></div>
+          <div style="font-size:7px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;opacity:0.7;margin-bottom:4px;">Current Hit Points</div>
+          <div style="font-family:'Cinzel Decorative',serif;font-size:48px;color:var(--primary-light);line-height:1;" id="js-hp-current">—</div>
+          <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
+            <div>
+              <div style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Hit Dice</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);margin-top:2px;" id="js-hit-dice">—</div>
+            </div>
+            <div style="border-left:1px solid var(--dark-border);padding-left:16px;">
+              <div style="font-size:7px;letter-spacing:3px;color:var(--primary-light);text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Death Saves</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--primary-light);opacity:0.8;min-width:52px;text-align:right;">Success</span>
+                <div style="display:flex;gap:5px;">
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot success" onclick="this.classList.toggle('active')"></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#cc4444;opacity:0.9;min-width:52px;text-align:right;">Failure</span>
+                <div style="display:flex;gap:5px;">
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                  <div class="dot failure" onclick="this.classList.toggle('active')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Attacks &amp; Spellcasting</div>
+        <div class="section-body" style="padding:0;">
+          <table class="attack-table">
+            <thead><tr><th>Name</th><th>Atk</th><th>Damage / Type</th></tr></thead>
+            <tbody id="js-attacks"><!-- Built by JS --></tbody>
+          </table>
+          <div id="js-spell-dc-bar" style="display:none;padding:10px 12px;background:rgba(var(--primary-rgb),0.08);border-top:1px solid var(--dark-border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:11px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Save DC</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);" id="js-spell-dc">—</div>
+              <div style="font-size:11px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;">Spell Attack</div>
+              <div style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--arcane-light);" id="js-spell-atk">—</div>
+            </div>
+          </div>
+          <div id="js-resources"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Proficiencies &amp; Languages</div>
+        <div class="section-body" id="js-proficiencies">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>
+        </div>
+      </div>
+
+    </div><!-- end mid-col -->
+
+    <!-- RIGHT: Saves, Skills, Traits -->
+    <div class="right-col">
+
+      <div class="passive-box">
+        <span class="passive-val" id="js-passive">—</span>
+        <span class="passive-lbl">Passive Wisdom (Perception)</span>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Saving Throws</div>
+        <div class="section-body" style="padding:8px 12px;">
+          <div class="save-list" id="js-saves"><!-- Built by JS --></div>
+          <div id="js-saves-note"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="section-body" style="padding:8px 12px;">
+          <div class="skill-list" id="js-skills"><!-- Built by JS --></div>
+        </div>
+      </div>
+
+      <div class="section" id="js-traits"><!-- Built by JS --></div>
+
+    </div><!-- end right-col -->
+  </div><!-- end sheet-top-row -->
+
+  <!-- FEATURES: full-width -->
+  <div class="sheet-bottom-row">
+    <div class="section">
+      <div class="section-title">Features &amp; Abilities</div>
+      <div class="section-body" style="padding:8px 10px;" id="js-features"><!-- Built by JS --></div>
+    </div>
+  </div>
+
+  </div><!-- end sheet-body -->
+</div><!-- end page-1 -->
+
+
+<!-- ══════════ PAGE 2 ══════════ -->
+<div class="page" id="page-2">
+  <div style="text-align:center;margin-bottom:20px;">
+    <div style="font-family:'Cinzel Decorative',serif;font-size:22px;background:linear-gradient(180deg,var(--primary-bright),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="js-name-p2">&nbsp;</div>
+    <div style="font-size:12px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;margin-top:4px;">Character Backstory &amp; Details</div>
+  </div>
+
+  <div class="page2-grid">
+    <!-- LEFT -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="border:1px solid var(--primary-dim);position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--dark-panel);display:flex;align-items:center;justify-content:center;">
+        <img id="js-portrait" alt="Portrait" src="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;">
+        <div id="js-portrait-placeholder" style="font-size:9px;letter-spacing:4px;color:var(--primary-dim);text-transform:uppercase;text-align:center;">No Portrait</div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,var(--dark) 100%);pointer-events:none;"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Physical Details</div>
+        <div class="section-body" id="js-physical">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">Not recorded.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Senses</div>
+        <div class="section-body" id="js-senses">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Equipment</div>
+        <div class="section-body" id="js-equipment"><!-- Built by JS --></div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <div class="section" id="js-page2-spell-header" style="display:none;">
+        <div class="section-title">Spellcasting</div>
+        <div class="section-body">
+          <div style="display:flex;gap:20px;padding:10px 14px;border:1px solid var(--dark-border);background:rgba(var(--primary-rgb),0.03);">
+            <div style="text-align:center;">
+              <span style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--primary-light);display:block;" id="js-spell-ability">—</span>
+              <span style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Ability</span>
+            </div>
+            <div style="text-align:center;">
+              <span style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--primary-light);display:block;" id="js-spell-dc-p2">—</span>
+              <span style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Save DC</span>
+            </div>
+            <div style="text-align:center;">
+              <span style="font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--primary-light);display:block;" id="js-spell-atk-p2">—</span>
+              <span style="font-size:7px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;">Atk Bonus</span>
+            </div>
+          </div>
+          <div id="js-page2-spells" style="margin-top:10px;"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Backstory</div>
+        <div class="section-body">
+          <div class="lore-box" id="js-backstory">—</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Notes · <span id="js-session-label">Session 00</span></div>
+        <div class="section-body" id="js-changelog"><!-- Built by JS --></div>
+      </div>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MALC GRANN SCROLL — Class & Lineage Reference
+     DROP-IN SNIPPET for character5_textsheet.html
+     ─────────────────────────────────────────────
+     1. Paste the <style> block into the existing <style> tag (before </style>)
+     2. Paste the <!-- SCROLL NOTE --> 
+
+
+
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     STEP 2: PASTE THIS BLOCK after the Notes / js-changelog section
+     on page 2, still inside the right-column <div>.
+     ══════════════════════════════════════════════════════════════ -->
+
+<!-- ── SCROLL NOTE: Fighter / Rock Gnome / Folk Hero Reference ── -->
+<details class="scroll-note" id="malc-scroll-note">
+  <summary class="scroll-note-tab">
+    <span class="scroll-gem"></span>
+    <span class="scroll-title">Class &amp; Lineage Reference</span>
+    <span class="scroll-hint">Fighter · Rock Gnome · Folk Hero</span>
+    <span class="scroll-arrow">▶</span>
+  </summary>
+
+  <div class="scroll-body">
+
+    <!-- ══ LEFT COLUMN ══ -->
+
+    <!-- FIGHTER FEATURES -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Fighter Features</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Core Fighter Traits
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Malc carries the full Fighter core package: armor and weapon proficiencies, saving throw proficiencies (STR, CON), and access to Fighting Style feats and Weapon Mastery at level 1.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Fighting Style
+          <span class="scroll-entry-tag">Level 1 · Feat</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Choose one <strong>Fighting Style feat</strong> at Fighter 1. Each time you gain a Fighter level, you may swap your current Fighting Style feat for a different one. Malc selected <strong>Defense</strong> — +1 AC while wearing armor.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Second Wind
+          <span class="scroll-entry-tag">Bonus Action · 2 / Long Rest</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Regain <strong>1d10 + 1 HP</strong>. You have 2 uses per long rest. You regain one expended use when you finish a Short Rest.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Weapon Mastery
+          <span class="scroll-entry-tag">System · Level 1</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Malc uses the Weapon Mastery system. Each mastered weapon has a special property that triggers on a hit. Active masteries and their effects are detailed in the right column.</div>
+      </div>
+    </div>
+
+    <!-- GNOME SPECIES TRAITS -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Gnome Species Traits</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Creature Type
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You are a <strong>Humanoid</strong>.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Size &amp; Speed
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You are <strong>Small</strong>. Your Speed is <strong>30 ft.</strong></div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Darkvision
+          <span class="scroll-entry-tag">Passive · 60 ft</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">See in dim light as bright light, and in darkness as dim light within 60 ft.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Gnomish Cunning
+          <span class="scroll-entry-tag">Passive</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">Advantage on <strong>INT, WIS, and CHA saving throws</strong>.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Gnomish Lineage
+          <span class="scroll-entry-tag">Rock Gnome</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You know the <strong>Mending</strong> and <strong>Prestidigitation</strong> cantrips. Prestidigitation can be cast over 10 minutes to create a Tiny Clockwork Device — see device rules below.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Ability Score Increases
+          <span class="scroll-entry-tag">+1 / +1 / +1</span>
+        </div>
+        <div class="scroll-entry-desc">Malc used the lineage option of <strong>+1 to three different scores</strong> when determining ability scores.</div>
+      </div>
+    </div>
+
+    <!-- FULL-WIDTH DIVIDER -->
+    <div class="scroll-divider"></div>
+
+    <!-- ══ FULL-WIDTH BOTTOM ROW (two inner cols) ══ -->
+
+    <!-- CLOCKWORK DEVICE (left of bottom) -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Tiny Clockwork Device</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">How It Works</div>
+        <div class="scroll-entry-desc">
+          Spend <strong>10 minutes casting Prestidigitation</strong> to construct a Tiny Clockwork Device. When created, choose one Prestidigitation effect — that effect triggers whenever the device is activated with a touch.
+          You may have <strong>up to 3 devices</strong> at once. Each falls apart after <strong>8 hours</strong> or when dismantled.
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Create Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">10 min (Prestidigitation)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Activate Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">Bonus Action · touch</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Dismantle Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">Utilize Action</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEAPON MASTERY (right of bottom) -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Weapon Mastery Properties</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Whip
+          <span class="scroll-mastery-prop">Slow</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit that deals damage, you can reduce the target's Speed by <strong>10 ft</strong> until the start of your next turn. Multiple hits cannot reduce Speed by more than 10 ft total.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Mace
+          <span class="scroll-mastery-prop">Sap</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit, the target has <strong>disadvantage</strong> on its next attack roll before the start of your next turn.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Light Hammer
+          <span class="scroll-mastery-prop">Nick</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit, you can make one <strong>extra attack</strong> with this weapon as part of the Attack action (not as a Bonus Action). This extra attack can occur only once per turn.</div>
+      </div>
+
+      <div style="margin-top:10px;border-top:1px solid rgba(var(--primary-rgb),0.12);padding-top:10px;">
+        <div class="scroll-label-row">Mastery Action Reference</div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Sap — Mace</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Slow — Whip</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Nick — Light Hammer</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEAT FOOTER -->
+    <div class="scroll-section scroll-section-full" style="padding:12px 20px;">
+      <div class="scroll-section-title" style="margin-bottom:8px;">✦ Feat</div>
+      <div class="scroll-entry" style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+        <div class="scroll-entry-name" style="margin-bottom:0;">
+          Defense
+          <span class="scroll-entry-tag">Fighting Style Feat</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.209</span>
+        </div>
+        <div class="scroll-entry-desc" style="flex:1;min-width:200px;">Gain <strong>+1 AC</strong> while wearing Light, Medium, or Heavy armor. Malc's base AC of 19 includes this bonus.</div>
+      </div>
+    </div>
+
+  </div><!-- end scroll-body -->
+</details>
+<!-- ── END MALC SCROLL NOTE ── -->
+    </div>
+  </div>
+</div><!-- end page-2 -->
+
+
+<script>
+// ── CHANGE THIS ONE LINE TO POINT TO A DIFFERENT CHARACTER ──
+const CHARACTER_KEY = "slot5";
+const JSON_PATH     = "../player.json";
+// ────────────────────────────────────────────────────────────
+
+function set(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined && val !== null) el.textContent = val;
+}
+function calcMod(score) {
+  const m = Math.floor((score - 10) / 2);
+  return (m >= 0 ? "+" : "") + m;
+}
+function toggleAtk(id, cell) {
+  const el  = document.getElementById(id);
+  const chv = cell.querySelector('.atk-chevron');
+  if (!el) return;
+  el.classList.toggle('open');
+  if (chv) chv.classList.toggle('open');
+}
+
+fetch(JSON_PATH)
+  .then(r => r.json())
+  .then(json => {
+    const char = json.slots[CHARACTER_KEY];
+    if (!char) {
+      document.body.innerHTML = `<div style="color:#f55;padding:40px;font-family:monospace;">ERROR: "${CHARACTER_KEY}" not found in player.json slots.</div>`;
+      return;
+    }
+
+    const id   = char.identity || {};
+    const meta = char.meta || {};
+    const c    = char.combat || {};
+    const abils = char.abilities || {};
+
+    // 0. THEME
+    document.title = (id.name || 'Character') + ' — Reference Sheet';
+    const root = document.documentElement.style;
+    if (id.theme_color)        root.setProperty('--primary',        id.theme_color);
+    if (id.theme_color_light)  root.setProperty('--primary-light',  id.theme_color_light);
+    if (id.theme_color_bright) root.setProperty('--primary-bright', id.theme_color_bright);
+    if (id.theme_color_dim)    root.setProperty('--primary-dim',    id.theme_color_dim);
+    if (id.theme_rgb)          root.setProperty('--primary-rgb',    id.theme_rgb);
+
+    // 1. IDENTITY
+    set('js-name',       id.name);
+    set('js-name-p2',    id.name);
+    set('js-race',       id.race);
+    set('js-race2',      id.race);
+    set('js-level',      id.level);
+    set('js-class',      id.subclass ? `${id.class} (${id.subclass})` : id.class);
+    set('js-background', id.background);
+    set('js-alignment',  id.alignment);
+    set('js-xp',         id.experience ?? 0);
+    if (id.portrait_url) {
+      const img = document.getElementById('js-portrait');
+      const ph  = document.getElementById('js-portrait-placeholder');
+      if (img) { img.src = id.portrait_url; img.style.display = 'block'; }
+      if (ph)  ph.style.display = 'none';
+    }
+
+    // 2. META
+    set('js-player',        meta.player);
+    set('js-session-label', meta.last_session_updated);
+
+    // 3. COMBAT
+    set('js-ac',         c.ac);
+    set('js-initiative', c.initiative);
+    set('js-speed',      c.speed);
+    set('js-hp-max',     c.hp_max);
+    set('js-hp-current', c.hp_current ?? c.hp_max);
+    set('js-hit-dice',   c.hit_dice_total);
+    set('js-passive',    c.passive_perception);
+
+    // 4. ABILITY SCORES
+    const abilNames = { str:'Strength', dex:'Dexterity', con:'Constitution', int:'Intelligence', wis:'Wisdom', cha:'Charisma' };
+    const abilsEl   = document.getElementById('js-abilities');
+    if (abilsEl && Object.keys(abils).length) {
+      abilsEl.innerHTML = Object.entries(abilNames).map(([key, label]) =>
+        `<div class="ability-block">
+          <span class="ab-name">${label}</span>
+          <span class="ab-score">${abils[key] ?? 10}</span>
+          <div class="ab-mod-box">${calcMod(abils[key] ?? 10)}</div>
+        </div>`
+      ).join('') + `
+        <div class="proficiency-box">
+          <div class="prof-val">${c.proficiency_bonus || '+2'}</div>
+          <span class="prof-lbl">Proficiency Bonus</span>
+        </div>`;
+    }
+
+    // 5. SAVING THROWS
+    const savesEl    = document.getElementById('js-saves');
+    const rawSaves   = char.saving_throws || {};
+    const saveOrder  = ['str','dex','con','int','wis','cha'];
+    const saveLabels = { str:'Strength', dex:'Dexterity', con:'Constitution', int:'Intelligence', wis:'Wisdom', cha:'Charisma' };
+    if (savesEl) {
+      const profList = [];
+      savesEl.innerHTML = saveOrder.map(key => {
+        const s   = rawSaves[key] || {};
+        const val = s.value || s.bonus || calcMod(abils[key] || 10);
+        if (s.proficient) profList.push(saveLabels[key].slice(0,3).toUpperCase());
+        return `<div class="save-row"><span class="dot ${s.proficient ? 'filled' : ''}"></span><span class="save-name">${saveLabels[key]}</span><span class="save-val">${val}</span></div>`;
+      }).join('');
+      const noteEl = document.getElementById('js-saves-note');
+      if (noteEl && profList.length) {
+        noteEl.innerHTML = `<div style="margin-top:8px;font-size:13px;color:var(--text-dim);font-family:'IM Fell English',serif;">Proficient: <strong style="color:var(--primary-light);font-style:normal;">${profList.join(', ')}</strong></div>`;
+      }
+    }
+
+    // 6. SKILLS
+    const skillsEl = document.getElementById('js-skills');
+    const rawSkills = char.skills || {};
+    const skillDisplayNames = {
+      acrobatics:'Acrobatics', animal_handling:'Animal Handling', arcana:'Arcana',
+      athletics:'Athletics', deception:'Deception', history:'History',
+      insight:'Insight', intimidation:'Intimidation', investigation:'Investigation',
+      medicine:'Medicine', nature:'Nature', perception:'Perception',
+      performance:'Performance', persuasion:'Persuasion', religion:'Religion',
+      sleight_of_hand:'Sleight of Hand', stealth:'Stealth', survival:'Survival'
+    };
+    if (skillsEl) {
+      skillsEl.innerHTML = Object.entries(rawSkills).map(([key, s]) => `
+        <div class="skill-row">
+          <span class="dot ${s.expertise ? 'expertise' : (s.proficient ? 'filled' : '')}"></span>
+          <span class="skill-name">${skillDisplayNames[key] || key}</span>
+          <span class="skill-ab">${s.ability?.toUpperCase()}</span>
+          <span class="skill-val">${s.value || s.bonus || '—'}</span>
+        </div>`).join('');
+    }
+
+    // 7. WEAPONS / ATTACKS
+    const atksEl = document.getElementById('js-attacks');
+    const weapons = char.attacks || char.weapons || [];
+    if (atksEl) {
+      if (weapons.length) {
+        atksEl.innerHTML = weapons.map((w, i) => `
+          <tr>
+            <td class="attack-name-cell" onclick="toggleAtk('atk${i}',this)">${w.name} <span class="atk-chevron" id="chv${i}">▶</span></td>
+            <td class="val">${w.attack || w.attack_bonus || '—'}</td>
+            <td>${w.damage || '—'} ${w.damage_type || ''}</td>
+          </tr>
+          <tr class="attack-detail-row"><td colspan="3">
+            <div class="attack-expand" id="atk${i}">${w.detail || w.description || w.type || ''}</div>
+          </td></tr>`
+        ).join('');
+      } else {
+        atksEl.innerHTML = `<tr><td colspan="3" style="text-align:center;color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;padding:10px;">No attacks recorded.</td></tr>`;
+      }
+    }
+
+    // 8. CLASS RESOURCES
+    const resEl   = document.getElementById('js-resources');
+    const resData = char.class_resources || {};
+    if (resEl && Object.keys(resData).length) {
+      resEl.innerHTML = Object.entries(resData).map(([, res]) => {
+        const pips = Array.from({length: res.max}, (_, i) =>
+          `<div class="spell-slot-pip ${i < res.current ? 'available' : 'used'}" onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>`
+        ).join('');
+        return `<div style="padding:8px 12px;border-top:1px solid var(--dark-border);">
+          <div style="font-size:8px;letter-spacing:2px;color:var(--primary-dim);text-transform:uppercase;margin-bottom:6px;">${res.label} · ${res.max} / ${res.recharge}</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div style="display:flex;gap:8px;">${pips}</div>
+            ${res.description ? `<span style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">${res.description}</span>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // 9. PROFICIENCIES
+    const profEl = document.getElementById('js-proficiencies');
+    const profs  = char.proficiencies || {};
+    if (profEl && Object.keys(profs).length) {
+      profEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);line-height:1.9;">
+        ${profs.weapons?.length ? `<span class="prof-category">WEAPONS</span><br>${profs.weapons.join(', ')}<br><br>` : ''}
+        ${profs.armor?.length   ? `<span class="prof-category">ARMOR</span><br>${profs.armor.join(', ')}<br><br>` : ''}
+        ${profs.tools?.length   ? `<span class="prof-category">TOOLS</span><br>${profs.tools.join(', ')}<br><br>` : ''}
+        ${profs.languages?.length ? `<span class="prof-category">LANGUAGES</span><br>${profs.languages.join(', ')}` : ''}
+      </p>`;
+    }
+
+    // 10. FEATURES
+    const featEl   = document.getElementById('js-features');
+    const features = char.features || [];
+    if (featEl) {
+      if (features.length) {
+        featEl.innerHTML = features.map(f => `
+          <details class="feature-item">
+            <summary class="feature-toggle">
+              <div class="feature-gem"></div>
+              <span class="feat-name">${f.name}</span>
+              <span class="feat-short">${f.source || ''}</span>
+              <span class="feat-arrow">▶</span>
+            </summary>
+            <div class="feature-detail">${f.description || ''}</div>
+          </details>`
+        ).join('');
+      } else {
+        featEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);font-style:italic;">No features recorded.</p>`;
+      }
+    }
+
+    // 11. TRAITS
+    const traitsEl = document.getElementById('js-traits');
+    const traits   = char.traits || {};
+    if (traitsEl) {
+      const traitDefs = [
+        { label:'Personality Traits', key:'personality' },
+        { label:'Ideals',   key:'ideal' },
+        { label:'Bonds',    key:'bond' },
+        { label:'Flaws',    key:'flaw' }
+      ].filter(e => traits[e.key]);
+      if (traitDefs.length) {
+        traitsEl.innerHTML = traitDefs.map(e => `
+          <details class="trait-details">
+            <summary class="trait-summary">${e.label} <span>▶</span></summary>
+            <div class="trait-body">${traits[e.key]}</div>
+          </details>`
+        ).join('');
+      }
+    }
+
+    // 12. EQUIPMENT
+    const equipEl = document.getElementById('js-equipment');
+    const equip   = char.equipment || {};
+    if (equipEl) {
+      const carried = Array.isArray(equip) ? equip : (equip.carried || []);
+      let html = '';
+      if (equip.currency) {
+        const cur = equip.currency;
+        html += `<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;font-size:13px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+          ${cur.pp != null ? `<span>PP: <strong style="color:var(--primary-light);">${cur.pp}</strong></span>` : ''}
+          ${cur.gp != null ? `<span>GP: <strong style="color:var(--primary-light);">${cur.gp}</strong></span>` : ''}
+          ${cur.sp != null ? `<span>SP: <strong style="color:var(--primary-light);">${cur.sp}</strong></span>` : ''}
+          ${cur.cp != null ? `<span>CP: <strong style="color:var(--primary-light);">${cur.cp}</strong></span>` : ''}
+        </div>`;
+      }
+      if (carried.length) {
+        html += carried.map(item => {
+          const name = typeof item === 'string' ? item : item.name;
+          const qty  = (item.quantity > 1) ? ` <span style="font-size:12px;color:var(--text-dim);">×${item.quantity}</span>` : '';
+          return `<div class="equip-item">${name}${qty}</div>`;
+        }).join('');
+      } else {
+        html += `<p style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);font-style:italic;">No equipment recorded.</p>`;
+      }
+      equipEl.innerHTML = html;
+    }
+
+    // 13. SPELLCASTING (page 2)
+    const sc = char.spellcasting || {};
+    if (sc.enabled) {
+      const spHeader = document.getElementById('js-page2-spell-header');
+      if (spHeader) spHeader.style.display = '';
+      const abilMap  = { int:'INT', wis:'WIS', cha:'CHA', str:'STR', dex:'DEX', con:'CON' };
+      set('js-spell-ability', abilMap[sc.ability] || sc.ability?.toUpperCase());
+      set('js-spell-dc-p2',   sc.spell_save_dc);
+      set('js-spell-atk-p2',  sc.spell_attack_bonus);
+      // Also show dc bar on page 1
+      const dcBar = document.getElementById('js-spell-dc-bar');
+      if (dcBar) dcBar.style.display = '';
+      set('js-spell-dc',  sc.spell_save_dc);
+      set('js-spell-atk', sc.spell_attack_bonus);
+      // Spell slots
+      const spellsContainer = document.getElementById('js-page2-spells');
+      if (spellsContainer && sc.spell_slots) {
+        const slotsHtml = Object.entries(sc.spell_slots)
+          .filter(([, s]) => s.max > 0)
+          .map(([key, s]) => {
+            const lvl  = key.replace('level_', '');
+            const pips = Array.from({length: s.max}, (_, i) =>
+              `<div class="spell-slot-pip ${i < s.current ? 'available' : 'used'}" onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>`
+            ).join('');
+            return `<div class="spell-level-block">
+              <div class="spell-level-header">
+                <span>Level ${lvl}</span>
+                <div class="spell-slots-pips">${pips}</div>
+              </div>
+            </div>`;
+          }).join('');
+        spellsContainer.innerHTML = slotsHtml || `<p style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);font-style:italic;">No spell slots.</p>`;
+      }
+    }
+
+    // 14. BACKSTORY
+    const bsEl = document.getElementById('js-backstory');
+    const bs   = char.backstory || {};
+    if (bsEl) {
+      bsEl.textContent = typeof bs === 'string' ? bs : (bs.verbatim || bs.full || bs.summary || bs.short || '—');
+    }
+
+    // 15. PHYSICAL DETAILS
+    const physEl = document.getElementById('js-physical');
+    const phys   = char.physical || {};
+    if (physEl && Object.keys(phys).length) {
+      const rows = [
+        { label: 'Gender',   val: phys.gender },
+        { label: 'Age',      val: phys.age },
+        { label: 'Size',     val: phys.size },
+        { label: 'Height',   val: phys.height },
+        { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+        { label: 'Eyes',     val: phys.eyes },
+        { label: 'Skin',     val: phys.skin },
+        { label: 'Hair',     val: phys.hair },
+        { label: 'Faith',    val: phys.faith },
+        { label: 'Notable',  val: phys.distinguishing_features }
+      ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+      if (rows.length) {
+        physEl.innerHTML = `<table style="width:100%;border-collapse:collapse;font-family:'IM Fell English',serif;font-size:13px;">
+          ${rows.map(r => `
+            <tr>
+              <td style="color:var(--primary-light);letter-spacing:2px;font-size:10px;text-transform:uppercase;padding:3px 8px 3px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+              <td style="color:var(--text-cream);padding:3px 0;vertical-align:top;">${r.val}</td>
+            </tr>`).join('')}
+        </table>`;
+      } else {
+        physEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">Not recorded.</p>`;
+      }
+    }
+
+    // 16. SENSES
+    const sensesEl = document.getElementById('js-senses');
+    const senses   = char.senses || {};
+    if (sensesEl) {
+      const senseRows = [];
+      if (senses.darkvision_ft > 0) senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+      if (senses.blindsight_ft > 0) senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+      if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+      if (senses.truesight_ft > 0) senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+      if (senses.other) senseRows.push(senses.other);
+      sensesEl.innerHTML = senseRows.length
+        ? senseRows.map(s => `<div style="font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);padding:2px 0;">${s}</div>`).join('')
+        : `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>`;
+    }
+
+    // 17. SPELLS (cantrips + prepared — rendered on page 2 below spell slots)
+    const sc2 = char.spellcasting || {};
+    if (sc2.enabled || (sc2.cantrips && sc2.cantrips.length)) {
+      const spellListEl = document.getElementById('js-page2-spells');
+      if (spellListEl) {
+        let spellHtml = '';
+        const cantrips = sc2.cantrips || [];
+        if (cantrips.length) {
+          spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Cantrips</div>`;
+          spellHtml += cantrips.map(sp => {
+            const name = typeof sp === 'string' ? sp : sp.name;
+            const desc = typeof sp === 'object' ? (sp.description || '') : '';
+            const meta = typeof sp === 'object'
+              ? [sp.school, sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')
+              : '';
+            return `<details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+              <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                <span>${name}</span>
+                ${sp.source ? `<span style="font-size:11px;color:var(--primary-dim);font-style:italic;">${sp.source}</span>` : '<span style="font-size:10px;color:var(--primary-dim);">Cantrip</span>'}
+              </summary>
+              ${meta ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${meta}</div>` : ''}
+              ${desc ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${desc}</div>` : ''}
+            </details>`;
+          }).join('');
+        }
+        const prepared = sc2.spells_prepared || [];
+        if (prepared.length) {
+          const byLevel = {};
+          prepared.forEach(sp => {
+            const lvl = sp.level || 1;
+            if (!byLevel[lvl]) byLevel[lvl] = [];
+            byLevel[lvl].push(sp);
+          });
+          Object.entries(byLevel).forEach(([lvl, spells]) => {
+            spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Level ${lvl} Spells</div>`;
+            spellHtml += spells.map(sp => `
+              <details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+                <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                  <span>${sp.name}</span>
+                  <span style="font-size:10px;color:var(--primary-dim);">${sp.school || ''}</span>
+                </summary>
+                ${[sp.casting_time, sp.range, sp.duration].filter(Boolean).length
+                  ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${[sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')}</div>`
+                  : ''}
+                ${sp.components ? `<div style="padding:0 10px 2px;font-size:11px;color:var(--primary-dim);">Components: ${sp.components}</div>` : ''}
+                ${sp.description ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${sp.description}</div>` : ''}
+              </details>`).join('');
+          });
+        }
+        if (spellHtml) spellListEl.innerHTML = spellHtml;
+      }
+    }
+
+    // 18. SESSION CHANGELOG
+    const changeEl = document.getElementById('js-changelog');
+    const changes  = meta.session_changes || [];
+    if (changeEl) {
+      changeEl.innerHTML = changes.length
+        ? changes.map(ch =>
+            `<div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(var(--primary-rgb),0.12);display:flex;gap:6px;">
+              <span style="color:var(--primary-light);">▸</span>${ch}
+            </div>`).join('')
+        : `<div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);font-style:italic;">No changes logged yet.</div>`;
+    }
+
+  })
+  .catch(err => {
+    console.error("Failed to load player.json:", err);
+    document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player.json — check JSON_PATH (currently: "${JSON_PATH}"). Serve over HTTP, not file://. Error: ${err.message}</div>`);
+  });
+</script>
+</body>
+</html>
