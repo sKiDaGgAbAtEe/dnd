@@ -370,7 +370,211 @@
         <div class="section-title">Notes · <span id="js-session-label">Session 00</span></div>
         <div class="section-body" id="js-changelog"><!-- Built by JS --></div>
       </div>
+<!-- ── SCROLL NOTE: Rogue / Shadar-kai / Spy Reference ── -->
+<details class="scroll-note" id="raven-scroll-note">
+  <summary class="scroll-note-tab">
+    <span class="scroll-gem"></span>
+    <span class="scroll-title">Class & Lineage Reference</span>
+    <span class="scroll-hint">Rogue · Shadar-kai · Spy</span>
+    <span class="scroll-arrow">▶</span>
+  </summary>
 
+  <div class="scroll-body">
+
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Rogue Features</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Expertise <span class="scroll-entry-tag">Level 1</span></div>
+        <div class="scroll-entry-desc">Choose two skill proficiencies, or one skill proficiency and Thieves' Tools. Your proficiency bonus is doubled for any ability check using either chosen proficiency. At 6th level, choose two more.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Sneak Attack <span class="scroll-entry-tag">Level 1 · 1d6</span></div>
+        <div class="scroll-entry-desc">Once per turn, deal extra 1d6 damage to one creature hit with a finesse or ranged weapon if you have advantage on the attack — or if an ally is within 5 ft of the target and you don't have disadvantage. Scales with rogue level.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Thieves' Cant <span class="scroll-entry-tag">Passive</span></div>
+        <div class="scroll-entry-desc">A secret language woven into ordinary speech. Only creatures who know Thieves' Cant understand the hidden message. Conveys messages four times slower than plain speech. Also grants understanding of criminal signs and symbols — safe houses, territory, loot, easy marks.</div>
+      </div>
+    </div>
+
+    <div class="scroll-divider"></div>
+
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Shadar-kai Features</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Blessing of the Raven Queen <span class="scroll-entry-tag">Bonus Action · 2/LR</span></div>
+        <div class="scroll-entry-desc">Teleport up to 30 ft to any unoccupied space you can see. Uses = proficiency bonus. Recharges on long rest. At 3rd level: also gain resistance to all damage until the start of your next turn. You appear ghostly and translucent during that time.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Darkvision <span class="scroll-entry-tag">Passive · 60 ft</span></div>
+        <div class="scroll-entry-desc">See in dim light as bright light, and in darkness as dim light within 60 ft. Cannot discern color in darkness — only shades of grey.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Fey Ancestry <span class="scroll-entry-tag">Passive</span></div>
+        <div class="scroll-entry-desc">Advantage on saving throws against being charmed. Magic cannot put you to sleep.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Necrotic Resistance <span class="scroll-entry-tag">Passive</span></div>
+        <div class="scroll-entry-desc">Resistance to necrotic damage.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Trance <span class="scroll-entry-tag">Passive</span></div>
+        <div class="scroll-entry-desc">No need for sleep. Meditate deeply for 4 hours instead, gaining the full benefit of 8 hours of rest.</div>
+      </div>
+    </div>
+
+    <div class="scroll-divider"></div>
+
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Spy Background</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Criminal Contact <span class="scroll-entry-tag">Feature</span></div>
+        <div class="scroll-entry-desc">A reliable and trustworthy liaison to a network of criminals. Messages can be sent and received across great distances through local messengers, corrupt caravan masters, and seedy sailors.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">Criminal Specialty <span class="scroll-entry-tag">Feature</span></div>
+        <div class="scroll-entry-desc">A defined specialty within the criminal world — whether inside a thieves' guild or operating independently. Even lone operators have strong preferences for particular kinds of work.</div>
+      </div>
+    </div>
+
+  </div>
+</details>
+
+<style>
+/* ── SCROLL NOTE COMPONENT ── */
+.scroll-note {
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  background: var(--dark-panel);
+  position: relative;
+  margin-bottom: 8px;
+}
+.scroll-note::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.5), transparent);
+}
+
+.scroll-note-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  transition: background 0.2s;
+}
+.scroll-note-tab::-webkit-details-marker { display: none; }
+.scroll-note-tab:hover { background: rgba(var(--primary-rgb), 0.05); }
+
+.scroll-gem {
+  width: 6px; height: 6px;
+  background: var(--primary);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5);
+  transition: box-shadow 0.3s;
+}
+details[open] .scroll-gem {
+  background: var(--primary-bright);
+  box-shadow: 0 0 16px rgba(var(--primary-rgb), 0.8);
+}
+
+.scroll-title {
+  font-size: 10px;
+  color: var(--primary-light);
+  font-weight: 600;
+  letter-spacing: 1px;
+  flex: 1;
+}
+.scroll-hint {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+.scroll-arrow {
+  font-size: 8px;
+  color: var(--primary-dim);
+  transition: transform 0.3s, color 0.3s;
+  flex-shrink: 0;
+}
+details[open] .scroll-arrow {
+  transform: rotate(90deg);
+  color: var(--primary-light);
+}
+
+/* Body of the scroll */
+.scroll-body {
+  padding: 14px 18px 18px;
+  border-top: 1px solid rgba(var(--primary-rgb), 0.12);
+  animation: scrollUnfurl 0.25s ease;
+}
+@keyframes scrollUnfurl {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-section { margin-bottom: 14px; }
+.scroll-section:last-child { margin-bottom: 0; }
+
+.scroll-section-title {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.scroll-entry {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(var(--primary-rgb), 0.08);
+}
+.scroll-entry:last-child { border-bottom: none; }
+
+.scroll-entry-name {
+  font-size: 10px;
+  color: var(--primary-light);
+  font-weight: 600;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.scroll-entry-tag {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 9px;
+  color: var(--text-dim);
+  font-weight: normal;
+}
+.scroll-entry-desc {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.scroll-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.25), transparent);
+  margin: 14px 0;
+}
+</style>
     </div>
   </div>
 </div><!-- end page-2 -->
