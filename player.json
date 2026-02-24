@@ -723,13 +723,14 @@
     "experience": 0,
     "portrait_url": "/dnd/raven.png",
     "theme_color": "#4a4a7a",
-    "theme_color_light": "#2d2d4a",
-    "theme_color_bright": "#4a4a6a",
-    "theme_color_dim": "#d0d0e8",
-    "theme_rgb": "26,26,46"
+"theme_color":        "#6060a0",
+"theme_color_light":  "#9090c8",
+"theme_color_bright": "#c8c8e8",
+"theme_color_dim":    "#2d2d4a",
+"theme_rgb":          "96,96,160"
   },
   "meta": {
-    "player": "sKiDa",
+    "player": "Rose",
     "last_session_updated": "Session 00",
     "session_changes": []
   },
