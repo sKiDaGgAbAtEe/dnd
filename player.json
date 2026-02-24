@@ -1245,236 +1245,218 @@
     "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding."
   }
 },
-    "slot5": {
-      "identity": {
-        "name": "",
-        "race": "",
-        "class": "",
-        "subclass": "",
-        "level": 1,
-        "background": "",
-        "alignment": "",
-        "experience": 0,
-        "portrait_url": "",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
-      },
-      "meta": {
-        "player": "",
-        "last_session_updated": "Session 00",
-        "session_changes": []
-      },
-      "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
-      },
-      "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
-      },
-      "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
-      },
-      "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
-      },
-      "attacks": [],
-      "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
-        "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
-        }
-      },
-      "class_resources": {},
-      "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
-      "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
-        "carried": []
-      },
-      "backstory": {
-        "summary": ""
-      }
+  "slot4": {
+  "identity": {
+    "name": "Malc Grann",
+    "race": "Rock Gnome",
+    "class": "Fighter",
+    "subclass": "Battle Master (Planned)",
+    "level": 1,
+    "background": "Folk Hero",
+    "alignment": "Neutral",
+    "experience": 0,
+    "portrait_url": "/dnd/malc.png",
+    "theme_color": "#2a7a6a",
+    "theme_color_light": "#4ab8a0",
+    "theme_color_bright": "#80dcc8",
+    "theme_color_dim": "#185a4a",
+    "theme_rgb": "42,122,106"
+  },
+  "meta": {
+    "player": "SirMoosen",
+    "last_session_updated": "Session 00",
+    "session_changes": []
+  },
+  "abilities": {
+    "str": 18,
+    "dex": 12,
+    "con": 18,
+    "int": 10,
+    "wis": 10,
+    "cha": 16
+  },
+  "saving_throws": {
+    "str": { "proficient": true,  "value": "+6" },
+    "dex": { "proficient": false, "value": "+1" },
+    "con": { "proficient": true,  "value": "+6" },
+    "int": { "proficient": false, "value": "+0" },
+    "wis": { "proficient": false, "value": "+0" },
+    "cha": { "proficient": false, "value": "+3" }
+  },
+  "combat": {
+    "hp_max": 14,
+    "hp_current": 14,
+    "hp_temp": 0,
+    "ac": 19,
+    "initiative": "+1",
+    "speed": 30,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "1d10",
+    "passive_perception": 12,
+    "passive_investigation": 10,
+    "passive_insight": 10
+  },
+  "skills": {
+    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "animal_handling": { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+6" },
+    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" }
+  },
+  "attacks": [
+    {
+      "name": "Whip",
+      "type": "Martial Melee Weapon",
+      "attack": "+6",
+      "damage": "1d4+4",
+      "damage_type": "Slashing",
+      "detail": "Finesse · Reach (10 ft). On hit, reduce target speed by 10 ft until start of your next turn. The preferred instrument of a gnome who has strong opinions about personal space."
     },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+6",
+      "damage": "5",
+      "damage_type": "Bludgeoning",
+      "detail": "A fist is a brick with opinions."
+    },
+    {
+      "name": "Mending",
+      "type": "Cantrip — Utility",
+      "attack": "—",
+      "damage": "—",
+      "damage_type": "Utility",
+      "detail": "Repair a break or tear in an object you touch. Tears, breaks, cracks up to 1 ft. Casting time: 1 minute."
+    },
+    {
+      "name": "Prestidigitation",
+      "type": "Cantrip — Utility",
+      "attack": "—",
+      "damage": "—",
+      "damage_type": "Utility",
+      "detail": "Minor wonder-working. Sensory effects, clean/soil objects, light candles, chill/warm food, leave marks. Also used to produce Tiny Clockwork Devices."
+    }
+  ],
+  "spellcasting": {
+    "enabled": false,
+    "ability": "int",
+    "spell_save_dc": 0,
+    "spell_attack_bonus": "+0",
+    "spell_slots": {
+      "level_1": { "max": 0, "current": 0 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    }
+  },
+  "class_resources": {
+    "second_wind": {
+      "label": "Second Wind",
+      "max": 2,
+      "current": 2,
+      "recharge": "Long Rest",
+      "description": "Bonus Action: regain 1d10 + fighter level HP. A gnome-sized burst of pure stubbornness."
+    }
+  },
+  "features": [
+    {
+      "name": "Defense (Fighting Style)",
+      "source": "Fighter 1",
+      "description": "+1 AC while wearing armor. Already factored into AC 19 (Chain Mail 16 + Shield +2 + Defense +1)."
+    },
+    {
+      "name": "Second Wind",
+      "source": "Fighter 1",
+      "description": "Bonus Action: regain 1d10 + fighter level HP. 2 uses per long rest. The body refuses to go down. The wall holds."
+    },
+    {
+      "name": "Gnomish Cunning",
+      "source": "Rock Gnome",
+      "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic. The one place where being small and stubborn pays off against spellcasters."
+    },
+    {
+      "name": "Darkvision",
+      "source": "Rock Gnome",
+      "description": "See in dim light within 60 ft as bright light, and in darkness as dim light."
+    },
+    {
+      "name": "Artificer's Lore",
+      "source": "Rock Gnome",
+      "description": "Add twice proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
+    },
+    {
+      "name": "Tinker",
+      "source": "Rock Gnome",
+      "description": "Proficiency with Artisan's Tools (Tinker's Tools). Spend 1 hour and 10 gp to construct a Tiny clockwork device (AC 5, 1 HP). Up to 3 devices at once, lasting 24 hours unless wound daily. Options: Clockwork Toy, Fire Starter, Music Box."
+    },
+    {
+      "name": "Rustic Hospitality",
+      "source": "Folk Hero Background",
+      "description": "Common folk will shelter and protect Malc. They'll shield him from authorities if needed, though won't risk their lives. The wall-builder is one of their own."
+    }
+  ],
+  "proficiencies": {
+    "armor": ["All Armor", "Shields"],
+    "weapons": ["Simple Weapons", "Martial Weapons"],
+    "tools": ["Mason's Tools", "Tinker's Tools"],
+    "languages": ["Common", "Gnomish"]
+  },
+  "traits": {
+    "personality": "Bright-eyed and delighted by any sufficiently sturdy wall. Speaks of masonry like liturgy. He does not understand why everyone else is not also talking about load-bearing architecture at all times.",
+    "ideal": "To build is to worship. A perfect wall is proof the world can be made better — stronger — on purpose.",
+    "bond": "His temple wall is his dream made physical. Anyone who helps lay its first stones becomes part of his myth.",
+    "flaw": "He confuses confidence with divinity, and can't resist proving himself when a structure — or ego — is challenged."
+  },
+  "physical": {
+    "age": null,
+    "height": null,
+    "weight": null,
+    "eyes": null,
+    "skin": null,
+    "hair": null
+  },
+  "equipment": {
+    "currency": {
+      "pp": 0,
+      "gp": 5,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "encumbrance": {
+      "total_weight": null,
+      "light_threshold": 90,
+      "heavy_threshold": 180,
+      "max_threshold": 360
+    },
+    "carried": [
+      { "name": "Chain Mail",     "quantity": 1, "description": "AC 16. Heavy armor." },
+      { "name": "Shield",         "quantity": 1, "description": "+2 AC." },
+      { "name": "Whip",           "quantity": 1, "description": "1d4 slashing. Finesse, reach." },
+      { "name": "Backpack",       "quantity": 1, "description": "" },
+      { "name": "Bedroll",        "quantity": 1, "description": "" },
+      { "name": "Mason's Tools",  "quantity": 1, "description": "Tool proficiency. The only thing he brought that wasn't a weapon." },
+      { "name": "Chain",          "quantity": 1, "description": "10 ft. Repurposed from construction. Doubles as a reminder." }
+    ]
+  },
+  "backstory": {
+    "summary": "A gnome mason who became a folk hero — not through glory-seeking, but through stubbornness. He has a vision: a temple wall, perfectly constructed, load-bearing, beautiful. The kind of thing that lasts. He needs resources to build it, and adventuring is, inconveniently, the fastest way to get them. He fights like he builds — methodically, with overwhelming intent, and with a confident certainty that he knows exactly what he's doing even when he absolutely does not."
+  }
+},
     "slot6": {
       "identity": {
         "name": "",
