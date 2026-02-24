@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Party — Campaign Characters</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c8972a;
+    --gold-light: #f0c050;
+    --gold-bright: #ffd700;
+    --gold-dim: #a07828;
+    --gold-glow: rgba(200,151,42,0.25);
+    --dark: #060503;
+    --dark-2: #0d0a06;
+    --dark-3: #141008;
+    --border: #2a2010;
+    --text: #e8dfc0;
+    --text-dim: #c4ae78;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #0c0b12;
+    color: var(--text);
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── PARTICLE CANVAS ── */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── BACKGROUND LAYERS ── */
+  .bg-radial {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(160,120,255,0.18) 0%, rgba(100,80,200,0.06) 45%, transparent 70%),
+      radial-gradient(ellipse 55% 45% at 8% 75%, rgba(80,160,200,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 92% 75%, rgba(140,80,220,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 50% 105%, rgba(80,120,180,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .bg-grid { display: none; }
+
+  /* ── BACK TO HUB BUTTON ── */
+  .back-btn {
+    position: fixed;
+    top: 22px;
+    left: 24px;
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 18px 9px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(240, 192, 80, 0.80);
+    text-decoration: none;
+    border: 1px solid rgba(200, 151, 42, 0.30);
+    background: rgba(6, 5, 3, 0.65);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover {
+    color: #ffd77a;
+    border-color: rgba(255, 215, 122, 0.65);
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.22), 0 4px 20px rgba(0,0,0,0.40);
+    transform: translateX(-2px);
+  }
+  .back-btn svg {
+    flex-shrink: 0;
+    transition: transform 220ms ease;
+  }
+  .back-btn:hover svg { transform: translateX(-3px); }
+
+  /* vignette */
+  .bg-vignette {
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 85% 75% at 50% 40%, transparent 25%, rgba(0,0,0,0.35) 100%);
+    pointer-events: none;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    width: 100%;
+    text-align: center;
+    padding: 90px 20px 50px;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .campaign-label {
+    font-size: 10px;
+    letter-spacing: 10px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .campaign-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 0.9;
+    background: linear-gradient(180deg,
+      #fff8e0 0%,
+      var(--gold-bright) 25%,
+      var(--gold) 60%,
+      var(--gold-dim) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 60px rgba(200,151,42,0.4));
+    animation: fadeUp 1s ease 0.15s both, titleGlow 6s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+
+  @keyframes titleGlow {
+    0%, 100% { filter: drop-shadow(0 0 40px rgba(200,151,42,0.3)); }
+    50% { filter: drop-shadow(0 0 80px rgba(255,215,0,0.6)); }
+  }
+
+  .campaign-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  /* ── DIVIDER ORNAMENT ── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px auto;
+    width: 400px;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+  .orn-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+  }
+  .orn-line.r {
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+  }
+  .orn-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px var(--gold);
+  }
+  .orn-diamond.sm {
+    width: 4px; height: 4px;
+    background: var(--gold-dim);
+    box-shadow: none;
+  }
+
+  /* ── CHARACTER COUNT ── */
+  .party-count {
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  /* ── CHARACTER GRID ── */
+  .char-grid {
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+
+  .char-card {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 420px;
+    min-width: 280px;
+  }
+
+  @media (max-width: 1100px) {
+    .char-card { flex: 0 0 calc(50% - 15px); }
+  }
+
+  @media (max-width: 700px) {
+    .char-card { flex: 0 0 100%; max-width: 420px; }
+  }
+
+  /* ── CHARACTER CARD ── */
+  .char-card {
+    background: linear-gradient(135deg,
+      rgba(13,10,6,0.9) 0%,
+      rgba(20,16,8,0.95) 100%
+    );
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.19,1,0.22,1);
+    cursor: pointer;
+  }
+
+  .char-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(200,151,42,0.25);
+    border-color: var(--gold-dim);
+  }
+
+  /* inner glow on hover */
+  .char-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at top, rgba(200,151,42,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .char-card:hover::before { opacity: 1; }
+
+  /* corner filigree inset border */
+  .char-card::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid transparent;
+    border-image: linear-gradient(135deg, rgba(200,151,42,0.2), transparent 35%, transparent 65%, rgba(200,151,42,0.2)) 1;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .char-card:hover::after { opacity: 1; }
+
+  /* ── SEKHMET THEME (Gold) ── */
+  .char-card.theme-sekhmet {
+    background: linear-gradient(135deg, rgba(13,10,6,0.9) 0%, rgba(20,14,6,0.95) 100%);
+    border-color: rgba(200,151,42,0.3);
+  }
+  .char-card.theme-sekhmet:hover {
+    box-shadow: 0 20px 60px rgba(200,151,42,0.35), 0 0 80px -20px rgba(200,151,42,0.15);
+    border-color: var(--gold);
+  }
+  .char-card.theme-sekhmet::before {
+    background: radial-gradient(circle at top, rgba(200,151,42,0.08) 0%, transparent 70%);
+  }
+  .char-card.theme-sekhmet .level-badge,
+  .char-card.theme-sekhmet .class-badge {
+    border-color: var(--gold);
+    background: rgba(13,10,6,0.9);
+  }
+  .char-card.theme-sekhmet .level-num { color: var(--gold-bright); }
+  .char-card.theme-sekhmet .level-lbl { color: var(--gold-dim); }
+  .char-card.theme-sekhmet .class-badge { color: var(--gold-bright); }
+  .char-card.theme-sekhmet .char-name {
+    color: var(--gold-bright);
+    text-shadow: 0 0 20px rgba(200,151,42,0.5);
+  }
+  .char-card.theme-sekhmet .stat-cell:hover {
+    background: rgba(200,151,42,0.12);
+    border-color: var(--gold);
+  }
+  .char-card.theme-sekhmet .btn-primary {
+    background: rgba(200,151,42,0.15);
+    border-color: var(--gold);
+  }
+  .char-card.theme-sekhmet .btn-primary:hover {
+    background: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 4px 24px rgba(200,151,42,0.5);
+  }
+
+  /* ── RAVEN THEME (Purple/Silver) ── */
+  .char-card.theme-raven {
+    background: linear-gradient(135deg, rgba(8,8,14,0.9) 0%, rgba(14,12,20,0.95) 100%);
+    border-color: rgba(168,170,184,0.25);
+  }
+  .char-card.theme-raven:hover {
+    box-shadow: 0 20px 60px rgba(176,112,232,0.3), 0 0 80px -20px rgba(120,80,200,0.15);
+    border-color: #8060b0;
+  }
+  .char-card.theme-raven::before {
+    background: radial-gradient(circle at top, rgba(88,40,160,0.08) 0%, transparent 70%);
+  }
+  .char-card.theme-raven .level-badge,
+  .char-card.theme-raven .class-badge {
+    border-color: #8060b0;
+    background: rgba(8,8,14,0.9);
+  }
+  .char-card.theme-raven .level-num { color: #b070e8; }
+  .char-card.theme-raven .level-lbl { color: #6050a0; }
+  .char-card.theme-raven .class-badge { color: #d0d4e8; }
+  .char-card.theme-raven .char-name {
+    color: #d0d4e8;
+    text-shadow: 0 0 20px rgba(176,112,232,0.4);
+  }
+  .char-card.theme-raven .stat-val { color: #b070e8; }
+  .char-card.theme-raven .stat-cell:hover {
+    background: rgba(88,40,160,0.12);
+    border-color: #8060b0;
+  }
+  .char-card.theme-raven .qi-tag {
+    background: rgba(88,40,160,0.08);
+    border-color: rgba(88,40,160,0.25);
+  }
+  .char-card.theme-raven .btn-primary {
+    background: rgba(88,40,160,0.15);
+    border-color: #8060b0;
+    color: #d0d4e8;
+  }
+  .char-card.theme-raven .btn-primary:hover {
+    background: #8060b0;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(176,112,232,0.5);
+  }
+  .char-card.theme-raven .btn-secondary {
+    border-color: rgba(88,40,160,0.25);
+    color: #8080a0;
+  }
+  .char-card.theme-raven .btn-secondary:hover {
+    border-color: #8060b0;
+    background: rgba(88,40,160,0.08);
+    color: #d0d4e8;
+  }
+
+  /* ── ASTRICA THEME (Green/Nature) ── */
+  .char-card.theme-astrica {
+    background: linear-gradient(135deg, rgba(6,10,8,0.9) 0%, rgba(8,14,10,0.95) 100%);
+    border-color: rgba(42,122,74,0.3);
+  }
+  .char-card.theme-astrica:hover {
+    box-shadow: 0 20px 60px rgba(80,192,128,0.3), 0 0 80px -20px rgba(42,122,74,0.15);
+    border-color: #3a9a5a;
+  }
+  .char-card.theme-astrica::before {
+    background: radial-gradient(circle at top, rgba(42,122,74,0.08) 0%, transparent 70%);
+  }
+  .char-card.theme-astrica .level-badge,
+  .char-card.theme-astrica .class-badge {
+    border-color: #3a9a5a;
+    background: rgba(6,10,8,0.9);
+  }
+  .char-card.theme-astrica .level-num { color: #50c080; }
+  .char-card.theme-astrica .level-lbl { color: #2a6040; }
+  .char-card.theme-astrica .class-badge { color: #7fff9a; }
+  .char-card.theme-astrica .char-name {
+    color: #50c080;
+    text-shadow: 0 0 20px rgba(42,122,74,0.5);
+  }
+  .char-card.theme-astrica .stat-val { color: #50c080; }
+  .char-card.theme-astrica .stat-cell:hover {
+    background: rgba(42,122,74,0.12);
+    border-color: #3a9a5a;
+  }
+  .char-card.theme-astrica .qi-tag {
+    background: rgba(42,122,74,0.08);
+    border-color: rgba(42,122,74,0.25);
+  }
+  .char-card.theme-astrica .btn-primary {
+    background: rgba(42,122,74,0.15);
+    border-color: #3a9a5a;
+    color: #7fff9a;
+  }
+  .char-card.theme-astrica .btn-primary:hover {
+    background: #3a9a5a;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(80,192,128,0.5);
+  }
+  .char-card.theme-astrica .btn-secondary {
+    border-color: rgba(42,122,74,0.25);
+    color: #508060;
+  }
+  .char-card.theme-astrica .btn-secondary:hover {
+    border-color: #3a9a5a;
+    background: rgba(42,122,74,0.08);
+    color: #50c080;
+  }
+
+  
+  /* ── EVO THEME (Storm/Blue) ── */
+  .char-card.theme-evo {
+    background: linear-gradient(135deg, rgba(6,8,14,0.9) 0%, rgba(10,14,22,0.95) 100%);
+    border-color: rgba(120,180,255,0.28);
+  }
+  .char-card.theme-evo:hover {
+    box-shadow: 0 20px 60px rgba(120,180,255,0.28), 0 0 90px -24px rgba(90,150,255,0.18);
+    border-color: rgba(140,200,255,0.55);
+  }
+  .char-card.theme-evo::before {
+    background: radial-gradient(circle at top, rgba(120,180,255,0.10) 0%, transparent 70%);
+  }
+  .char-card.theme-evo .level-badge,
+  .char-card.theme-evo .class-badge {
+    border-color: rgba(140,200,255,0.55);
+    background: rgba(6,8,14,0.9);
+  }
+  .char-card.theme-evo .level-num { color: rgba(160,220,255,0.95); }
+  .char-card.theme-evo .level-lbl { color: rgba(90,140,200,0.85); }
+  .char-card.theme-evo .class-badge { color: rgba(190,235,255,0.95); }
+  .char-card.theme-evo .char-name {
+    color: rgba(190,235,255,0.95);
+    text-shadow: 0 0 22px rgba(120,180,255,0.45);
+  }
+  .char-card.theme-evo .stat-val { color: rgba(160,220,255,0.95); }
+  .char-card.theme-evo .stat-cell:hover {
+    background: rgba(120,180,255,0.10);
+    border-color: rgba(140,200,255,0.55);
+  }
+  .char-card.theme-evo .qi-tag {
+    background: rgba(120,180,255,0.08);
+    border-color: rgba(120,180,255,0.22);
+  }
+  .char-card.theme-evo .btn-primary {
+    background: rgba(120,180,255,0.14);
+    border-color: rgba(140,200,255,0.55);
+    color: rgba(190,235,255,0.95);
+  }
+  .char-card.theme-evo .btn-primary:hover {
+    background: rgba(160,220,255,0.95);
+    color: var(--dark);
+    box-shadow: 0 4px 26px rgba(120,180,255,0.45);
+  }
+  .char-card.theme-evo .btn-secondary {
+    border-color: rgba(120,180,255,0.20);
+    color: rgba(140,180,220,0.80);
+  }
+  .char-card.theme-evo .btn-secondary:hover {
+    border-color: rgba(140,200,255,0.55);
+    background: rgba(120,180,255,0.08);
+    color: rgba(190,235,255,0.95);
+  }
+
+  /* themed overlay */
+  .char-card.theme-evo .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(6,8,14,0.10) 0%,
+      rgba(6,8,14,0.25) 50%,
+      rgba(6,8,14,0.92) 100%
+    );
+  }
+
+  /* ── MALC THEME (Steel · Bronze) ── */
+  .char-card.theme-malc {
+    background: linear-gradient(135deg, rgba(8,9,12,0.92) 0%, rgba(12,13,18,0.96) 100%);
+    border-color: rgba(176,122,42,0.3);
+  }
+  .char-card.theme-malc:hover {
+    box-shadow: 0 20px 60px rgba(176,122,42,0.28), 0 0 80px -20px rgba(176,122,42,0.12);
+    border-color: #e0b060;
+  }
+  .char-card.theme-malc::before {
+    background: radial-gradient(circle at top, rgba(176,122,42,0.08) 0%, transparent 70%);
+  }
+  .char-card.theme-malc .level-badge,
+  .char-card.theme-malc .class-badge {
+    border-color: rgba(176,122,42,0.55);
+    background: rgba(8,9,12,0.92);
+  }
+  .char-card.theme-malc .level-num { color: #e0b060; }
+  .char-card.theme-malc .level-lbl { color: #7a5020; }
+  .char-card.theme-malc .class-badge { color: #d6dde6; }
+  .char-card.theme-malc .char-name {
+    color: #d6dde6;
+    text-shadow: 0 0 20px rgba(176,122,42,0.4);
+  }
+  .char-card.theme-malc .stat-val { color: #e0b060; }
+  .char-card.theme-malc .stat-cell:hover {
+    background: rgba(176,122,42,0.10);
+    border-color: rgba(176,122,42,0.55);
+  }
+  .char-card.theme-malc .qi-tag {
+    background: rgba(176,122,42,0.07);
+    border-color: rgba(176,122,42,0.22);
+  }
+  .char-card.theme-malc .btn-primary {
+    background: rgba(176,122,42,0.15);
+    border-color: #e0b060;
+    color: #f2f5ff;
+  }
+  .char-card.theme-malc .btn-primary:hover {
+    background: #e0b060;
+    color: var(--dark);
+    box-shadow: 0 4px 24px rgba(176,122,42,0.5);
+  }
+  .char-card.theme-malc .btn-secondary {
+    border-color: rgba(176,122,42,0.22);
+    color: #7a8396;
+  }
+  .char-card.theme-malc .btn-secondary:hover {
+    border-color: rgba(176,122,42,0.55);
+    background: rgba(176,122,42,0.08);
+    color: #d6dde6;
+  }
+  .char-card.theme-malc .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(8,9,12,0.10) 0%,
+      rgba(8,9,12,0.25) 50%,
+      rgba(8,9,12,0.92) 100%
+    );
+  }
+
+/* ── CARD IMAGE — CONSTRAINED ── */
+  .card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: saturate(0.8) brightness(0.88);
+  }
+
+  .char-card:hover .card-image img {
+    transform: scale(1.08);
+    filter: saturate(1) brightness(1);
+  }
+
+  .card-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(6,5,3,0.1) 0%,
+      rgba(6,5,3,0.25) 50%,
+      rgba(6,5,3,0.92) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* themed overlays */
+  .char-card.theme-raven .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(8,8,14,0.1) 0%,
+      rgba(8,8,14,0.25) 50%,
+      rgba(8,8,14,0.92) 100%
+    );
+  }
+  .char-card.theme-astrica .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(6,10,8,0.1) 0%,
+      rgba(6,10,8,0.25) 50%,
+      rgba(6,10,8,0.92) 100%
+    );
+  }
+
+  /* ── LEVEL BADGE ── */
+  .level-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: rgba(6,5,3,0.88);
+    border: 1px solid var(--gold-dim);
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 3;
+  }
+
+  .level-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .level-lbl {
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── CLASS BADGE ── */
+  .class-badge {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    background: rgba(6,5,3,0.88);
+    border: 1px solid var(--gold-dim);
+    padding: 6px 14px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 3;
+  }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    padding: 22px 20px 20px;
+    position: relative;
+  }
+
+  .char-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+
+  .char-race-class {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  /* ── STATS ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+
+  .stat-cell {
+    background: rgba(200,151,42,0.03);
+    border: 1px solid rgba(42,32,16,0.6);
+    text-align: center;
+    padding: 7px 2px;
+    transition: all 0.3s;
+  }
+
+  .stat-cell:hover {
+    background: rgba(200,151,42,0.08);
+    border-color: var(--gold-dim);
+  }
+
+  .stat-abbr {
+    display: block;
+    font-size: 7px;
+    letter-spacing: 1px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .stat-val {
+    display: block;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-mod {
+    display: block;
+    font-size: 9px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  /* ── QUICK INFO ── */
+  .quick-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+
+  .qi-tag {
+    background: rgba(200,151,42,0.08);
+    border: 1px solid rgba(42,32,16,0.5);
+    padding: 5px 10px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  /* ── CARD ACTIONS ── */
+  .card-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .btn-primary {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 4px 20px rgba(200,151,42,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-dim);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(200,151,42,0.08);
+    border-color: var(--gold-dim);
+    color: var(--text);
+  }
+
+  .btn-icon {
+    font-size: 13px;
+  }
+
+  /* ── EMPTY SLOT ── */
+  .char-card.empty {
+    background: rgba(13,10,6,0.3);
+    border-style: dashed;
+    border-color: rgba(42,32,16,0.3);
+    cursor: default;
+  }
+  .char-card.empty:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(42,32,16,0.5);
+  }
+  .char-card.empty::after { display: none; }
+
+  .empty-inner {
+    height: 100%;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .empty-rune {
+    font-size: 48px;
+    opacity: 0.12;
+    transition: opacity 0.4s;
+  }
+  .char-card.empty:hover .empty-rune { opacity: 0.2; }
+
+  .empty-label {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-dim);
+    opacity: 0.4;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px 60px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .footer::before {
+    content: '✦   ✦   ✦';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: var(--gold-dim);
+    letter-spacing: 4px;
+    background: var(--dark);
+    padding: 0 20px;
+  }
+
+  .footer-title {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .footer-count {
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes cardFadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .char-card {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .char-card.revealed {
+    animation: cardFadeUp 0.7s ease forwards;
+  }
+
+  /* ── FAN ART BUTTON ── */
+  .fanart-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 80px;
+    gap: 18px;
+  }
+  .fanart-section-label {
+    font-size: 9px;
+    letter-spacing: 8px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+  .fanart-btn {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 22px 64px 20px;
+    text-decoration: none;
+    background: linear-gradient(160deg, #060503 0%, #0d0a06 50%, #060503 100%);
+    border: 1px solid var(--gold-dim);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    min-width: 340px;
+  }
+  .fanart-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
+  .fanart-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(200,151,42,0.12) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .fanart-btn:hover {
+    border-color: var(--gold);
+    box-shadow:
+      0 0 24px rgba(200,151,42,0.25),
+      0 0 70px rgba(200,151,42,0.1),
+      inset 0 0 30px rgba(200,151,42,0.05);
+  }
+  .fanart-btn:hover::before { opacity: 1; }
+  .fanart-btn:hover::after { opacity: 1; }
+  .fanart-btn .corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    border-color: var(--gold);
+    border-style: solid;
+    transition: all 0.4s ease;
+    opacity: 0.4;
+  }
+  .fanart-btn:hover .corner { opacity: 1; width: 20px; height: 20px; }
+  .corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+  .btn-gems {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-gem {
+    width: 6px; height: 6px;
+    transform: rotate(45deg);
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    transition: all 0.4s ease;
+  }
+  .btn-gem.sm {
+    background: var(--gold-dim);
+    box-shadow: none;
+    width: 4px; height: 4px;
+  }
+  .fanart-btn:hover .btn-gem {
+    box-shadow: 0 0 16px var(--gold-bright);
+    background: var(--gold-bright);
+  }
+  .fanart-btn:hover .btn-gem.sm {
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+  .gem-line {
+    width: 44px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+    transition: all 0.4s;
+  }
+  .gem-line.r {
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+  }
+  .fanart-btn:hover .gem-line {
+    background: linear-gradient(90deg, transparent, var(--gold));
+    width: 56px;
+  }
+  .fanart-btn:hover .gem-line.r {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .btn-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s;
+  }
+  .fanart-btn:hover .btn-eyebrow { color: var(--text-dim); }
+  .btn-main-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-bright) 30%, var(--gold) 70%, var(--gold-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(200,151,42,0.4));
+    position: relative;
+    z-index: 1;
+    transition: filter 0.4s;
+    line-height: 1.2;
+  }
+  .fanart-btn:hover .btn-main-label {
+    filter: drop-shadow(0 0 24px rgba(255,215,0,0.7));
+  }
+  .btn-sub-label {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s;
+  }
+  .fanart-btn:hover .btn-sub-label { color: var(--gold-light); }
+
+  /* ── DOCUMENT VIEWER MODAL ── */
+  #doc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+  }
+  #doc-modal.open { display: flex; }
+
+  .doc-modal-shell {
+    position: relative;
+    width: 92vw;
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    background: #0c0a07;
+    border: 1px solid var(--gold-dim);
+    box-shadow: 0 0 80px rgba(200,151,42,0.18), 0 30px 80px rgba(0,0,0,0.7);
+    overflow: hidden;
+  }
+
+  /* top bar */
+  .doc-modal-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(13,10,6,0.96);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  /* character tabs */
+  .doc-char-tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .doc-char-tabs::-webkit-scrollbar { display: none; }
+
+  .doc-tab {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .doc-tab:hover { color: var(--text); border-color: var(--gold-dim); }
+  .doc-tab.active {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    background: rgba(200,151,42,0.1);
+  }
+
+  /* sheet type switcher */
+  .doc-type-btns {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .doc-type-btn {
+    padding: 6px 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .doc-type-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .doc-type-btn.active {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    background: rgba(200,151,42,0.1);
+  }
+
+  /* zoom controls */
+  .doc-zoom-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .doc-zoom-btn {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--gold-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+    font-family: monospace;
+  }
+  .doc-zoom-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+  .doc-zoom-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    min-width: 36px;
+    text-align: center;
+  }
+
+  /* close button */
+  .doc-close-btn {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid rgba(42,32,16,0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .doc-close-btn:hover { color: #ff8080; border-color: rgba(255,80,80,0.4); background: rgba(255,80,80,0.08); }
+
+  /* iframe wrapper */
+  .doc-iframe-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #f5f0e8;
+  }
+
+  .doc-iframe-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  #doc-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    transform-origin: top left;
+    display: block;
+  }
+
+  /* nav arrows */
+  .doc-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(13,10,6,0.85);
+    border: 1px solid rgba(200,151,42,0.3);
+    color: var(--gold-dim);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.25s;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+  .doc-nav-arrow:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(13,10,6,0.95); }
+  .doc-nav-arrow.prev { left: 0; border-left: none; border-radius: 0 2px 2px 0; }
+  .doc-nav-arrow.next { right: 0; border-right: none; border-radius: 2px 0 0 2px; }
+  .doc-nav-arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+
+  /* char name in bar */
+  .doc-bar-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    margin-right: 6px;
+  }
+
+  .doc-sep { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+
+  <!-- Back to Hub -->
+  <a class="back-btn" href="/dnd/index.html">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to the Hub
+  </a>
+
+<!-- BACKGROUND LAYERS -->
+<canvas id="particles"></canvas>
+<div class="bg-radial"></div>
+<div class="bg-grid"></div>
+<div class="bg-vignette"></div>
+
+<div class="content">
+
+  <!-- ── HERO HEADER ── -->
+  <div class="hero">
+    <div class="campaign-label">◆ &nbsp; Campaign Chronicles &nbsp; ◆</div>
+    <h1 class="campaign-title">The Party</h1>
+    <div class="campaign-sub">Bound by Fate · Forged by Fire</div>
+  </div>
+
+  <div class="ornament">
+    <div class="orn-line"></div>
+    <div class="orn-diamond sm"></div>
+    <div class="orn-diamond"></div>
+    <div class="orn-diamond sm"></div>
+    <div class="orn-line r"></div>
+  </div>
+
+  <div class="party-count">Five Adventurers · Many More to Come</div>
+
+  <!-- ── CHARACTER GRID ── -->
+  <div class="char-grid">
+
+    <!-- SEKHMET -->
+    <div class="char-card theme-sekhmet" data-character="sekhmet" style="--reveal-delay: 0.1s;">
+      <div class="card-image">
+        <img src="Sekhmet.png" alt="Sekhmet">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Barbarian · Zealot</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Sekhmet</div>
+        <div class="char-race-class">Leonin &nbsp;·&nbsp; Path of the Zealot &nbsp;·&nbsp; Outlander</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">16</span>
+            <span class="stat-mod">+3</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 17</span>
+          <span class="qi-tag">AC 14</span>
+          <span class="qi-tag">Speed 35</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">True Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character1.html" class="btn btn-primary">
+            <span class="btn-icon">🦁</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character1_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAVEN -->
+    <div class="char-card theme-raven" data-character="raven" style="--reveal-delay: 0.2s;">
+      <div class="card-image">
+        <img src="raven.png" alt="Raven">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Rogue · Assassin</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Raven</div>
+        <div class="char-race-class">Shadar-Kai &nbsp;·&nbsp; Assassin &nbsp;·&nbsp; Spy</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">10</span>
+            <span class="stat-mod">+0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">17</span>
+            <span class="stat-mod">+3</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">12</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 10</span>
+          <span class="qi-tag">AC 14</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character3.html" class="btn btn-primary">
+            <span class="btn-icon">🗡️</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character3_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- IZABELLA  -->
+    <div class="char-card theme-astrica" data-character="izabella" style="--reveal-delay: 0.3s;">
+      <div class="card-image">
+        <img src="izabella.png" alt="Izabella">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Wizard · Witherbloom</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Izabella</div>
+        <div class="char-race-class">Fairy &nbsp;·&nbsp; Witherbloom Student &nbsp;·&nbsp; Wizard</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">8</span>
+            <span class="stat-mod">-1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">16</span>
+            <span class="stat-mod">+3</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 7</span>
+          <span class="qi-tag">AC 12</span>
+          <span class="qi-tag">Speed 10</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">True Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character2.html" class="btn btn-primary">
+            <span class="btn-icon">✨</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character2_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- EVO -->
+    <div class="char-card theme-evo" data-character="evo" style="--reveal-delay: 0.4s;">
+      <div class="card-image">
+        <img src="Evo.png" alt="Evo">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Cleric · Tempest</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Evo</div>
+        <div class="char-race-class">Bronze Dragonborn &nbsp;·&nbsp; Tempest Domain &nbsp;·&nbsp; Rival Intern</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">13</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">14</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">12</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">15</span>
+            <span class="stat-mod">+2</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">17</span>
+            <span class="stat-mod">+3</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 10</span>
+          <span class="qi-tag">AC 18</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">True Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character4.html" class="btn btn-primary">
+            <span class="btn-icon">⚡</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character4_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MALC -->
+    <div class="char-card theme-malc" data-character="malc" style="--reveal-delay: 0.5s;">
+      <div class="card-image">
+        <img src="/dnd/malc.png" alt="Malc Grann">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Fighter · Folk Hero</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Malc Grann</div>
+        <div class="char-race-class">Rock Gnome &nbsp;·&nbsp; Folk Hero &nbsp;·&nbsp; Fighter</div>
+
+        <div class="stat-row">
+          <div class="stat-cell">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-val">18</span>
+            <span class="stat-mod">+4</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-val">12</span>
+            <span class="stat-mod">+1</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CON</span>
+            <span class="stat-val">18</span>
+            <span class="stat-mod">+4</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-val">10</span>
+            <span class="stat-mod">+0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-val">10</span>
+            <span class="stat-mod">+0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-val">16</span>
+            <span class="stat-mod">+3</span>
+          </div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 14</span>
+          <span class="qi-tag">AC 19</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">Neutral</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character5.html" class="btn btn-primary">
+            <span class="btn-icon">🧱</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character5_textsheet.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── FAN ART BUTTON ── -->
+  <div class="fanart-section">
+    <div class="fanart-section-label">◆ &nbsp; The Chronicle &nbsp; ◆</div>
+    <a href="/dnd/fanart/index.html" class="fanart-btn">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+      <span class="btn-eyebrow">Community Art</span>
+      <div class="btn-gems">
+        <span class="gem-line"></span>
+        <span class="btn-gem sm"></span>
+        <span class="btn-gem"></span>
+        <span class="btn-gem sm"></span>
+        <span class="gem-line r"></span>
+      </div>
+      <span class="btn-main-label">Art Gallery</span>
+      <span class="btn-sub-label">Art from the adventure &amp; beyond</span>
+      <div class="btn-gems">
+        <span class="gem-line"></span>
+        <span class="btn-gem sm"></span>
+        <span class="btn-gem"></span>
+        <span class="btn-gem sm"></span>
+        <span class="gem-line r"></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-title">The world fell. They did not.</div>
+    <div class="footer-count">Campaign · Session 0</div>
+  </div>
+
+</div>
+
+<script>
+  // ── PARTICLE SYSTEM ──
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const COUNT = 70;
+
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 1.8 + 0.2,
+      speedX: (Math.random() - 0.5) * 0.25,
+      speedY: -Math.random() * 0.35 - 0.08,
+      opacity: Math.random() * 0.55 + 0.15,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.01 + Math.random() * 0.02,
+      glow: Math.random() > 0.85
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.pulse += p.pulseSpeed;
+      const alpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
+
+      // soft halo on select particles
+      if (p.glow) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(160, 120, 255, ${alpha * 0.1})`;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      const r = Math.random() > 0.5 ? `rgba(180, 140, 255, ${alpha})` : `rgba(100, 180, 220, ${alpha})`;
+      ctx.fillStyle = r;
+      ctx.fill();
+
+      p.x += p.speedX;
+      p.y += p.speedY;
+
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = getComputedStyle(entry.target).getPropertyValue('--reveal-delay') || '0s';
+        entry.target.style.animationDelay = delay;
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.char-card').forEach(card => observer.observe(card));
+
+  // ── CARD PARALLAX ──
+  document.querySelectorAll('.char-card:not(.empty)').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / rect.width;
+      const dy = (e.clientY - cy) / rect.height;
+      card.style.transform = `translateY(-8px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+</script>
+
+
+<script>
+/* ── PLAYER.JSON WIRING (landing cards) ── */
+(async function () {
+  const CANDIDATES = [
+    "./player.json",
+    "player.json",
+    "/player.json",
+    "/dnd/player.json",
+    "../player.json",
+    "../../player.json"
+  ];
+
+  async function loadPlayers() {
+    let lastErr = null;
+    for (const url of CANDIDATES) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) { lastErr = new Error(`HTTP ${r.status} @ ${url}`); continue; }
+        return await r.json();
+      } catch (e) { lastErr = e; }
+    }
+    throw lastErr || new Error("Could not load player.json");
+  }
+
+  function abMod(score) {
+    const n = Number(score);
+    if (!Number.isFinite(n)) return "";
+    const m = Math.floor((n - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+
+  function setText(el, txt) {
+    if (!el) return;
+    el.textContent = (txt ?? "").toString();
+  }
+
+  function buildJoin(parts) {
+    return parts.filter(Boolean).join(" · ");
+  }
+
+  try {
+    const data = await loadPlayers();
+
+    // player.json uses a slots structure: data.slots.slot1, slot2, etc.
+    // Each slot has nested identity, abilities, combat sub-objects.
+    // Build a lookup map keyed by the card's data-character attribute,
+    // matching on identity.name (case-insensitive) or a slot's explicit key field.
+    const slots = data?.slots || {};
+    const charMap = {};
+    for (const slotVal of Object.values(slots)) {
+      const id = slotVal?.identity;
+      if (!id?.name) continue;
+      // Derive the card key from the name: lowercase, strip spaces
+      const cardKey = id.name.toLowerCase().replace(/\s+/g, "");
+      charMap[cardKey] = slotVal;
+    }
+    // Also allow matching by explicit key field if present
+    for (const slotVal of Object.values(slots)) {
+      if (slotVal?.key) charMap[slotVal.key] = slotVal;
+    }
+
+    document.querySelectorAll(".char-card[data-character]").forEach(card => {
+      const rawKey = card.getAttribute("data-character"); // e.g. "sekhmet", "malc"
+      // Try exact key first, then name-derived key (e.g. "malcgrann" → won't match "malc")
+      // So also try prefix matching for multi-word names like "Malc Grann" → key "malc"
+      let slot = charMap[rawKey];
+      if (!slot) {
+        // Fallback: find a slot whose name starts with the card key (case-insensitive)
+        slot = Object.values(slots).find(s =>
+          s?.identity?.name?.toLowerCase().startsWith(rawKey.toLowerCase())
+        );
+      }
+      if (!slot) return;
+
+      const id = slot.identity;
+      const combat = slot.combat || {};
+      const abilities = slot.abilities || {};
+
+      // Name
+      setText(card.querySelector(".char-name"), id.name || rawKey);
+
+      // Level badge
+      setText(card.querySelector(".level-badge .level-num"), id.level);
+
+      // Class badge (Class · Subclass)
+      setText(card.querySelector(".class-badge"), buildJoin([id.class, id.subclass]));
+
+      // Subtitle line under name (Race · Subclass/Path · Background)
+      setText(card.querySelector(".char-race-class"), buildJoin([id.race, id.subclass, id.background]));
+
+      // Abilities (ordered)
+      const order = ["str","dex","con","int","wis","cha"];
+      const cells = card.querySelectorAll(".stat-row .stat-cell");
+      order.forEach((k, i) => {
+        const cell = cells[i];
+        if (!cell) return;
+        setText(cell.querySelector(".stat-val"), abilities[k]);
+        setText(cell.querySelector(".stat-mod"), abMod(abilities[k]));
+      });
+
+      // Quick info tags: HP, AC, Speed, Prof, Alignment
+      const tags = card.querySelectorAll(".quick-info .qi-tag");
+
+      const hpDisplay = combat.hp_current ?? combat.hp_max ?? null;
+      const ac = combat.ac ?? null;
+      const sp = combat.speed ?? null;
+
+      const pbRaw = combat.proficiency_bonus ?? null;
+      let pbTxt = "";
+      if (typeof pbRaw === "string") pbTxt = pbRaw.trim();
+      else if (pbRaw != null && pbRaw !== "") pbTxt = (Number(pbRaw) >= 0 ? "+" + Number(pbRaw) : String(pbRaw));
+
+      const al = id.alignment ?? "";
+
+      if (tags[0]) setText(tags[0], `HP ${hpDisplay ?? ""}`);
+      if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
+      if (tags[2]) setText(tags[2], `Speed ${sp ?? ""}`);
+      if (tags[3]) setText(tags[3], `Prof ${pbTxt}`);
+      if (tags[4]) setText(tags[4], al);
+    });
+  } catch (err) {
+    console.warn("Landing-page wiring failed; leaving fallback values in place.", err);
+  }
+})();
+</script>
+<!-- AUDIO PLAYER -->
+<div id="audio-player" style="
+  position: fixed;
+  bottom: 28px; right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(14,10,6,0.88);
+  border: 1px solid rgba(184,131,42,0.35);
+  padding: 10px 18px;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+">
+  <button id="audio-toggle" onclick="toggleAudio()" style="
+    background: none;
+    border: none;
+    color: #a07828;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.3s;
+  ">▶</button>
+  <span style="font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:#a07828; text-transform:uppercase;">Ambience</span>
+  <input type="range" id="audio-vol" min="0" max="1" step="0.05" value="0.01"
+    oninput="document.getElementById('bg-audio').volume=this.value"
+    style="width:60px; accent-color:#b8832a; cursor:pointer;">
+</div>
+
+<audio id="bg-audio" loop>
+  <source src="/dnd/background2.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ── DOCUMENT VIEWER MODAL ── -->
+<div id="doc-modal" role="dialog" aria-modal="true">
+  <div class="doc-modal-shell">
+
+    <!-- Top bar -->
+    <div class="doc-modal-bar">
+      <span class="doc-bar-name" id="doc-bar-name">Character</span>
+      <div class="doc-sep"></div>
+
+      <!-- Character tabs -->
+      <div class="doc-char-tabs" id="doc-char-tabs">
+        <!-- populated by JS -->
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Sheet type -->
+      <div class="doc-type-btns">
+        <button class="doc-type-btn active" id="btn-type-sheet" onclick="switchDocType('sheet')">⚔ Sheet</button>
+        <button class="doc-type-btn" id="btn-type-text" onclick="switchDocType('text')">📜 Text</button>
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Zoom -->
+      <div class="doc-zoom-group">
+        <button class="doc-zoom-btn" onclick="changeZoom(-10)" title="Zoom out">−</button>
+        <span class="doc-zoom-label" id="doc-zoom-label">100%</span>
+        <button class="doc-zoom-btn" onclick="changeZoom(+10)" title="Zoom in">+</button>
+        <button class="doc-zoom-btn" onclick="resetZoom()" title="Reset zoom" style="font-size:11px;letter-spacing:0;font-family:'Cinzel',serif;">↺</button>
+      </div>
+
+      <div class="doc-sep"></div>
+
+      <!-- Close -->
+      <button class="doc-close-btn" onclick="closeDocModal()" title="Close">✕</button>
+    </div>
+
+    <!-- iframe area with nav arrows -->
+    <div class="doc-iframe-wrap">
+      <button class="doc-nav-arrow prev" id="doc-prev" onclick="navigateChar(-1)" title="Previous character">‹</button>
+      <div class="doc-iframe-scroll" id="doc-scroll">
+        <iframe id="doc-iframe" src="about:blank" title="Character document"></iframe>
+      </div>
+      <button class="doc-nav-arrow next" id="doc-next" onclick="navigateChar(+1)" title="Next character">›</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── CHARACTER DATA ──
+  const PARTY = [
+    { key:'sekhmet', name:'Sekhmet',   emoji:'🦁', sheet:'/dnd/characters/character1.html',  text:'/dnd/characters/character1_textsheet.html' },
+    { key:'raven',   name:'Raven',     emoji:'🗡️', sheet:'/dnd/characters/character3.html',    text:'/dnd/characters/character3_textsheet.html' },
+    { key:'izabella',name:'Izabella',  emoji:'✨', sheet:'/dnd/characters/character2.html', text:'/dnd/characters/character2_textsheet.html' },
+    { key:'evo',     name:'Evo',       emoji:'⚡', sheet:'/dnd/characters/character4.html',      text:'/dnd/characters/character4_textsheet.html' },
+    { key:'malc',    name:'Malc Grann',emoji:'🧱', sheet:'/dnd/characters/character5.html',     text:'/dnd/characters/character5_textsheet.html' },
+  ];
+
+  let currentCharIdx = 0;
+  let currentDocType = 'sheet'; // 'sheet' or 'text'
+  let zoomLevel = 100;
+
+  // Build character tabs
+  const tabContainer = document.getElementById('doc-char-tabs');
+  PARTY.forEach((char, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'doc-tab' + (i === 0 ? ' active' : '');
+    btn.id = `doc-tab-${char.key}`;
+    btn.textContent = `${char.emoji} ${char.name}`;
+    btn.onclick = () => openDocModal(i, currentDocType);
+    tabContainer.appendChild(btn);
+  });
+
+  function openDocModal(charIdx, docType = 'sheet') {
+    currentCharIdx = charIdx;
+    currentDocType = docType;
+    updateModal();
+    document.getElementById('doc-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDocModal() {
+    document.getElementById('doc-modal').classList.remove('open');
+    document.getElementById('doc-iframe').src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+
+  function updateModal() {
+    const char = PARTY[currentCharIdx];
+
+    // Update bar name
+    document.getElementById('doc-bar-name').textContent = char.name;
+
+    // Update tabs
+    document.querySelectorAll('.doc-tab').forEach((t, i) => t.classList.toggle('active', i === currentCharIdx));
+
+    // Update type buttons
+    document.getElementById('btn-type-sheet').classList.toggle('active', currentDocType === 'sheet');
+    document.getElementById('btn-type-text').classList.toggle('active', currentDocType === 'text');
+
+    // Update nav arrows
+    document.getElementById('doc-prev').disabled = currentCharIdx === 0;
+    document.getElementById('doc-next').disabled = currentCharIdx === PARTY.length - 1;
+
+    // Load iframe
+    const url = currentDocType === 'sheet' ? char.sheet : char.text;
+    const iframe = document.getElementById('doc-iframe');
+    iframe.src = url;
+
+    // Apply zoom
+    applyZoom();
+  }
+
+  function switchDocType(type) {
+    currentDocType = type;
+    updateModal();
+  }
+
+  function navigateChar(dir) {
+    const next = currentCharIdx + dir;
+    if (next < 0 || next >= PARTY.length) return;
+    currentCharIdx = next;
+    updateModal();
+  }
+
+  function applyZoom() {
+    const iframe = document.getElementById('doc-iframe');
+    const scroll = document.getElementById('doc-scroll');
+    const scale = zoomLevel / 100;
+
+    if (zoomLevel === 100) {
+      iframe.style.transform = '';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+    } else if (zoomLevel > 100) {
+      // Scale up: iframe stays 100% of scroll area, content inside zooms
+      iframe.style.transform = '';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+    } else {
+      iframe.style.transform = `scale(${scale})`;
+      iframe.style.transformOrigin = 'top left';
+      iframe.style.width = `${10000 / zoomLevel}%`;
+      iframe.style.height = `${10000 / zoomLevel}%`;
+    }
+
+    // Use CSS zoom on the iframe for simple scaling
+    iframe.style.zoom = scale;
+    iframe.style.transform = '';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+
+    document.getElementById('doc-zoom-label').textContent = zoomLevel + '%';
+  }
+
+  function changeZoom(delta) {
+    zoomLevel = Math.min(200, Math.max(50, zoomLevel + delta));
+    applyZoom();
+  }
+
+  function resetZoom() {
+    zoomLevel = 100;
+    applyZoom();
+  }
+
+  // Buttons link directly — no modal intercept needed on mobile.
+</script>
+
+<script>
+  function toggleAudio() {
+    const audio = document.getElementById('bg-audio');
+    const btn   = document.getElementById('audio-toggle');
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = '⏸';
+      btn.style.color = '#d4a84b';
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+      btn.style.color = '#a07828';
+    }
+  }
+</script>
