@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character — Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+  /* ─── CHARACTER THEME (overridden at runtime from JSON) ─── */
+  :root {
+    --primary:        #c8972a;
+    --primary-light:  #f0c050;
+    --primary-bright: #ffd700;
+    --primary-dim:    #7a5a18;
+    --accent:         #8b1a1a;
+    --dark:           #0a0806;
+    --dark-panel:     #0f0d08;
+    --dark-border:    #1e1a10;
+    --text-cream:     #e8dfc0;
+    --text-dim:       #d4c090;
+    --primary-rgb:    200,151,42;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text-cream);
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb), 0.08) 0%, transparent 60%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb), 0.012) 50px, rgba(var(--primary-rgb), 0.012) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb), 0.012) 50px, rgba(var(--primary-rgb), 0.012) 51px);
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    position: relative; text-align: center;
+    padding: 60px 20px 0; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(var(--primary-rgb),0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .char-emblem {
+    font-size: 14px; letter-spacing: 8px; color: var(--primary-dim);
+    text-transform: uppercase; margin-bottom: 8px;
+    animation: fadeIn 2s ease;
+  }
+  .char-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 0.9;
+    background: linear-gradient(180deg, var(--primary-bright) 0%, var(--primary-light) 40%, var(--primary) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(var(--primary-rgb),0.7));
+    animation: fadeIn 1.5s ease, glowPulse 5s ease-in-out infinite;
+    position: relative; z-index: 1;
+    min-height: 86px;
+  }
+  .char-subtitle {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: 18px; color: var(--text-dim); letter-spacing: 4px;
+    margin-top: 10px; animation: fadeIn 2.5s ease;
+  }
+
+  @keyframes glowPulse {
+    0%,100% { filter: drop-shadow(0 0 30px rgba(var(--primary-rgb),0.5)); }
+    50%      { filter: drop-shadow(0 0 70px rgba(var(--primary-rgb),0.8)); }
+  }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 30px auto; max-width: 700px; padding: 0 30px;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-dim), transparent); }
+  .divider-gem  { width: 8px; height: 8px; background: var(--primary-light); transform: rotate(45deg); box-shadow: 0 0 10px var(--primary-light); }
+
+  /* ─── IDENTITY BAR ─── */
+  .identity-bar {
+    max-width: 1300px; margin: 0 auto 20px; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 1px; background-color: var(--primary-dim);
+    border: 1px solid var(--primary-dim);
+  }
+  .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
+  .id-label { font-size: 11px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .id-value { font-family: 'Cinzel Decorative', serif; font-size: 13px; color: var(--primary-light); font-weight: 700; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .sheet {
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid; grid-template-columns: 420px 1fr;
+    gap: 24px; align-items: start;
+  }
+
+  /* ─── PORTRAIT COLUMN ─── */
+  .portrait-col { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+  .portrait-frame {
+    position: relative; border: 1px solid var(--primary-dim); overflow: hidden;
+  }
+  .portrait-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, var(--dark) 100%);
+    pointer-events: none;
+  }
+  .portrait-corner { position: absolute; width: 22px; height: 22px; z-index: 2; }
+  .portrait-corner.tl { top:0; left:0;  border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+  .portrait-corner.bl { bottom:0; left:0;  border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+
+  .portrait-img { width: 100%; display: block; filter: brightness(1.04) saturate(1.1); min-height: 480px; background: var(--dark-panel); }
+  .portrait-placeholder {
+    width: 100%; min-height: 480px; background: var(--dark-panel);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary-dim); font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  }
+
+  /* ─── PANEL ─── */
+  .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
+  .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .panel-title { font-size: 12px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
+  .panel-body  { padding: 14px 18px; }
+
+  /* ─── ABILITY SCORES ─── */
+  .ability-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .ability-block {
+    background: rgba(var(--primary-rgb),0.05); border: 1px solid var(--dark-border);
+    text-align: center; padding: 12px 6px; transition: all 0.3s;
+  }
+  .ability-block:hover { background: rgba(var(--primary-rgb),0.14); border-color: var(--primary-dim); }
+  .ab-name  { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod   { font-size: 15px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
+
+  /* ─── COMBAT STATS ─── */
+  .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .combat-block {
+    text-align: center; padding: 14px 8px;
+    background: rgba(var(--primary-rgb),0.04); border: 1px solid var(--dark-border); transition: all 0.3s;
+  }
+  .combat-block:hover { background: rgba(var(--primary-rgb),0.12); border-color: var(--primary-dim); }
+  .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
+  .combat-label { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
+
+  /* ─── HP BAR ─── */
+  .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .hp-current { font-family:'Cinzel Decorative',serif; font-size:48px; color:var(--primary-light); line-height:1; }
+  .hp-sep     { font-size:24px; color:var(--primary-dim); }
+  .hp-max     { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-dim); }
+  .hp-bar-bg  { height:4px; background:var(--dark-border); position:relative; margin-top:4px; }
+  .hp-bar-fill { height:100%; background:linear-gradient(90deg,var(--primary-dim),var(--primary-light)); transition: width 0.5s ease; }
+
+  /* ─── SAVING THROWS ─── */
+  .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
+  .save-row  { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.07); font-size: 14px; }
+  .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
+  .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
+  .save-name { flex:1; color:var(--text-cream); }
+  .save-val  { color:var(--primary-light); font-weight:700; font-size:14px; }
+
+  /* ─── SKILLS ─── */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
+  .skill-row   { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06); font-size: 14px; }
+  .skill-name  { flex:1; color:var(--text-cream); }
+  .skill-ab    { font-size: 13px; color:var(--text-dim); }
+  .skill-val   { color:var(--primary-light); font-weight:700; font-size:14px; }
+
+  /* ─── PASSIVE STATS ─── */
+  .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.03); }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
+  .passive-lbl { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+
+  /* ─── FEATURES ─── */
+  .feature-item { border-bottom: 1px solid var(--dark-border); }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-toggle {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 0; cursor: pointer; user-select: none; list-style: none;
+    transition: background 0.2s;
+  }
+  .feature-toggle::-webkit-details-marker { display: none; }
+  .feature-toggle:hover { background: rgba(var(--primary-rgb),0.05); }
+  .feature-gem { width: 5px; height: 5px; background: var(--primary); transform: rotate(45deg); flex-shrink: 0; box-shadow: 0 0 5px var(--primary); transition: all 0.3s; }
+  details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
+  .feat-name   { font-size: 15px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-source { font-family:'IM Fell English',serif; font-size: 14px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow  { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
+  .feature-detail {
+    padding: 6px 14px 12px 20px;
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim); line-height:1.7;
+    border-top: 1px solid rgba(var(--primary-rgb),0.08); animation: dropIn 0.2s ease;
+  }
+  .feature-detail strong { color:var(--primary-light); font-style:normal; }
+
+  /* ─── TRAITS ─── */
+  .trait-details { border-bottom: 1px solid var(--dark-border); }
+  .trait-details:last-child { border-bottom: none; }
+  .trait-summary {
+    list-style: none; padding: 8px 6px;
+    font-size: 12px; letter-spacing: 3px; color: var(--primary-dim);
+    text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  .trait-summary::-webkit-details-marker { display: none; }
+  .trait-summary:hover { color: var(--primary); }
+  .trait-arrow { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; }
+  details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
+  .trait-body {
+    padding: 6px 10px 12px;
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-cream);
+    line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
+  }
+
+  /* ─── EQUIPMENT ─── */
+  .equip-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
+  }
+  .equip-item::before { content:'◆'; font-size: 10px; color:var(--primary-dim); }
+  .equip-qty { font-size: 13px; color:var(--primary-dim); margin-left:auto; }
+
+  /* ─── BACKSTORY ─── */
+  .backstory-box {
+    border: 1px solid var(--dark-border); padding: 16px;
+    background: rgba(var(--primary-rgb),0.03);
+    font-family: 'IM Fell English', serif; font-size: 15px;
+    color: var(--text-dim); line-height: 1.9; font-style: italic;
+  }
+
+  /* ─── SESSION CHANGELOG ─── */
+  .changelog-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
+  }
+  .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
+
+  /* ─── SPELL SLOTS ─── */
+  .slot-grid { display:flex; flex-direction:column; gap:6px; }
+  .slot-row  { display:flex; align-items:center; gap:8px; }
+  .slot-level { font-size: 12px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
+  .slot-pips  { display:flex; gap:5px; flex-wrap:wrap; }
+  .slot-pip {
+    width:14px; height:14px; border:1px solid var(--primary-dim);
+    cursor:pointer; transition:all 0.3s; transform:rotate(45deg);
+  }
+  .slot-pip.used      { background:transparent; border-color:rgba(var(--primary-rgb),0.2); box-shadow:none; }
+  .slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
+
+  /* ─── RIGHT COLUMN ─── */
+  .stats-col { display: flex; flex-direction: column; gap: 16px; }
+
+  @keyframes dropIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .sheet { grid-template-columns:1fr; }
+    .portrait-col { position:static; }
+    .identity-bar { grid-template-columns:repeat(3,1fr); }
+    .ability-grid { grid-template-columns:repeat(3,1fr); }
+    .combat-grid  { grid-template-columns:repeat(2,1fr); }
+    .passive-grid { grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ─── BACK BUTTON ─── */
+  .back-btn {
+    position: fixed; top: 22px; left: 24px; z-index: 999;
+    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--primary-light); opacity: 0.85; text-decoration: none;
+    padding: 9px 16px 9px 12px;
+    border: 1px solid rgba(var(--primary-rgb), 0.45);
+    background: rgba(10,8,6,0.65); backdrop-filter: blur(10px);
+    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover {
+    color: var(--primary-bright);
+    border-color: rgba(var(--primary-rgb), 0.7);
+    box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.25);
+    transform: translateX(-2px);
+    opacity: 1;
+  }
+
+</style>
+</head>
+<body>
+
+<a href="../players(mobile).html" class="back-btn">← Back To The Party</a>
+
+<!-- ════════════════════════════════ HEADER ════════════════════════════════ -->
+<div class="header">
+  <div class="char-emblem" data-path="identity.race">&nbsp;</div>
+  <div class="char-name"   data-path="identity.name">&nbsp;</div>
+  <div class="char-subtitle">
+    <span data-path="identity.subclass"></span>
+    <span id="subtitle-sep">&nbsp;·&nbsp;</span>
+    <span data-path="identity.class"></span>
+    &nbsp;·&nbsp;
+    Level <span data-path="identity.level">—</span>
+  </div>
+</div>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+<!-- IDENTITY BAR -->
+<div class="identity-bar">
+  <div class="id-cell"><span class="id-label">Class &amp; Level</span><span class="id-value"><span data-path="identity.class"></span> <span data-path="identity.level"></span></span></div>
+  <div class="id-cell"><span class="id-label">Background</span><span class="id-value" data-path="identity.background"></span></div>
+  <div class="id-cell"><span class="id-label">Race</span><span class="id-value" data-path="identity.race"></span></div>
+  <div class="id-cell"><span class="id-label">Alignment</span><span class="id-value" data-path="identity.alignment"></span></div>
+  <div class="id-cell"><span class="id-label">Player</span><span class="id-value" data-path="meta.player"></span></div>
+  <div class="id-cell"><span class="id-label">Experience</span><span class="id-value"><span data-path="identity.experience">0</span> XP</span></div>
+</div>
+
+<!-- ════════════════════════════════ MAIN SHEET ════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- ── LEFT: PORTRAIT COLUMN ── -->
+  <div class="portrait-col">
+
+    <!-- Portrait Image -->
+    <div class="portrait-frame">
+      <div class="portrait-corner tl"></div>
+      <div class="portrait-corner tr"></div>
+      <div class="portrait-corner bl"></div>
+      <div class="portrait-corner br"></div>
+      <img class="portrait-img" id="portrait-img" src="" alt="Character Portrait" style="display:none;">
+      <div class="portrait-placeholder" id="portrait-placeholder">No Portrait</div>
+    </div>
+
+    <!-- Hit Points -->
+    <div class="panel">
+      <div class="panel-title">Hit Points</div>
+      <div class="panel-body">
+        <div class="hp-display">
+          <span class="hp-current" data-path="combat.hp_current">—</span>
+          <span class="hp-sep">/</span>
+          <span class="hp-max" data-path="combat.hp_max">—</span>
+        </div>
+        <div class="hp-bar-bg">
+          <div class="hp-bar-fill" id="hp-bar" style="width:100%;"></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:11px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
+          <span>Hit Dice: <span style="color:var(--primary-light);" data-path="combat.hit_dice_total">—</span></span>
+          <span>Temp: <span style="color:var(--primary-light);" data-path="combat.hp_temp">0</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saving Throws -->
+    <div class="panel">
+      <div class="panel-title">Saving Throws</div>
+      <div class="panel-body">
+        <div class="save-grid" id="saves-container"></div>
+      </div>
+    </div>
+
+    <!-- Ability Scores -->
+    <div class="panel">
+      <div class="panel-title">Ability Scores</div>
+      <div class="panel-body">
+        <div class="ability-grid" id="abilities-container"></div>
+      </div>
+    </div>
+
+    <!-- Backstory -->
+    <div class="panel">
+      <div class="panel-title">Background &amp; Lore</div>
+      <div class="panel-body">
+        <div class="backstory-box" id="js-backstory-box">—</div>
+      </div>
+    </div>
+
+    <!-- Physical Details -->
+    <div class="panel">
+      <div class="panel-title">Physical Details</div>
+      <div class="panel-body" id="js-physical-portrait">
+        <div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>
+      </div>
+    </div>
+
+    <!-- Senses -->
+    <div class="panel" id="js-senses-panel" style="display:none;">
+      <div class="panel-title">Senses</div>
+      <div class="panel-body" id="js-senses-portrait"></div>
+    </div>
+
+    <!-- Session Changelog -->
+    <div class="panel">
+      <div class="panel-title">Last Updated: <span data-path="meta.last_session_updated">Session 00</span></div>
+      <div class="panel-body" id="changelog-container"></div>
+    </div>
+
+  </div><!-- end portrait-col -->
+
+  <!-- ── RIGHT: STATS COLUMN ── -->
+  <div class="stats-col">
+
+    <!-- Combat Stats -->
+    <div class="panel">
+      <div class="panel-title">Combat</div>
+      <div class="panel-body">
+        <div class="combat-grid">
+          <div class="combat-block"><span class="combat-value" data-path="combat.ac">—</span><span class="combat-label">Armor Class</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.initiative">—</span><span class="combat-label">Initiative</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.speed">—</span><span class="combat-label">Speed (ft)</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.proficiency_bonus">—</span><span class="combat-label">Proficiency</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Passive Senses -->
+    <div class="panel">
+      <div class="panel-title">Passive Senses</div>
+      <div class="panel-body">
+        <div class="passive-grid">
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_perception">—</span><span class="passive-lbl">Perception</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_investigation">—</span><span class="passive-lbl">Investigation</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_insight">—</span><span class="passive-lbl">Insight</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="panel">
+      <div class="panel-title">Skills</div>
+      <div class="panel-body">
+        <div class="skills-grid" id="skills-container"></div>
+      </div>
+    </div>
+
+    <!-- Spellcasting (hidden if not enabled) -->
+    <div class="panel" id="spellcasting-panel" style="display:none;">
+      <div class="panel-title">Spellcasting — DC <span data-path="spellcasting.spell_save_dc">—</span> · Atk <span data-path="spellcasting.spell_attack_bonus">—</span></div>
+      <div class="panel-body">
+        <div class="slot-grid" id="spell-slots-container"></div>
+      </div>
+    </div>
+
+    <!-- Class Resources -->
+    <div class="panel" id="resources-panel" style="display:none;">
+      <div class="panel-title">Class Resources</div>
+      <div class="panel-body" id="resources-container"></div>
+    </div>
+
+    <!-- Features & Abilities -->
+    <div class="panel">
+      <div class="panel-title">Features &amp; Abilities</div>
+      <div class="panel-body" id="features-container"></div>
+    </div>
+
+    <!-- Character Traits -->
+    <div class="panel">
+      <div class="panel-title">Character Traits</div>
+      <div class="panel-body" id="traits-container"></div>
+    </div>
+
+    <!-- Equipment -->
+    <div class="panel">
+      <div class="panel-title">Equipment &amp; Inventory</div>
+      <div class="panel-body">
+        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+          <span>PP: <span style="color:var(--primary-light);" data-path="equipment.currency.pp">0</span></span>
+          <span>GP: <span style="color:var(--primary-light);" data-path="equipment.currency.gp">0</span></span>
+          <span>EP: <span style="color:var(--primary-light);" data-path="equipment.currency.ep">0</span></span>
+          <span>SP: <span style="color:var(--primary-light);" data-path="equipment.currency.sp">0</span></span>
+          <span>CP: <span style="color:var(--primary-light);" data-path="equipment.currency.cp">0</span></span>
+        </div>
+        <div id="equipment-container"></div>
+      </div>
+    </div>
+
+  </div><!-- end stats-col -->
+</div><!-- end sheet -->
+
+
+<!-- ════════════════════════════════ LOADER ════════════════════════════════ -->
+<script>
+  // ── CHANGE THIS ONE LINE TO POINT TO A DIFFERENT CHARACTER ──
+  const CHARACTER_KEY = "slot1";
+  const JSON_PATH     = "../player.json";   // adjust if your folder structure differs
+  // ────────────────────────────────────────────────────────────
+
+  const SKILL_LABELS = {
+    acrobatics:"Acrobatics", animal_handling:"Animal Handling",
+    arcana:"Arcana", athletics:"Athletics", deception:"Deception",
+    history:"History", insight:"Insight", intimidation:"Intimidation",
+    investigation:"Investigation", medicine:"Medicine", nature:"Nature",
+    perception:"Perception", performance:"Performance", persuasion:"Persuasion",
+    religion:"Religion", sleight_of_hand:"Sleight of Hand",
+    stealth:"Stealth", survival:"Survival"
+  };
+  const SAVE_LABELS = { str:"Strength", dex:"Dexterity", con:"Constitution", int:"Intelligence", wis:"Wisdom", cha:"Charisma" };
+  const AB_LABELS   = { str:"STR", dex:"DEX", con:"CON", int:"INT", wis:"WIS", cha:"CHA" };
+
+  function get(obj, path) {
+    return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
+  }
+  function mod(score) {
+    const m = Math.floor((score - 10) / 2);
+    return (m >= 0 ? "+" : "") + m;
+  }
+  function dot(filled, expertise) {
+    if (expertise) return `<div class="dot expertise"></div>`;
+    if (filled)    return `<div class="dot filled"></div>`;
+    return `<div class="dot"></div>`;
+  }
+
+  fetch(JSON_PATH)
+    .then(r => r.json())
+    .then(json => {
+      const char = json.slots[CHARACTER_KEY];
+      if (!char) { document.body.innerHTML = `<div style="color:#f55;padding:40px;font-family:monospace;">ERROR: "${CHARACTER_KEY}" not found in player.json slots.</div>`; return; }
+
+      // 1. THEME COLORS
+      const root = document.documentElement;
+      if (char.identity.theme_color)        root.style.setProperty('--primary',        char.identity.theme_color);
+      if (char.identity.theme_color_light)  root.style.setProperty('--primary-light',  char.identity.theme_color_light);
+      if (char.identity.theme_color_dim)    root.style.setProperty('--primary-dim',    char.identity.theme_color_dim);
+      if (char.identity.theme_color_bright) root.style.setProperty('--primary-bright', char.identity.theme_color_bright);
+      if (char.identity.theme_rgb)          root.style.setProperty('--primary-rgb',    char.identity.theme_rgb);
+
+      // 2. SIMPLE data-path INJECTION
+      document.querySelectorAll("[data-path]").forEach(el => {
+        const val = get(char, el.dataset.path);
+        if (val !== undefined && val !== null) el.textContent = val;
+      });
+
+      // 3. PORTRAIT
+      const img = document.getElementById('portrait-img');
+      const ph  = document.getElementById('portrait-placeholder');
+      if (char.identity.portrait_url) {
+        img.src = char.identity.portrait_url;
+        img.alt = char.identity.name + " portrait";
+        img.style.display = 'block';
+        if (ph) ph.style.display = 'none';
+      }
+
+      // 4. PAGE TITLE
+      if (char.identity.name) document.title = char.identity.name + " — Character Sheet";
+
+      // 5. HP BAR
+      const hpBar = document.getElementById('hp-bar');
+      if (hpBar && char.combat.hp_max > 0) {
+        const pct = Math.max(0, Math.min(100, (char.combat.hp_current / char.combat.hp_max) * 100));
+        hpBar.style.width = pct + '%';
+        if (pct < 25)      hpBar.style.background = '#8b1a1a';
+        else if (pct < 50) hpBar.style.background = '#8b6a1a';
+      }
+
+      // 6. ABILITY SCORES
+      const abGrid = document.getElementById('abilities-container');
+      if (abGrid) {
+        abGrid.innerHTML = Object.entries(char.abilities).map(([ab, score]) => `
+          <div class="ability-block">
+            <span class="ab-name">${AB_LABELS[ab] || ab}</span>
+            <span class="ab-score">${score}</span>
+            <span class="ab-mod">${mod(score)}</span>
+          </div>
+        `).join('');
+      }
+
+      // 7. SAVING THROWS
+      const savesContainer = document.getElementById('saves-container');
+      if (savesContainer) {
+        savesContainer.innerHTML = Object.entries(char.saving_throws).map(([ab, data]) => `
+          <div class="save-row">
+            ${dot(data.proficient, false)}
+            <span class="save-name">${SAVE_LABELS[ab] || ab}</span>
+            <span class="save-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // 8. SKILLS
+      const skillsContainer = document.getElementById('skills-container');
+      if (skillsContainer) {
+        skillsContainer.innerHTML = Object.entries(char.skills).map(([key, data]) => `
+          <div class="skill-row">
+            ${dot(data.proficient || data.expertise, data.expertise)}
+            <span class="skill-name">${SKILL_LABELS[key] || key}</span>
+            <span class="skill-ab">(${data.ability.toUpperCase()})</span>
+            <span class="skill-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // 9. FEATURES
+      const featContainer = document.getElementById('features-container');
+      if (featContainer) {
+        if (char.features && char.features.length > 0) {
+          featContainer.innerHTML = char.features.map(f => `
+            <details class="feature-item">
+              <summary class="feature-toggle">
+                <div class="feature-gem"></div>
+                <span class="feat-name">${f.name}</span>
+                <span class="feat-source">${f.source || ''}</span>
+                <span class="feat-arrow">▶</span>
+              </summary>
+              <div class="feature-detail">${f.description || ''}</div>
+            </details>
+          `).join('');
+        } else {
+          featContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No features recorded.</div>`;
+        }
+      }
+
+      // 10. TRAITS
+      const traitsContainer = document.getElementById('traits-container');
+      if (traitsContainer && char.traits) {
+        const traitMap = { personality:"Personality", ideal:"Ideal", bond:"Bond", flaw:"Flaw" };
+        traitsContainer.innerHTML = Object.entries(traitMap).map(([key, label]) => `
+          <details class="trait-details">
+            <summary class="trait-summary">
+              <span class="trait-arrow">▶</span>
+              ${label}
+            </summary>
+            <div class="trait-body">${char.traits[key] || '—'}</div>
+          </details>
+        `).join('');
+      }
+
+      // 11. EQUIPMENT
+      const equipContainer = document.getElementById('equipment-container');
+      if (equipContainer && char.equipment && char.equipment.carried) {
+        equipContainer.innerHTML = char.equipment.carried.map(item => `
+          <div class="equip-item">
+            ${item.name}${item.description ? ` <span style="font-size:14px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
+            <span class="equip-qty">×${item.quantity || 1}</span>
+          </div>
+        `).join('');
+      }
+
+      // 12. CLASS RESOURCES
+      const resContainer = document.getElementById('resources-container');
+      const resPanel     = document.getElementById('resources-panel');
+      if (resContainer && char.class_resources) {
+        const entries = Object.entries(char.class_resources);
+        if (entries.length > 0) {
+          resPanel.style.display = '';
+          resContainer.innerHTML = entries.map(([, res]) => `
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:14px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
+                <span style="font-size:14px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                ${Array.from({length: res.max}, (_, i) => `
+                  <div class="slot-pip ${i < res.current ? 'available' : 'used'}"
+                       onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                `).join('')}
+              </div>
+              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      // 13. SPELLCASTING
+      const spellPanel    = document.getElementById('spellcasting-panel');
+      const slotsContainer = document.getElementById('spell-slots-container');
+      if (char.spellcasting && char.spellcasting.enabled && spellPanel && slotsContainer) {
+        spellPanel.style.display = '';
+        const slots = char.spellcasting.spell_slots;
+        slotsContainer.innerHTML = Object.entries(slots)
+          .filter(([, s]) => s.max > 0)
+          .map(([key, s]) => {
+            const lvl = key.replace('level_', '');
+            return `
+              <div class="slot-row">
+                <span class="slot-level">Level ${lvl}</span>
+                <div class="slot-pips">
+                  ${Array.from({length: s.max}, (_, i) => `
+                    <div class="slot-pip ${i < s.current ? 'available' : 'used'}"
+                         onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('');
+      }
+
+      // 14. SESSION CHANGELOG
+      const changelogContainer = document.getElementById('changelog-container');
+      if (changelogContainer && char.meta.session_changes) {
+        if (char.meta.session_changes.length > 0) {
+          changelogContainer.innerHTML = char.meta.session_changes.map(c => `
+            <div class="changelog-item">${c}</div>
+          `).join('');
+        } else {
+          changelogContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No changes logged yet.</div>`;
+        }
+      }
+
+      // 15. BACKSTORY (verbatim preferred, fallback to summary)
+      const bsBox = document.getElementById('js-backstory-box');
+      if (bsBox && char.backstory) {
+        const bs = char.backstory;
+        bsBox.textContent = bs.verbatim || bs.full || bs.summary || bs.short || '—';
+      }
+
+      // 16. PHYSICAL DETAILS
+      const physPortrait = document.getElementById('js-physical-portrait');
+      const phys = char.physical || {};
+      if (physPortrait && Object.keys(phys).length) {
+        const rows = [
+          { label: 'Gender',   val: phys.gender },
+          { label: 'Age',      val: phys.age },
+          { label: 'Size',     val: phys.size },
+          { label: 'Height',   val: phys.height },
+          { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+          { label: 'Eyes',     val: phys.eyes },
+          { label: 'Skin',     val: phys.skin },
+          { label: 'Hair',     val: phys.hair },
+          { label: 'Faith',    val: phys.faith },
+          { label: 'Notable',  val: phys.distinguishing_features }
+        ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+        if (rows.length) {
+          physPortrait.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+            ${rows.map(r => `
+              <tr>
+                <td style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px 4px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+                <td style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:4px 0;vertical-align:top;">${r.val}</td>
+              </tr>`).join('')}
+          </table>`;
+        } else {
+          physPortrait.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>`;
+        }
+      }
+
+      // 17. SENSES
+      const sensesPortrait = document.getElementById('js-senses-portrait');
+      const sensesPanel    = document.getElementById('js-senses-panel');
+      const senses = char.senses || {};
+      if (sensesPortrait) {
+        const senseRows = [];
+        if (senses.darkvision_ft > 0)  senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+        if (senses.blindsight_ft > 0)  senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+        if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+        if (senses.truesight_ft > 0)   senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+        if (senses.other)              senseRows.push(senses.other);
+        if (senseRows.length) {
+          if (sensesPanel) sensesPanel.style.display = '';
+          sensesPortrait.innerHTML = senseRows.map(s =>
+            `<div style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:3px 0;">${s}</div>`
+          ).join('');
+        }
+      }
+
+    })
+    .catch(err => {
+      console.error("Failed to load player.json:", err);
+      document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player.json — check JSON_PATH (currently: "${JSON_PATH}") and that the file is served over HTTP (not file://). Error: ${err.message}</div>`);
+    });
+</script>
+</body>
+</html>
