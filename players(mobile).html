@@ -6,6 +6,15 @@
 <title>The Party — Campaign Characters</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
+  html {
+  height: 100%;
+}
+
+body {
+  transform-origin: top center;
+  transform: scale(var(--page-scale, 1));
+  width: calc(100% / var(--page-scale, 1));
+}
   :root {
     --gold: #c8972a;
     --gold-light: #f0c050;
@@ -2086,4 +2095,18 @@
       btn.style.color = '#a07828';
     }
   }
+</script>
+<script>
+  function fitToScreen() {
+    const designWidth = 860;
+    const screenWidth = window.innerWidth;
+    const scale = Math.min(1, screenWidth / designWidth);
+    document.body.style.transformOrigin = 'top left';
+    document.body.style.transform = `scale(${scale})`;
+    document.body.style.width = (screenWidth / scale) + 'px';
+    document.body.style.height = '';
+    document.documentElement.style.overflowX = 'hidden';
+  }
+  fitToScreen();
+  window.addEventListener('resize', fitToScreen);
 </script>
