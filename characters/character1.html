@@ -477,7 +477,7 @@
 <script>
   // ── CHANGE THIS ONE LINE TO POINT TO A DIFFERENT CHARACTER ──
   const CHARACTER_KEY = "slot1";
-  const JSON_PATH     = "../player(2).json";   // adjust if your folder structure differs
+  const JSON_PATH     = "../player.json";   // adjust if your folder structure differs
   // ────────────────────────────────────────────────────────────
 
   const SKILL_LABELS = {
@@ -509,7 +509,7 @@
     .then(r => r.json())
     .then(json => {
       const char = json.slots[CHARACTER_KEY];
-      if (!char) { document.body.innerHTML = `<div style="color:#f55;padding:40px;font-family:monospace;">ERROR: "${CHARACTER_KEY}" not found in player(2).json slots.</div>`; return; }
+      if (!char) { document.body.innerHTML = `<div style="color:#f55;padding:40px;font-family:monospace;">ERROR: "${CHARACTER_KEY}" not found in player.json slots.</div>`; return; }
 
       // 1. THEME COLORS
       const root = document.documentElement;
@@ -693,8 +693,8 @@
 
     })
     .catch(err => {
-      console.error("Failed to load player(2).json:", err);
-      document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player(2).json — check JSON_PATH (currently: "${JSON_PATH}") and that the file is served over HTTP (not file://). Error: ${err.message}</div>`);
+      console.error("Failed to load player.json:", err);
+      document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player.json — check JSON_PATH (currently: "${JSON_PATH}") and that the file is served over HTTP (not file://). Error: ${err.message}</div>`);
     });
 </script>
 </body>
