@@ -1254,7 +1254,7 @@
     "level": 1,
     "background": "Folk Hero",
     "alignment": "Neutral",
-    "experience": 0,
+    "experience": "Milestone",
     "portrait_url": "/dnd/malc.png",
     "theme_color": "#2a7a6a",
     "theme_color_light": "#4ab8a0",
@@ -1300,7 +1300,7 @@
     "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
     "animal_handling": { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
     "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+6" },
+    "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+4" },
     "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
     "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
     "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
@@ -1316,6 +1316,9 @@
     "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
     "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" }
   },
+  "senses": {
+    "darkvision_ft": 60
+  },
   "attacks": [
     {
       "name": "Whip",
@@ -1323,7 +1326,7 @@
       "attack": "+6",
       "damage": "1d4+4",
       "damage_type": "Slashing",
-      "detail": "Finesse · Reach (10 ft). On hit, reduce target speed by 10 ft until start of your next turn. The preferred instrument of a gnome who has strong opinions about personal space."
+      "detail": "Martial · Finesse · Reach · Slow"
     },
     {
       "name": "Unarmed Strike",
@@ -1331,30 +1334,63 @@
       "attack": "+6",
       "damage": "5",
       "damage_type": "Bludgeoning",
-      "detail": "A fist is a brick with opinions."
-    },
-    {
-      "name": "Mending",
-      "type": "Cantrip — Utility",
-      "attack": "—",
-      "damage": "—",
-      "damage_type": "Utility",
-      "detail": "Repair a break or tear in an object you touch. Tears, breaks, cracks up to 1 ft. Casting time: 1 minute."
-    },
-    {
-      "name": "Prestidigitation",
-      "type": "Cantrip — Utility",
-      "attack": "—",
-      "damage": "—",
-      "damage_type": "Utility",
-      "detail": "Minor wonder-working. Sensory effects, clean/soil objects, light candles, chill/warm food, leave marks. Also used to produce Tiny Clockwork Devices."
+      "detail": ""
     }
   ],
+  "actions": {
+    "standard_actions": [
+      "Attack",
+      "Magic",
+      "Dash",
+      "Disengage",
+      "Dodge",
+      "Help",
+      "Hide",
+      "Ready",
+      "Search",
+      "Utilize",
+      "Opportunity Attack",
+      "Grapple",
+      "Shove",
+      "Improvise",
+      "Two-Weapon Fighting",
+      "Interact with an Object",
+      "Study",
+      "Influence"
+    ],
+    "bonus_actions": [
+      "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
+    ],
+    "special": [
+      "Tiny Clockwork Device: “Activate Whenever you or another creature activates it with a touch, the device produces the effect chosen at the time of creation.”"
+    ]
+  },
   "spellcasting": {
-    "enabled": false,
+    "enabled": true,
+    "type": "lineage",
     "ability": "int",
     "spell_save_dc": 0,
     "spell_attack_bonus": "+0",
+    "cantrips": [
+      {
+        "name": "Mending",
+        "source": "Gnomish Lineage Spells",
+        "cast": "1m",
+        "range": "Touch",
+        "components": "V,S,M",
+        "duration": "Instantaneous",
+        "ref": "PHB-2024 297"
+      },
+      {
+        "name": "Prestidigitation",
+        "source": "Gnomish Lineage Spells",
+        "cast": "1A",
+        "range": "10 ft.",
+        "components": "V,S",
+        "duration": "1 hour",
+        "ref": "PHB-2024 307"
+      }
+    ],
     "spell_slots": {
       "level_1": { "max": 0, "current": 0 },
       "level_2": { "max": 0, "current": 0 },
@@ -1369,92 +1405,68 @@
       "max": 2,
       "current": 2,
       "recharge": "Long Rest",
-      "description": "Bonus Action: regain 1d10 + fighter level HP. A gnome-sized burst of pure stubbornness."
+      "notes": "Regain one use on a Short Rest.",
+      "description": "Bonus Action: regain 1d10 + 1 HP."
     }
   },
   "features": [
     {
-      "name": "Defense (Fighting Style)",
-      "source": "Fighter 1",
-      "description": "+1 AC while wearing armor. Already factored into AC 19 (Chain Mail 16 + Shield +2 + Defense +1)."
-    },
-    {
-      "name": "Second Wind",
-      "source": "Fighter 1",
-      "description": "Bonus Action: regain 1d10 + fighter level HP. 2 uses per long rest. The body refuses to go down. The wall holds."
-    },
-    {
       "name": "Gnomish Cunning",
       "source": "Rock Gnome",
-      "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic. The one place where being small and stubborn pays off against spellcasters."
+      "description": "Advantage on INT, WIS, CHA saving throws against magic."
     },
     {
       "name": "Darkvision",
       "source": "Rock Gnome",
-      "description": "See in dim light within 60 ft as bright light, and in darkness as dim light."
+      "description": "Darkvision 60 ft."
     },
     {
-      "name": "Artificer's Lore",
+      "name": "Second Wind",
+      "source": "Fighter 1",
+      "description": "Bonus Action: regain 1d10 + 1 HP. 2 uses per long rest; regain one use on a short rest."
+    },
+    {
+      "name": "Tiny Clockwork Device",
       "source": "Rock Gnome",
-      "description": "Add twice proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
-    },
-    {
-      "name": "Tinker",
-      "source": "Rock Gnome",
-      "description": "Proficiency with Artisan's Tools (Tinker's Tools). Spend 1 hour and 10 gp to construct a Tiny clockwork device (AC 5, 1 HP). Up to 3 devices at once, lasting 24 hours unless wound daily. Options: Clockwork Toy, Fire Starter, Music Box."
-    },
-    {
-      "name": "Rustic Hospitality",
-      "source": "Folk Hero Background",
-      "description": "Common folk will shelter and protect Malc. They'll shield him from authorities if needed, though won't risk their lives. The wall-builder is one of their own."
+      "description": "Activate whenever you or another creature activates it with a touch; it produces the effect chosen at the time of creation."
     }
   ],
   "proficiencies": {
-    "armor": ["All Armor", "Shields"],
-    "weapons": ["Simple Weapons", "Martial Weapons"],
-    "tools": ["Mason's Tools", "Tinker's Tools"],
-    "languages": ["Common", "Gnomish"]
-  },
-  "traits": {
-    "personality": "Bright-eyed and delighted by any sufficiently sturdy wall. Speaks of masonry like liturgy. He does not understand why everyone else is not also talking about load-bearing architecture at all times.",
-    "ideal": "To build is to worship. A perfect wall is proof the world can be made better — stronger — on purpose.",
-    "bond": "His temple wall is his dream made physical. Anyone who helps lay its first stones becomes part of his myth.",
-    "flaw": "He confuses confidence with divinity, and can't resist proving himself when a structure — or ego — is challenged."
+    "armor": ["Heavy Armor", "Light Armor", "Medium Armor", "Shields"],
+    "weapons": ["Martial Weapons", "Simple Weapons"],
+    "tools": ["Smith’s Tools", "Vehicles (Land)"],
+    "languages": ["Common", "Draconic", "Gnomish"]
   },
   "physical": {
-    "age": null,
-    "height": null,
-    "weight": null,
-    "eyes": null,
-    "skin": null,
-    "hair": null
+    "gender": "Male",
+    "age": 67,
+    "size": "Small",
+    "height": "3'6\"",
+    "weight": 42,
+    "skin": "Tan",
+    "eyes": "Topaz",
+    "hair": "Platinum Blonde",
+    "faith": "Malc Grann"
   },
   "equipment": {
-    "currency": {
-      "pp": 0,
-      "gp": 5,
-      "ep": 0,
-      "sp": 0,
-      "cp": 0
-    },
+    "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
     "encumbrance": {
-      "total_weight": null,
-      "light_threshold": 90,
-      "heavy_threshold": 180,
-      "max_threshold": 360
+      "total_weight_lb": 84,
+      "encumbered_lb": 270,
+      "push_drag_lift_lb": 540
     },
     "carried": [
-      { "name": "Chain Mail",     "quantity": 1, "description": "AC 16. Heavy armor." },
-      { "name": "Shield",         "quantity": 1, "description": "+2 AC." },
-      { "name": "Whip",           "quantity": 1, "description": "1d4 slashing. Finesse, reach." },
-      { "name": "Backpack",       "quantity": 1, "description": "" },
-      { "name": "Bedroll",        "quantity": 1, "description": "" },
-      { "name": "Mason's Tools",  "quantity": 1, "description": "Tool proficiency. The only thing he brought that wasn't a weapon." },
-      { "name": "Chain",          "quantity": 1, "description": "10 ft. Repurposed from construction. Doubles as a reminder." }
+      { "name": "Shield",      "quantity": 1, "weight_lb": 6,  "description": "" },
+      { "name": "Chain Mail",  "quantity": 1, "weight_lb": 55, "description": "" },
+      { "name": "Whip",        "quantity": 1, "weight_lb": 3,  "description": "" },
+      { "name": "Backpack",    "quantity": 1, "weight_lb": 5,  "description": "" },
+      { "name": "Bedroll",     "quantity": 1, "weight_lb": 7,  "description": "" },
+      { "name": "Mason’s Tools","quantity": 1, "weight_lb": 8, "description": "" },
+      { "name": "Chain",       "quantity": 0, "weight_lb": 0,  "description": "" }
     ]
   },
   "backstory": {
-    "summary": "A gnome mason who became a folk hero — not through glory-seeking, but through stubbornness. He has a vision: a temple wall, perfectly constructed, load-bearing, beautiful. The kind of thing that lasts. He needs resources to build it, and adventuring is, inconveniently, the fastest way to get them. He fights like he builds — methodically, with overwhelming intent, and with a confident certainty that he knows exactly what he's doing even when he absolutely does not."
+    "verbatim": "“Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!”"
   }
 },
     "slot6": {
