@@ -377,7 +377,439 @@
         <div class="section-title">Notes · <span id="js-session-label">Session 00</span></div>
         <div class="section-body" id="js-changelog"><!-- Built by JS --></div>
       </div>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MALC GRANN SCROLL — Class & Lineage Reference
+     DROP-IN SNIPPET for character5_textsheet.html
+     ─────────────────────────────────────────────
+     1. Paste the <style> block into the existing <style> tag (before </style>)
+     2. Paste the <!-- SCROLL NOTE --> block after the Notes section on page 2,
+        still inside the right-column div, after the js-changelog section closes.
+     ═══════════════════════════════════════════════════════════════════════ -->
 
+
+<!-- ── STEP 1: ADD THESE STYLES to your existing <style> block ── -->
+<style id="PASTE-INTO-STYLE-TAG">
+
+  /* ── SCROLL NOTE (Malc Grann — Fighter / Rock Gnome / Folk Hero) ── */
+  details.scroll-note {
+    max-width: 900px;
+    margin: 20px auto 0;
+    border: 1px solid var(--primary-dim);
+    background: var(--dark-panel);
+    position: relative;
+    overflow: hidden;
+  }
+  details.scroll-note::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  }
+
+  /* Tab / summary bar */
+  summary.scroll-note-tab {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  summary.scroll-note-tab::-webkit-details-marker { display: none; }
+  details.scroll-note[open] summary.scroll-note-tab {
+    border-bottom-color: var(--dark-border);
+    background: rgba(var(--primary-rgb), 0.04);
+  }
+  .scroll-gem {
+    width: 8px; height: 8px;
+    transform: rotate(45deg);
+    background: var(--primary-dim);
+    box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.3);
+    flex-shrink: 0;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  details.scroll-note[open] .scroll-gem {
+    background: var(--primary-light);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.55);
+  }
+  .scroll-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    opacity: 0.8;
+  }
+  .scroll-hint {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    flex: 1;
+    opacity: 0.6;
+  }
+  .scroll-arrow {
+    color: var(--primary-dim);
+    font-size: 12px;
+    transition: transform 0.25s ease, color 0.2s ease;
+    opacity: 0.7;
+  }
+  details.scroll-note[open] .scroll-arrow {
+    transform: rotate(90deg);
+    color: var(--primary-light);
+    opacity: 1;
+  }
+
+  /* Scroll body: two-column layout */
+  .scroll-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  /* Full-width divider between sections */
+  .scroll-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-dim), transparent);
+    margin: 4px 0;
+  }
+
+  /* Section headers */
+  .scroll-section {
+    padding: 16px 20px 14px;
+    border-right: 1px solid var(--dark-border);
+  }
+  .scroll-section:last-child,
+  .scroll-section.scroll-section-full {
+    border-right: none;
+  }
+  /* Full-width section (spans both columns) */
+  .scroll-section-full {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid var(--dark-border);
+  }
+  .scroll-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.18);
+    opacity: 0.85;
+  }
+
+  /* Individual entries */
+  .scroll-entry {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.08);
+  }
+  .scroll-entry:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .scroll-entry-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--text-cream);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .scroll-entry-tag {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    color: var(--primary-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0;
+  }
+  .scroll-entry-tag-ref {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    color: var(--primary-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0;
+    opacity: 0.6;
+  }
+  .scroll-entry-desc {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .scroll-entry-desc strong {
+    color: var(--primary-light);
+    font-style: normal;
+  }
+
+  /* Sub-label rows (action cost lines) */
+  .scroll-action-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0 3px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.07);
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+  }
+  .scroll-action-row:last-child { border-bottom: none; }
+  .scroll-action-name { color: var(--text-cream); flex: 1; }
+  .scroll-action-cost {
+    font-size: 11px;
+    color: var(--primary-light);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* Header-only label (no desc) */
+  .scroll-label-row {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--primary-dim);
+    text-transform: uppercase;
+    padding: 4px 0 2px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+  }
+
+  /* Mastery property pill */
+  .scroll-mastery-prop {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--primary-dim);
+    padding: 1px 6px;
+    margin-left: 4px;
+    position: relative;
+    top: -1px;
+  }
+
+</style>
+<!-- ── END STYLES ── -->
+
+
+<!-- ── SCROLL NOTE: Fighter / Rock Gnome / Folk Hero Reference ── -->
+<details class="scroll-note" id="malc-scroll-note">
+  <summary class="scroll-note-tab">
+    <span class="scroll-gem"></span>
+    <span class="scroll-title">Class &amp; Lineage Reference</span>
+    <span class="scroll-hint">Fighter · Rock Gnome · Folk Hero</span>
+    <span class="scroll-arrow">▶</span>
+  </summary>
+
+  <div class="scroll-body">
+
+    <!-- ══ LEFT COLUMN ══ -->
+
+    <!-- FIGHTER FEATURES -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Fighter Features</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Core Fighter Traits
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Malc carries the full Fighter core package: armor and weapon proficiencies, saving throw proficiencies (STR, CON), and access to Fighting Style feats and Weapon Mastery at level 1.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Fighting Style
+          <span class="scroll-entry-tag">Level 1 · Feat</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Choose one <strong>Fighting Style feat</strong> at Fighter 1. Each time you gain a Fighter level, you may swap your current Fighting Style feat for a different one. Malc selected <strong>Defense</strong> — +1 AC while wearing armor.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Second Wind
+          <span class="scroll-entry-tag">Bonus Action · 2 / Long Rest</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Regain <strong>1d10 + 1 HP</strong>. You have 2 uses per long rest. You regain one expended use when you finish a Short Rest.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Weapon Mastery
+          <span class="scroll-entry-tag">System · Level 1</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.91</span>
+        </div>
+        <div class="scroll-entry-desc">Malc uses the Weapon Mastery system. Each mastered weapon has a special property that triggers on a hit. Active masteries and their effects are detailed in the right column.</div>
+      </div>
+    </div>
+
+    <!-- GNOME SPECIES TRAITS -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Gnome Species Traits</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Creature Type
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You are a <strong>Humanoid</strong>.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Size &amp; Speed
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You are <strong>Small</strong>. Your Speed is <strong>30 ft.</strong></div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Darkvision
+          <span class="scroll-entry-tag">Passive · 60 ft</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">See in dim light as bright light, and in darkness as dim light within 60 ft.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Gnomish Cunning
+          <span class="scroll-entry-tag">Passive</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">Advantage on <strong>INT, WIS, and CHA saving throws</strong>.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Gnomish Lineage
+          <span class="scroll-entry-tag">Rock Gnome</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.191</span>
+        </div>
+        <div class="scroll-entry-desc">You know the <strong>Mending</strong> and <strong>Prestidigitation</strong> cantrips. Prestidigitation can be cast over 10 minutes to create a Tiny Clockwork Device — see device rules below.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Ability Score Increases
+          <span class="scroll-entry-tag">+1 / +1 / +1</span>
+        </div>
+        <div class="scroll-entry-desc">Malc used the lineage option of <strong>+1 to three different scores</strong> when determining ability scores.</div>
+      </div>
+    </div>
+
+    <!-- FULL-WIDTH DIVIDER -->
+    <div class="scroll-divider"></div>
+
+    <!-- ══ FULL-WIDTH BOTTOM ROW (two inner cols) ══ -->
+
+    <!-- CLOCKWORK DEVICE (left of bottom) -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Tiny Clockwork Device</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">How It Works</div>
+        <div class="scroll-entry-desc">
+          Spend <strong>10 minutes casting Prestidigitation</strong> to construct a Tiny Clockwork Device. When created, choose one Prestidigitation effect — that effect triggers whenever the device is activated with a touch.
+          You may have <strong>up to 3 devices</strong> at once. Each falls apart after <strong>8 hours</strong> or when dismantled.
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Create Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">10 min (Prestidigitation)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Activate Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">Bonus Action · touch</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Dismantle Tiny Clockwork Device</span>
+          <span class="scroll-action-cost">Utilize Action</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEAPON MASTERY (right of bottom) -->
+    <div class="scroll-section">
+      <div class="scroll-section-title">✦ Weapon Mastery Properties</div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Whip
+          <span class="scroll-mastery-prop">Slow</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit that deals damage, you can reduce the target's Speed by <strong>10 ft</strong> until the start of your next turn. Multiple hits cannot reduce Speed by more than 10 ft total.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Mace
+          <span class="scroll-mastery-prop">Sap</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit, the target has <strong>disadvantage</strong> on its next attack roll before the start of your next turn.</div>
+      </div>
+
+      <div class="scroll-entry">
+        <div class="scroll-entry-name">
+          Light Hammer
+          <span class="scroll-mastery-prop">Nick</span>
+        </div>
+        <div class="scroll-entry-desc">On a hit, you can make one <strong>extra attack</strong> with this weapon as part of the Attack action (not as a Bonus Action). This extra attack can occur only once per turn.</div>
+      </div>
+
+      <div style="margin-top:10px;border-top:1px solid rgba(var(--primary-rgb),0.12);padding-top:10px;">
+        <div class="scroll-label-row">Mastery Action Reference</div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Sap — Mace</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Slow — Whip</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+        <div class="scroll-action-row">
+          <span class="scroll-action-name">Nick — Light Hammer</span>
+          <span class="scroll-action-cost">On hit (Attack action)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEAT FOOTER -->
+    <div class="scroll-section scroll-section-full" style="padding:12px 20px;">
+      <div class="scroll-section-title" style="margin-bottom:8px;">✦ Feat</div>
+      <div class="scroll-entry" style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+        <div class="scroll-entry-name" style="margin-bottom:0;">
+          Defense
+          <span class="scroll-entry-tag">Fighting Style Feat</span>
+          <span class="scroll-entry-tag-ref">PHB-2024 p.209</span>
+        </div>
+        <div class="scroll-entry-desc" style="flex:1;min-width:200px;">Gain <strong>+1 AC</strong> while wearing Light, Medium, or Heavy armor. Malc's base AC of 19 includes this bonus.</div>
+      </div>
+    </div>
+
+  </div><!-- end scroll-body -->
+</details>
+<!-- ── END MALC SCROLL NOTE ── -->
     </div>
   </div>
 </div><!-- end page-2 -->
