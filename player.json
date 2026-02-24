@@ -1256,11 +1256,11 @@
     "alignment": "Neutral",
     "experience": "Milestone",
     "portrait_url": "/dnd/malc.png",
-    "theme_color": "#2a7a6a",
-    "theme_color_light": "#4ab8a0",
-    "theme_color_bright": "#80dcc8",
-    "theme_color_dim": "#185a4a",
-    "theme_rgb": "42,122,106"
+    "theme_color": "#5a3f2a",
+    "theme_color_light": "#8b6f47",
+    "theme_color_bright": "#d4a574",
+    "theme_color_dim": "#3d2817",
+    "theme_rgb": "90,63,42"
   },
   "meta": {
     "player": "SirMoosen",
@@ -1362,7 +1362,7 @@
       "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
     ],
     "special": [
-      "Tiny Clockwork Device: “Activate Whenever you or another creature activates it with a touch, the device produces the effect chosen at the time of creation.”"
+      "Tiny Clockwork Device: "Activate Whenever you or another creature activates it with a touch, the device produces the effect chosen at the time of creation.""
     ]
   },
   "spellcasting": {
@@ -1434,7 +1434,7 @@
   "proficiencies": {
     "armor": ["Heavy Armor", "Light Armor", "Medium Armor", "Shields"],
     "weapons": ["Martial Weapons", "Simple Weapons"],
-    "tools": ["Smith’s Tools", "Vehicles (Land)"],
+    "tools": ["Smith's Tools", "Vehicles (Land)"],
     "languages": ["Common", "Draconic", "Gnomish"]
   },
   "physical": {
@@ -1461,12 +1461,12 @@
       { "name": "Whip",        "quantity": 1, "weight_lb": 3,  "description": "" },
       { "name": "Backpack",    "quantity": 1, "weight_lb": 5,  "description": "" },
       { "name": "Bedroll",     "quantity": 1, "weight_lb": 7,  "description": "" },
-      { "name": "Mason’s Tools","quantity": 1, "weight_lb": 8, "description": "" },
+      { "name": "Mason's Tools","quantity": 1, "weight_lb": 8, "description": "" },
       { "name": "Chain",       "quantity": 0, "weight_lb": 0,  "description": "" }
     ]
   },
   "backstory": {
-    "verbatim": "“Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!”"
+    "verbatim": ""Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!""
   }
 },
     "slot6": {
