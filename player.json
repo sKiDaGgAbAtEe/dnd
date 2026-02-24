@@ -358,7 +358,7 @@
         "background": "Witherbloom Student",
         "alignment": "True Neutral",
         "experience": 0,
-        "portrait_url": "izabella.png",
+        "portrait_url": "/dnd/izabella.png",
         "theme_color": "#2a7a4a",
         "theme_color_light": "#50c080",
         "theme_color_bright": "#7fff9a",
