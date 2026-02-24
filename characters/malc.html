@@ -1,667 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Malc Grann — Character Sheet</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character — Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --st:#aeb6bf; --st-l:#d6dde6; --st-b:#f2f5ff;
-    --ac:#b07a2a; --ac-l:#e0b060; --ac-b:#ffd58a;  /* bronze/gold accent */
-    --dk:#05060a; --dk-p:#080a10; --dk-b:#141824;
-    --tx:#d8dde8; --td:#7a8396;
-    --wall:#2a3b52;
+
+  /* ─── CHARACTER THEME (overridden at runtime from JSON) ─── */
+  :root {
+    --primary:        #c8972a;
+    --primary-light:  #f0c050;
+    --primary-bright: #ffd700;
+    --primary-dim:    #7a5a18;
+    --accent:         #8b1a1a;
+    --dark:           #0a0806;
+    --dark-panel:     #0f0d08;
+    --dark-border:    #1e1a10;
+    --text-cream:     #e8dfc0;
+    --text-dim:       #d4c090;
+    --primary-rgb:    200,151,42;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    background:var(--dk); color:var(--tx); font-family:'Cinzel',serif; min-height:100vh; overflow-x:hidden;
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text-cream);
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 50% 0%, rgba(42,59,82,.18) 0%, transparent 65%),
-      radial-gradient(ellipse at 85% 85%, rgba(176,122,42,.06) 0%, transparent 45%),
-      repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(174,182,191,.012) 50px,rgba(174,182,191,.012) 51px),
-      repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(42,59,82,.018) 50px,rgba(42,59,82,.018) 51px);
+      radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb), 0.08) 0%, transparent 60%),
+      repeating-linear-gradient(0deg,  transparent, transparent 50px, rgba(var(--primary-rgb), 0.012) 50px, rgba(var(--primary-rgb), 0.012) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(var(--primary-rgb), 0.012) 50px, rgba(var(--primary-rgb), 0.012) 51px);
   }
 
-  /* HEADER */
-  .hdr{position:relative;text-align:center;padding:60px 20px 0;overflow:hidden}
-  .hdr::before{content:'';position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:720px;height:620px;background:radial-gradient(circle,rgba(176,122,42,.12) 0%,transparent 70%);pointer-events:none}
-  .emblem{font-size:18px;letter-spacing:8px;color:var(--ac);text-transform:uppercase;margin-bottom:8px;animation:fi 2s ease}
-  .cname{
-    font-family:'Cinzel Decorative',serif;font-size:clamp(48px,8vw,96px);font-weight:900;line-height:.9;
-    background:linear-gradient(180deg,var(--st-b) 0%,var(--st-l) 38%,#8b93a2 100%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    filter:drop-shadow(0 0 40px rgba(176,122,42,.55));
-    animation:fi 1.5s ease,gp 6s ease-in-out infinite;position:relative;z-index:1;
+  /* ─── HEADER ─── */
+  .header {
+    position: relative; text-align: center;
+    padding: 60px 20px 0; overflow: hidden;
   }
-  @keyframes gp{0%,100%{filter:drop-shadow(0 0 25px rgba(176,122,42,.35))}50%{filter:drop-shadow(0 0 70px rgba(224,176,96,.65))}}
-  .csub{font-family:'IM Fell English',serif;font-style:italic;font-size:20px;color:var(--td);letter-spacing:4px;margin-top:10px;animation:fi 2.5s ease}
-  @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-  .div{display:flex;align-items:center;gap:16px;margin:30px auto;max-width:700px;padding:0 30px}
-  .dl{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--ac),transparent)}
-  .dg{width:8px;height:8px;background:var(--ac-l);transform:rotate(45deg);box-shadow:0 0 12px var(--ac-l)}
-
-  /* IDENTITY BAR */
-  .ibar{max-width:1300px;margin:0 auto 20px;padding:0 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background-color:rgba(176,122,42,.45);border:1px solid rgba(176,122,42,.45)}
-  .ic{background:var(--dk-p);padding:12px 10px;text-align:center}
-  .ilbl{font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:4px}
-  .ival{font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--ac-l);font-weight:700}
-
-  /* LAYOUT */
-  .sheet{max-width:1300px;margin:0 auto;padding:0 20px 60px;display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
-  .pcol{position:sticky;top:20px;display:flex;flex-direction:column;gap:16px}
-
-  /* PORTRAIT */
-  .pframe{position:relative;border:1px solid rgba(176,122,42,.45);overflow:hidden;background:linear-gradient(135deg,rgba(42,59,82,.55),rgba(0,0,0,0))}
-  .pframe::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,var(--dk) 100%);pointer-events:none}
-  .ca{position:absolute;width:20px;height:20px;z-index:2}
-  .ca.tl{top:0;left:0;border-top:2px solid var(--ac-l);border-left:2px solid var(--ac-l)}
-  .ca.tr{top:0;right:0;border-top:2px solid var(--ac-l);border-right:2px solid var(--ac-l)}
-  .ca.bl{bottom:0;left:0;border-bottom:2px solid var(--ac-l);border-left:2px solid var(--ac-l)}
-  .ca.br{bottom:0;right:0;border-bottom:2px solid var(--ac-l);border-right:2px solid var(--ac-l)}
-  .pimg{width:100%;display:block;filter:contrast(1.05) brightness(1.05)}
-  .pplaceholder{
-    width:100%; aspect-ratio: 4 / 5;
-    display:flex; align-items:center; justify-content:center; flex-direction:column;
-    padding:26px; text-align:center;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(224,176,96,.15) 0%, transparent 45%),
-      radial-gradient(circle at 70% 70%, rgba(174,182,191,.10) 0%, transparent 45%),
-      linear-gradient(180deg, rgba(8,10,16,.5), rgba(8,10,16,.8));
+  .header::before {
+    content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(var(--primary-rgb),0.1) 0%, transparent 70%);
+    pointer-events: none;
   }
-  .pp-big{font-family:'Cinzel Decorative',serif;font-size:44px;letter-spacing:2px;color:var(--ac-l);text-shadow:0 0 18px rgba(224,176,96,.25)}
-  .pp-small{font-family:'IM Fell English',serif;font-style:italic;color:var(--td);margin-top:6px;line-height:1.5}
+  .char-emblem {
+    font-size: 14px; letter-spacing: 8px; color: var(--primary-dim);
+    text-transform: uppercase; margin-bottom: 8px;
+    animation: fadeIn 2s ease;
+  }
+  .char-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 0.9;
+    background: linear-gradient(180deg, var(--primary-bright) 0%, var(--primary-light) 40%, var(--primary) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(var(--primary-rgb),0.7));
+    animation: fadeIn 1.5s ease, glowPulse 5s ease-in-out infinite;
+    position: relative; z-index: 1;
+    min-height: 86px;
+  }
+  .char-subtitle {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: 18px; color: var(--text-dim); letter-spacing: 4px;
+    margin-top: 10px; animation: fadeIn 2.5s ease;
+  }
 
-  /* QUOTE */
-  .qbox{border:1px solid rgba(176,122,42,.45);padding:16px 18px;background:rgba(42,59,82,.10);font-family:'IM Fell English',serif;font-style:italic;font-size:20px;color:var(--td);line-height:1.8;text-align:center}
+  @keyframes glowPulse {
+    0%,100% { filter: drop-shadow(0 0 30px rgba(var(--primary-rgb),0.5)); }
+    50%      { filter: drop-shadow(0 0 70px rgba(var(--primary-rgb),0.8)); }
+  }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
 
-  /* PANEL */
-  .panel{background:var(--dk-p);border:1px solid var(--dk-b);position:relative}
-  .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,122,42,.55),transparent)}
-  .pt{font-size:15px;letter-spacing:5px;color:var(--ac);text-transform:uppercase;padding:12px 18px 10px;border-bottom:1px solid var(--dk-b)}
-  .pb{padding:14px 18px}
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 30px auto; max-width: 700px; padding: 0 30px;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-dim), transparent); }
+  .divider-gem  { width: 8px; height: 8px; background: var(--primary-light); transform: rotate(45deg); box-shadow: 0 0 10px var(--primary-light); }
 
-  /* ABILITY GRID */
-  .agrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-  .abl{background:rgba(42,59,82,.07);border:1px solid rgba(176,122,42,.25);text-align:center;padding:12px 6px;transition:all .3s}
-  .abl:hover{background:rgba(42,59,82,.15);border-color:rgba(176,122,42,.55)}
-  .an{font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-bottom:5px}
-  .as{font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--st-l);line-height:1;display:block}
-  .am{font-size:18px;color:var(--ac-l);display:block;margin-top:4px;font-weight:600}
+  /* ─── IDENTITY BAR ─── */
+  .identity-bar {
+    max-width: 1300px; margin: 0 auto 20px; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 1px; background-color: var(--primary-dim);
+    border: 1px solid var(--primary-dim);
+  }
+  .id-cell { background: var(--dark-panel); padding: 12px 10px; text-align: center; }
+  .id-label { font-size: 11px; letter-spacing: 3px; color: var(--primary-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .id-value { font-family: 'Cinzel Decorative', serif; font-size: 13px; color: var(--primary-light); font-weight: 700; }
 
-  /* COMBAT */
-  .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .cbl{text-align:center;padding:14px 8px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);transition:all .3s}
-  .cbl:hover{background:rgba(42,59,82,.14);border-color:rgba(176,122,42,.55)}
-  .cv{font-family:'Cinzel Decorative',serif;font-size:26px;color:var(--ac-l);display:block;line-height:1}
-  .cl{font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;display:block;margin-top:6px}
+  /* ─── MAIN LAYOUT ─── */
+  .sheet {
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid; grid-template-columns: 420px 1fr;
+    gap: 24px; align-items: start;
+  }
 
-  /* SAVES */
-  .sr{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:18px}
-  .dt{width:8px;height:8px;border-radius:50%;border:1px solid rgba(176,122,42,.45);flex-shrink:0}
-  .dt.f{background:var(--st-l);border-color:var(--st-l);box-shadow:0 0 6px rgba(224,176,96,.35)}
-  .sn{flex:1;color:var(--tx)}
-  .sv2{color:var(--st-l);font-weight:700;font-size:17px}
+  /* ─── PORTRAIT COLUMN ─── */
+  .portrait-col { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px; }
 
-  /* SKILLS */
-  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
-  .skr{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);font-size:16px}
-  .skn{flex:1;color:var(--tx);font-size:16px}
-  .ska{font-size:15px;color:var(--td)}
-  .skv{color:var(--st-l);font-weight:700;font-size:18px}
+  .portrait-frame {
+    position: relative; border: 1px solid var(--primary-dim); overflow: hidden;
+  }
+  .portrait-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, var(--dark) 100%);
+    pointer-events: none;
+  }
+  .portrait-corner { position: absolute; width: 22px; height: 22px; z-index: 2; }
+  .portrait-corner.tl { top:0; left:0;  border-top:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.tr { top:0; right:0; border-top:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
+  .portrait-corner.bl { bottom:0; left:0;  border-bottom:2px solid var(--primary-light); border-left:2px solid var(--primary-light); }
+  .portrait-corner.br { bottom:0; right:0; border-bottom:2px solid var(--primary-light); border-right:2px solid var(--primary-light); }
 
-  /* WEAPONS TABLE */
-  .at{width:100%;border-collapse:collapse}
-  .at th{font-size:13px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;padding:4px 8px;border-bottom:1px solid var(--dk-b);text-align:left}
-  .at td{padding:6px 8px;border-bottom:1px solid var(--dk-b);font-size:18px;color:var(--tx);vertical-align:top}
-  .at td.v{color:var(--ac-l);font-family:'Cinzel Decorative',serif;font-size:18px}
-  .at td.n{font-family:'IM Fell English',serif;font-size:16px;color:var(--td)}
+  .portrait-img { width: 100%; display: block; filter: brightness(1.04) saturate(1.1); min-height: 480px; background: var(--dark-panel); }
+  .portrait-placeholder {
+    width: 100%; min-height: 480px; background: var(--dark-panel);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary-dim); font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  }
 
-  /* PIPS */
-  .pip{width:14px;height:14px;border:1px solid rgba(176,122,42,.45);border-radius:50%;cursor:pointer;transition:all .3s;display:inline-block}
-  .spip{width:18px;height:18px;border:1px solid rgba(176,122,42,.45);transform:rotate(45deg);cursor:pointer;transition:all .3s;display:inline-block;background:rgba(42,59,82,.10)}
-  .spip.on{background:var(--wall);border-color:var(--ac-l);box-shadow:0 0 12px rgba(224,176,96,.35)}
+  /* ─── PANEL ─── */
+  .panel { background: var(--dark-panel); border: 1px solid var(--dark-border); position: relative; }
+  .panel::before { content: ''; position: absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg,transparent,var(--primary-dim),transparent); }
+  .panel-title { font-size: 12px; letter-spacing: 4px; color: var(--primary-dim); text-transform: uppercase; padding: 12px 18px 10px; border-bottom: 1px solid var(--dark-border); }
+  .panel-body  { padding: 14px 18px; }
 
-  /* FEATURES (collapsible) */
-  .fi{border-bottom:1px solid var(--dk-b)}
-  .fi:last-child{border-bottom:none}
-  .ft{display:flex;align-items:center;gap:8px;padding:9px 0;cursor:pointer;user-select:none;list-style:none;transition:background .2s}
-  .ft:hover{background:rgba(42,59,82,.08)}
-  .ft::-webkit-details-marker{display:none}
-  .fg{width:5px;height:5px;background:var(--ac-l);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 6px rgba(224,176,96,.35)}
-  .fg.s{background:var(--ac-b);box-shadow:0 0 10px rgba(255,213,138,.55)}
-  details[open] .fg{box-shadow:0 0 14px rgba(255,213,138,.65)}
-  .fn{font-size:16px;color:var(--st-l);font-weight:600;flex:1}
-  .fn.s{color:var(--ac-l)}
-  .fs{font-family:'IM Fell English',serif;font-size:15px;color:var(--td);margin-left:auto;font-style:italic}
-  .fa{font-size:15px;color:var(--ac);transition:transform .3s;flex-shrink:0}
-  details[open] .fa{transform:rotate(90deg);color:var(--ac-l)}
-  .fd{padding:6px 14px 10px 20px;font-family:'IM Fell English',serif;font-size:18px;color:var(--td);line-height:1.7;border-top:1px solid rgba(176,122,42,.12);animation:di .2s ease}
-  .fd strong{color:var(--st-l);font-style:normal}
-  .fd em{color:var(--ac-l)}
-  @keyframes di{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+  /* ─── ABILITY SCORES ─── */
+  .ability-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .ability-block {
+    background: rgba(var(--primary-rgb),0.05); border: 1px solid var(--dark-border);
+    text-align: center; padding: 12px 6px; transition: all 0.3s;
+  }
+  .ability-block:hover { background: rgba(var(--primary-rgb),0.14); border-color: var(--primary-dim); }
+  .ab-name  { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-bottom:5px; }
+  .ab-score { font-family:'Cinzel Decorative',serif; font-size:28px; color:var(--primary-light); line-height:1; display:block; }
+  .ab-mod   { font-size: 15px; color:var(--primary-light); display:block; margin-top:4px; font-weight:600; }
 
-  /* TRAITS */
-  .tr2{border-bottom:1px solid var(--dk-b)}
-  .tr2:last-child{border-bottom:none}
-  .ts{list-style:none;padding:7px 6px;font-size:13px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px;user-select:none}
-  .ts::-webkit-details-marker{display:none}
-  .ts:hover{color:var(--ac-l)}
-  .ta{font-size:13px;color:var(--ac);transition:transform .3s}
-  details[open] .ta{transform:rotate(90deg);color:var(--ac-l)}
-  .tb{padding:6px 10px 10px;font-family:'IM Fell English',serif;font-size:18px;color:var(--tx);line-height:1.6;font-style:italic;animation:di .2s ease}
+  /* ─── COMBAT STATS ─── */
+  .combat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .combat-block {
+    text-align: center; padding: 14px 8px;
+    background: rgba(var(--primary-rgb),0.04); border: 1px solid var(--dark-border); transition: all 0.3s;
+  }
+  .combat-block:hover { background: rgba(var(--primary-rgb),0.12); border-color: var(--primary-dim); }
+  .combat-value { font-family:'Cinzel Decorative',serif; font-size:26px; color:var(--primary-light); display:block; line-height:1; }
+  .combat-label { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:6px; }
 
-  /* EQUIP */
-  .egrid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-  .ei{font-family:'IM Fell English',serif;font-size:18px;color:var(--td);padding:4px 0;border-bottom:1px solid rgba(42,59,82,.10);display:flex;align-items:center;gap:6px}
-  .ei::before{content:'◆';font-size:9px;color:rgba(176,122,42,.55)}
+  /* ─── HP BAR ─── */
+  .hp-display { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .hp-current { font-family:'Cinzel Decorative',serif; font-size:48px; color:var(--primary-light); line-height:1; }
+  .hp-sep     { font-size:24px; color:var(--primary-dim); }
+  .hp-max     { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-dim); }
+  .hp-bar-bg  { height:4px; background:var(--dark-border); position:relative; margin-top:4px; }
+  .hp-bar-fill { height:100%; background:linear-gradient(90deg,var(--primary-dim),var(--primary-light)); transition: width 0.5s ease; }
 
-  /* RESPONSIVE */
-  @media(max-width:960px){.sheet{grid-template-columns:1fr}.pcol{position:static}.agrid{grid-template-columns:repeat(3,1fr)}.cgrid{grid-template-columns:repeat(2,1fr)}}
-.back-btn {
-  position: fixed;
-  top: 22px;
-  left: 24px;
-  z-index: 999;
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(240, 192, 80, 0.80);
-  text-decoration: none;
-  padding: 9px 16px 9px 12px;
-  border: 1px solid rgba(200, 151, 42, 0.30);
-  background: rgba(6, 5, 3, 0.65);
-  backdrop-filter: blur(10px);
-  transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-}
-.back-btn:hover {
-  color: #ffd77a;
-  border-color: rgba(255, 215, 122, 0.65);
-  box-shadow: 0 0 18px rgba(255, 200, 80, 0.22);
-  transform: translateX(-2px);
-}
+  /* ─── SAVING THROWS ─── */
+  .save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
+  .save-row  { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.07); font-size: 14px; }
+  .dot { width:8px; height:8px; border-radius:50%; border:1px solid var(--primary-dim); flex-shrink:0; }
+  .dot.filled    { background:var(--primary-light); border-color:var(--primary-light); box-shadow:0 0 5px var(--primary-light); }
+  .dot.expertise { background:var(--primary-bright); border-color:var(--primary-bright); box-shadow:0 0 8px var(--primary-bright); }
+  .save-name { flex:1; color:var(--text-cream); }
+  .save-val  { color:var(--primary-light); font-weight:700; font-size:14px; }
+
+  /* ─── SKILLS ─── */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; }
+  .skill-row   { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06); font-size: 14px; }
+  .skill-name  { flex:1; color:var(--text-cream); }
+  .skill-ab    { font-size: 13px; color:var(--text-dim); }
+  .skill-val   { color:var(--primary-light); font-weight:700; font-size:14px; }
+
+  /* ─── PASSIVE STATS ─── */
+  .passive-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .passive-block { text-align:center; padding:10px 6px; border:1px solid var(--dark-border); background:rgba(var(--primary-rgb),0.03); }
+  .passive-val { font-family:'Cinzel Decorative',serif; font-size:24px; color:var(--primary-light); display:block; }
+  .passive-lbl { font-size: 11px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; display:block; margin-top:4px; }
+
+  /* ─── FEATURES ─── */
+  .feature-item { border-bottom: 1px solid var(--dark-border); }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-toggle {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 0; cursor: pointer; user-select: none; list-style: none;
+    transition: background 0.2s;
+  }
+  .feature-toggle::-webkit-details-marker { display: none; }
+  .feature-toggle:hover { background: rgba(var(--primary-rgb),0.05); }
+  .feature-gem { width: 5px; height: 5px; background: var(--primary); transform: rotate(45deg); flex-shrink: 0; box-shadow: 0 0 5px var(--primary); transition: all 0.3s; }
+  details[open] .feature-gem { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
+  .feat-name   { font-size: 15px; color:var(--primary-light); font-weight:600; flex:1; }
+  .feat-source { font-family:'IM Fell English',serif; font-size: 14px; color:var(--text-dim); margin-left:auto; font-style:italic; }
+  .feat-arrow  { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; flex-shrink:0; }
+  details[open] .feat-arrow { transform: rotate(90deg); color:var(--primary); }
+  .feature-detail {
+    padding: 6px 14px 12px 20px;
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim); line-height:1.7;
+    border-top: 1px solid rgba(var(--primary-rgb),0.08); animation: dropIn 0.2s ease;
+  }
+  .feature-detail strong { color:var(--primary-light); font-style:normal; }
+
+  /* ─── TRAITS ─── */
+  .trait-details { border-bottom: 1px solid var(--dark-border); }
+  .trait-details:last-child { border-bottom: none; }
+  .trait-summary {
+    list-style: none; padding: 8px 6px;
+    font-size: 12px; letter-spacing: 3px; color: var(--primary-dim);
+    text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  .trait-summary::-webkit-details-marker { display: none; }
+  .trait-summary:hover { color: var(--primary); }
+  .trait-arrow { font-size: 13px; color:var(--primary-dim); transition:transform 0.3s; }
+  details[open] .trait-arrow { transform: rotate(90deg); color:var(--primary); }
+  .trait-body {
+    padding: 6px 10px 12px;
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-cream);
+    line-height: 1.6; font-style: italic; animation: dropIn 0.2s ease;
+  }
+
+  /* ─── EQUIPMENT ─── */
+  .equip-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
+  }
+  .equip-item::before { content:'◆'; font-size: 10px; color:var(--primary-dim); }
+  .equip-qty { font-size: 13px; color:var(--primary-dim); margin-left:auto; }
+
+  /* ─── BACKSTORY ─── */
+  .backstory-box {
+    border: 1px solid var(--dark-border); padding: 16px;
+    background: rgba(var(--primary-rgb),0.03);
+    font-family: 'IM Fell English', serif; font-size: 15px;
+    color: var(--text-dim); line-height: 1.9; font-style: italic;
+  }
+
+  /* ─── SESSION CHANGELOG ─── */
+  .changelog-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 4px 0; border-bottom: 1px solid rgba(var(--primary-rgb),0.06);
+    font-family: 'IM Fell English', serif; font-size: 15px; color:var(--text-dim);
+  }
+  .changelog-item::before { content:'▸'; color:var(--primary); margin-top:1px; flex-shrink:0; }
+
+  /* ─── SPELL SLOTS ─── */
+  .slot-grid { display:flex; flex-direction:column; gap:6px; }
+  .slot-row  { display:flex; align-items:center; gap:8px; }
+  .slot-level { font-size: 12px; letter-spacing:2px; color:var(--primary-dim); text-transform:uppercase; width:56px; flex-shrink:0; }
+  .slot-pips  { display:flex; gap:5px; flex-wrap:wrap; }
+  .slot-pip {
+    width:14px; height:14px; border:1px solid var(--primary-dim);
+    cursor:pointer; transition:all 0.3s; transform:rotate(45deg);
+  }
+  .slot-pip.used      { background:transparent; border-color:rgba(var(--primary-rgb),0.2); box-shadow:none; }
+  .slot-pip.available { background:var(--primary); border-color:var(--primary); box-shadow:0 0 6px var(--primary); }
+
+  /* ─── RIGHT COLUMN ─── */
+  .stats-col { display: flex; flex-direction: column; gap: 16px; }
+
+  @keyframes dropIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .sheet { grid-template-columns:1fr; }
+    .portrait-col { position:static; }
+    .identity-bar { grid-template-columns:repeat(3,1fr); }
+    .ability-grid { grid-template-columns:repeat(3,1fr); }
+    .combat-grid  { grid-template-columns:repeat(2,1fr); }
+    .passive-grid { grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ─── BACK BUTTON ─── */
+  .back-btn {
+    position: fixed; top: 22px; left: 24px; z-index: 999;
+    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--primary-light); opacity: 0.85; text-decoration: none;
+    padding: 9px 16px 9px 12px;
+    border: 1px solid rgba(var(--primary-rgb), 0.45);
+    background: rgba(10,8,6,0.65); backdrop-filter: blur(10px);
+    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover {
+    color: var(--primary-bright);
+    border-color: rgba(var(--primary-rgb), 0.7);
+    box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.25);
+    transform: translateX(-2px);
+    opacity: 1;
+  }
+
 </style>
 </head>
+<body>
 
-<body data-character="malc">
-  <!-- BACK BUTTON -->
-  <a href="/dnd/players.html" class="back-btn">Back To The Party</a>
-<!-- HEADER -->
-<div class="hdr">
-  <div class="emblem" data-path="emblem_text">✦ &nbsp; Rock Gnome · Folk Hero · “Wall God” &nbsp; ✦</div>
-  <h1 class="cname">Malc Grann</h1>
-  <div class="csub">Fighter · Neutral · Energetic · Strong Wall</div>
+<a href="../players.html" class="back-btn">← Back To The Party</a>
+
+<!-- ════════════════════════════════ HEADER ════════════════════════════════ -->
+<div class="header">
+  <div class="char-emblem" data-path="identity.race">&nbsp;</div>
+  <div class="char-name"   data-path="identity.name">&nbsp;</div>
+  <div class="char-subtitle">
+    <span data-path="identity.subclass"></span>
+    <span id="subtitle-sep">&nbsp;·&nbsp;</span>
+    <span data-path="identity.class"></span>
+    &nbsp;·&nbsp;
+    Level <span data-path="identity.level">—</span>
+  </div>
 </div>
-<div class="div"><div class="dl"></div><div class="dg"></div><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
 
 <!-- IDENTITY BAR -->
-<div class="ibar">
-  <div class="ic"><span class="ilbl">Class</span><span class="ival" data-path="class">Fighter</span></div>
-  <div class="ic"><span class="ilbl">Level</span><span class="ival" data-path="level">1</span></div>
-  <div class="ic"><span class="ilbl">Race</span><span class="ival" data-path="race">Gnome</span></div>
-  <div class="ic"><span class="ilbl">Background</span><span class="ival" data-path="background">Folk Hero</span></div>
-  <div class="ic"><span class="ilbl">Alignment</span><span class="ival" data-path="alignment">Neutral</span></div>
-  <div class="ic"><span class="ilbl">Player</span><span class="ival" data-path="player">SirMoosen</span></div>
+<div class="identity-bar">
+  <div class="id-cell"><span class="id-label">Class &amp; Level</span><span class="id-value"><span data-path="identity.class"></span> <span data-path="identity.level"></span></span></div>
+  <div class="id-cell"><span class="id-label">Background</span><span class="id-value" data-path="identity.background"></span></div>
+  <div class="id-cell"><span class="id-label">Race</span><span class="id-value" data-path="identity.race"></span></div>
+  <div class="id-cell"><span class="id-label">Alignment</span><span class="id-value" data-path="identity.alignment"></span></div>
+  <div class="id-cell"><span class="id-label">Player</span><span class="id-value" data-path="meta.player"></span></div>
+  <div class="id-cell"><span class="id-label">Experience</span><span class="id-value"><span data-path="identity.experience">0</span> XP</span></div>
 </div>
 
-<!-- MAIN -->
+<!-- ════════════════════════════════ MAIN SHEET ════════════════════════════════ -->
 <div class="sheet">
 
-  <!-- LEFT -->
-  <div class="pcol">
+  <!-- ── LEFT: PORTRAIT COLUMN ── -->
+  <div class="portrait-col">
 
-    <div class="pframe">
-      <div class="ca tl"></div><div class="ca tr"></div><div class="ca bl"></div><div class="ca br"></div>
-
-      <!-- If you add a portrait later, swap the placeholder for:
-           <img class="pimg" src="/dnd/malc.png" alt="Malc Grann" /> -->
-      <img class="pimg" src="/dnd/malc.png" alt="Malc Grann" />
+    <!-- Portrait Image -->
+    <div class="portrait-frame">
+      <div class="portrait-corner tl"></div>
+      <div class="portrait-corner tr"></div>
+      <div class="portrait-corner bl"></div>
+      <div class="portrait-corner br"></div>
+      <img class="portrait-img" id="portrait-img" src="" alt="Character Portrait" style="display:none;">
+      <div class="portrait-placeholder" id="portrait-placeholder">No Portrait</div>
     </div>
 
-    <div class="qbox" data-path="quote">
-      “A wall is a promise made of stone. I keep promises.”
-    </div>
-
+    <!-- Hit Points -->
     <div class="panel">
-      <div class="pt">Ability Scores</div>
-      <div class="pb">
-        <div class="agrid">
-          <div class="abl"><span class="an">STR</span><span class="as" data-path="abilities.str">18</span><span class="am" data-mod="abilities.str">+4</span></div>
-          <div class="abl"><span class="an">DEX</span><span class="as" data-path="abilities.dex">12</span><span class="am" data-mod="abilities.dex">+1</span></div>
-          <div class="abl"><span class="an">CON</span><span class="as" data-path="abilities.con">18</span><span class="am" data-mod="abilities.con">+4</span></div>
-          <div class="abl"><span class="an">INT</span><span class="as" data-path="abilities.int">10</span><span class="am" data-mod="abilities.int">+0</span></div>
-          <div class="abl"><span class="an">WIS</span><span class="as" data-path="abilities.wis">10</span><span class="am" data-mod="abilities.wis">+0</span></div>
-          <div class="abl"><span class="an">CHA</span><span class="as" data-path="abilities.cha">16</span><span class="am" data-mod="abilities.cha">+3</span></div>
+      <div class="panel-title">Hit Points</div>
+      <div class="panel-body">
+        <div class="hp-display">
+          <span class="hp-current" data-path="combat.hp_current">—</span>
+          <span class="hp-sep">/</span>
+          <span class="hp-max" data-path="combat.hp_max">—</span>
+        </div>
+        <div class="hp-bar-bg">
+          <div class="hp-bar-fill" id="hp-bar" style="width:100%;"></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:11px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
+          <span>Hit Dice: <span style="color:var(--primary-light);" data-path="combat.hit_dice_total">—</span></span>
+          <span>Temp: <span style="color:var(--primary-light);" data-path="combat.hp_temp">0</span></span>
         </div>
       </div>
     </div>
 
+    <!-- Saving Throws -->
     <div class="panel">
-      <div class="pt">Combat</div>
-      <div class="pb">
-        <div class="cgrid">
-          <div class="cbl"><span class="cv" data-path="combat.ac">19</span><span class="cl">AC</span></div>
-          <div class="cbl"><span class="cv" data-path="hp.max">14</span><span class="cl">HP Max</span></div>
-          <div class="cbl"><span class="cv" data-path="combat.initiative">+1</span><span class="cl">Initiative</span></div>
-          <div class="cbl"><span class="cv" data-path="combat.speed">30</span><span class="cl">Speed</span></div>
-        </div>
-
-        <div style="display:flex; gap:12px; align-items:center; margin-top:12px;">
-          <div style="flex:1;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Second Wind (2 / Long Rest)</div>
-            <div style="display:flex;gap:10px;align-items:center;">
-              <span id="sw1" class="spip" title="Second Wind use"></span>
-              <span id="sw2" class="spip" title="Second Wind use"></span>
-              <span style="font-family:'IM Fell English',serif;color:var(--td);font-size:18px;">1d10 + <span data-path="level">1</span> HP</span>
-            </div>
-          </div>
-          <div style="min-width:120px;text-align:right;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Prof</div>
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;margin-top:4px;" data-path="combat.proficiency_bonus">+2</div>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:10px; align-items:center; margin-top:14px; justify-content:space-between;">
-          <div>
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Death Saves</div>
-            <div style="display:flex; gap:8px; margin-top:6px;">
-              <span class="pip" data-on="0" title="Success"></span>
-              <span class="pip" data-on="0" title="Success"></span>
-              <span class="pip" data-on="0" title="Success"></span>
-              <span style="width:10px"></span>
-              <span class="pip" data-on="0" data-fail="1" title="Failure"></span>
-              <span class="pip" data-on="0" data-fail="1" title="Failure"></span>
-              <span class="pip" data-on="0" data-fail="1" title="Failure"></span>
-            </div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hit Dice</div>
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:20px;margin-top:6px;" data-path="combat.hit_dice">1d10</div>
-          </div>
-        </div>
-
+      <div class="panel-title">Saving Throws</div>
+      <div class="panel-body">
+        <div class="save-grid" id="saves-container"></div>
       </div>
     </div>
 
-  </div>
-
-  <!-- RIGHT -->
-  <div style="display:flex; flex-direction:column; gap:20px;">
-
+    <!-- Ability Scores -->
     <div class="panel">
-      <div class="pt">Saving Throws</div>
-      <div class="pb" style="display:grid; grid-template-columns:1fr 1fr; gap:3px 16px;">
-        <div class="sr"><div class="dt f"></div><span class="sn">STR</span><span class="sv2" data-path="saving_throws.str.bonus">+6</span></div>
-        <div class="sr"><div class="dt"></div><span class="sn">DEX</span><span class="sv2" data-path="saving_throws.dex.bonus">+1</span></div>
-        <div class="sr"><div class="dt f"></div><span class="sn">CON</span><span class="sv2" data-path="saving_throws.con.bonus">+6</span></div>
-        <div class="sr"><div class="dt"></div><span class="sn">INT</span><span class="sv2" data-path="saving_throws.int.bonus">+0</span></div>
-        <div class="sr"><div class="dt"></div><span class="sn">WIS</span><span class="sv2" data-path="saving_throws.wis.bonus">+0</span></div>
-        <div class="sr"><div class="dt"></div><span class="sn">CHA</span><span class="sv2" data-path="saving_throws.cha.bonus">+3</span></div>
-      </div>
-      <div class="pb" style="padding-top:0;">
-        <div style="font-family:'IM Fell English',serif;color:var(--td);font-size:18px;line-height:1.6;">
-          <strong style="color:var(--st-l);font-style:normal;">Gnomish Cunning:</strong>
-          Advantage on <em>INT</em>, <em>WIS</em>, and <em>CHA</em> saving throws.
-        </div>
+      <div class="panel-title">Ability Scores</div>
+      <div class="panel-body">
+        <div class="ability-grid" id="abilities-container"></div>
       </div>
     </div>
 
+    <!-- Backstory -->
     <div class="panel">
-      <div class="pt">Skills</div>
-      <div class="pb">
-        <div class="sgrid" id="skills-grid">
-          <!-- populated by script; fallback below -->
-          <div class="skr"><span class="skn">Acrobatics</span><span class="ska">(DEX)</span><span class="skv">+1</span></div>
-          <div class="skr"><span class="skn">Animal Handling</span><span class="ska">(WIS)</span><span class="skv">+2</span></div>
-          <div class="skr"><span class="skn">Arcana</span><span class="ska">(INT)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Athletics</span><span class="ska">(STR)</span><span class="skv">+4</span></div>
-          <div class="skr"><span class="skn">Deception</span><span class="ska">(CHA)</span><span class="skv">+3</span></div>
-          <div class="skr"><span class="skn">History</span><span class="ska">(INT)</span><span class="skv">+2</span></div>
-          <div class="skr"><span class="skn">Insight</span><span class="ska">(WIS)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Intimidation</span><span class="ska">(CHA)</span><span class="skv">+3</span></div>
-          <div class="skr"><span class="skn">Investigation</span><span class="ska">(INT)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Medicine</span><span class="ska">(WIS)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Nature</span><span class="ska">(INT)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Perception</span><span class="ska">(WIS)</span><span class="skv">+2</span></div>
-          <div class="skr"><span class="skn">Performance</span><span class="ska">(CHA)</span><span class="skv">+3</span></div>
-          <div class="skr"><span class="skn">Persuasion</span><span class="ska">(CHA)</span><span class="skv">+3</span></div>
-          <div class="skr"><span class="skn">Religion</span><span class="ska">(INT)</span><span class="skv">+0</span></div>
-          <div class="skr"><span class="skn">Sleight of Hand</span><span class="ska">(DEX)</span><span class="skv">+1</span></div>
-          <div class="skr"><span class="skn">Stealth</span><span class="ska">(DEX)</span><span class="skv">+1</span></div>
-          <div class="skr"><span class="skn">Survival</span><span class="ska">(WIS)</span><span class="skv">+2</span></div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px;">
-          <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_perception">12</div>
-            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Perception</div>
-          </div>
-          <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_insight">10</div>
-            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Insight</div>
-          </div>
-          <div style="text-align:center;padding:10px;background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);">
-            <div style="font-family:'Cinzel Decorative',serif;color:var(--st-l);font-size:22px;" data-path="combat.passive_investigation">10</div>
-            <div style="font-size:15px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-top:4px;">Passive Investigation</div>
-          </div>
-        </div>
+      <div class="panel-title">Background &amp; Lore</div>
+      <div class="panel-body">
+        <div class="backstory-box" id="js-backstory-box">—</div>
       </div>
     </div>
 
+    <!-- Physical Details -->
     <div class="panel">
-      <div class="pt">Weapon Attacks & Cantrips</div>
-      <div class="pb" style="padding:8px 12px;">
-        <table class="at" id="attack-table">
-          <thead>
-            <tr><th>Name</th><th class="v">Hit</th><th class="v">Damage/Type</th><th>Notes</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Whip<br/><span class="n">Martial · Finesse · Reach</span></td>
-              <td class="v" data-path="weapons.0.attack">+6</td>
-              <td class="v" data-path="weapons.0.damage">1d4+4</td>
-              <td class="n">Slashing · <em>Slow</em> (−10 ft speed until start of your next turn).</td>
-            </tr>
-            <tr>
-              <td>Unarmed Strike</td>
-              <td class="v" data-path="weapons.1.attack">+6</td>
-              <td class="v" data-path="weapons.1.damage">5</td>
-              <td class="n">Bludgeoning</td>
-            </tr>
-            <tr>
-              <td>Mending<br/><span class="n">Cantrip</span></td>
-              <td class="v">—</td>
-              <td class="v">Utility</td>
-              <td class="n">Gnomish Lineage spell.</td>
-            </tr>
-            <tr>
-              <td>Prestidigitation<br/><span class="n">Cantrip</span></td>
-              <td class="v">—</td>
-              <td class="v">Utility</td>
-              <td class="n">Also used to create <em>Tiny Clockwork Devices</em>.</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="panel-title">Physical Details</div>
+      <div class="panel-body" id="js-physical-portrait">
+        <div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="pt">Features & Traits</div>
-      <div class="pb" style="padding:8px 12px;">
-        <details class="fi">
-          <summary class="ft"><div class="fg s"></div><span class="fn s">Second Wind</span><span class="fs">2/LR · Bonus Action</span><span class="fa">▶</span></summary>
-          <div class="fd">Regain <strong>1d10 + level</strong> HP. Two uses per Long Rest; regain one use on a Short Rest.</div>
-        </details>
-
-        <details class="fi">
-          <summary class="ft"><div class="fg s"></div><span class="fn s">Defense (Fighting Style)</span><span class="fs">Passive</span><span class="fa">▶</span></summary>
-          <div class="fd"><strong>+1 AC</strong> while wearing armor. (Already accounted for in the AC value.)</div>
-        </details>
-
-        <details class="fi">
-          <summary class="ft"><div class="fg"></div><span class="fn">Weapon Mastery</span><span class="fs">Fighter · Passive</span><span class="fa">▶</span></summary>
-          <div class="fd">Your mastered weapons: <strong>Whip</strong> (<em>Slow</em>), <strong>Light Hammer</strong> (<em>Nick</em>), <strong>Mace</strong> (<em>Sap</em>). Your craft is careful. Your hits are <strong>instructional</strong>.</div>
-        </details>
-
-        <details class="fi">
-          <summary class="ft"><div class="fg"></div><span class="fn">Gnomish Cunning</span><span class="fs">Gnome · Passive</span><span class="fa">▶</span></summary>
-          <div class="fd">Advantage on <strong>INT</strong>, <strong>WIS</strong>, and <strong>CHA</strong> saves. His mind is a workshop; tricks slide off the bench.</div>
-        </details>
-
-        <details class="fi">
-          <summary class="ft"><div class="fg s"></div><span class="fn s">Rock Gnome Clockwork</span><span class="fs">Utility</span><span class="fa">▶</span></summary>
-          <div class="fd">By spending 10 minutes casting <em>Prestidigitation</em>, create a <strong>Tiny Clockwork Device</strong> that repeats one Prestidigitation effect when touched (Bonus Action to activate). Up to <strong>3</strong> devices at once; each lasts <strong>8 hours</strong>.</div>
-        </details>
-
-        <details class="fi">
-          <summary class="ft"><div class="fg"></div><span class="fn">Darkvision</span><span class="fs">60 ft</span><span class="fa">▶</span></summary>
-          <div class="fd">See in dim light as bright, and darkness as dim, within <strong>60 ft</strong>.</div>
-        </details>
-      </div>
+    <!-- Senses -->
+    <div class="panel" id="js-senses-panel" style="display:none;">
+      <div class="panel-title">Senses</div>
+      <div class="panel-body" id="js-senses-portrait"></div>
     </div>
 
-    
+    <!-- Session Changelog -->
     <div class="panel">
-      <div class="pt">Appearance</div>
-      <div class="pb" style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
-        <div class="cbl"><span class="cv">67</span><span class="cl">Age</span></div>
-        <div class="cbl"><span class="cv">3'6"</span><span class="cl">Height</span></div>
-        <div class="cbl"><span class="cv">42</span><span class="cl">Weight</span></div>
-      </div>
-      <div class="pb" style="padding-top:0;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Hair</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Platinum Blonde</div>
-          </div>
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Eyes</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Topaz</div>
-          </div>
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Skin</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Tan</div>
-          </div>
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Size</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Small</div>
-          </div>
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Gender</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Male</div>
-          </div>
-          <div style="background:rgba(42,59,82,.06);border:1px solid rgba(176,122,42,.25);padding:10px 12px;">
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;">Vibe</div>
-            <div style="font-family:'IM Fell English',serif;color:var(--st-l);margin-top:4px;">Energetic</div>
-          </div>
+      <div class="panel-title">Last Updated: <span data-path="meta.last_session_updated">Session 00</span></div>
+      <div class="panel-body" id="changelog-container"></div>
+    </div>
+
+  </div><!-- end portrait-col -->
+
+  <!-- ── RIGHT: STATS COLUMN ── -->
+  <div class="stats-col">
+
+    <!-- Combat Stats -->
+    <div class="panel">
+      <div class="panel-title">Combat</div>
+      <div class="panel-body">
+        <div class="combat-grid">
+          <div class="combat-block"><span class="combat-value" data-path="combat.ac">—</span><span class="combat-label">Armor Class</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.initiative">—</span><span class="combat-label">Initiative</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.speed">—</span><span class="combat-label">Speed (ft)</span></div>
+          <div class="combat-block"><span class="combat-value" data-path="combat.proficiency_bonus">—</span><span class="combat-label">Proficiency</span></div>
         </div>
       </div>
     </div>
 
+    <!-- Passive Senses -->
     <div class="panel">
-      <div class="pt">Proficiencies</div>
-      <div class="pb">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div>
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Armor</div>
-            <div class="egrid">
-              <div class="ei">Light Armor</div>
-              <div class="ei">Medium Armor</div>
-              <div class="ei">Heavy Armor</div>
-              <div class="ei">Shields</div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Weapons</div>
-            <div class="egrid">
-              <div class="ei">Simple Weapons</div>
-              <div class="ei">Martial Weapons</div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Tools</div>
-            <div class="egrid">
-              <div class="ei">Smith's Tools</div>
-              <div class="ei">Vehicles (Land)</div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:15px;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:6px;">Languages</div>
-            <div class="egrid">
-              <div class="ei">Common</div>
-              <div class="ei">Draconic</div>
-              <div class="ei">Gnomish</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:12px;font-family:'IM Fell English',serif;color:var(--td);font-size:18px;line-height:1.7;">
-          <strong style="color:var(--st-l);font-style:normal;">Weight Carried:</strong> 84 lb ·
-          <strong style="color:var(--st-l);font-style:normal;">Encumbered:</strong> 270 lb ·
-          <strong style="color:var(--st-l);font-style:normal;">Push/Drag/Lift:</strong> 540 lb
+      <div class="panel-title">Passive Senses</div>
+      <div class="panel-body">
+        <div class="passive-grid">
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_perception">—</span><span class="passive-lbl">Perception</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_investigation">—</span><span class="passive-lbl">Investigation</span></div>
+          <div class="passive-block"><span class="passive-val" data-path="combat.passive_insight">—</span><span class="passive-lbl">Insight</span></div>
         </div>
       </div>
     </div>
 
-<div class="panel" style="animation:fi .6s ease .4s both;">
-      <div class="pt">Character</div>
-      <div class="pb" style="padding:4px 10px;">
-        <details class="tr2"><summary class="ts">Personality <span class="ta">▶</span></summary>
-          <div class="tb" data-path="traits.personality">Bright-eyed and delighted by any sufficiently sturdy wall. Speaks of masonry like liturgy.</div>
-        </details>
-        <details class="tr2"><summary class="ts">Ideals <span class="ta">▶</span></summary>
-          <div class="tb" data-path="traits.ideal">To build is to worship. A perfect wall is proof the world can be made better—stronger—on purpose.</div>
-        </details>
-        <details class="tr2"><summary class="ts">Bond <span class="ta">▶</span></summary>
-          <div class="tb" data-path="traits.bond">His “temple wall” is his dream made physical. Anyone who helps lay its first stones becomes part of his myth.</div>
-        </details>
-        <details class="tr2"><summary class="ts">Flaw <span class="ta">▶</span></summary>
-          <div class="tb" data-path="traits.flaw">He confuses confidence with divinity, and can’t resist “proving” himself when a structure (or ego) is challenged.</div>
-        </details>
-      </div>
-    </div>
-
+    <!-- Skills -->
     <div class="panel">
-      <div class="pt">Equipment</div>
-      <div class="pb">
-        <div class="egrid" id="equip-grid">
-          <div class="ei">Chain Mail</div>
-          <div class="ei">Shield</div>
-          <div class="ei">Whip</div>
-          <div class="ei">Backpack</div>
-          <div class="ei">Bedroll</div>
-          <div class="ei">Mason's Tools</div>
-          <div class="ei">Chain</div>
-          <div class="ei" id="gold-item">5 Gold Pieces</div>
-        </div>
+      <div class="panel-title">Skills</div>
+      <div class="panel-body">
+        <div class="skills-grid" id="skills-container"></div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- Spellcasting (hidden if not enabled) -->
+    <div class="panel" id="spellcasting-panel" style="display:none;">
+      <div class="panel-title">Spellcasting — DC <span data-path="spellcasting.spell_save_dc">—</span> · Atk <span data-path="spellcasting.spell_attack_bonus">—</span></div>
+      <div class="panel-body">
+        <div class="slot-grid" id="spell-slots-container"></div>
+      </div>
+    </div>
 
-<div class="footer" style="text-align:center;padding:40px 20px;font-family:'IM Fell English',serif;font-style:italic;font-size:18px;color:var(--ac);letter-spacing:2px;">
-  ✦ &nbsp; The world is soft. I am here to reinforce it. &nbsp; ✦
-</div>
+    <!-- Class Resources -->
+    <div class="panel" id="resources-panel" style="display:none;">
+      <div class="panel-title">Class Resources</div>
+      <div class="panel-body" id="resources-container"></div>
+    </div>
 
+    <!-- Features & Abilities -->
+    <div class="panel">
+      <div class="panel-title">Features &amp; Abilities</div>
+      <div class="panel-body" id="features-container"></div>
+    </div>
+
+    <!-- Character Traits -->
+    <div class="panel">
+      <div class="panel-title">Character Traits</div>
+      <div class="panel-body" id="traits-container"></div>
+    </div>
+
+    <!-- Equipment -->
+    <div class="panel">
+      <div class="panel-title">Equipment &amp; Inventory</div>
+      <div class="panel-body">
+        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--text-dim);font-family:'IM Fell English',serif;">
+          <span>PP: <span style="color:var(--primary-light);" data-path="equipment.currency.pp">0</span></span>
+          <span>GP: <span style="color:var(--primary-light);" data-path="equipment.currency.gp">0</span></span>
+          <span>EP: <span style="color:var(--primary-light);" data-path="equipment.currency.ep">0</span></span>
+          <span>SP: <span style="color:var(--primary-light);" data-path="equipment.currency.sp">0</span></span>
+          <span>CP: <span style="color:var(--primary-light);" data-path="equipment.currency.cp">0</span></span>
+        </div>
+        <div id="equipment-container"></div>
+      </div>
+    </div>
+
+  </div><!-- end stats-col -->
+</div><!-- end sheet -->
+
+
+<!-- ════════════════════════════════ LOADER ════════════════════════════════ -->
 <script>
-  // simple toggles
-  document.getElementById('sw1')?.addEventListener('click', function(){ this.classList.toggle('on'); });
-  document.getElementById('sw2')?.addEventListener('click', function(){ this.classList.toggle('on'); });
-  document.querySelectorAll('.pip').forEach(p => {
-    p.addEventListener('click', () => {
-      const on = p.dataset.on === '1';
-      const fail = p.dataset.fail === '1';
-      p.style.background = on ? '' : (fail ? '#8b1a1a' : 'var(--ac-l)');
-      p.style.borderColor = on ? '' : (fail ? '#cc2222' : 'var(--ac-l)');
-      p.dataset.on = on ? '0' : '1';
-    });
-  });
-</script>
+  // ── CHANGE THIS ONE LINE TO POINT TO A DIFFERENT CHARACTER ──
+  const CHARACTER_KEY = "slot1";
+  const JSON_PATH     = "../player.json";   // adjust if your folder structure differs
+  // ────────────────────────────────────────────────────────────
 
-<script>
-(async function () {
-  const CHAR = (document.body && document.body.dataset && document.body.dataset.character) ? document.body.dataset.character : "malc";
+  const SKILL_LABELS = {
+    acrobatics:"Acrobatics", animal_handling:"Animal Handling",
+    arcana:"Arcana", athletics:"Athletics", deception:"Deception",
+    history:"History", insight:"Insight", intimidation:"Intimidation",
+    investigation:"Investigation", medicine:"Medicine", nature:"Nature",
+    perception:"Perception", performance:"Performance", persuasion:"Persuasion",
+    religion:"Religion", sleight_of_hand:"Sleight of Hand",
+    stealth:"Stealth", survival:"Survival"
+  };
+  const SAVE_LABELS = { str:"Strength", dex:"Dexterity", con:"Constitution", int:"Intelligence", wis:"Wisdom", cha:"Charisma" };
+  const AB_LABELS   = { str:"STR", dex:"DEX", con:"CON", int:"INT", wis:"WIS", cha:"CHA" };
 
-  async function loadParty() {
-    const candidates = ["../player.json","../../player.json","../../../player.json","/dnd/player.json","/player.json","./player.json"];
-    for (const url of candidates) {
-      try {
-        const r = await fetch(url, { cache: "no-store" });
-        if (!r.ok) continue;
-        return await r.json();
-      } catch (_) {}
-    }
-    throw new Error("Could not load player.json (tried common paths)");
+  function get(obj, path) {
+    return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
   }
-
-  function abMod(score) {
-    const n = Number(score);
-    if (!Number.isFinite(n)) return "";
-    const m = Math.floor((n - 10) / 2);
+  function mod(score) {
+    const m = Math.floor((score - 10) / 2);
     return (m >= 0 ? "+" : "") + m;
   }
-
-  // get deep path
-  function getPath(obj, path) {
-    if (!obj || !path) return undefined;
-    return path.split('.').reduce((o, k) => (o && (k in o)) ? o[k] : undefined, obj);
+  function dot(filled, expertise) {
+    if (expertise) return `<div class="dot expertise"></div>`;
+    if (filled)    return `<div class="dot filled"></div>`;
+    return `<div class="dot"></div>`;
   }
 
-  function setText(sel, txt) { if (!sel) return; sel.textContent = (txt ?? ""); }
+  fetch(JSON_PATH)
+    .then(r => r.json())
+    .then(json => {
+      const char = json.slots[CHARACTER_KEY];
+      if (!char) { document.body.innerHTML = `<div style="color:#f55;padding:40px;font-family:monospace;">ERROR: "${CHARACTER_KEY}" not found in player.json slots.</div>`; return; }
 
-  try {
-    const party = await loadParty();
-    const c = party?.characters?.[CHAR];
-    if (!c) return;
+      // 1. THEME COLORS
+      const root = document.documentElement;
+      if (char.identity.theme_color)        root.style.setProperty('--primary',        char.identity.theme_color);
+      if (char.identity.theme_color_light)  root.style.setProperty('--primary-light',  char.identity.theme_color_light);
+      if (char.identity.theme_color_dim)    root.style.setProperty('--primary-dim',    char.identity.theme_color_dim);
+      if (char.identity.theme_color_bright) root.style.setProperty('--primary-bright', char.identity.theme_color_bright);
+      if (char.identity.theme_rgb)          root.style.setProperty('--primary-rgb',    char.identity.theme_rgb);
 
-    // header
-    const nameEl = document.querySelector(".cname");
-    if (nameEl && c.name) nameEl.textContent = c.name;
-
-    const subEl = document.querySelector(".csub");
-    if (subEl) {
-      const parts = [];
-      if (c.class) parts.push(c.class);
-      if (c.subclass) parts.push(c.subclass);
-      if (c.alignment) parts.push(c.alignment);
-      if (c.subtitle) parts.length = 0, parts.push(c.subtitle);
-      if (parts.length) subEl.textContent = parts.join(" · ");
-    }
-
-    // data-path injection
-    document.querySelectorAll("[data-path]").forEach(el => {
-      const p = el.getAttribute("data-path");
-      const v = getPath(c, p);
-      if (v !== undefined && v !== null) el.textContent = v;
-    });
-
-    // data-mod injection (ability modifiers)
-    document.querySelectorAll("[data-mod]").forEach(el => {
-      const p = el.getAttribute("data-mod");
-      const v = getPath(c, p);
-      const mod = abMod(v);
-      if (mod) el.textContent = mod;
-    });
-
-    // skills grid (expects array format like other sheets)
-    const grid = document.getElementById("skills-grid");
-    if (grid && Array.isArray(c.skills)) {
-      grid.innerHTML = "";
-      c.skills.forEach(s => {
-        const row = document.createElement("div");
-        row.className = "skr";
-        row.innerHTML = `<span class="skn">${s.name}</span><span class="ska">(${s.ability || s.ab || ""})</span><span class="skv">${s.bonus}</span>`;
-        grid.appendChild(row);
+      // 2. SIMPLE data-path INJECTION
+      document.querySelectorAll("[data-path]").forEach(el => {
+        const val = get(char, el.dataset.path);
+        if (val !== undefined && val !== null) el.textContent = val;
       });
-    }
 
-    // equipment list
-    const eg = document.getElementById("equip-grid");
-    if (eg && Array.isArray(c.equipment)) {
-      eg.innerHTML = "";
-      c.equipment.forEach(it => {
-        const d = document.createElement("div");
-        d.className = "ei";
-        d.textContent = it;
-        eg.appendChild(d);
-      });
-      if (Number.isFinite(Number(c.gold))) {
-        const g = document.createElement("div");
-        g.className = "ei";
-        g.textContent = `${c.gold} Gold Pieces`;
-        eg.appendChild(g);
+      // 3. PORTRAIT
+      const img = document.getElementById('portrait-img');
+      const ph  = document.getElementById('portrait-placeholder');
+      if (char.identity.portrait_url) {
+        img.src = char.identity.portrait_url;
+        img.alt = char.identity.name + " portrait";
+        img.style.display = 'block';
+        if (ph) ph.style.display = 'none';
       }
-    }
 
-  } catch (e) {
-    // silent fail (page still renders with fallback)
-    console.warn(e);
-  }
-})();
+      // 4. PAGE TITLE
+      if (char.identity.name) document.title = char.identity.name + " — Character Sheet";
+
+      // 5. HP BAR
+      const hpBar = document.getElementById('hp-bar');
+      if (hpBar && char.combat.hp_max > 0) {
+        const pct = Math.max(0, Math.min(100, (char.combat.hp_current / char.combat.hp_max) * 100));
+        hpBar.style.width = pct + '%';
+        if (pct < 25)      hpBar.style.background = '#8b1a1a';
+        else if (pct < 50) hpBar.style.background = '#8b6a1a';
+      }
+
+      // 6. ABILITY SCORES
+      const abGrid = document.getElementById('abilities-container');
+      if (abGrid) {
+        abGrid.innerHTML = Object.entries(char.abilities).map(([ab, score]) => `
+          <div class="ability-block">
+            <span class="ab-name">${AB_LABELS[ab] || ab}</span>
+            <span class="ab-score">${score}</span>
+            <span class="ab-mod">${mod(score)}</span>
+          </div>
+        `).join('');
+      }
+
+      // 7. SAVING THROWS
+      const savesContainer = document.getElementById('saves-container');
+      if (savesContainer) {
+        savesContainer.innerHTML = Object.entries(char.saving_throws).map(([ab, data]) => `
+          <div class="save-row">
+            ${dot(data.proficient, false)}
+            <span class="save-name">${SAVE_LABELS[ab] || ab}</span>
+            <span class="save-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // 8. SKILLS
+      const skillsContainer = document.getElementById('skills-container');
+      if (skillsContainer) {
+        skillsContainer.innerHTML = Object.entries(char.skills).map(([key, data]) => `
+          <div class="skill-row">
+            ${dot(data.proficient || data.expertise, data.expertise)}
+            <span class="skill-name">${SKILL_LABELS[key] || key}</span>
+            <span class="skill-ab">(${data.ability.toUpperCase()})</span>
+            <span class="skill-val">${data.value}</span>
+          </div>
+        `).join('');
+      }
+
+      // 9. FEATURES
+      const featContainer = document.getElementById('features-container');
+      if (featContainer) {
+        if (char.features && char.features.length > 0) {
+          featContainer.innerHTML = char.features.map(f => `
+            <details class="feature-item">
+              <summary class="feature-toggle">
+                <div class="feature-gem"></div>
+                <span class="feat-name">${f.name}</span>
+                <span class="feat-source">${f.source || ''}</span>
+                <span class="feat-arrow">▶</span>
+              </summary>
+              <div class="feature-detail">${f.description || ''}</div>
+            </details>
+          `).join('');
+        } else {
+          featContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No features recorded.</div>`;
+        }
+      }
+
+      // 10. TRAITS
+      const traitsContainer = document.getElementById('traits-container');
+      if (traitsContainer && char.traits) {
+        const traitMap = { personality:"Personality", ideal:"Ideal", bond:"Bond", flaw:"Flaw" };
+        traitsContainer.innerHTML = Object.entries(traitMap).map(([key, label]) => `
+          <details class="trait-details">
+            <summary class="trait-summary">
+              <span class="trait-arrow">▶</span>
+              ${label}
+            </summary>
+            <div class="trait-body">${char.traits[key] || '—'}</div>
+          </details>
+        `).join('');
+      }
+
+      // 11. EQUIPMENT
+      const equipContainer = document.getElementById('equipment-container');
+      if (equipContainer && char.equipment && char.equipment.carried) {
+        equipContainer.innerHTML = char.equipment.carried.map(item => `
+          <div class="equip-item">
+            ${item.name}${item.description ? ` <span style="font-size:14px;color:var(--text-dim);font-style:italic;">— ${item.description}</span>` : ''}
+            <span class="equip-qty">×${item.quantity || 1}</span>
+          </div>
+        `).join('');
+      }
+
+      // 12. CLASS RESOURCES
+      const resContainer = document.getElementById('resources-container');
+      const resPanel     = document.getElementById('resources-panel');
+      if (resContainer && char.class_resources) {
+        const entries = Object.entries(char.class_resources);
+        if (entries.length > 0) {
+          resPanel.style.display = '';
+          resContainer.innerHTML = entries.map(([, res]) => `
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:14px;letter-spacing:2px;color:var(--primary-light);text-transform:uppercase;">${res.label}</span>
+                <span style="font-size:14px;color:var(--text-dim);">Recharge: ${res.recharge}</span>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                ${Array.from({length: res.max}, (_, i) => `
+                  <div class="slot-pip ${i < res.current ? 'available' : 'used'}"
+                       onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                `).join('')}
+              </div>
+              ${res.description ? `<div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--text-dim);margin-top:6px;font-style:italic;">${res.description}</div>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      // 13. SPELLCASTING
+      const spellPanel    = document.getElementById('spellcasting-panel');
+      const slotsContainer = document.getElementById('spell-slots-container');
+      if (char.spellcasting && char.spellcasting.enabled && spellPanel && slotsContainer) {
+        spellPanel.style.display = '';
+        const slots = char.spellcasting.spell_slots;
+        slotsContainer.innerHTML = Object.entries(slots)
+          .filter(([, s]) => s.max > 0)
+          .map(([key, s]) => {
+            const lvl = key.replace('level_', '');
+            return `
+              <div class="slot-row">
+                <span class="slot-level">Level ${lvl}</span>
+                <div class="slot-pips">
+                  ${Array.from({length: s.max}, (_, i) => `
+                    <div class="slot-pip ${i < s.current ? 'available' : 'used'}"
+                         onclick="this.classList.toggle('available');this.classList.toggle('used')"></div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('');
+      }
+
+      // 14. SESSION CHANGELOG
+      const changelogContainer = document.getElementById('changelog-container');
+      if (changelogContainer && char.meta.session_changes) {
+        if (char.meta.session_changes.length > 0) {
+          changelogContainer.innerHTML = char.meta.session_changes.map(c => `
+            <div class="changelog-item">${c}</div>
+          `).join('');
+        } else {
+          changelogContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No changes logged yet.</div>`;
+        }
+      }
+
+      // 15. BACKSTORY (verbatim preferred, fallback to summary)
+      const bsBox = document.getElementById('js-backstory-box');
+      if (bsBox && char.backstory) {
+        const bs = char.backstory;
+        bsBox.textContent = bs.verbatim || bs.full || bs.summary || bs.short || '—';
+      }
+
+      // 16. PHYSICAL DETAILS
+      const physPortrait = document.getElementById('js-physical-portrait');
+      const phys = char.physical || {};
+      if (physPortrait && Object.keys(phys).length) {
+        const rows = [
+          { label: 'Gender',   val: phys.gender },
+          { label: 'Age',      val: phys.age },
+          { label: 'Size',     val: phys.size },
+          { label: 'Height',   val: phys.height },
+          { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+          { label: 'Eyes',     val: phys.eyes },
+          { label: 'Skin',     val: phys.skin },
+          { label: 'Hair',     val: phys.hair },
+          { label: 'Faith',    val: phys.faith },
+          { label: 'Notable',  val: phys.distinguishing_features }
+        ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+        if (rows.length) {
+          physPortrait.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+            ${rows.map(r => `
+              <tr>
+                <td style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px 4px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+                <td style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:4px 0;vertical-align:top;">${r.val}</td>
+              </tr>`).join('')}
+          </table>`;
+        } else {
+          physPortrait.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>`;
+        }
+      }
+
+      // 17. SENSES
+      const sensesPortrait = document.getElementById('js-senses-portrait');
+      const sensesPanel    = document.getElementById('js-senses-panel');
+      const senses = char.senses || {};
+      if (sensesPortrait) {
+        const senseRows = [];
+        if (senses.darkvision_ft > 0)  senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+        if (senses.blindsight_ft > 0)  senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+        if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+        if (senses.truesight_ft > 0)   senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+        if (senses.other)              senseRows.push(senses.other);
+        if (senseRows.length) {
+          if (sensesPanel) sensesPanel.style.display = '';
+          sensesPortrait.innerHTML = senseRows.map(s =>
+            `<div style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:3px 0;">${s}</div>`
+          ).join('');
+        }
+      }
+
+    })
+    .catch(err => {
+      console.error("Failed to load player.json:", err);
+      document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player.json — check JSON_PATH (currently: "${JSON_PATH}") and that the file is served over HTTP (not file://). Error: ${err.message}</div>`);
+    });
 </script>
-
 </body>
 </html>
