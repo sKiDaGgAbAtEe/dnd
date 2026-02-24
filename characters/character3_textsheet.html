@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Raven — Reference Sheet</title>
+<title>Sekhmet — Reference Sheet</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
   /* ── THEME: defaults overridden at runtime from JSON ── */
@@ -330,6 +330,13 @@
       </div>
 
       <div class="section">
+        <div class="section-title">Senses</div>
+        <div class="section-body" id="js-senses">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>
+        </div>
+      </div>
+
+      <div class="section">
         <div class="section-title">Equipment</div>
         <div class="section-body" id="js-equipment"><!-- Built by JS --></div>
       </div>
@@ -446,135 +453,6 @@
         <div class="scroll-entry-desc">A defined specialty within the criminal world — whether inside a thieves' guild or operating independently. Even lone operators have strong preferences for particular kinds of work.</div>
       </div>
     </div>
-
-  </div>
-</details>
-
-<style>
-/* ── SCROLL NOTE COMPONENT ── */
-.scroll-note {
-  border: 1px solid rgba(var(--primary-rgb), 0.3);
-  background: var(--dark-panel);
-  position: relative;
-  margin-bottom: 8px;
-}
-.scroll-note::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.5), transparent);
-}
-
-.scroll-note-tab {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 16px;
-  cursor: pointer;
-  user-select: none;
-  list-style: none;
-  transition: background 0.2s;
-}
-.scroll-note-tab::-webkit-details-marker { display: none; }
-.scroll-note-tab:hover { background: rgba(var(--primary-rgb), 0.05); }
-
-.scroll-gem {
-  width: 6px; height: 6px;
-  background: var(--primary);
-  transform: rotate(45deg);
-  flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5);
-  transition: box-shadow 0.3s;
-}
-details[open] .scroll-gem {
-  background: var(--primary-bright);
-  box-shadow: 0 0 16px rgba(var(--primary-rgb), 0.8);
-}
-
-.scroll-title {
-  font-size: 10px;
-  color: var(--primary-light);
-  font-weight: 600;
-  letter-spacing: 1px;
-  flex: 1;
-}
-.scroll-hint {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 9px;
-  color: var(--text-dim);
-  margin-left: auto;
-}
-.scroll-arrow {
-  font-size: 8px;
-  color: var(--primary-dim);
-  transition: transform 0.3s, color 0.3s;
-  flex-shrink: 0;
-}
-details[open] .scroll-arrow {
-  transform: rotate(90deg);
-  color: var(--primary-light);
-}
-
-/* Body of the scroll */
-.scroll-body {
-  padding: 14px 18px 18px;
-  border-top: 1px solid rgba(var(--primary-rgb), 0.12);
-  animation: scrollUnfurl 0.25s ease;
-}
-@keyframes scrollUnfurl {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.scroll-section { margin-bottom: 14px; }
-.scroll-section:last-child { margin-bottom: 0; }
-
-.scroll-section-title {
-  font-size: 8px;
-  letter-spacing: 4px;
-  color: var(--primary);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.scroll-entry {
-  padding: 7px 0;
-  border-bottom: 1px solid rgba(var(--primary-rgb), 0.08);
-}
-.scroll-entry:last-child { border-bottom: none; }
-
-.scroll-entry-name {
-  font-size: 10px;
-  color: var(--primary-light);
-  font-weight: 600;
-  margin-bottom: 3px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.scroll-entry-tag {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 9px;
-  color: var(--text-dim);
-  font-weight: normal;
-}
-.scroll-entry-desc {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 10.5px;
-  color: var(--text-dim);
-  line-height: 1.7;
-}
-
-.scroll-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.25), transparent);
-  margin: 14px 0;
-}
-</style>
     </div>
   </div>
 </div><!-- end page-2 -->
@@ -869,10 +747,107 @@ fetch(JSON_PATH)
     const bsEl = document.getElementById('js-backstory');
     const bs   = char.backstory || {};
     if (bsEl) {
-      bsEl.textContent = typeof bs === 'string' ? bs : (bs.full || bs.short || bs.summary || '—');
+      bsEl.textContent = typeof bs === 'string' ? bs : (bs.verbatim || bs.full || bs.summary || bs.short || '—');
     }
 
-    // 15. SESSION CHANGELOG
+    // 15. PHYSICAL DETAILS
+    const physEl = document.getElementById('js-physical');
+    const phys   = char.physical || {};
+    if (physEl && Object.keys(phys).length) {
+      const rows = [
+        { label: 'Gender',   val: phys.gender },
+        { label: 'Age',      val: phys.age },
+        { label: 'Size',     val: phys.size },
+        { label: 'Height',   val: phys.height },
+        { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+        { label: 'Eyes',     val: phys.eyes },
+        { label: 'Skin',     val: phys.skin },
+        { label: 'Hair',     val: phys.hair },
+        { label: 'Faith',    val: phys.faith },
+        { label: 'Notable',  val: phys.distinguishing_features }
+      ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+      if (rows.length) {
+        physEl.innerHTML = `<table style="width:100%;border-collapse:collapse;font-family:'IM Fell English',serif;font-size:13px;">
+          ${rows.map(r => `
+            <tr>
+              <td style="color:var(--primary-light);letter-spacing:2px;font-size:10px;text-transform:uppercase;padding:3px 8px 3px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+              <td style="color:var(--text-cream);padding:3px 0;vertical-align:top;">${r.val}</td>
+            </tr>`).join('')}
+        </table>`;
+      } else {
+        physEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">Not recorded.</p>`;
+      }
+    }
+
+    // 16. SENSES
+    const sensesEl = document.getElementById('js-senses');
+    const senses   = char.senses || {};
+    if (sensesEl) {
+      const senseRows = [];
+      if (senses.darkvision_ft > 0) senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+      if (senses.blindsight_ft > 0) senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+      if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+      if (senses.truesight_ft > 0) senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+      if (senses.other) senseRows.push(senses.other);
+      sensesEl.innerHTML = senseRows.length
+        ? senseRows.map(s => `<div style="font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);padding:2px 0;">${s}</div>`).join('')
+        : `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>`;
+    }
+
+    // 17. SPELLS (cantrips + prepared — rendered on page 2 below spell slots)
+    const sc2 = char.spellcasting || {};
+    if (sc2.enabled || (sc2.cantrips && sc2.cantrips.length)) {
+      const spellListEl = document.getElementById('js-page2-spells');
+      if (spellListEl) {
+        let spellHtml = '';
+        const cantrips = sc2.cantrips || [];
+        if (cantrips.length) {
+          spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Cantrips</div>`;
+          spellHtml += cantrips.map(sp => {
+            const name = typeof sp === 'string' ? sp : sp.name;
+            const desc = typeof sp === 'object' ? (sp.description || '') : '';
+            const meta = typeof sp === 'object'
+              ? [sp.school, sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')
+              : '';
+            return `<details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+              <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                <span>${name}</span>
+                ${sp.source ? `<span style="font-size:11px;color:var(--primary-dim);font-style:italic;">${sp.source}</span>` : '<span style="font-size:10px;color:var(--primary-dim);">Cantrip</span>'}
+              </summary>
+              ${meta ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${meta}</div>` : ''}
+              ${desc ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${desc}</div>` : ''}
+            </details>`;
+          }).join('');
+        }
+        const prepared = sc2.spells_prepared || [];
+        if (prepared.length) {
+          const byLevel = {};
+          prepared.forEach(sp => {
+            const lvl = sp.level || 1;
+            if (!byLevel[lvl]) byLevel[lvl] = [];
+            byLevel[lvl].push(sp);
+          });
+          Object.entries(byLevel).forEach(([lvl, spells]) => {
+            spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Level ${lvl} Spells</div>`;
+            spellHtml += spells.map(sp => `
+              <details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+                <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                  <span>${sp.name}</span>
+                  <span style="font-size:10px;color:var(--primary-dim);">${sp.school || ''}</span>
+                </summary>
+                ${[sp.casting_time, sp.range, sp.duration].filter(Boolean).length
+                  ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${[sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')}</div>`
+                  : ''}
+                ${sp.components ? `<div style="padding:0 10px 2px;font-size:11px;color:var(--primary-dim);">Components: ${sp.components}</div>` : ''}
+                ${sp.description ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${sp.description}</div>` : ''}
+              </details>`).join('');
+          });
+        }
+        if (spellHtml) spellListEl.innerHTML = spellHtml;
+      }
+    }
+
+    // 18. SESSION CHANGELOG
     const changeEl = document.getElementById('js-changelog');
     const changes  = meta.session_changes || [];
     if (changeEl) {
