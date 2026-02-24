@@ -276,9 +276,29 @@
     .passive-grid { grid-template-columns:repeat(2,1fr); }
   }
 
+  /* ─── BACK BUTTON ─── */
+  .back-btn {
+    position: fixed; top: 22px; left: 24px; z-index: 999;
+    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--primary-light); opacity: 0.85; text-decoration: none;
+    padding: 9px 16px 9px 12px;
+    border: 1px solid rgba(var(--primary-rgb), 0.45);
+    background: rgba(10,8,6,0.65); backdrop-filter: blur(10px);
+    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  .back-btn:hover {
+    color: var(--primary-bright);
+    border-color: rgba(var(--primary-rgb), 0.7);
+    box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.25);
+    transform: translateX(-2px);
+    opacity: 1;
+  }
+
 </style>
 </head>
 <body>
+
+<a href="../index.html" class="back-btn">← Back To The Party</a>
 
 <!-- ════════════════════════════════ HEADER ════════════════════════════════ -->
 <div class="header">
