@@ -1762,24 +1762,53 @@
 
   try {
     const data = await loadPlayers();
-    const chars = data?.characters || {};
+
+    // player.json uses a slots structure: data.slots.slot1, slot2, etc.
+    // Each slot has nested identity, abilities, combat sub-objects.
+    // Build a lookup map keyed by the card's data-character attribute,
+    // matching on identity.name (case-insensitive) or a slot's explicit key field.
+    const slots = data?.slots || {};
+    const charMap = {};
+    for (const slotVal of Object.values(slots)) {
+      const id = slotVal?.identity;
+      if (!id?.name) continue;
+      // Derive the card key from the name: lowercase, strip spaces
+      const cardKey = id.name.toLowerCase().replace(/\s+/g, "");
+      charMap[cardKey] = slotVal;
+    }
+    // Also allow matching by explicit key field if present
+    for (const slotVal of Object.values(slots)) {
+      if (slotVal?.key) charMap[slotVal.key] = slotVal;
+    }
 
     document.querySelectorAll(".char-card[data-character]").forEach(card => {
-      const key = card.getAttribute("data-character");
-      const c = chars?.[key];
-      if (!c) return;
+      const rawKey = card.getAttribute("data-character"); // e.g. "sekhmet", "malc"
+      // Try exact key first, then name-derived key (e.g. "malcgrann" → won't match "malc")
+      // So also try prefix matching for multi-word names like "Malc Grann" → key "malc"
+      let slot = charMap[rawKey];
+      if (!slot) {
+        // Fallback: find a slot whose name starts with the card key (case-insensitive)
+        slot = Object.values(slots).find(s =>
+          s?.identity?.name?.toLowerCase().startsWith(rawKey.toLowerCase())
+        );
+      }
+      if (!slot) return;
+
+      const id = slot.identity;
+      const combat = slot.combat || {};
+      const abilities = slot.abilities || {};
 
       // Name
-      setText(card.querySelector(".char-name"), c.name || key);
+      setText(card.querySelector(".char-name"), id.name || rawKey);
 
       // Level badge
-      setText(card.querySelector(".level-badge .level-num"), c.level);
+      setText(card.querySelector(".level-badge .level-num"), id.level);
 
       // Class badge (Class · Subclass)
-      setText(card.querySelector(".class-badge"), buildJoin([c.class, c.subclass]));
+      setText(card.querySelector(".class-badge"), buildJoin([id.class, id.subclass]));
 
       // Subtitle line under name (Race · Subclass/Path · Background)
-      setText(card.querySelector(".char-race-class"), buildJoin([c.race, c.subclass, c.background]));
+      setText(card.querySelector(".char-race-class"), buildJoin([id.race, id.subclass, id.background]));
 
       // Abilities (ordered)
       const order = ["str","dex","con","int","wis","cha"];
@@ -1787,33 +1816,30 @@
       order.forEach((k, i) => {
         const cell = cells[i];
         if (!cell) return;
-        setText(cell.querySelector(".stat-val"), c.abilities?.[k]);
-        setText(cell.querySelector(".stat-mod"), abMod(c.abilities?.[k]));
+        setText(cell.querySelector(".stat-val"), abilities[k]);
+        setText(cell.querySelector(".stat-mod"), abMod(abilities[k]));
       });
 
       // Quick info tags: HP, AC, Speed, Prof, Alignment
       const tags = card.querySelectorAll(".quick-info .qi-tag");
 
-      const hpCur = (c.combat?.hp_current ?? c.hp?.current ?? c.hp_current ?? null);
-      const hpMax = (c.combat?.hp_max ?? c.hp?.max ?? c.hp_max ?? null);
-      const hpDisplay = (hpCur ?? hpMax);
+      const hpDisplay = combat.hp_current ?? combat.hp_max ?? null;
+      const ac = combat.ac ?? null;
+      const sp = combat.speed ?? null;
 
-      const ac = (c.combat?.ac ?? c.ac ?? null);
-      const sp = (c.combat?.speed ?? c.speed ?? null);
-
-      const pbRaw = (c.combat?.proficiency_bonus ?? c.proficiencyBonus ?? c.proficiency_bonus ?? null);
+      const pbRaw = combat.proficiency_bonus ?? null;
       let pbTxt = "";
       if (typeof pbRaw === "string") pbTxt = pbRaw.trim();
       else if (pbRaw != null && pbRaw !== "") pbTxt = (Number(pbRaw) >= 0 ? "+" + Number(pbRaw) : String(pbRaw));
 
-      const al = (c.alignment ?? "");
+      const al = id.alignment ?? "";
 
       if (tags[0]) setText(tags[0], `HP ${hpDisplay ?? ""}`);
       if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
       if (tags[2]) setText(tags[2], `Speed ${sp ?? ""}`);
       if (tags[3]) setText(tags[3], `Prof ${pbTxt}`);
       if (tags[4]) setText(tags[4], al);
-});
+    });
   } catch (err) {
     console.warn("Landing-page wiring failed; leaving fallback values in place.", err);
   }
