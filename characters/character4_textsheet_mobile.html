@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evo — Reference Sheet</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
+  html {
+  height: 100%;
+}
+
+body {
+  transform-origin: top center;
+  transform: scale(var(--page-scale, 1));
+  width: calc(100% / var(--page-scale, 1));
+}
   /* ── THEME: defaults overridden at runtime from JSON ── */
   :root {
     --primary:        #c8972a;
@@ -789,6 +798,20 @@ fetch(JSON_PATH)
     console.error("Failed to load player.json:", err);
     document.body.insertAdjacentHTML('afterbegin', `<div style="background:#3a0000;color:#ff8888;padding:12px 20px;font-family:monospace;font-size:12px;">⚠ Could not load player.json — check JSON_PATH (currently: "${JSON_PATH}"). Serve over HTTP, not file://. Error: ${err.message}</div>`);
   });
+</script>
+  <script>
+  function fitToScreen() {
+    const designWidth = 860;
+    const screenWidth = window.innerWidth;
+    const scale = Math.min(1, screenWidth / designWidth);
+    document.body.style.transformOrigin = 'top left';
+    document.body.style.transform = `scale(${scale})`;
+    document.body.style.width = (screenWidth / scale) + 'px';
+    document.body.style.height = '';
+    document.documentElement.style.overflowX = 'hidden';
+  }
+  fitToScreen();
+  window.addEventListener('resize', fitToScreen);
 </script>
 </body>
 </html>
