@@ -330,6 +330,13 @@
       </div>
 
       <div class="section">
+        <div class="section-title">Senses</div>
+        <div class="section-body" id="js-senses">
+          <p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>
+        </div>
+      </div>
+
+      <div class="section">
         <div class="section-title">Equipment</div>
         <div class="section-body" id="js-equipment"><!-- Built by JS --></div>
       </div>
@@ -665,10 +672,107 @@ fetch(JSON_PATH)
     const bsEl = document.getElementById('js-backstory');
     const bs   = char.backstory || {};
     if (bsEl) {
-      bsEl.textContent = typeof bs === 'string' ? bs : (bs.full || bs.short || bs.summary || '—');
+      bsEl.textContent = typeof bs === 'string' ? bs : (bs.verbatim || bs.full || bs.summary || bs.short || '—');
     }
 
-    // 15. SESSION CHANGELOG
+    // 15. PHYSICAL DETAILS
+    const physEl = document.getElementById('js-physical');
+    const phys   = char.physical || {};
+    if (physEl && Object.keys(phys).length) {
+      const rows = [
+        { label: 'Gender',   val: phys.gender },
+        { label: 'Age',      val: phys.age },
+        { label: 'Size',     val: phys.size },
+        { label: 'Height',   val: phys.height },
+        { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+        { label: 'Eyes',     val: phys.eyes },
+        { label: 'Skin',     val: phys.skin },
+        { label: 'Hair',     val: phys.hair },
+        { label: 'Faith',    val: phys.faith },
+        { label: 'Notable',  val: phys.distinguishing_features }
+      ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+      if (rows.length) {
+        physEl.innerHTML = `<table style="width:100%;border-collapse:collapse;font-family:'IM Fell English',serif;font-size:13px;">
+          ${rows.map(r => `
+            <tr>
+              <td style="color:var(--primary-light);letter-spacing:2px;font-size:10px;text-transform:uppercase;padding:3px 8px 3px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+              <td style="color:var(--text-cream);padding:3px 0;vertical-align:top;">${r.val}</td>
+            </tr>`).join('')}
+        </table>`;
+      } else {
+        physEl.innerHTML = `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">Not recorded.</p>`;
+      }
+    }
+
+    // 16. SENSES
+    const sensesEl = document.getElementById('js-senses');
+    const senses   = char.senses || {};
+    if (sensesEl) {
+      const senseRows = [];
+      if (senses.darkvision_ft > 0) senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+      if (senses.blindsight_ft > 0) senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+      if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+      if (senses.truesight_ft > 0) senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+      if (senses.other) senseRows.push(senses.other);
+      sensesEl.innerHTML = senseRows.length
+        ? senseRows.map(s => `<div style="font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);padding:2px 0;">${s}</div>`).join('')
+        : `<p style="font-family:'IM Fell English',serif;font-size:11px;color:var(--text-dim);font-style:italic;">None recorded.</p>`;
+    }
+
+    // 17. SPELLS (cantrips + prepared — rendered on page 2 below spell slots)
+    const sc2 = char.spellcasting || {};
+    if (sc2.enabled || (sc2.cantrips && sc2.cantrips.length)) {
+      const spellListEl = document.getElementById('js-page2-spells');
+      if (spellListEl) {
+        let spellHtml = '';
+        const cantrips = sc2.cantrips || [];
+        if (cantrips.length) {
+          spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Cantrips</div>`;
+          spellHtml += cantrips.map(sp => {
+            const name = typeof sp === 'string' ? sp : sp.name;
+            const desc = typeof sp === 'object' ? (sp.description || '') : '';
+            const meta = typeof sp === 'object'
+              ? [sp.school, sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')
+              : '';
+            return `<details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+              <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                <span>${name}</span>
+                ${sp.source ? `<span style="font-size:11px;color:var(--primary-dim);font-style:italic;">${sp.source}</span>` : '<span style="font-size:10px;color:var(--primary-dim);">Cantrip</span>'}
+              </summary>
+              ${meta ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${meta}</div>` : ''}
+              ${desc ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${desc}</div>` : ''}
+            </details>`;
+          }).join('');
+        }
+        const prepared = sc2.spells_prepared || [];
+        if (prepared.length) {
+          const byLevel = {};
+          prepared.forEach(sp => {
+            const lvl = sp.level || 1;
+            if (!byLevel[lvl]) byLevel[lvl] = [];
+            byLevel[lvl].push(sp);
+          });
+          Object.entries(byLevel).forEach(([lvl, spells]) => {
+            spellHtml += `<div style="font-size:9px;letter-spacing:3px;color:var(--primary-dim);text-transform:uppercase;margin:10px 0 4px;">Level ${lvl} Spells</div>`;
+            spellHtml += spells.map(sp => `
+              <details style="border:1px solid var(--dark-border);margin-bottom:4px;background:rgba(var(--primary-rgb),0.02);">
+                <summary style="padding:6px 10px;cursor:pointer;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-cream);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                  <span>${sp.name}</span>
+                  <span style="font-size:10px;color:var(--primary-dim);">${sp.school || ''}</span>
+                </summary>
+                ${[sp.casting_time, sp.range, sp.duration].filter(Boolean).length
+                  ? `<div style="padding:0 10px 4px;font-size:11px;color:var(--primary-dim);font-style:italic;">${[sp.casting_time, sp.range, sp.duration].filter(Boolean).join(' · ')}</div>`
+                  : ''}
+                ${sp.components ? `<div style="padding:0 10px 2px;font-size:11px;color:var(--primary-dim);">Components: ${sp.components}</div>` : ''}
+                ${sp.description ? `<div style="padding:0 10px 8px;font-family:'IM Fell English',serif;font-size:13px;color:var(--text-dim);line-height:1.5;">${sp.description}</div>` : ''}
+              </details>`).join('');
+          });
+        }
+        if (spellHtml) spellListEl.innerHTML = spellHtml;
+      }
+    }
+
+    // 18. SESSION CHANGELOG
     const changeEl = document.getElementById('js-changelog');
     const changes  = meta.session_changes || [];
     if (changeEl) {
