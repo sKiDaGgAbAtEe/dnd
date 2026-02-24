@@ -380,8 +380,22 @@
     <div class="panel">
       <div class="panel-title">Background &amp; Lore</div>
       <div class="panel-body">
-        <div class="backstory-box" data-path="backstory.summary"></div>
+        <div class="backstory-box" id="js-backstory-box">—</div>
       </div>
+    </div>
+
+    <!-- Physical Details -->
+    <div class="panel">
+      <div class="panel-title">Physical Details</div>
+      <div class="panel-body" id="js-physical-portrait">
+        <div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>
+      </div>
+    </div>
+
+    <!-- Senses -->
+    <div class="panel" id="js-senses-panel" style="display:none;">
+      <div class="panel-title">Senses</div>
+      <div class="panel-body" id="js-senses-portrait"></div>
     </div>
 
     <!-- Session Changelog -->
@@ -688,6 +702,61 @@
           `).join('');
         } else {
           changelogContainer.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">No changes logged yet.</div>`;
+        }
+      }
+
+      // 15. BACKSTORY (verbatim preferred, fallback to summary)
+      const bsBox = document.getElementById('js-backstory-box');
+      if (bsBox && char.backstory) {
+        const bs = char.backstory;
+        bsBox.textContent = bs.verbatim || bs.full || bs.summary || bs.short || '—';
+      }
+
+      // 16. PHYSICAL DETAILS
+      const physPortrait = document.getElementById('js-physical-portrait');
+      const phys = char.physical || {};
+      if (physPortrait && Object.keys(phys).length) {
+        const rows = [
+          { label: 'Gender',   val: phys.gender },
+          { label: 'Age',      val: phys.age },
+          { label: 'Size',     val: phys.size },
+          { label: 'Height',   val: phys.height },
+          { label: 'Weight',   val: phys.weight != null ? phys.weight + (typeof phys.weight === 'number' ? ' lbs' : '') : null },
+          { label: 'Eyes',     val: phys.eyes },
+          { label: 'Skin',     val: phys.skin },
+          { label: 'Hair',     val: phys.hair },
+          { label: 'Faith',    val: phys.faith },
+          { label: 'Notable',  val: phys.distinguishing_features }
+        ].filter(r => r.val !== null && r.val !== undefined && r.val !== '');
+        if (rows.length) {
+          physPortrait.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+            ${rows.map(r => `
+              <tr>
+                <td style="color:var(--primary-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px 4px 0;white-space:nowrap;vertical-align:top;">${r.label}</td>
+                <td style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:4px 0;vertical-align:top;">${r.val}</td>
+              </tr>`).join('')}
+          </table>`;
+        } else {
+          physPortrait.innerHTML = `<div style="color:var(--text-dim);font-family:'IM Fell English',serif;font-style:italic;font-size:15px;">Not recorded.</div>`;
+        }
+      }
+
+      // 17. SENSES
+      const sensesPortrait = document.getElementById('js-senses-portrait');
+      const sensesPanel    = document.getElementById('js-senses-panel');
+      const senses = char.senses || {};
+      if (sensesPortrait) {
+        const senseRows = [];
+        if (senses.darkvision_ft > 0)  senseRows.push(`Darkvision ${senses.darkvision_ft} ft.`);
+        if (senses.blindsight_ft > 0)  senseRows.push(`Blindsight ${senses.blindsight_ft} ft.`);
+        if (senses.tremorsense_ft > 0) senseRows.push(`Tremorsense ${senses.tremorsense_ft} ft.`);
+        if (senses.truesight_ft > 0)   senseRows.push(`Truesight ${senses.truesight_ft} ft.`);
+        if (senses.other)              senseRows.push(senses.other);
+        if (senseRows.length) {
+          if (sensesPanel) sensesPanel.style.display = '';
+          sensesPortrait.innerHTML = senseRows.map(s =>
+            `<div style="font-family:'IM Fell English',serif;font-size:15px;color:var(--text-cream);padding:3px 0;">${s}</div>`
+          ).join('');
         }
       }
 
