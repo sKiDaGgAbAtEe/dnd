@@ -1104,236 +1104,295 @@
     "summary": "She died. That much she remembers—the cold, the dark, the way sound fell away like water draining from a basin. Then she woke. Not in a grave. Not in a temple. In a ruin older than any map she's seen since. Something brought her back, but it wasn't kindness. It was purpose. She doesn't know what that purpose is yet, but she can feel it in her bones—a low hum, a direction without a destination. She speaks to the dead more easily than the living now. Not because she's morbid, but because they're honest. The living lie. The living forget. The dead remember everything, even if they no longer care. She's searching for the thing that pulled her back across the threshold. Not to thank it. Not to destroy it. To understand it. Because if death isn't the end, then the world is operating under rules no one bothered to write down—and she will not be caught unprepared again."
   }
 },
-    "slot4": {
-      "identity": {
-        "name": "",
-        "race": "",
-        "class": "",
-        "subclass": "",
-        "level": 1,
-        "background": "",
-        "alignment": "",
-        "experience": 0,
-        "portrait_url": "",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
-      },
-      "meta": {
-        "player": "",
-        "last_session_updated": "Session 00",
-        "session_changes": []
-      },
-      "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
-      },
-      "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
-      },
-      "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
-      },
-      "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
-      },
-      "attacks": [],
-      "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
-        "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
-        }
-      },
-      "class_resources": {},
-      "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
-      "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
-        "carried": []
-      },
-      "backstory": {
-        "summary": ""
-      }
+   "slot4": {
+  "identity": {
+    "name": "Evo",
+    "race": "Bronze Dragonborn",
+    "class": "Cleric",
+    "subclass": "Tempest Domain",
+    "level": 1,
+    "background": "Rival Intern",
+    "alignment": "Lawful Evil",
+    "experience": 0,
+    "portrait_url": "/dnd/Evo.png",
+    "theme_color": "#cd7f32",
+    "theme_color_light": "#e8a050",
+    "theme_color_bright": "#f0c070",
+    "theme_color_dim": "#7a4a18",
+    "theme_rgb": "205,127,50"
+  },
+  "meta": {
+    "player": "Nikkelz",
+    "last_session_updated": "Session 00",
+    "session_changes": []
+  },
+  "abilities": {
+    "str": 15,
+    "dex": 13,
+    "con": 14,
+    "int": 12,
+    "wis": 16,
+    "cha": 16
+  },
+  "saving_throws": {
+    "str": { "proficient": false, "value": "+2" },
+    "dex": { "proficient": false, "value": "+1" },
+    "con": { "proficient": false, "value": "+2" },
+    "int": { "proficient": false, "value": "+1" },
+    "wis": { "proficient": true,  "value": "+5" },
+    "cha": { "proficient": true,  "value": "+5" }
+  },
+  "combat": {
+    "hp_max": 10,
+    "hp_current": 10,
+    "hp_temp": 0,
+    "ac": 18,
+    "initiative": "+1",
+    "speed": 30,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "1d8",
+    "passive_perception": 13,
+    "passive_investigation": 13,
+    "passive_insight": 13
+  },
+  "skills": {
+    "acrobatics":     { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "animal_handling":{ "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "arcana":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "athletics":      { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+    "deception":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "history":        { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+    "insight":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "intimidation":   { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "investigation":  { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+    "medicine":       { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "nature":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "perception":     { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "performance":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+    "persuasion":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+5" },
+    "religion":       { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+    "sleight_of_hand":{ "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "stealth":        { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+    "survival":       { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
+  },
+  "attacks": [
+    {
+      "name": "Mace",
+      "type": "Simple Melee Weapon",
+      "attack": "+4",
+      "damage": "1d6+2",
+      "damage_type": "Bludgeoning",
+      "detail": "Melee Weapon Attack. The preferred instrument of divine correction."
     },
+    {
+      "name": "Light Crossbow",
+      "type": "Simple Ranged Weapon",
+      "attack": "+3",
+      "damage": "1d8+1",
+      "damage_type": "Piercing",
+      "detail": "Ranged Weapon Attack. Range 80/320 ft."
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+4",
+      "damage": "1d1+2",
+      "damage_type": "Bludgeoning",
+      "detail": "Last resort. Still hurts."
+    }
+  ],
+  "spellcasting": {
+    "enabled": true,
+    "ability": "wis",
+    "spell_save_dc": 13,
+    "spell_attack_bonus": "+5",
+    "spell_slots": {
+      "level_1": { "max": 2, "current": 2 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    },
+    "cantrips": [
+      {
+        "name": "Toll the Dead",
+        "school": "Necromancy",
+        "casting_time": "1 action",
+        "range": "60 ft.",
+        "components": "V, S",
+        "duration": "Instantaneous",
+        "description": "A creature you can see must pass a Wisdom save or take 1d8 necrotic damage, or 1d12 if it's missing any hit points. Scales at 5th, 11th, and 17th level."
+      },
+      {
+        "name": "Word of Radiance",
+        "school": "Evocation",
+        "casting_time": "1 action",
+        "range": "5 ft.",
+        "components": "V, M (holy symbol)",
+        "duration": "Instantaneous",
+        "description": "Each creature of your choice within 5 ft must succeed on a CON save or take 1d6 radiant damage. Scales at 5th, 11th, and 17th level."
+      },
+      {
+        "name": "Guidance",
+        "school": "Divination",
+        "casting_time": "1 action",
+        "range": "Touch",
+        "components": "V, S",
+        "duration": "Concentration, up to 1 minute",
+        "description": "Touch one willing creature. Once before the spell ends, the target adds 1d4 to one ability check of its choice."
+      }
+    ],
+    "spells_prepared": [
+      {
+        "name": "Bless",
+        "level": 1,
+        "school": "Enchantment",
+        "casting_time": "1 action",
+        "range": "30 ft.",
+        "components": "V, S, M (holy water)",
+        "duration": "Concentration, up to 1 minute",
+        "description": "Bless up to 3 creatures. Each adds 1d4 to attack rolls and saving throws. +1 target per slot level above 1st."
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "school": "Evocation",
+        "casting_time": "1 action",
+        "range": "Touch",
+        "components": "V, S",
+        "duration": "Instantaneous",
+        "description": "A touched creature regains 1d8 + WIS modifier HP. No effect on undead or constructs. +1d8 per slot level above 1st."
+      },
+      {
+        "name": "Fog Cloud",
+        "level": 1,
+        "school": "Conjuration",
+        "casting_time": "1 action",
+        "range": "120 ft.",
+        "components": "V, S",
+        "duration": "Concentration, up to 1 hour",
+        "description": "20-foot-radius sphere of fog, heavily obscured. +20 ft. radius per slot level above 1st. [Tempest Domain]"
+      },
+      {
+        "name": "Guiding Bolt",
+        "level": 1,
+        "school": "Evocation",
+        "casting_time": "1 action",
+        "range": "120 ft.",
+        "components": "V, S",
+        "duration": "1 round",
+        "description": "Ranged spell attack. Hit: 4d6 radiant damage. Next attack against the target has advantage. +1d6 per slot level above 1st."
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "school": "Evocation",
+        "casting_time": "1 bonus action",
+        "range": "60 ft.",
+        "components": "V",
+        "duration": "Instantaneous",
+        "description": "A visible creature regains 1d4 + WIS modifier HP. No effect on undead or constructs. +1d4 per slot level above 1st."
+      },
+      {
+        "name": "Thunderwave",
+        "level": 1,
+        "school": "Evocation",
+        "casting_time": "1 action",
+        "range": "Self (15-foot cube)",
+        "components": "V, S",
+        "duration": "Instantaneous",
+        "description": "Each creature in a 15-ft cube makes a CON save. Fail: 2d8 thunder damage, pushed 10 ft. Success: half damage. Audible 300 ft. +1d8 per slot level above 1st. [Tempest Domain]"
+      }
+    ]
+  },
+  "class_resources": {
+    "wrath_of_the_storm": {
+      "label": "Wrath of the Storm",
+      "max": 3,
+      "current": 3,
+      "recharge": "Long Rest",
+      "description": "Reaction when hit by a creature within 5 ft. Deal 2d8 lightning or thunder damage (DEX save DC 13 for half). Uses = WIS modifier."
+    }
+  },
+  "features": [
+    {
+      "name": "Bonus Proficiencies",
+      "source": "Tempest Domain 1",
+      "description": "Proficiency with martial weapons and heavy armor. Evo walked in expecting a desk job. He got a war portfolio instead."
+    },
+    {
+      "name": "Wrath of the Storm",
+      "source": "Tempest Domain 1",
+      "description": "Reaction triggered when a creature within 5 ft hits you. It takes 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier (3) per long rest."
+    },
+    {
+      "name": "Domain Spells",
+      "source": "Tempest Domain 1",
+      "description": "Fog Cloud and Thunderwave are always prepared and don't count against prepared spell limit. Higher-level domain spells unlock as Evo levels."
+    },
+    {
+      "name": "Lightning Breath Weapon",
+      "source": "Bronze Dragonborn",
+      "description": "Exhale a 5x30 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
+    },
+    {
+      "name": "Lightning Damage Resistance",
+      "source": "Bronze Dragonborn",
+      "description": "Resistance to lightning damage."
+    },
+    {
+      "name": "Inside Informant",
+      "source": "Rival Intern Background",
+      "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon — his as-yet-unfunded information startup."
+    }
+  ],
+  "proficiencies": {
+    "armor": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
+    "weapons": ["Simple Weapons", "Martial Weapons"],
+    "tools": ["Cartographer's Tools"],
+    "languages": ["Common", "Draconic", "Gnomish"]
+  },
+  "traits": {
+    "personality": "Radiates the quiet confidence of someone who definitely belongs here and absolutely did not misread the job posting.",
+    "ideal": "Information is currency. The right leverage at the right moment is worth more than any spell slot.",
+    "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer — for now, interests align.",
+    "flaw": "Lawful Evil wrapped in a support role. He will absolutely sell you out if the market conditions are right."
+  },
+  "physical": {
+    "age": 25,
+    "height": "6'7\"",
+    "weight": "240 lbs",
+    "eyes": "Blue",
+    "skin": "Bronze",
+    "hair": "None"
+  },
+  "equipment": {
+    "currency": {
+      "pp": 0,
+      "gp": 5,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "encumbrance": {
+      "total_weight": 76.5,
+      "light_threshold": 75,
+      "heavy_threshold": 150,
+      "max_threshold": 300
+    },
+    "carried": [
+      { "name": "Chain Mail",          "quantity": 1, "description": "AC 16. Heavy armor. Proficient." },
+      { "name": "Shield",              "quantity": 1, "description": "+2 AC." },
+      { "name": "Mace",               "quantity": 1, "description": "1d6 bludgeoning." },
+      { "name": "Light Crossbow",      "quantity": 1, "description": "1d8 piercing. Range 80/320 ft." },
+      { "name": "Crossbow Bolts",      "quantity": 20, "description": "Standard ammunition." },
+      { "name": "Cartographer's Tools","quantity": 1, "description": "Tool proficiency. Holdover from the archives." }
+    ]
+  },
+  "backstory": {
+    "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding."
+  }
+},
     "slot5": {
       "identity": {
         "name": "",
