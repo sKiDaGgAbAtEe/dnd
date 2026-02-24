@@ -712,235 +712,397 @@
       }
     },
     "slot3": {
-      "identity": {
-        "name": "",
-        "race": "",
-        "class": "",
-        "subclass": "",
-        "level": 1,
-        "background": "",
-        "alignment": "",
-        "experience": 0,
-        "portrait_url": "",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
+  "identity": {
+    "name": "Raven",
+    "race": "Reborn (formerly Human)",
+    "class": "Sorcerer",
+    "subclass": "Draconic Bloodline (Black)",
+    "level": 1,
+    "background": "Haunted One",
+    "alignment": "Chaotic Neutral",
+    "experience": 0,
+    "portrait_url": "/dnd/Raven.png",
+    "theme_color": "#1a1a2e",
+    "theme_color_light": "#2d2d4a",
+    "theme_color_bright": "#4a4a6a",
+    "theme_color_dim": "#0d0d17",
+    "theme_rgb": "26,26,46"
+  },
+  "meta": {
+    "player": "sKiDa",
+    "last_session_updated": "Session 00",
+    "session_changes": []
+  },
+  "abilities": {
+    "str": 8,
+    "dex": 14,
+    "con": 15,
+    "int": 13,
+    "wis": 10,
+    "cha": 16
+  },
+  "saving_throws": {
+    "str": {
+      "proficient": false,
+      "value": "-1"
+    },
+    "dex": {
+      "proficient": false,
+      "value": "+2"
+    },
+    "con": {
+      "proficient": true,
+      "value": "+4"
+    },
+    "int": {
+      "proficient": false,
+      "value": "+1"
+    },
+    "wis": {
+      "proficient": false,
+      "value": "+0"
+    },
+    "cha": {
+      "proficient": true,
+      "value": "+5"
+    }
+  },
+  "combat": {
+    "hp_max": 8,
+    "hp_current": 8,
+    "hp_temp": 0,
+    "ac": 12,
+    "initiative": "+2",
+    "speed": 30,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "1d6",
+    "passive_perception": 10,
+    "passive_investigation": 13,
+    "passive_insight": 10
+  },
+  "skills": {
+    "acrobatics": {
+      "ability": "dex",
+      "proficient": false,
+      "expertise": false,
+      "value": "+2"
+    },
+    "animal_handling": {
+      "ability": "wis",
+      "proficient": false,
+      "expertise": false,
+      "value": "+0"
+    },
+    "arcana": {
+      "ability": "int",
+      "proficient": true,
+      "expertise": false,
+      "value": "+3"
+    },
+    "athletics": {
+      "ability": "str",
+      "proficient": false,
+      "expertise": false,
+      "value": "-1"
+    },
+    "deception": {
+      "ability": "cha",
+      "proficient": true,
+      "expertise": false,
+      "value": "+5"
+    },
+    "history": {
+      "ability": "int",
+      "proficient": false,
+      "expertise": false,
+      "value": "+1"
+    },
+    "insight": {
+      "ability": "wis",
+      "proficient": false,
+      "expertise": false,
+      "value": "+0"
+    },
+    "intimidation": {
+      "ability": "cha",
+      "proficient": false,
+      "expertise": false,
+      "value": "+3"
+    },
+    "investigation": {
+      "ability": "int",
+      "proficient": true,
+      "expertise": false,
+      "value": "+3"
+    },
+    "medicine": {
+      "ability": "wis",
+      "proficient": false,
+      "expertise": false,
+      "value": "+0"
+    },
+    "nature": {
+      "ability": "int",
+      "proficient": false,
+      "expertise": false,
+      "value": "+1"
+    },
+    "perception": {
+      "ability": "wis",
+      "proficient": false,
+      "expertise": false,
+      "value": "+0"
+    },
+    "performance": {
+      "ability": "cha",
+      "proficient": false,
+      "expertise": false,
+      "value": "+3"
+    },
+    "persuasion": {
+      "ability": "cha",
+      "proficient": true,
+      "expertise": false,
+      "value": "+5"
+    },
+    "religion": {
+      "ability": "int",
+      "proficient": false,
+      "expertise": false,
+      "value": "+1"
+    },
+    "sleight_of_hand": {
+      "ability": "dex",
+      "proficient": false,
+      "expertise": false,
+      "value": "+2"
+    },
+    "stealth": {
+      "ability": "dex",
+      "proficient": false,
+      "expertise": false,
+      "value": "+2"
+    },
+    "survival": {
+      "ability": "wis",
+      "proficient": true,
+      "expertise": false,
+      "value": "+2"
+    }
+  },
+  "attacks": [
+    {
+      "name": "Dagger",
+      "type": "Simple Melee/Ranged",
+      "attack": "+4",
+      "damage": "1d4+2",
+      "damage_type": "Piercing",
+      "detail": "Melee or Ranged Weapon Attack (range 20/60). Finesse, light, thrown."
+    },
+    {
+      "name": "Light Crossbow",
+      "type": "Simple Ranged",
+      "attack": "+4",
+      "damage": "1d8+2",
+      "damage_type": "Piercing",
+      "detail": "Ranged Weapon Attack (range 80/320). Loading, two-handed."
+    },
+    {
+      "name": "Acid Splash",
+      "type": "Cantrip",
+      "attack": "—",
+      "damage": "1d6",
+      "damage_type": "Acid",
+      "detail": "DEX Save DC 13. One or two creatures within 5 ft of each other. Range 60 ft."
+    },
+    {
+      "name": "Ray of Frost",
+      "type": "Cantrip",
+      "attack": "+5",
+      "damage": "1d8",
+      "damage_type": "Cold",
+      "detail": "Ranged Spell Attack. Range 60 ft. Target speed reduced by 10 ft until start of your next turn."
+    },
+    {
+      "name": "Fire Bolt",
+      "type": "Cantrip",
+      "attack": "+5",
+      "damage": "1d10",
+      "damage_type": "Fire",
+      "detail": "Ranged Spell Attack. Range 120 ft. Can ignite flammable objects."
+    },
+    {
+      "name": "Shocking Grasp",
+      "type": "Cantrip",
+      "attack": "+5",
+      "damage": "1d8",
+      "damage_type": "Lightning",
+      "detail": "Melee Spell Attack. Advantage on attack if target is wearing metal armor. Target can't take reactions until start of its next turn."
+    }
+  ],
+  "spellcasting": {
+    "enabled": true,
+    "ability": "cha",
+    "spell_save_dc": 13,
+    "spell_attack_bonus": "+5",
+    "spell_slots": {
+      "level_1": {
+        "max": 2,
+        "current": 2
       },
-      "meta": {
-        "player": "",
-        "last_session_updated": "Session 00",
-        "session_changes": []
+      "level_2": {
+        "max": 0,
+        "current": 0
       },
-      "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
-        "int": 10,
-        "wis": 10,
-        "cha": 10
+      "level_3": {
+        "max": 0,
+        "current": 0
       },
-      "saving_throws": {
-        "str": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "dex": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "con": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "int": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "wis": {
-          "proficient": false,
-          "value": "+0"
-        },
-        "cha": {
-          "proficient": false,
-          "value": "+0"
-        }
+      "level_4": {
+        "max": 0,
+        "current": 0
       },
-      "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
-        "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
-        "speed": 30,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d8",
-        "passive_perception": 10,
-        "passive_investigation": 10,
-        "passive_insight": 10
-      },
-      "skills": {
-        "acrobatics": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "animal_handling": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "arcana": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "athletics": {
-          "ability": "str",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "deception": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "history": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "insight": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "intimidation": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "investigation": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "medicine": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "nature": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "perception": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "performance": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "persuasion": {
-          "ability": "cha",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "religion": {
-          "ability": "int",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "sleight_of_hand": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "stealth": {
-          "ability": "dex",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        },
-        "survival": {
-          "ability": "wis",
-          "proficient": false,
-          "expertise": false,
-          "value": "+0"
-        }
-      },
-      "attacks": [],
-      "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
-        "spell_slots": {
-          "level_1": {
-            "max": 0,
-            "current": 0
-          },
-          "level_2": {
-            "max": 0,
-            "current": 0
-          },
-          "level_3": {
-            "max": 0,
-            "current": 0
-          },
-          "level_4": {
-            "max": 0,
-            "current": 0
-          },
-          "level_5": {
-            "max": 0,
-            "current": 0
-          }
-        }
-      },
-      "class_resources": {},
-      "features": [],
-      "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
-      "equipment": {
-        "currency": {
-          "pp": 0,
-          "gp": 0,
-          "ep": 0,
-          "sp": 0,
-          "cp": 0
-        },
-        "carried": []
-      },
-      "backstory": {
-        "summary": ""
+      "level_5": {
+        "max": 0,
+        "current": 0
       }
     },
+    "cantrips": [
+      "Acid Splash",
+      "Ray of Frost",
+      "Fire Bolt",
+      "Shocking Grasp"
+    ],
+    "spells_known": {
+      "level_1": [
+        "Mage Armor",
+        "Chromatic Orb"
+      ]
+    }
+  },
+  "class_resources": {
+    "sorcery_points": {
+      "label": "Sorcery Points",
+      "max": 1,
+      "current": 1,
+      "recharge": "Long Rest",
+      "description": "Flexible Casting and Metamagic fuel. Gained at level 2, but tracked here."
+    }
+  },
+  "features": [
+    {
+      "name": "Draconic Resilience",
+      "source": "Sorcerer 1 (Draconic Bloodline)",
+      "description": "HP max increases by 1 per sorcerer level. When not wearing armor, AC = 13 + DEX modifier (currently 15, but using 12 due to equipment choice)."
+    },
+    {
+      "name": "Draconic Ancestor: Black Dragon",
+      "source": "Sorcerer 1 (Draconic Bloodline)",
+      "description": "You can speak, read, and write Draconic. Whenever you make a CHA check when interacting with dragons, your proficiency bonus is doubled if it applies. Damage type associated with ancestor: Acid."
+    },
+    {
+      "name": "Deathless Nature",
+      "source": "Reborn",
+      "description": "You have escaped death. You have advantage on saving throws against disease and being poisoned, and you have resistance to poison damage. You don't need to eat, drink, breathe, or sleep. You finish a long rest in 4 hours if you spend it in an inactive, motionless state."
+    },
+    {
+      "name": "Knowledge from a Past Life",
+      "source": "Reborn",
+      "description": "You can add 1d6 to an ability check using a skill you're not proficient in. You can use this feature a number of times equal to your proficiency bonus (+2). You regain all expended uses on a long rest."
+    },
+    {
+      "name": "Heart of Darkness",
+      "source": "Haunted One",
+      "description": "Those who look into your eyes can see you have faced unimaginable horror and are not easily broken. Common folk go out of their way to help you, though they may be fearful. They will offer shelter, aid, and assistance—not out of kindness, but out of fear of what might happen if they don't."
+    },
+    {
+      "name": "Harrowing Event",
+      "source": "Haunted One",
+      "description": "Prior to becoming a Reborn, you witnessed something that still haunts you. You escaped, but others weren't so lucky. The memory consumes you, and you've dedicated yourself to understanding what happened—and preventing it from happening again."
+    }
+  ],
+  "proficiencies": {
+    "armor": [],
+    "weapons": [
+      "Daggers",
+      "Darts",
+      "Slings",
+      "Quarterstaffs",
+      "Light Crossbows"
+    ],
+    "tools": [],
+    "languages": [
+      "Common",
+      "Draconic",
+      "Infernal"
+    ]
+  },
+  "traits": {
+    "personality": "She speaks in riddles and metaphors, not because she's trying to be cryptic, but because literal language feels too small for what she's trying to express. She's patient with those willing to think, and dismissive of those who prefer easy answers.",
+    "ideal": "Knowledge is survival. The world hides its rules behind assumptions and tradition. She will find the truth underneath—no matter how uncomfortable it makes people.",
+    "bond": "She carries a black feather that never decays. It's a fragment of the moment she died—and the moment she came back. She doesn't know what it means yet, but it hums when magic is near.",
+    "flaw": "She has difficulty connecting with others emotionally. Death rewrote something fundamental in her—she can't feel fear the way she used to, and joy feels muted. She envies those who still burn with life."
+  },
+  "equipment": {
+    "currency": {
+      "pp": 0,
+      "gp": 3,
+      "ep": 0,
+      "sp": 5,
+      "cp": 0
+    },
+    "carried": [
+      {
+        "name": "Light Crossbow",
+        "quantity": 1,
+        "description": "Simple ranged weapon"
+      },
+      {
+        "name": "Crossbow Bolts",
+        "quantity": 20,
+        "description": "Ammunition"
+      },
+      {
+        "name": "Dagger",
+        "quantity": 2,
+        "description": "Simple melee/thrown weapon"
+      },
+      {
+        "name": "Arcane Focus (Crystal)",
+        "quantity": 1,
+        "description": "Black crystal that reflects no light"
+      },
+      {
+        "name": "Dungeoneer's Pack",
+        "quantity": 1,
+        "description": "Includes backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, rope"
+      },
+      {
+        "name": "Monster Hunter's Pack",
+        "quantity": 1,
+        "description": "Chest, crowbar, hammer, stakes, holy symbol, holy water, manacles, mirror, oil, tinderbox, torches"
+      },
+      {
+        "name": "Dark Common Clothes",
+        "quantity": 1,
+        "description": "Worn and travel-stained"
+      },
+      {
+        "name": "Black Feather (Trinket)",
+        "quantity": 1,
+        "description": "Never decays. Hums near magic. Fragment of death and rebirth."
+      },
+      {
+        "name": "Belt Pouch",
+        "quantity": 1,
+        "description": "Contains currency"
+      }
+    ]
+  },
+  "backstory": {
+    "summary": "She died. That much she remembers—the cold, the dark, the way sound fell away like water draining from a basin. Then she woke. Not in a grave. Not in a temple. In a ruin older than any map she's seen since. Something brought her back, but it wasn't kindness. It was purpose. She doesn't know what that purpose is yet, but she can feel it in her bones—a low hum, a direction without a destination. She speaks to the dead more easily than the living now. Not because she's morbid, but because they're honest. The living lie. The living forget. The dead remember everything, even if they no longer care. She's searching for the thing that pulled her back across the threshold. Not to thank it. Not to destroy it. To understand it. Because if death isn't the end, then the world is operating under rules no one bothered to write down—and she will not be caught unprepared again."
+  }
+},
     "slot4": {
       "identity": {
         "name": "",
