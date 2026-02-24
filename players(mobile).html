@@ -6,15 +6,6 @@
 <title>The Party — Campaign Characters</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  html {
-  height: 100%;
-}
-
-body {
-  transform-origin: top center;
-  transform: scale(var(--page-scale, 1));
-  width: calc(100% / var(--page-scale, 1));
-}
   :root {
     --gold: #c8972a;
     --gold-light: #f0c050;
@@ -1223,37 +1214,37 @@ body {
 </head>
 <body>
 
-  <!-- Back to Hub -->
-  <a class="back-btn" href="/dnd/index_mobile.html">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Back to the Hub
-  </a>
-
-  <!-- PC View -->
-  <a href="/dnd/players.html" style="
+  <!-- NAV BAR: both buttons together so scale script doesn't spread them apart -->
+  <nav style="
     position: fixed;
-    top: 22px; right: 24px;
+    top: 16px; left: 50%; transform: translateX(-50%);
     z-index: 200;
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    padding: 9px 18px 9px 14px;
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(240,192,80,0.80);
-    text-decoration: none;
-    border: 1px solid rgba(200,151,42,0.30);
+    gap: 8px;
     background: rgba(6,5,3,0.65);
     backdrop-filter: blur(10px);
-    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-  " onmouseover="this.style.color='#ffd77a';this.style.borderColor='rgba(255,215,122,0.65)';this.style.boxShadow='0 0 18px rgba(255,200,80,0.22)';"
-     onmouseout="this.style.color='rgba(240,192,80,0.80)';this.style.borderColor='rgba(200,151,42,0.30)';this.style.boxShadow='';">
-    🖥 PC View
-  </a>
+    border: 1px solid rgba(200,151,42,0.30);
+    padding: 6px 10px;
+  ">
+    <a class="back-btn" href="/dnd/index_mobile.html" style="position:static;background:none;border:none;backdrop-filter:none;padding:4px 10px 4px 6px;">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to the Hub
+    </a>
+    <span style="color:rgba(200,151,42,0.25);font-size:16px;line-height:1;">|</span>
+    <a href="/dnd/players.html" style="
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(240,192,80,0.80); text-decoration: none;
+      transition: color 220ms ease;
+    " onmouseover="this.style.color='#ffd77a';" onmouseout="this.style.color='rgba(240,192,80,0.80)';">
+      🖥 PC View
+    </a>
+  </nav>
 
 <!-- BACKGROUND LAYERS -->
 <canvas id="particles"></canvas>
@@ -2095,18 +2086,4 @@ body {
       btn.style.color = '#a07828';
     }
   }
-</script>
-<script>
-  function fitToScreen() {
-    const designWidth = 860;
-    const screenWidth = window.innerWidth;
-    const scale = Math.min(1, screenWidth / designWidth);
-    document.body.style.transformOrigin = 'top left';
-    document.body.style.transform = `scale(${scale})`;
-    document.body.style.width = (screenWidth / scale) + 'px';
-    document.body.style.height = '';
-    document.documentElement.style.overflowX = 'hidden';
-  }
-  fitToScreen();
-  window.addEventListener('resize', fitToScreen);
 </script>
