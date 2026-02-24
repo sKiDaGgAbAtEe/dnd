@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legends — Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark: #050508;
+      --text: #f2e8cc;
+      --text-dim: rgba(242,232,204,0.70);
+
+      --gold: #e6b75f;
+      --gold-bright: #ffd77a;
+      --gold-glow: rgba(255, 200, 90, 0.45);
+
+      --storm-blue: #4da3ff;
+      --storm-violet: #7a6cff;
+      --storm-glow: rgba(100, 150, 255, 0.45);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Cinzel', serif;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Ambient background ── */
+    .bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% -10%, rgba(255,215,122,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 40% at 85% 30%, rgba(90,150,255,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(255,180,80,0.07) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 64px, rgba(255,215,122,0.012) 64px, rgba(255,215,122,0.012) 65px),
+        repeating-linear-gradient(90deg, transparent, transparent 64px, rgba(90,150,255,0.010) 64px, rgba(90,150,255,0.010) 65px);
+    }
+
+    /* ── Layout ── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 44px 18px 28px;
+      flex-shrink: 0;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(860px, 94vw);
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255,215,122,0.8) 30%,
+        rgba(255,255,255,0.5) 50%,
+        rgba(90,150,255,0.7) 70%,
+        transparent);
+      animation: headerLineShimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes headerLineShimmer {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .label {
+      font-size: 10px;
+      letter-spacing: 12px;
+      color: rgba(255,215,122,0.55);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      animation: fadeDown 1.2s ease both;
+    }
+
+    .title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(42px, 7vw, 96px);
+      font-weight: 900;
+      line-height: 0.95;
+      background: linear-gradient(180deg,
+        #fff7dc 0%,
+        var(--gold-bright) 25%,
+        var(--gold) 58%,
+        rgba(180,120,40,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 80px rgba(255,200,90,0.22));
+      margin-bottom: 10px;
+      animation: fadeDown 1.2s 0.15s ease both;
+    }
+
+    .sub {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 16px;
+      letter-spacing: 4px;
+      color: var(--text-dim);
+      animation: fadeDown 1.2s 0.3s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Corner ornaments ── */
+    .corner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner-tl { top: 12px; left: 18px; }
+    .corner-tr { top: 12px; right: 18px; transform: scaleX(-1); }
+
+    /* ── Split ── */
+    .split {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Glowing seam */
+    .split::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom,
+        var(--gold-bright),
+        rgba(255,255,255,0.9) 40%,
+        rgba(255,255,255,0.9) 60%,
+        var(--storm-blue));
+      box-shadow:
+        0 0 8px rgba(255,215,122,0.5),
+        0 0 22px rgba(255,255,255,0.3),
+        0 0 8px rgba(90,150,255,0.5);
+      opacity: 0.9;
+      animation: seamPulse 3.5s ease-in-out infinite;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    @keyframes seamPulse {
+      0%, 100% { opacity: 0.6; box-shadow: 0 0 8px rgba(255,215,122,0.4), 0 0 18px rgba(255,255,255,0.2), 0 0 8px rgba(90,150,255,0.4); }
+      50% { opacity: 1; box-shadow: 0 0 16px rgba(255,215,122,0.7), 0 0 36px rgba(255,255,255,0.45), 0 0 16px rgba(90,150,255,0.7); }
+    }
+
+    /* ── Panels ── */
+    .panel {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .panel a {
+      position: absolute; inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-decoration: none;
+      color: inherit;
+      padding: 48px 36px;
+      z-index: 10;
+    }
+
+    /* Background image */
+    .panel-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.03);
+      transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .panel.left .panel-bg {
+      background-image: url("/dnd/landing-players.jpg");
+      background-size: cover;
+      background-position: right center;
+    }
+    .panel.right .panel-bg {
+      background-image: url("/dnd/landing-campaigns.jpg");
+      background-size: cover;
+      background-position: left center;
+    }
+
+    .panel:hover .panel-bg { transform: scale(1.09); }
+
+    /* Dark gradient overlay */
+    .panel-overlay {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+      z-index: 2;
+    }
+    .panel.left .panel-overlay {
+      background:
+        radial-gradient(ellipse 90% 70% at 40% 100%, rgba(20,10,0,0.82) 0%, rgba(0,0,0,0.35) 60%, transparent 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.50) 100%);
+    }
+    .panel.right .panel-overlay {
+      background:
+        radial-gradient(ellipse 90% 70% at 60% 100%, rgba(0,5,20,0.85) 0%, rgba(0,0,0,0.35) 60%, transparent 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.52) 100%);
+    }
+
+    /* Side glow on left/right edges (inner border effect) */
+    .panel.left::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,200,80,0.10) 0%, transparent 30%),
+        linear-gradient(0deg, rgba(255,180,60,0.16) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+    .panel.right::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(270deg, rgba(80,140,255,0.12) 0%, transparent 30%),
+        linear-gradient(0deg, rgba(80,120,255,0.18) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+    .panel:hover::after { opacity: 1; }
+
+    /* Embers canvas */
+    canvas.embers {
+      position: absolute; inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* Lightning overlay */
+    .lightning {
+      position: absolute; inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        radial-gradient(circle at 55% 15%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0) 40%),
+        radial-gradient(circle at 65% 25%, rgba(140,200,255,0.70) 0%, rgba(140,200,255,0) 55%),
+        linear-gradient(115deg, rgba(180,220,255,0) 0%, rgba(180,220,255,0.20) 50%, rgba(255,255,255,0) 80%),
+        repeating-linear-gradient(108deg,
+          rgba(255,255,255,0) 0px,
+          rgba(255,255,255,0) 20px,
+          rgba(255,255,255,0.07) 21px,
+          rgba(255,255,255,0) 38px
+        );
+      filter: blur(0.5px);
+    }
+    .panel.right.flash .lightning { animation: flash 380ms ease-out 1; }
+    @keyframes flash {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      35%  { opacity: 0.3; }
+      55%  { opacity: 0.8; }
+      100% { opacity: 0; }
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      z-index: 10;
+      width: min(440px, 88%);
+      padding: 28px 28px 24px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      animation: fadeUp 1.4s 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel.left .card {
+      border: 1px solid rgba(255,215,122,0.50);
+      background: rgba(6,4,0,0.52);
+      box-shadow:
+        0 0 40px rgba(255,190,70,0.22),
+        inset 0 0 30px rgba(255,180,60,0.06),
+        0 18px 50px rgba(0,0,0,0.55);
+    }
+    .panel.right .card {
+      border: 1px solid rgba(120,170,255,0.45);
+      background: rgba(0,4,12,0.55);
+      box-shadow:
+        0 0 40px rgba(100,140,255,0.20),
+        inset 0 0 30px rgba(80,120,255,0.06),
+        0 18px 50px rgba(0,0,0,0.55);
+    }
+
+    /* Card hover state */
+    .panel:hover .card {
+      transform: translateY(-4px);
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+    .panel.left:hover .card {
+      box-shadow:
+        0 0 60px rgba(255,190,70,0.38),
+        inset 0 0 30px rgba(255,180,60,0.08),
+        0 22px 60px rgba(0,0,0,0.60);
+    }
+    .panel.right:hover .card {
+      box-shadow:
+        0 0 60px rgba(100,140,255,0.34),
+        inset 0 0 30px rgba(80,120,255,0.08),
+        0 22px 60px rgba(0,0,0,0.60);
+    }
+
+    /* Card inner line */
+    .card-line {
+      height: 1px;
+      margin: 12px 0 16px;
+    }
+    .panel.left .card-line {
+      background: linear-gradient(90deg, transparent, rgba(255,215,122,0.6), transparent);
+    }
+    .panel.right .card-line {
+      background: linear-gradient(90deg, transparent, rgba(120,170,255,0.6), transparent);
+    }
+
+    .kicker {
+      font-size: 10px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .panel.left .kicker  { color: rgba(255,215,122,0.72); }
+    .panel.right .kicker { color: rgba(140,200,255,0.72); }
+
+    .card-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 900;
+      line-height: 1.0;
+      margin-bottom: 0;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .panel.left .card-title {
+      background-image: linear-gradient(180deg,
+        #fff7dc 0%,
+        var(--gold-bright) 35%,
+        var(--gold) 72%,
+        rgba(180,120,40,0.9) 100%);
+      filter: drop-shadow(0 0 28px rgba(255,200,90,0.35));
+    }
+    .panel.right .card-title {
+      background-image: linear-gradient(180deg,
+        #eaf3ff 0%,
+        rgba(140,200,255,0.95) 38%,
+        rgba(120,140,255,0.92) 72%,
+        rgba(90,80,200,0.95) 100%);
+      filter: drop-shadow(0 0 28px rgba(100,150,255,0.35));
+    }
+
+    .desc {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(242,232,204,0.82);
+      letter-spacing: 0.5px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 24px;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+    .panel.left .cta  { border-color: rgba(255,215,122,0.40); }
+    .panel.right .cta { border-color: rgba(140,200,255,0.36); }
+
+    .panel:hover .cta { transform: translateY(-1px); }
+    .panel.left:hover .cta  { box-shadow: 0 0 20px rgba(255,200,80,0.20); border-color: rgba(255,215,122,0.65); }
+    .panel.right:hover .cta { box-shadow: 0 0 20px rgba(100,150,255,0.20); border-color: rgba(140,200,255,0.60); }
+
+    .panel a:focus-visible { outline: 2px solid rgba(255,255,255,0.7); outline-offset: -6px; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 18px 18px 28px;
+      color: rgba(220,210,190,0.45);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    footer::before {
+      content: "";
+      display: block;
+      width: min(600px, 80vw);
+      height: 1px;
+      margin: 0 auto 16px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,122,0.3) 30%, rgba(90,150,255,0.25) 70%, transparent);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      body { overflow-y: auto; }
+      .split { grid-template-columns: 1fr 1fr; }
+      .split::before { display: none; }
+      .panel { min-height: 60vh; }
+      .panel a { align-items: flex-end; padding: 24px 8px; }
+      .card { width: min(140px, 90%); padding: 14px 10px 12px; }
+      .card-title { font-size: 16px; }
+      .kicker { font-size: 7px; letter-spacing: 4px; margin-bottom: 6px; }
+      .desc { font-size: 11px; line-height: 1.5; }
+      .cta { font-size: 8px; letter-spacing: 3px; padding: 8px 10px; gap: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .panel .panel-bg { transition: none; }
+      .split::before { animation: none; }
+      .panel.right.flash .lightning { animation: none; }
+      .label, .title, .sub, .card { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <div class="wrap">
+
+    <a href="/dnd/index.html" style="
+      position: fixed;
+      top: 22px; right: 24px;
+      z-index: 200;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 18px 9px 14px;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(240,192,80,0.80);
+      text-decoration: none;
+      border: 1px solid rgba(200,151,42,0.30);
+      background: rgba(6,5,3,0.65);
+      backdrop-filter: blur(10px);
+      transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    " onmouseover="this.style.color='#ffd77a';this.style.borderColor='rgba(255,215,122,0.65)';this.style.boxShadow='0 0 18px rgba(255,200,80,0.22)';"
+       onmouseout="this.style.color='rgba(240,192,80,0.80)';this.style.borderColor='rgba(200,151,42,0.30)';this.style.boxShadow='';">
+      🖥 Back to PC View
+    </a>
+
+    <header>
+      <!-- Ornamental corners -->
+      <div class="corner corner-tl" aria-hidden="true">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4 L4 28 M4 4 L28 4" stroke="rgba(255,215,122,0.5)" stroke-width="1.2"/>
+          <path d="M4 4 L22 22" stroke="rgba(255,215,122,0.22)" stroke-width="0.8" stroke-dasharray="2 4"/>
+          <circle cx="4" cy="4" r="2.5" fill="rgba(255,215,122,0.5)"/>
+          <circle cx="28" cy="4" r="1.2" fill="rgba(255,215,122,0.3)"/>
+          <circle cx="4" cy="28" r="1.2" fill="rgba(255,215,122,0.3)"/>
+        </svg>
+      </div>
+      <div class="corner corner-tr" aria-hidden="true">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4 L4 28 M4 4 L28 4" stroke="rgba(255,215,122,0.5)" stroke-width="1.2"/>
+          <path d="M4 4 L22 22" stroke="rgba(255,215,122,0.22)" stroke-width="0.8" stroke-dasharray="2 4"/>
+          <circle cx="4" cy="4" r="2.5" fill="rgba(255,215,122,0.5)"/>
+          <circle cx="28" cy="4" r="1.2" fill="rgba(255,215,122,0.3)"/>
+          <circle cx="4" cy="28" r="1.2" fill="rgba(255,215,122,0.3)"/>
+        </svg>
+      </div>
+
+      <div class="label">The Hub</div>
+      <div class="title">The Party</div>
+      <div class="sub">Choose your path.</div>
+    </header>
+
+    <main class="split" aria-label="Main hub navigation">
+
+      <!-- LEFT: Players -->
+      <section class="panel left" id="players-panel" aria-label="Players">
+        <div class="panel-bg" aria-hidden="true"></div>
+        <div class="panel-overlay" aria-hidden="true"></div>
+        <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+        <a href="/dnd/players.html">
+          <div class="card">
+            <div class="kicker">Players</div>
+            <div class="card-title">Characters</div>
+            <div class="card-line"></div>
+            <div class="desc">Portrait sheets, text sheets,<br>and party roster.</div>
+            <div class="cta"><span>Enter</span><span aria-hidden="true">→</span></div>
+          </div>
+        </a>
+      </section>
+
+      <!-- RIGHT: Campaigns -->
+      <section class="panel right" id="campaigns-panel" aria-label="Campaigns">
+        <div class="panel-bg" aria-hidden="true"></div>
+        <div class="panel-overlay" aria-hidden="true"></div>
+        <div class="lightning" aria-hidden="true"></div>
+        <a href="/dnd/campaigns/index.html">
+          <div class="card">
+            <div class="kicker">Campaigns</div>
+            <div class="card-title">The Chronicle</div>
+            <div class="card-line"></div>
+            <div class="desc">Sessions archive, lore,<br>and world notes.</div>
+            <div class="cta"><span>Enter</span><span aria-hidden="true">→</span></div>
+          </div>
+        </a>
+      </section>
+
+    </main>
+
+    <footer>The world fell. They did not.</footer>
+  </div>
+
+
+  <script>
+    // ── Ember particles (left panel) ──────────────────────────────
+    (function () {
+      const panel  = document.getElementById("players-panel");
+      const canvas = document.getElementById("embers");
+      const ctx    = canvas.getContext("2d", { alpha: true });
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      let w = 0, h = 0;
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const EMBER_COUNT = 80;
+      const embers = [];
+
+      function resize() {
+        const r = panel.getBoundingClientRect();
+        w = Math.max(1, Math.floor(r.width));
+        h = Math.max(1, Math.floor(r.height));
+        canvas.style.width  = w + "px";
+        canvas.style.height = h + "px";
+        canvas.width  = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function rand(a, b) { return Math.random() * (b - a) + a; }
+
+      function spawnEmber(i) {
+        embers[i] = {
+          x:    rand(0, w),
+          y:    rand(h * 0.30, h),
+          r:    rand(0.7, 2.6),
+          vy:   rand(0.28, 1.05),
+          vx:   rand(-0.30, 0.30),
+          a:    rand(0.22, 0.80),
+          life: rand(50, 200),
+          tw:   rand(0.5, 1.8)
+        };
+      }
+
+      function init() {
+        resize();
+        for (let i = 0; i < EMBER_COUNT; i++) spawnEmber(i);
+        requestAnimationFrame(tick);
+      }
+
+      function tick(now) {
+        ctx.clearRect(0, 0, w, h);
+
+        // Warm haze
+        const haze = ctx.createRadialGradient(w * 0.5, h * 0.2, 0, w * 0.5, h * 0.2, Math.max(w, h) * 0.85);
+        haze.addColorStop(0, "rgba(255,200,110,0.09)");
+        haze.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = haze;
+        ctx.fillRect(0, 0, w, h);
+
+        for (let i = 0; i < embers.length; i++) {
+          const p = embers[i];
+          p.x += p.vx;
+          p.y -= p.vy;
+          p.life--;
+
+          if (p.y < -10 || p.x < -10 || p.x > w + 10 || p.life <= 0) {
+            spawnEmber(i);
+            continue;
+          }
+
+          const flick = 0.72 + Math.sin((now / 900) * p.tw + i * 1.73) * 0.28;
+          const alpha = p.a * flick;
+
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4.5);
+          grad.addColorStop(0,    `rgba(255,235,170,${alpha})`);
+          grad.addColorStop(0.30, `rgba(255,165,70,${alpha * 0.72})`);
+          grad.addColorStop(1,    "rgba(255,110,30,0)");
+
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      const ro = new ResizeObserver(resize);
+      ro.observe(panel);
+      init();
+    })();
+
+    // ── Lightning flash (right panel) ────────────────────────────
+    (function () {
+      const panel = document.getElementById("campaigns-panel");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      function rand(a, b) { return Math.random() * (b - a) + a; }
+
+      function flash() {
+        panel.classList.add("flash");
+        setTimeout(() => panel.classList.remove("flash"), 440);
+      }
+
+      function schedule() {
+        const delay = rand(2600, 7200);
+        setTimeout(() => {
+          flash();
+          if (Math.random() < 0.35) setTimeout(flash, rand(130, 400));
+          schedule();
+        }, delay);
+      }
+
+      schedule();
+    })();
+  </script>
+  <!-- AUDIO PLAYER -->
+<div id="audio-player" style="
+  position: fixed;
+  bottom: 28px; right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(14,10,6,0.88);
+  border: 1px solid rgba(184,131,42,0.35);
+  padding: 10px 18px;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+">
+  <button id="audio-toggle" onclick="toggleAudio()" style="
+    background: none;
+    border: none;
+    color: #a07828;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.3s;
+  ">▶</button>
+  <span style="font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:#a07828; text-transform:uppercase;">Ambience</span>
+  <input type="range" id="audio-vol" min="0" max="1" step="0.05" value="0.01"
+    oninput="document.getElementById('bg-audio').volume=this.value"
+    style="width:60px; accent-color:#b8832a; cursor:pointer;">
+</div>
+
+<audio id="bg-audio" loop>
+  <source src="/dnd/background.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function toggleAudio() {
+    const audio = document.getElementById('bg-audio');
+    const btn   = document.getElementById('audio-toggle');
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = '⏸';
+      btn.style.color = '#d4a84b';
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+      btn.style.color = '#a07828';
+    }
+  }
+</script>
+</body>
+</html>
