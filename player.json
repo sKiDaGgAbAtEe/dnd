@@ -5,193 +5,222 @@
     "last_updated": "2026-02-24"
   },
   "slots": {
-    "slot1": {
-      "identity": {
-        "name": "Sekhmet",
-        "race": "Leonin",
-        "class": "Barbarian",
-        "subclass": "Zealot",
-        "level": 1,
-        "background": "Outlander",
-        "alignment": "Neutral",
-        "experience": 0,
-        "portrait_url": "/dnd/Sekhmet.png",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
-      },
-      "meta": {
-        "player": "sKiDa",
-        "last_session_updated": "Session 00",
-        "session_changes": []
-      },
-      "physical": {
-        "gender": "Male",
-        "age": null,
-        "size": "Medium",
-        "height": null,
-        "weight": null,
-        "eyes": "Amber",
-        "skin": "Golden-furred",
-        "hair": "Dark mane",
-        "faith": null,
-        "distinguishing_features": "Gold ceremonial arm cuff. Mane braided with bone and stone fragments from the First Land."
-      },
-      "senses": {
-        "darkvision_ft": 60
-      },
-      "abilities": {
-        "str": 16,
-        "dex": 14,
-        "con": 15,
-        "int": 13,
-        "wis": 13,
-        "cha": 14
-      },
-      "saving_throws": {
-        "str": { "proficient": true,  "value": "+5" },
-        "dex": { "proficient": false, "value": "+2" },
-        "con": { "proficient": true,  "value": "+4" },
-        "int": { "proficient": false, "value": "+1" },
-        "wis": { "proficient": false, "value": "+1" },
-        "cha": { "proficient": false, "value": "+2" }
-      },
-      "combat": {
-        "hp_max": 17,
-        "hp_current": 17,
-        "hp_temp": 0,
-        "ac": 14,
-        "initiative": "+2",
-        "speed": 35,
-        "proficiency_bonus": "+2",
-        "hit_dice_total": "1d12",
-        "passive_perception": 13,
-        "passive_investigation": 11,
-        "passive_insight": 11
-      },
-      "skills": {
-        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
-        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
-        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-        "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+5" },
-        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
-        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
-        "intimidation":    { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
-        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
-        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" },
-        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
-        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
-        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
-        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
-        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
-        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" }
-      },
-      "attacks": [
-        {
-          "name": "Sun-Disc Club",
-          "type": "Greatclub",
-          "attack": "+5",
-          "damage": "1d8+3",
-          "damage_type": "Bludgeoning",
-          "detail": "Melee Weapon Attack. Hit: 1d8 + STR modifier bludgeoning damage. The Fist of the First Land."
-        },
-        {
-          "name": "Natural Claws",
-          "type": "Leonin Unarmed Strike",
-          "attack": "+5",
-          "damage": "1d4+3",
-          "damage_type": "Slashing",
-          "detail": "Melee Weapon Attack (unarmed strike). Hit: 1d4 + STR modifier slashing damage."
-        }
-      ],
-      "spellcasting": {
-        "enabled": false,
-        "ability": "wis",
-        "spell_save_dc": 0,
-        "spell_attack_bonus": "+0",
-        "spell_slots": {
-          "level_1": { "max": 0, "current": 0 },
-          "level_2": { "max": 0, "current": 0 },
-          "level_3": { "max": 0, "current": 0 },
-          "level_4": { "max": 0, "current": 0 },
-          "level_5": { "max": 0, "current": 0 }
-        }
-      },
-      "class_resources": {
-        "rage": {
-          "label": "Rage",
-          "max": 2,
-          "current": 2,
-          "recharge": "Long Rest",
-          "description": "+2 damage · BPS Resistance · Advantage on STR checks & saves · 1 minute"
-        }
-      },
-      "features": [
-        {
-          "name": "Rage",
-          "source": "Barbarian 1",
-          "description": "Bonus action. +2 damage on STR attacks. Resistance to bludgeoning, piercing, and slashing damage. Advantage on STR checks and saves. Lasts 1 minute. 2 uses / long rest."
-        },
-        {
-          "name": "Unarmored Defense",
-          "source": "Barbarian 1",
-          "description": "AC = 10 + DEX mod (+2) + CON mod (+2) = 14 while not wearing armor."
-        },
-        {
-          "name": "Daunting Roar",
-          "source": "Leonin",
-          "description": "Bonus action. Each creature of your choice within 10 ft must succeed on a WIS save (DC 8 + Prof + CON mod = 12) or become frightened until the end of your next turn. 1 use / short rest."
-        },
-        {
-          "name": "Darkvision",
-          "source": "Leonin",
-          "description": "See in dim light as if bright light, and in darkness as if dim light, within 60 feet."
-        },
-        {
-          "name": "Wanderer",
-          "source": "Outlander",
-          "description": "Excellent memory for maps and geography. Can find food and fresh water for yourself and up to 5 companions per day in natural environments."
-        },
-        {
-          "name": "Subclass — Zealot (Planned)",
-          "source": "Barbarian 3",
-          "description": "Rage is holy fury. Damage feels like divine judgment. Hard to kill — destiny-driven. Sekhmet doesn't rage because he is emotional. He rages because something sacred has been violated. The Zealot path treats survival itself as a divine mandate."
-        }
-      ],
-      "proficiencies": {
-        "armor": ["Light Armor", "Medium Armor", "Shields"],
-        "weapons": ["Simple Weapons", "Martial Weapons"],
-        "tools": [],
-        "languages": ["Common", "Leonin"]
-      },
-      "traits": {
-        "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
-        "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something — his name must echo in story long after his bones bleach in the sand.",
-        "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
-        "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
-      },
-      "equipment": {
-        "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
-        "carried": [
-          { "name": "Sun-Disc Club",             "quantity": 1, "description": "Greatclub — The Fist of the First Land" },
-          { "name": "Explorer's Pack",            "quantity": 1, "description": "" },
-          { "name": "Hunting Trap",               "quantity": 1, "description": "" },
-          { "name": "First-Land Stone Fragment",  "quantity": 1, "description": "A petrified shard of his homeland" },
-          { "name": "Traveler's Clothes",         "quantity": 1, "description": "" },
-          { "name": "Gold Ceremonial Arm Cuff",   "quantity": 1, "description": "Marks victories of the First Land" },
-          { "name": "Desert Drum",                "quantity": 1, "description": "" },
-          { "name": "Belt Pouch",                 "quantity": 1, "description": "" }
-        ]
-      },
-      "backstory": {
-        "summary": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded — some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest — but because his will refused to dissolve. He walks a world smaller than it should be, carrying the memory of everything that was lost when the mythic gave way to the physical."
-      }
+   "slot1": {
+  "identity": {
+    "name": "Sekhmet",
+    "race": "Leonin",
+    "class": "Barbarian",
+    "subclass": null,
+    "level": 1,
+    "background": "Outlander",
+    "alignment": "True Neutral",
+    "experience": 17,
+    "portrait_url": "/dnd/Sekhmet.png",
+    "theme_color": "#c8972a",
+    "theme_color_light": "#f0c050",
+    "theme_color_bright": "#ffd700",
+    "theme_color_dim": "#7a5a18",
+    "theme_rgb": "200,151,42"
+  },
+  "meta": {
+    "player": "Sterben",
+    "last_session_updated": "Session 00",
+    "session_changes": []
+  },
+  "physical": {
+    "gender": "Male",
+    "age": null,
+    "size": "Medium",
+    "height": null,
+    "weight": null,
+    "eyes": "Amber",
+    "skin": "Golden-furred",
+    "hair": "Dark mane",
+    "faith": null,
+    "distinguishing_features": "Gold ceremonial arm cuff. Mane braided with bone and stone fragments from the First Land."
+  },
+  "senses": {
+    "darkvision_ft": 60
+  },
+  "abilities": {
+    "str": 17,
+    "dex": 14,
+    "con": 17,
+    "int": 13,
+    "wis": 13,
+    "cha": 14
+  },
+  "saving_throws": {
+    "str": { "proficient": true,  "value": "+5" },
+    "dex": { "proficient": false, "value": "+2" },
+    "con": { "proficient": true,  "value": "+5" },
+    "int": { "proficient": false, "value": "+1" },
+    "wis": { "proficient": false, "value": "+1" },
+    "cha": { "proficient": false, "value": "+2" }
+  },
+  "combat": {
+    "hp_max": 17,
+    "hp_current": 17,
+    "hp_temp": 0,
+    "ac": 15,
+    "initiative": "+2",
+    "speed": 35,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "1d12",
+    "passive_perception": 13,
+    "passive_investigation": 11,
+    "passive_insight": 11
+  },
+  "skills": {
+    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+5" },
+    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "intimidation":    { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" },
+    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" }
+  },
+  "attacks": [
+    {
+      "name": "Greataxe",
+      "type": "Martial Melee Weapon",
+      "attack": "+5",
+      "damage": "1d12+3",
+      "damage_type": "Slashing",
+      "detail": ""
     },
+    {
+      "name": "Handaxe",
+      "type": "Simple Melee Weapon",
+      "attack": "+5",
+      "damage": "1d6+3",
+      "damage_type": "Slashing",
+      "detail": "Quantity: 2"
+    },
+    {
+      "name": "Javelin",
+      "type": "Simple Melee Weapon",
+      "attack": "+5",
+      "damage": "1d6+3",
+      "damage_type": "Piercing",
+      "detail": "Quantity: 4"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+5",
+      "damage": "1d4+3",
+      "damage_type": "Bludgeoning",
+      "detail": ""
+    },
+    {
+      "name": "Claws",
+      "type": "Leonin Natural Weapon",
+      "attack": "+5",
+      "damage": "1d4+3",
+      "damage_type": "Slashing",
+      "detail": "Natural weapons; can be used for unarmed strikes, dealing slashing instead of bludgeoning."
+    }
+  ],
+  "spellcasting": {
+    "enabled": false,
+    "ability": "wis",
+    "spell_save_dc": 0,
+    "spell_attack_bonus": "+0",
+    "spell_slots": {
+      "level_1": { "max": 0, "current": 0 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    }
+  },
+  "class_resources": {
+    "rage": {
+      "label": "Rage",
+      "max": 2,
+      "current": 2,
+      "recharge": "Long Rest",
+      "description": "+2 damage · B/P/S Resistance · Advantage on STR checks & saves · 1 minute"
+    }
+  },
+  "features": [
+    {
+      "name": "Rage",
+      "source": "Barbarian 1",
+      "description": "Bonus action. While raging: advantage on STR checks and STR saving throws; +2 damage to melee attacks using STR; resistance to bludgeoning, piercing, and slashing damage. Lasts 1 minute. 2 uses / long rest."
+    },
+    {
+      "name": "Unarmored Defense",
+      "source": "Barbarian 1",
+      "description": "While not wearing armor, AC = 10 + DEX mod (+2) + CON mod (+3) = 15. You may still use a shield."
+    },
+    {
+      "name": "Claws",
+      "source": "Leonin",
+      "description": "Natural weapons. You can use your claws to make unarmed strikes; on a hit they deal slashing damage equal to 1d4 + STR modifier."
+    },
+    {
+      "name": "Daunting Roar",
+      "source": "Leonin",
+      "description": "Bonus action. Creatures of your choice within 10 ft that can hear you must succeed on a WIS save (DC 8 + Prof + CON mod = 13) or be frightened until the end of your next turn. Recharge: short or long rest."
+    },
+    {
+      "name": "Darkvision",
+      "source": "Leonin",
+      "description": "You can see in dim light within 60 ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+    },
+    {
+      "name": "Wanderer",
+      "source": "Outlander",
+      "description": "Excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features. You can find food and fresh water for yourself and up to 5 companions each day (if the land offers it)."
+    },
+    {
+      "name": "Subclass — Zealot (Planned)",
+      "source": "Barbarian 3",
+      "description": "Planned path at level 3. Sekhmet's rage is sacred judgment: destiny-driven, hard to kill, and fueled by violation of something holy."
+    }
+  ],
+  "proficiencies": {
+    "armor": ["Light Armor", "Medium Armor", "Shields"],
+    "weapons": ["Simple Weapons", "Martial Weapons"],
+    "tools": ["Bagpipes"],
+    "languages": []
+  },
+  "traits": {
+    "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
+    "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something — his name must echo in story long after his bones bleach in the sand.",
+    "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
+    "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
+  },
+  "equipment": {
+    "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
+    "carried": [
+      { "name": "Greataxe", "quantity": 1, "description": "" },
+      { "name": "Handaxe", "quantity": 2, "description": "" },
+      { "name": "Javelin", "quantity": 4, "description": "" },
+      { "name": "Explorer's Pack", "quantity": 1, "description": "" },
+      { "name": "Hunting Trap", "quantity": 1, "description": "" },
+      { "name": "Staff", "quantity": 1, "description": "" },
+      { "name": "Traveler's Clothes", "quantity": 1, "description": "" },
+      { "name": "Trophy of an animal", "quantity": 1, "description": "" }
+    ]
+  },
+  "backstory": {
+    "summary": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded — some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest — but because his will refused to dissolve. He walks a world smaller than it should be, carrying the memory of everything that was lost when the mythic gave way to the physical."
+  }
+},
     "slot2": {
       "identity": {
         "name": "Izabella",
