@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-     --primary:        #6b3a1f;
+    --primary:        #6b3a1f;
     --primary-light:  #8b4a28;
     --primary-bright: #5a2e10;
     --primary-dim:    #9e6a45;
@@ -36,20 +36,20 @@
     font-family: 'Cinzel', serif;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #1a1208;
+    /* Aged parchment texture via layered gradients */
     background-image:
-      radial-gradient(ellipse at 20% 10%, rgba(100,60,10,0.25) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 90%, rgba(80,40,5,0.20) 0%, transparent 45%),
-      radial-gradient(ellipse at 60% 40%, rgba(120,80,20,0.10) 0%, transparent 35%),
-      repeating-linear-gradient(0deg,  transparent, transparent 80px, rgba(200,130,50,0.025) 80px, rgba(200,130,50,0.025) 81px),
-      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(200,130,50,0.015) 80px, rgba(200,130,50,0.015) 81px);
+      radial-gradient(ellipse at 20% 10%, rgba(180,140,80,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(160,120,60,0.14) 0%, transparent 45%),
+      radial-gradient(ellipse at 60% 40%, rgba(200,170,110,0.08) 0%, transparent 35%),
+      repeating-linear-gradient(0deg,  transparent, transparent 80px, rgba(107,58,31,0.025) 80px, rgba(107,58,31,0.025) 81px),
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(107,58,31,0.015) 80px, rgba(107,58,31,0.015) 81px);
     background-attachment: fixed;
   }
 
   /* ─── BACK NAV ─── */
   .back-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: linear-gradient(to bottom, rgba(26,18,8,0.97), rgba(26,18,8,0));
+    background: linear-gradient(to bottom, rgba(242,232,213,0.97), rgba(242,232,213,0));
     padding: 16px 40px;
     display: flex; align-items: center; gap: 24px;
   }
@@ -70,7 +70,7 @@
     color: var(--ink); text-decoration: none;
     border: 1px solid var(--border);
     padding: 6px 14px;
-    background: linear-gradient(to bottom, rgba(50,30,8,0.85), rgba(35,20,5,0.70));
+    background: linear-gradient(to bottom, rgba(255,252,245,0.8), rgba(237,224,196,0.6));
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
   .dark-mode-btn:hover {
@@ -276,7 +276,7 @@
   .cast-card {
     border: 1px solid var(--border-light);
     padding: 16px; text-align: center;
-    background: linear-gradient(to bottom, rgba(30,18,4,0.8), rgba(20,12,2,0.6));
+    background: linear-gradient(to bottom, rgba(255,250,240,0.6), rgba(237,224,196,0.3));
     transition: border-color 0.3s, box-shadow 0.3s;
   }
   .cast-card:hover { border-color: var(--border); box-shadow: 0 2px 8px var(--shadow); }
@@ -360,7 +360,7 @@
     line-height: 1.8; color: var(--ink-mid);
     max-height: 400px; overflow-y: auto;
     border-top: 1px solid var(--border-light);
-    background: rgba(10,6,2,0.4);
+    background: rgba(255,252,245,0.5);
   }
   .collapsible.open .collapsible-body { display: block; }
   .collapsible.open .collapsible-arrow { transform: rotate(180deg); }
@@ -385,35 +385,48 @@
 .chronicle-hero {
   position: relative;
   text-align: center;
-  padding: 115px 22px 48px;
+  padding: 130px 22px 72px;
   overflow: hidden;
 }
 .chronicle-hero::before{
   content:'';
   position:absolute;
-  top: -60px; left: 50%;
+  top: -80px; left: 50%;
   transform: translateX(-50%);
-  width: 980px; height: 620px;
+  width: 1100px; height: 700px;
   background:
-    radial-gradient(ellipse at 50% 35%, rgba(180,130,70,0.14) 0%, transparent 62%),
-    radial-gradient(ellipse at 40% 20%, rgba(122,26,26,0.10) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 38%, rgba(180,130,70,0.18) 0%, transparent 58%),
+    radial-gradient(ellipse at 38% 22%, rgba(122,26,26,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 65% 55%, rgba(160,110,50,0.08) 0%, transparent 45%);
   pointer-events:none;
+}
+/* Hero ornamental top rule */
+.chronicle-hero::after {
+  content: '';
+  position: absolute;
+  top: 80px; left: 50%;
+  transform: translateX(-50%);
+  width: 240px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
 }
 .chronicle-title{
   font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(34px, 6vw, 78px);
+  font-size: clamp(36px, 6.5vw, 86px);
   font-weight: 900;
-  letter-spacing: 2px;
-  line-height: 1.03;
+  letter-spacing: 3px;
+  line-height: 1.02;
   color: var(--ink);
-  text-shadow: 1px 2px 0px rgba(180,130,60,0.28), 0 0 44px rgba(107,58,31,0.12);
-  margin: 0 0 16px;
+  text-shadow: 
+    1px 3px 0px rgba(180,130,60,0.22), 
+    0 0 60px rgba(107,58,31,0.13),
+    0 1px 0 rgba(255,240,200,0.5);
+  margin: 0 0 20px;
   animation: fadeIn 1.5s ease;
 }
 .chronicle-subtitle{
   font-family: 'IM Fell English', serif;
   font-style: italic;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--primary-dim);
   letter-spacing: 2px;
   max-width: 900px;
@@ -424,15 +437,15 @@
 
 /* layout */
 .chronicle-wrap{
-  max-width: 1140px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 30px 90px;
+  padding: 0 28px 90px;
 }
 .chronicle-grid{
   display:grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 18px;
-  margin-top: 24px;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 16px;
+  margin-top: 20px;
 }
 @media (max-width: 980px){
   .chronicle-grid{grid-template-columns:1fr;}
@@ -440,19 +453,27 @@
 
 .panel{
   border: 1px solid var(--border);
-  background: linear-gradient(to bottom, rgba(30,20,6,0.85), rgba(20,12,2,0.6));
-  box-shadow: 0 2px 12px var(--shadow);
-  padding: 24px;
+  background: linear-gradient(160deg, rgba(255,252,245,0.88) 0%, rgba(242,232,213,0.55) 100%);
+  box-shadow: 0 1px 3px rgba(107,58,31,0.08), 0 4px 20px rgba(107,58,31,0.05);
+  padding: 22px 24px;
   position: relative;
   overflow:hidden;
+}
+.panel::after{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(107,58,31,0.20), transparent);
+  pointer-events:none;
 }
 .panel::before{
   content:'';
   position:absolute;
   inset:0;
   background:
-    radial-gradient(ellipse at 18% 0%, rgba(107,58,31,0.10), transparent 55%),
-    radial-gradient(ellipse at 92% 40%, rgba(122,26,26,0.08), transparent 58%);
+    radial-gradient(ellipse at 15% 0%, rgba(107,58,31,0.07), transparent 50%),
+    radial-gradient(ellipse at 95% 100%, rgba(122,26,26,0.04), transparent 55%);
   pointer-events:none;
 }
 .panel > *{position:relative;}
@@ -461,22 +482,25 @@
   align-items:center;
   justify-content:space-between;
   gap:14px;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
 }
 .panel-title{
   font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 6px;
+  font-size: 10px;
+  letter-spacing: 8px;
   text-transform: uppercase;
-  color: var(--primary-dim);
+  color: var(--primary);
+  font-weight: 600;
 }
 .panel-title::after{
   content:'';
   display:inline-block;
-  width: 22px;
+  width: 16px;
   height: 1px;
-  margin-left: 10px;
-  background: var(--border-light);
+  margin-left: 12px;
+  background: var(--border);
   vertical-align: middle;
 }
 
@@ -491,20 +515,26 @@
 }
 .kpi{
   border: 1px solid var(--border-light);
-  background: rgba(28,18,5,0.65);
-  padding: 14px 12px;
+  background: linear-gradient(to bottom, rgba(255,252,245,0.7), rgba(237,224,196,0.4));
+  padding: 18px 14px 16px;
+  text-align: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.kpi:hover{
+  border-color: var(--border);
+  box-shadow: 0 2px 10px rgba(107,58,31,0.10);
 }
 .kpi .n{
   font-family: 'Cinzel Decorative', serif;
   font-weight: 900;
-  font-size: 22px;
-  color: var(--ink);
+  font-size: 28px;
+  color: var(--primary);
   line-height: 1;
 }
 .kpi .l{
   margin-top: 8px;
-  font-size: 9px;
-  letter-spacing: 5px;
+  font-size: 8px;
+  letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--primary-dim);
 }
@@ -516,25 +546,27 @@
   margin-top: 12px;
 }
 .tool-btn{
-  font-size: 10px;
-  letter-spacing: 4px;
+  font-size: 9px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--primary);
   text-decoration:none;
   border: 1px solid var(--border);
-  padding: 10px 14px;
-  background: linear-gradient(to bottom, rgba(50,30,8,0.85), rgba(35,20,5,0.62));
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  padding: 9px 16px;
+  background: linear-gradient(to bottom, rgba(255,252,245,0.90), rgba(237,224,196,0.65));
+  transition: background 0.22s, border-color 0.22s, color 0.22s, box-shadow 0.22s;
   display:inline-flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
+  box-shadow: 0 1px 3px rgba(107,58,31,0.06);
 }
 .tool-btn:hover{
   background: var(--primary);
-  border-color: var(--primary);
+  border-color: var(--primary-bright);
   color: var(--parchment);
+  box-shadow: 0 2px 8px rgba(107,58,31,0.20);
 }
-.tool-btn::after{content:'↗'; font-size: 12px;}
+.tool-btn::after{content:'↗'; font-size: 11px; opacity: 0.7;}
 
 .searchbar{
   display:flex;
@@ -546,15 +578,19 @@
   flex: 1 1 180px;
   min-width: 180px;
   border: 1px solid var(--border-light);
-  background: rgba(30,20,8,0.8);
-  padding: 10px 12px;
+  background: rgba(255,252,245,0.82);
+  padding: 10px 14px;
   font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 10px;
+  letter-spacing: 2px;
   color: var(--ink);
   outline:none;
+  transition: border-color 0.2s;
 }
-.searchbar input::placeholder{color: rgba(200,133,58,0.45);}
+.searchbar input::placeholder{color: rgba(107,58,31,0.40);}
+.searchbar input:focus, .searchbar select:focus{
+  border-color: var(--border);
+}
 
 .session-cards{
   display:grid;
@@ -564,45 +600,61 @@
 }
 .session-card{
   border: 1px solid var(--border-light);
-  background: rgba(28,18,5,0.75);
-  padding: 18px;
+  background: linear-gradient(160deg, rgba(255,252,245,0.80) 0%, rgba(242,232,213,0.45) 100%);
+  padding: 22px 22px 18px;
   position:relative;
 }
-.session-card:hover{box-shadow: 0 3px 14px rgba(107,58,31,0.10);}
+.session-card::before{
+  content:'';
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--primary-dim), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.session-card:hover::before{ opacity: 1; }
+.session-card:hover{
+  box-shadow: 0 4px 20px rgba(107,58,31,0.12);
+  border-color: var(--border);
+}
 .session-card h3{
   font-family: 'Cinzel Decorative', serif;
-  margin: 0 0 8px;
+  margin: 10px 0 6px;
   letter-spacing: 2px;
   color: var(--ink);
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 .session-meta{
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--primary-dim);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-.pills{display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 0;}
+.pills{display:flex; flex-wrap:wrap; gap:6px; margin: 0 0 4px;}
 .pill{
-  font-size: 9px;
-  letter-spacing: 4px;
+  font-size: 8px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--primary-dim);
   border: 1px solid var(--border-light);
-  padding: 6px 10px;
-  background: rgba(40,25,8,0.7);
+  padding: 4px 9px;
+  background: rgba(242,232,213,0.45);
 }
 .pill.accent{
   color: var(--accent);
-  border-color: rgba(122,26,26,0.25);
-  background: rgba(122,26,26,0.06);
+  border-color: rgba(122,26,26,0.30);
+  background: rgba(122,26,26,0.07);
+  font-weight: 600;
 }
 .session-desc{
   font-family: 'IM Fell English', serif;
   font-size: 15px;
-  line-height: 1.9;
+  line-height: 1.85;
   color: var(--ink-mid);
+  margin-top: 8px;
 }
 .hl-grid{
   display:grid;
@@ -614,9 +666,9 @@
   .hl-grid{grid-template-columns:1fr;}
 }
 .hl{
-  border: 1px dashed rgba(107,58,31,0.25);
-  background: rgba(20,12,3,0.5);
-  padding: 12px;
+  border: 1px solid var(--border-light);
+  background: rgba(242,232,213,0.28);
+  padding: 14px;
 }
 .hl b{
   font-family: 'Cinzel', serif;
@@ -639,16 +691,18 @@
 }
 .mini{
   border: 1px solid var(--border-light);
-  background: rgba(28,18,5,0.75);
+  background: linear-gradient(to bottom, rgba(255,252,245,0.75), rgba(242,232,213,0.38));
   padding: 16px;
 }
 .mini h4{
-  margin: 0 0 10px;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
   font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 6px;
+  font-size: 9px;
+  letter-spacing: 7px;
   text-transform: uppercase;
-  color: var(--primary-dim);
+  color: var(--primary);
 }
 .mini p, .mini li{
   font-family: 'IM Fell English', serif;
@@ -660,69 +714,118 @@
 .character-grid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 14px;
 }
 @media (max-width: 980px){.character-grid{grid-template-columns: repeat(2, 1fr);}}
 @media (max-width: 620px){.character-grid{grid-template-columns: 1fr;}}
 .char{
   border: 1px solid var(--border-light);
-  background: rgba(28,18,5,0.65);
-  padding: 14px;
+  background: linear-gradient(to bottom, rgba(255,252,245,0.75), rgba(237,224,196,0.35));
+  padding: 18px 16px 14px;
+  position: relative;
+  transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s;
+}
+.char:hover{
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(107,58,31,0.11);
+  transform: translateY(-2px);
+}
+/* top ornament on char card */
+.char::before{
+  content: '✦';
+  position:absolute; top: 10px; right: 12px;
+  font-size: 8px; color: var(--border);
+  opacity: 0.6;
 }
 .char .nm{
   font-family: 'Cinzel Decorative', serif;
   font-weight: 900;
+  font-size: 13px;
   letter-spacing: 2px;
   color: var(--ink);
+  line-height: 1.2;
 }
 .char .role{
-  font-size: 9px;
-  letter-spacing: 5px;
+  font-size: 8px;
+  letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--primary-dim);
-  margin-top: 6px;
+  margin-top: 5px;
 }
 .char .note{
   font-family: 'IM Fell English', serif;
-  margin-top: 10px;
+  font-size: 14px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
   color: var(--ink-mid);
-  line-height: 1.85;
+  line-height: 1.8;
 }
 .char a{
-  display:inline-block;
-  margin-top: 10px;
-  font-size: 10px;
-  letter-spacing: 4px;
+  display:inline-flex;
+  align-items:center;
+  gap: 5px;
+  margin-top: 12px;
+  font-size: 9px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--accent);
-  border-bottom: 1px dashed rgba(122,26,26,0.35);
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(107,58,31,0.28);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
 }
+.char a:hover{ color: var(--accent); border-color: rgba(122,26,26,0.5); }
+.char a::after{ content: "↗"; font-size: 10px; }
 
 .quote-box{
-  padding: 18px;
+  padding: 20px 20px 16px;
   border: 1px solid var(--border-light);
-  background: rgba(28,18,5,0.75);
+  background: linear-gradient(135deg, rgba(255,252,245,0.78), rgba(237,224,196,0.40));
+  position: relative;
+}
+.quote-box::before{
+  content: '“';
+  position: absolute;
+  top: 8px; left: 14px;
+  font-family: 'IM Fell English', serif;
+  font-size: 52px;
+  color: var(--border);
+  line-height: 1;
+  opacity: 0.5;
 }
 .quote-box .qhd{
+  font-size: 8px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: var(--primary-dim);
+  margin-bottom: 14px;
+}
+.quote-box .qt{
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink);
+  padding-left: 4px;
+}
+.quote-box .by{
+  margin-top: 12px;
   font-size: 9px;
   letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--primary-dim);
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.quote-box .qt{
-  font-family: 'IM Fell English', serif;
-  font-size: 16px;
-  line-height: 1.9;
-  color: var(--ink);
-}
-.quote-box .by{
-  margin-top: 10px;
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--primary-dim);
+.quote-box .by::before{
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--border);
 }
 
 
@@ -761,9 +864,9 @@
 .char,
 .session-card {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .panel.revealed,
 .kpi.revealed,
@@ -793,14 +896,6 @@
   0%   { box-shadow: 0 0 0 0 rgba(200,131,10,0.55); }
   60%  { box-shadow: 0 0 0 5px rgba(200,131,10,0); }
   100% { box-shadow: 0 0 0 0 rgba(200,131,10,0); }
-}
-
-/* ─── SEARCH FOCUS GLOW (dark) ─── */
-.searchbar input:focus,
-.searchbar select:focus {
-  box-shadow: 0 0 0 2px rgba(200,133,58,0.3);
-  border-color: var(--border);
-  outline: none;
 }
 </style>
 </head>
@@ -833,11 +928,12 @@
     <div class="kpi-row">
       <div class="kpi"><div class="n">1</div><div class="l">Sessions</div></div>
       <div class="kpi"><div class="n">0</div><div class="l">One-shots</div></div>
-      <div class="kpi"><div class="n">1</div><div class="l">Ongoing</div></div>
-      <div class="kpi"><div class="n">5</div><div class="l">PCs</div></div>
+      <div class="kpi"><div class="n">1</div><div class="0">Ongoing</div></div>
+      <div class="kpi"><div class="n">5</div><div class="5">PCs</div></div>
       <div class="kpi"><div class="n">0</div><div class="l">NPCs</div></div>
     </div>
 
+    <div style="margin: 18px 0 14px; height:1px; background: linear-gradient(to right, transparent, var(--border-light), transparent);"></div>
     <div class="tools">
       <a class="tool-btn" href="#sessions">Browse sessions</a>
       <a class="tool-btn" href="#characters">Character roster</a>
@@ -911,10 +1007,10 @@
           <div class="mini">
             <h4>Quick links</h4>
             <ul>
-              <li><a href="/dnd/campaigns/session01.html">Session 01 page</a></li>
-              <li><a href="/dnd/session01_transcript.html">Cleaned transcript</a></li>
+              <li><a href="/dnd/session-01.html">Session 01 page</a></li>
+              <li><a href="/dnd/session-01.cleaned.md">Cleaned transcript</a></li>
               <li><a href="/dnd/players.html">Players</a></li>
-              <li><a href="/dnd/house_rules.html">House rules</a></li>
+              <li><a href="/dnd/house-rules.html">House rules</a></li>
             </ul>
           </div>
           <div class="mini">
@@ -936,7 +1032,7 @@
 </div>
 
 <script>
-const DATA = {"siteTitle": "The Chronicle", "tagline": "A lively index of sessions, one-shots, characters, threads, and loot \u2014 built for GitHub Pages.", "stats": {"sessions": 1, "oneShots": 1, "ongoing": 0, "pcs": 5, "npcs": 0}, "quotes": [{"text": "All the shinies!", "by": "Raven"}, {"text": "Would anyone like to invest?", "by": "Evo"}, {"text": "Teacher\u2019s gone\u2014no class!", "by": "Table"}], "sessions": [{"id": "session-01", "number": "01", "title": "The Wall-Town Job", "date": "2026-02-25", "runtime": "~3h 10m", "status": "Ongoing", "summary": "Strangers converge on a town with walls too strong for comfort. A goblin contract becomes an ambush on the road, a dark cave crawl, and a hobgoblin leader\u2019s fall\u2014enough to break the nest and send the rest fleeing.", "highlights": ["Church supplies: healing potions", "Road ambush: first real fight", "Cave push: visibility + tunnel pressure", "Boss drop: hobgoblin falls; goblins scatter"], "rewards": ["4 gp each", "Proof/trophies: horn + skull (boss)"], "tags": ["goblins", "church", "ambush", "cave", "boss"], "links": {"page": "/dnd/campaigns/session01_dark.html", "transcript": "/dnd/session-01.cleaned.md"}}], "characters": [{"name": "Izabella", "role": "PC", "note": "Fairy Witherbloom grad; curious, spell-slinging.", "link": "/dnd/characters/izabella.html"}, {"name": "Evo", "role": "PC", "note": "Startup energy; always pitching, always bargaining.", "link": "/dnd/characters/evo.html"}, {"name": "Raven", "role": "PC", "note": "Shadows, shinies, and survival instincts.", "link": "/dnd/characters/raven.html"}, {"name": "Sekhmet", "role": "PC", "note": "Glory-seeker; direct and bold.", "link": "/dnd/characters/sekhmet.html"}, {"name": "Malc", "role": "PC", "note": "Practical anchor; checks, plans, and follow-through.", "link": "/dnd/characters/malc.html"}, {"name": "Illy", "role": "DM", "note": "Keeps the world moving; hooks, adjudication, and tone.", "link": "/dnd/illy.html"}], "threads": [{"title": "Why are the town walls reinforced?", "status": "Open", "detail": "Multiple PCs clocked the walls as unusually strong. What threat demanded this?"}, {"title": "The church\u2019s magnifying inspection", "status": "Open", "detail": "A priest was meticulously inspecting/cleaning surfaces\u2014habit, omen, or evidence?"}, {"title": "Goblin raids\u2019 true cause", "status": "Open", "detail": "Was this hunger, coercion, or something pushing goblins onto the roads?"}], "loot": [{"item": "Healing potions", "qty": "(multiple)", "note": "Church provisions + crafted along the way (herbalism)."}, {"item": "Hobgoblin horn", "qty": "1", "note": "Taken as proof/trophy after the boss fight."}, {"item": "Hobgoblin skull", "qty": "1", "note": "Bagged evidence for payment/proof."}, {"item": "Gold payout", "qty": "4 gp each", "note": "Paid after returning with proof."}]};
+const DATA = {"siteTitle": "The Chronicle", "tagline": "A lively index of sessions, one-shots, characters, threads, and loot \u2014 built for GitHub Pages.", "stats": {"sessions": 1, "oneShots": 1, "ongoing": 0, "pcs": 5, "npcs": 0}, "quotes": [{"text": "All the shinies!", "by": "Raven"}, {"text": "Would anyone like to invest?", "by": "Evo"}, {"text": "Teacher\u2019s gone\u2014no class!", "by": "Table"}], "sessions": [{"id": "session-01", "number": "01", "title": "The Wall-Town Job", "date": "2026-02-25", "runtime": "~3h 10m", "status": "Ongoing", "summary": "Strangers converge on a town with walls too strong for comfort. A goblin contract becomes an ambush on the road, a dark cave crawl, and a hobgoblin leader\u2019s fall\u2014enough to break the nest and send the rest fleeing.", "highlights": ["Church supplies: healing potions", "Road ambush: first real fight", "Cave push: visibility + tunnel pressure", "Boss drop: hobgoblin falls; goblins scatter"], "rewards": ["4 gp each", "Proof/trophies: horn + skull (boss)"], "tags": ["goblins", "church", "ambush", "cave", "boss"], "links": {"page": "/dnd/campaigns/session01.html", "transcript": "/dnd/campaigns/session01_transcript.html"}}], "characters": [{"name": "Izabella", "role": "PC", "note": "Fairy Witherbloom grad; curious, spell-slinging.", "link": "/dnd/characters/izabella.html"}, {"name": "Evo", "role": "PC", "note": "Startup energy; always pitching, always bargaining.", "link": "/dnd/characters/evo.html"}, {"name": "Raven", "role": "PC", "note": "Shadows, shinies, and survival instincts.", "link": "/dnd/characters/raven.html"}, {"name": "Sekhmet", "role": "PC", "note": "Glory-seeker; direct and bold.", "link": "/dnd/characters/sekhmet.html"}, {"name": "Malc", "role": "PC", "note": "Practical anchor; checks, plans, and follow-through.", "link": "/dnd/characters/malc.html"}, {"name": "Illy", "role": "DM", "note": "Keeps the world moving; hooks, adjudication, and tone.", "link": "/dnd/illy.html"}], "threads": [{"title": "Why are the town walls reinforced?", "status": "Open", "detail": "Multiple PCs clocked the walls as unusually strong. What threat demanded this?"}, {"title": "The church\u2019s magnifying inspection", "status": "Open", "detail": "A priest was meticulously inspecting/cleaning surfaces\u2014habit, omen, or evidence?"}, {"title": "Goblin raids\u2019 true cause", "status": "Open", "detail": "Was this hunger, coercion, or something pushing goblins onto the roads?"}], "loot": [{"item": "Healing potions", "qty": "(multiple)", "note": "Church provisions + crafted along the way (herbalism)."}, {"item": "Hobgoblin horn", "qty": "1", "note": "Taken as proof/trophy after the boss fight."}, {"item": "Hobgoblin skull", "qty": "1", "note": "Bagged evidence for payment/proof."}, {"item": "Gold payout", "qty": "4 gp each", "note": "Paid after returning with proof."}]};
 
 // ─── KPI COUNT-UP ───
 function animateCount(el, target, duration) {
