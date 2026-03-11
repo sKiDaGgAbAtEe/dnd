@@ -490,7 +490,7 @@
 <!-- ════════════════════════════════ LOADER ════════════════════════════════ -->
 <script>
   // ── CHANGE THIS ONE LINE TO POINT TO A DIFFERENT CHARACTER ──
-  const CHARACTER_KEY = "slot6";
+  const CHARACTER_KEY = "slot1";
   const JSON_PATH     = "../player.json";   // adjust if your folder structure differs
   // ────────────────────────────────────────────────────────────
 
@@ -519,7 +519,7 @@
     return `<div class="dot"></div>`;
   }
 
-  fetch(JSON_PATH)
+  fetch(JSON_PATH, { cache: 'no-store' })
     .then(r => r.json())
     .then(json => {
       const char = json.slots[CHARACTER_KEY];
