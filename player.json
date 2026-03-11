@@ -2187,13 +2187,7 @@
         "level": 2,
         "background": "Sage",
         "alignment": "Neutral Good",
-        "experience": 300,
-        "portrait_url": "/dnd/signal.png",
-        "theme_color": "#6fe6ff",
-        "theme_color_light": "#baf4ff",
-        "theme_color_bright": "#e6fdff",
-        "theme_color_dim": "#2a6f80",
-        "theme_rgb": "111,230,255"
+        "experience": 300
       },
       "physical": {
         "age": 28,
@@ -2478,6 +2472,7 @@
         "bond": "I've been searching my whole life for the answer to a certain question. Where is my brother, the crown prince. Hiroe Signal of kamigawa neon dynasty",
         "flaw": "Once I am fixated on learning or reading, I tend to seclude myself in my own world and ignore my surroundings."
       },
+      "key": "signal",
       "meta": {
         "player": "HeroSignal",
         "last_session_updated": "Session 01",
@@ -2486,9 +2481,9 @@
       "senses": {
         "darkvision_ft": 60
       },
-      "backstory": "",
       "class_resources": {},
-      "features": []
+      "features": [],
+      "backstory": ""
     },
     "slot7": {
       "identity": {
