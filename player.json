@@ -2554,7 +2554,7 @@
         "race": "Owlin",
         "class": "Bard",
         "subclass": "",
-        "level": 1,
+        "level": 2,
         "background": "Entertainer",
         "alignment": "Chaotic Good",
         "experience": 0,
@@ -2619,8 +2619,8 @@
         }
       },
       "combat": {
-        "hp_max": 10,
-        "hp_current": 10,
+        "hp_max": 17,
+        "hp_current": 17,
         "hp_temp": 0,
         "ac": 15,
         "initiative": "+4",
@@ -2642,19 +2642,19 @@
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+1"
+          "value": "+2"
         },
         "arcana": {
           "ability": "int",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "athletics": {
           "ability": "str",
           "proficient": false,
           "expertise": false,
-          "value": "-1"
+          "value": "0"
         },
         "deception": {
           "ability": "cha",
@@ -2666,7 +2666,7 @@
           "ability": "int",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "insight": {
           "ability": "wis",
@@ -2678,25 +2678,25 @@
           "ability": "cha",
           "proficient": false,
           "expertise": false,
-          "value": "+4"
+          "value": "+5"
         },
         "investigation": {
           "ability": "int",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "medicine": {
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+1"
+          "value": "+2"
         },
         "nature": {
           "ability": "int",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "perception": {
           "ability": "wis",
@@ -2707,26 +2707,26 @@
         "performance": {
           "ability": "cha",
           "proficient": true,
-          "expertise": false,
-          "value": "+6"
+          "expertise": true,
+          "value": "+8"
         },
         "persuasion": {
           "ability": "cha",
           "proficient": true,
-          "expertise": false,
-          "value": "+6"
+          "expertise": true,
+          "value": "+8"
         },
         "religion": {
           "ability": "int",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "sleight_of_hand": {
           "ability": "dex",
           "proficient": false,
           "expertise": false,
-          "value": "+4"
+          "value": "+5"
         },
         "stealth": {
           "ability": "dex",
@@ -2738,7 +2738,7 @@
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+1"
+          "value": "+2"
         }
       },
       "attacks": [
@@ -2812,7 +2812,11 @@
             "level": 1
           },
           {
-            "name": "Comprehend Languages",
+            "name": "Silvery Barbs",
+            "level": 1
+          },
+          {
+            "name": "Detect Magic",
             "level": 1
           }
         ]
@@ -2846,7 +2850,9 @@
           "name": "Origin Feat: Musician",
           "source": "Feat",
           "description": "Origin feat: Musician."
-        }
+        },
+        "Jack of All Trades",
+        "Expertise: Persuasion, Performance"
       ],
       "proficiencies": {
         "armor": [
@@ -2878,9 +2884,9 @@
       "equipment": {
         "currency": {
           "pp": 0,
-          "gp": 42,
+          "gp": 40,
           "ep": 0,
-          "sp": 0,
+          "sp": 20,
           "cp": 0
         },
         "items": [
