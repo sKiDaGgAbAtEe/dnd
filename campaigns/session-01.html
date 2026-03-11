@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 01 — The Walls of Greyveil · The Chronicle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:        #6b3a1f;
+  --primary-light:  #8b4a28;
+  --primary-dim:    #9e6a45;
+  --accent:         #7a1a1a;
+  --accent-light:   #9b2c2c;
+  --parchment:      #f2e8d5;
+  --parchment-mid:  #ede0c4;
+  --parchment-dark: #e4d4b0;
+  --ink:            #2c1a0e;
+  --ink-mid:        #3d2510;
+  --border:         #c4a882;
+  --border-light:   #d4bc96;
+  --shadow:         rgba(44,26,14,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'Cinzel',serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 10%,rgba(180,140,80,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(160,120,60,0.14) 0%,transparent 45%),
+    radial-gradient(ellipse at 60% 40%,rgba(200,170,110,0.08) 0%,transparent 35%),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(107,58,31,0.025) 80px,rgba(107,58,31,0.025) 81px),
+    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(107,58,31,0.015) 80px,rgba(107,58,31,0.015) 81px);
+  background-attachment:fixed;
+}
+
+/* ── BACK NAV ── */
+.back-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:linear-gradient(to bottom,rgba(242,232,213,0.97),rgba(242,232,213,0));
+  padding:16px 40px;
+  display:flex;align-items:center;gap:24px;
+}
+.back-link{
+  color:var(--primary-dim);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.back-link:hover{color:var(--primary);}
+.back-link::before{content:'←';font-size:14px;}
+.nav-div{width:1px;height:16px;background:var(--border);}
+.nav-crumb{color:var(--primary-dim);font-size:10px;letter-spacing:3px;text-transform:uppercase;}
+.nav-id{margin-left:auto;font-size:9px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;text-align:center;
+  padding:130px 20px 70px;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:900px;height:550px;
+  background:radial-gradient(ellipse,rgba(180,130,70,0.14) 0%,transparent 65%);
+  pointer-events:none;
+}
+.session-eyebrow{
+  font-size:9px;letter-spacing:8px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:18px;
+  animation:fadeIn 1.5s ease;
+}
+.chapter-subtitle{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:clamp(13px,2vw,17px);color:var(--primary-light);
+  letter-spacing:5px;text-transform:uppercase;
+  margin-bottom:14px;animation:fadeIn 1.8s ease;
+}
+.chapter-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(28px,5.5vw,68px);font-weight:900;line-height:1.05;
+  color:var(--ink);
+  text-shadow:1px 2px 0px rgba(180,130,60,0.3),0 0 40px rgba(107,58,31,0.1);
+  animation:fadeIn 1.5s ease;margin-bottom:28px;
+}
+.hero-meta{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;animation:fadeIn 2.5s ease;
+}
+.hero-meta-item{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13px;color:var(--primary-dim);letter-spacing:3px;
+  display:flex;align-items:center;gap:8px;
+}
+.dot{color:var(--border);font-size:6px;}
+
+/* ── DIVIDERS ── */
+.divider{
+  display:flex;align-items:center;gap:16px;
+  margin:44px auto;max-width:760px;padding:0 30px;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.divider-glyph{color:var(--primary-dim);font-size:18px;flex-shrink:0;}
+
+.scene-break{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin:48px auto;max-width:400px;
+  color:var(--border);font-size:11px;letter-spacing:6px;
+}
+.scene-break::before,.scene-break::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border));
+}
+.scene-break::before{background:linear-gradient(to left,transparent,var(--border));}
+
+/* ── CONTENT WRAP ── */
+.content-wrap{max-width:820px;margin:0 auto;padding:0 30px 80px;}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--border);margin-bottom:44px;
+}
+@media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr);}}
+.stat-cell{
+  padding:20px 16px;text-align:center;
+  border-right:1px solid var(--border-light);
+  background:linear-gradient(to bottom,rgba(255,252,245,0.7),rgba(237,224,196,0.4));
+}
+.stat-cell:last-child{border-right:none;}
+.stat-n{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:24px;color:var(--primary);line-height:1;margin-bottom:8px;
+}
+.stat-l{font-size:8px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+/* ── COLD OPEN ── */
+.cold-open{
+  max-width:760px;margin:0 auto 20px;
+  padding:40px;position:relative;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(180,140,80,0.08),rgba(242,232,213,0.3));
+  box-shadow:inset 0 0 30px rgba(180,140,80,0.06),0 2px 12px var(--shadow);
+}
+.cold-open::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.cold-open-label{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.cold-open-label::after{content:'';flex:1;height:1px;background:var(--border-light);}
+.cold-open p{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:17px;line-height:1.9;color:var(--ink-mid,#3d2510);
+}
+
+/* ── SCENE HEADERS ── */
+.scene-title{
+  font-family:'Cinzel Decorative',serif;font-weight:700;
+  font-size:12px;letter-spacing:5px;color:var(--primary);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.scene-title::after{content:'';flex:1;height:1px;background:var(--border-light);}
+
+/* ── PROSE ── */
+.prose p{
+  font-family:'IM Fell English',serif;
+  font-size:16.5px;line-height:1.95;
+  color:var(--ink);margin-bottom:22px;
+}
+.prose p:last-child{margin-bottom:0;}
+.prose .em{color:var(--primary);font-style:italic;}
+
+/* ── DIALOGUE ── */
+.dialogue{border-left:2px solid var(--border);margin:28px 0;padding:0 0 0 24px;}
+.dialogue .speaker{
+  font-size:9px;letter-spacing:5px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.dialogue .line{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:16px;line-height:1.7;color:var(--ink-mid,#3d2510);
+}
+
+/* ── COMBAT BLOCK ── */
+.combat-block{
+  background:linear-gradient(135deg,rgba(122,26,26,0.06),rgba(237,224,196,0.5));
+  border:1px solid rgba(122,26,26,0.25);
+  padding:32px;margin:36px 0;position:relative;
+  box-shadow:0 2px 10px var(--shadow);
+}
+.combat-block::before{
+  content:'⚔';position:absolute;top:-12px;left:50%;
+  transform:translateX(-50%);
+  background:var(--parchment-mid);padding:0 12px;
+  color:var(--accent-light);font-size:18px;
+}
+.combat-block p{
+  font-family:'IM Fell English',serif;
+  font-size:16px;line-height:1.9;
+  color:var(--ink);margin-bottom:16px;
+}
+.combat-block p:last-child{margin-bottom:0;}
+
+/* ── INFO PANELS ── */
+.info-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin:36px 0;
+  border:1px solid var(--border);
+}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr;}}
+.info-cell{background:var(--parchment-mid);padding:20px;}
+.info-cell-label{
+  font-size:9px;letter-spacing:5px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:10px;display:block;
+}
+.info-cell ul{list-style:none;}
+.info-cell ul li{
+  font-family:'IM Fell English',serif;font-size:14px;
+  color:var(--ink-mid,#3d2510);padding:4px 0;
+  border-bottom:1px solid var(--border-light);
+  display:flex;align-items:baseline;gap:8px;
+}
+.info-cell ul li::before{content:'◆';color:var(--border);font-size:7px;}
+.info-cell ul li:last-child{border-bottom:none;}
+
+/* ── CAST SECTION ── */
+.cast-section{
+  background:var(--parchment-mid);border:1px solid var(--border);
+  padding:32px;margin:40px 0;
+  box-shadow:0 2px 12px var(--shadow);
+}
+.cast-title{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+}
+.cast-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.cast-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:14px;
+}
+.cast-card{
+  border:1px solid var(--border-light);padding:16px;text-align:center;
+  background:linear-gradient(to bottom,rgba(255,250,240,0.6),rgba(237,224,196,0.3));
+  text-decoration:none;display:block;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.cast-card:hover{border-color:var(--border);box-shadow:0 2px 8px var(--shadow);}
+.cast-name{
+  font-family:'Cinzel Decorative',serif;font-size:10px;font-weight:700;
+  color:var(--primary);letter-spacing:2px;margin-bottom:4px;
+}
+.cast-class{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:12px;color:var(--ink-mid,#3d2510);margin-bottom:4px;
+}
+.cast-player{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;margin-top:6px;
+}
+
+/* ── LOOT / DELTA ── */
+.delta-section{border:1px solid var(--border);margin:40px 0;box-shadow:0 2px 12px var(--shadow);}
+.delta-header{
+  background:linear-gradient(90deg,rgba(107,58,31,0.1),transparent);
+  padding:14px 24px;
+  font-size:9px;letter-spacing:6px;color:var(--primary);
+  text-transform:uppercase;border-bottom:1px solid var(--border);
+}
+.delta-body{padding:24px;background:var(--parchment-mid);}
+.delta-row{display:flex;gap:16px;margin-bottom:14px;align-items:baseline;}
+.delta-row:last-child{margin-bottom:0;}
+.delta-tag{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;white-space:nowrap;padding-top:2px;min-width:70px;
+}
+.delta-val{
+  font-family:'IM Fell English',serif;font-size:14px;
+  color:var(--ink-mid,#3d2510);line-height:1.6;
+}
+.delta-val .gold{color:var(--primary);font-style:italic;font-weight:bold;}
+
+/* ── CHAPTER NAV ── */
+.chapter-nav {
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:820px;margin:0 auto;padding:36px 30px 60px;
+  border-top:1px solid var(--border);
+}
+.chapter-nav a{
+  color:var(--primary-dim);text-decoration:none;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.chapter-nav a:hover{color:var(--primary);}
+.chapter-nav a.prev::before{content:'←';font-size:14px;}
+.chapter-nav a.next::after{content:'→';font-size:14px;}
+.chapter-nav .ghost{visibility:hidden;pointer-events:none;}
+
+/* ── DARK MODE VARS ── */
+body.dark {
+  --primary:        #c8845a;
+  --primary-light:  #d99a72;
+  --primary-dim:    #b07050;
+  --accent:         #c44444;
+  --accent-light:   #d45555;
+  --parchment:      #1a1208;
+  --parchment-mid:  #221808;
+  --parchment-dark: #2c2010;
+  --ink:            #e8d8b8;
+  --ink-mid:        #d4c090;
+  --border:         #5a3e22;
+  --border-light:   #4a3018;
+  --shadow:         rgba(0,0,0,0.45);
+}
+body.dark {
+  background-image:
+    radial-gradient(ellipse at 20% 10%,rgba(80,50,20,0.35) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(60,35,10,0.3) 0%,transparent 45%),
+    radial-gradient(ellipse at 60% 40%,rgba(100,70,30,0.12) 0%,transparent 35%),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(200,130,60,0.04) 80px,rgba(200,130,60,0.04) 81px),
+    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(200,130,60,0.025) 80px,rgba(200,130,60,0.025) 81px);
+}
+body.dark .back-nav {
+  background: linear-gradient(to bottom,rgba(26,18,8,0.97),rgba(26,18,8,0));
+}
+body.dark .stat-cell {
+  background: linear-gradient(to bottom,rgba(30,20,8,0.7),rgba(34,24,8,0.4));
+}
+body.dark .cold-open {
+  background: linear-gradient(135deg,rgba(80,50,20,0.25),rgba(26,18,8,0.3));
+}
+body.dark .cast-card {
+  background: linear-gradient(to bottom,rgba(30,20,8,0.6),rgba(34,24,8,0.3));
+}
+body.dark .delta-body { background: var(--parchment-mid); }
+body.dark .info-cell { background: var(--parchment-mid); }
+body.dark .cast-section { background: var(--parchment-mid); }
+body.dark .combat-block {
+  background: linear-gradient(135deg,rgba(122,26,26,0.18),rgba(34,24,8,0.5));
+}
+body.dark .combat-block::before {
+  background: var(--parchment-mid);
+}
+body.dark .chapter-nav { border-top-color: var(--border); }
+
+/* ── DARK TOGGLE BUTTON ── */
+.dark-toggle {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  z-index: 200;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  color: var(--primary-dim);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dark-toggle:hover {
+  background: var(--primary);
+  color: var(--parchment);
+  border-color: var(--primary);
+}
+.dark-toggle .toggle-icon { font-size: 13px; line-height: 1; }
+
+</style>
+</head>
+<body>
+<button class="dark-toggle" id="dark-toggle-btn" aria-label="Toggle dark mode"><span class="toggle-icon">&#x25D1;</span><span class="toggle-label">Dark</span></button>
+
+
+<!-- ── BACK NAV ── -->
+<nav class="back-nav">
+  <a class="back-link" href="../index.html">Chronicle</a>
+  <span class="nav-div"></span>
+  <span class="nav-crumb">Sessions</span>
+  <span class="nav-id">Session 01</span>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="session-eyebrow">The Chronicle · Session 01</div>
+  <div class="chapter-subtitle">Chapter One</div>
+  <h1 class="chapter-title">The Walls of Greyveil</h1>
+  <div class="hero-meta">
+    <span class="hero-meta-item">— First Session —</span>
+    <span class="hero-meta-item"><span class="dot">◆</span> 3 hrs 10 min</span>
+    <span class="hero-meta-item"><span class="dot">◆</span> 6 Adventurers</span>
+  </div>
+</header>
+
+<!-- ── CONTENT ── -->
+<main class="content-wrap">
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-n">2,733</div><div class="stat-l">Lines</div></div>
+    <div class="stat-cell"><div class="stat-n">25k</div><div class="stat-l">Words</div></div>
+    <div class="stat-cell"><div class="stat-n">6</div><div class="stat-l">Speakers</div></div>
+    <div class="stat-cell"><div class="stat-n">7</div><div class="stat-l">Acts</div></div>
+    <div class="stat-cell"><div class="stat-n">10g</div><div class="stat-l">Earned</div></div>
+  </div>
+
+  <!-- Cold Open -->
+  <div class="cold-open">
+    <div class="cold-open-label">Cold Open</div>
+    <p>A small farming village. Walls unnaturally free of moss. A town crier calling for adventurers. Five strangers — a fairy sorcerer newly graduated from Witherbloom, a shadar-kai rogue with very particular interests, a dragonborn cleric who may or may not be a god, a leonin barbarian seeking glory, and a gnome with an obsession for masonry — meet for the first time in the worst possible way. Someone tries to pick up the gnome thinking he's scrap metal.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">✦</span></div>
+
+  <!-- ══ CHAPTER NARRATIVE ══ -->
+
+  <!-- Scene I -->
+  <div class="scene-title">I — Strangers in the Square</div>
+  <div class="prose">
+    <p>The village of <span class="em">Greyveil</span> was unremarkable by most measures — low stone buildings, a working fountain, crop rows tended by mechanical arms that moved with quiet industry at the town's edge. What drew the eye, if you looked closely, was the walls. No moss anywhere. Not a single green patch on stone that should, by every natural right, be furred with growth.</p>
+    <p>No one who lived there thought anything of it.</p>
+    <p>Into this village, on the same afternoon, came five people who had never spoken to one another. <span class="em">Izabella</span> — a Witherbloom-trained fairy sorcerer, freshly graduated, wings catching the light — followed the sound of a lute playing in the square. The music was curious to her; back at school everything was done through magical harmony. She introduced herself to the bard, asked for his lute, asked for his money, then settled for a tip: the town guard was hiring.</p>
+    <p><span class="em">Evo</span>, a towering dragonborn cleric, arrived with investment pitches on his tongue and a startup in his heart. He found the bard too, calculated his daily copper intake, and quietly began forming a different kind of plan. <span class="em">Sekhmet</span>, leonin and already tired of everyone, watched from a few paces back as the chaos unfolded — the way a predator watches prey it doesn't yet need. <span class="em">Malc Grann</span>, the gnome, produced a magnifying glass and began inspecting a stranger's wall from the outside window, causing the homeowner to freeze mid-tankard and slowly close the blinds.</p>
+    <p>And then there was <span class="em">Raven</span>.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Raven</div>
+    <div class="line">Shiny. Wow. Just like her character would.</div>
+  </div>
+
+  <div class="prose">
+    <p>Raven, shadar-kai rogue and creature of the Shadowfell, had spotted something glinting at the belt of the town crier and was already moving. She reached in, rolled the sleight of hand, and walked away with a small glowing rock that functioned as a lantern. Then she held it up and addressed it personally.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Raven</div>
+    <div class="line">You're so shiny.</div>
+  </div>
+
+  <div class="prose">
+    <p>The party was assembling whether it wanted to or not.</p>
+  </div>
+
+  <div class="scene-break">✦ ✦ ✦</div>
+
+  <!-- Scene II -->
+  <div class="scene-title">II — The Quest and the God of Walls</div>
+  <div class="prose">
+    <p>The town crier's offer was simple: goblin patrols had been raiding merchant caravans in and out of the village. Ten gold pieces total for whoever could clear them. The party's first question was whether that was ten each. It was not.</p>
+    <p>They spread out to gather information, which mostly meant knocking on doors and asking farmers about their walls. The farmers were uniformly poor and uniformly baffled. When Raven attempted to climb through one window for a better look around, Evo grabbed her mid-climb and began dragging her off while conducting a simultaneous pitch to the household about an early-stage investment opportunity called <span class="em">DuckDuckDragon</span>.</p>
+    <p>The real development came at the church. Inside, Evo placed Malc Grann on his shoulder and presented him to the head cleric with a level of performance that, by the dice, constituted genuine persuasion.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Evo</div>
+    <div class="line">This is the Lord of Walls. We need to kill your goblins post haste.</div>
+  </div>
+
+  <div class="prose">
+    <p>The cleric, facing a gnome held aloft by a six-foot-seven dragonborn, responded with the careful diplomacy of a man who cannot rule anything out. He produced three health potions and suggested they speak with his head cleric for goblin intelligence. Malc Grann, now fully committed to the bit, asked in return only to be told how the walls were kept so free of moss. It was, he said, enough of an offering.</p>
+    <p>While this negotiation unfolded, Raven told two junior clerics that there was a god in the other room and, when they charged past her to see, methodically searched the vestry. She found two wooden cups and some moldy bread.</p>
+    <p><span class="em">Izabella</span>, watching all of this while trying to remember she had Druidcraft available, made her character decision for the campaign: a fairy atheist who believes in gods generally but specifically not in this one. She would come to question this position before the session ended.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">✦</span></div>
+
+  <!-- Scene III -->
+  <div class="scene-title">III — The Road North</div>
+  <div class="prose">
+    <p>North of the village square, they found a pair of adventurers resting near the tree line — including a half-orc monk who took one look at the group and announced, to whoever was listening, that his companion needed to get them out of here. He classified the majority of the party as Fae. He was not wrong. He also confirmed the goblins were somewhere north, said the word with the weary contempt of someone who has killed a thousand of them, and dismissed himself from the scene entirely.</p>
+    <p>Evo began chugging north at pace. Malc Grann was still attached to his head.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Izabella</div>
+    <div class="line">This is fun, you guys. I'm so excited. I haven't had friends in such a long time.</div>
+  </div>
+
+  <div class="scene-break">✦ ✦ ✦</div>
+
+  <!-- Combat I -->
+  <div class="scene-title">IV — First Blood on the Road</div>
+  <div class="combat-block">
+    <p>On the road north, the sound of screaming. They came around a bend to find a goblin standing over two bodies, looting, back turned. Raven moved to flank it. She fumbled the knife. The goblin turned around.</p>
+    <p>Evo, without hesitation, threw Malc Grann.</p>
+    <p>Malc Grann, mid-flight, raised his shield and screamed <em>"BRICK AND STONE!"</em> directly into the goblin's face. The goblin died. Izabella reconsidered her atheism briefly before deciding the sample size was too small.</p>
+    <p>The party recovered a health potion from the body. Raven tried to claim it immediately. Malc Grann noted he now had three.</p>
+  </div>
+
+  <div class="prose">
+    <p>A caravan guard stumbled from the underbrush — wounded, barely standing. Izabella gave him the potion she'd been allocated before she'd technically received it, which confused everyone including the DM. He thanked them and pointed east: the goblins nested in a cave. Scouting parties were active.</p>
+    <p>Raven did not see the ambush coming.</p>
+  </div>
+
+  <!-- Combat II - Ambush -->
+  <div class="scene-title">V — The Ambush: Skeletons and the Lord's Taunt</div>
+  <div class="combat-block">
+    <p>The ambush party erupted from cover — a goblin commander flanked by two skeletons. Raven took the first hit and was stunned. Malc Grann, rolling initiative with the energy of a man who has been waiting for this, advanced, looked the goblin commander in the eye, and announced: <em>"Look at me! I killed your friend!"</em></p>
+    <p>He rolled a 19. The goblin redirected every creature in the encounter toward the gnome.</p>
+    <p>Raven snapped out of her stun. Izabella launched a Firebolt from distance and shattered a skeleton outright. Sekhmet drove the goblin commander into the earth. Malc Grann cracked a skeleton with a whip and watched the bones scatter.</p>
+    <p>The party survived. No deaths. The goblins left behind no gold — only health potions. They were growing a collection.</p>
+  </div>
+
+  <div class="prose">
+    <p>Izabella used the post-combat lull to craft two additional healing potions from herbs she spotted along the trail — a natural 20 Survival check producing something useful from nothing. Evo immediately attempted to confiscate them as offerings to his lord. Both of them rolled terribly on sleight of hand. Izabella kept her potions.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">✦</span></div>
+
+  <!-- Cave -->
+  <div class="scene-title">VI — Into the Cave</div>
+  <div class="prose">
+    <p>The cave entrance opened dark and narrow. Three members of the party had darkvision. Evo did not. He announced he would use Malc Grann as a lantern and ran directly into the first wall before the gnome could redirect him. Malc Grann, perched on the dragonborn's head, interpreted this as worship and guided him thereafter.</p>
+    <p>Two full combat encounters inside the cave — goblins in the tunnel system, Raven learning mid-fight that she could use her bonus action to hide and execute sneak attacks, Izabella discovering she liked Firebolt and that Ray of Frost was equally satisfying when it worked. The party moved through it with escalating confidence and one extended rules discussion about the radius of Thunderclap.</p>
+    <p>By the time they cleared the second chamber, they had earned it.</p>
+  </div>
+
+  <!-- Boss fight -->
+  <div class="scene-title">VII — The Hobgoblin</div>
+  <div class="combat-block">
+    <p>Deep in the cave: a Hobgoblin commander. Heavier armor. More health. A presence that changed the temperature of the room. Raven heard footsteps and reported back — approximately ten more goblins moving through the tunnels behind it.</p>
+    <p>The fight was close. Dice ran cold for several turns. Izabella rolled three consecutive ones before landing a Firebolt that connected with genuine force. Evo's Toll the Dead dropped the hobgoblin to bloodied. Sekhmet finished it — a clean, decisive hit that ended the combat and, with it, the goblin threat to Greyveil.</p>
+    <p>Sekhmet severed the hobgoblin's head and carried it out of the cave.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">✦</span></div>
+
+  <!-- Return -->
+  <div class="scene-title">VIII — Return to Greyveil</div>
+  <div class="prose">
+    <p>They walked back into town in the late afternoon light. Five people who had not known each other four hours ago. The town crier confirmed all goblins were cleared, gathered what the village had managed to scrape together, and sent them to the church to collect.</p>
+    <p>The cleric was there when they arrived, magnifying glass in hand, meticulously examining the walls. Malc Grann produced his own magnifying glass. They stood side by side for a moment, studying the stone in mutual appreciation, and a small understanding passed between them.</p>
+    <p>Four gold pieces each. A magnifying glass per party member. And the cleric's promise: when they returned, he would tell them how the walls were kept so clean.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Izabella</div>
+    <div class="line">Yay, everyone! Now it feels like we're a real team, you guys!</div>
+  </div>
+
+  <div class="prose">
+    <p>The session closed the way first sessions often do — not with glory but with the quiet recognition that something has begun. A party that stumbled through every door, pickpocketed the quest giver, threw their tank as a projectile, and still cleared the cave. The goblins are gone. The walls are clean. Nobody died.</p>
+    <p>Next time, they might even plan ahead.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">✦</span></div>
+
+  <!-- Cast -->
+  <div class="cast-section">
+    <div class="cast-title">Cast This Chapter</div>
+    <div class="cast-grid">
+      <a class="cast-card" href="../characters/izabella.html">
+        <div class="cast-name">Izabella</div>
+        <div class="cast-class">Fairy Sorcerer</div>
+        <div class="cast-player">Izabella</div>
+      </a>
+      <a class="cast-card" href="../characters/raven.html">
+        <div class="cast-name">Raven</div>
+        <div class="cast-class">Shadar-Kai Rogue</div>
+        <div class="cast-player">MissPenguRose</div>
+      </a>
+      <a class="cast-card" href="../characters/evo.html">
+        <div class="cast-name">Evo</div>
+        <div class="cast-class">Dragonborn Cleric</div>
+        <div class="cast-player">Nikkelz</div>
+      </a>
+      <a class="cast-card" href="../characters/sekhmet.html">
+        <div class="cast-name">Sekhmet</div>
+        <div class="cast-class">Leonin Barbarian</div>
+        <div class="cast-player">sKiDa</div>
+      </a>
+      <a class="cast-card" href="#">
+        <div class="cast-name">Malc Grann</div>
+        <div class="cast-class">Gnome Cleric / Fighter</div>
+        <div class="cast-player">Sir Moosen</div>
+      </a>
+      <div class="cast-card" style="background:transparent;border-style:dashed;">
+        <div class="cast-name" style="color:var(--border)">Illy</div>
+        <div class="cast-class">Dungeon Master</div>
+        <div class="cast-player">DM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loot & Changes -->
+  <div class="delta-section">
+    <div class="delta-header">Loot &amp; Consequences</div>
+    <div class="delta-body">
+      <div class="delta-row">
+        <span class="delta-tag">Gold</span>
+        <span class="delta-val"><span class="gold">4 gp</span> each — village reward for clearing the goblin threat</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-tag">Items</span>
+        <span class="delta-val">Magnifying glass (party-wide) · 1 glowing lantern stone (Raven, pickpocketed) · 4 health potions recovered in total</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-tag">Crafted</span>
+        <span class="delta-val">Izabella brewed 2 health potions from foraged herbs (Survival nat-20)</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-tag">Intel</span>
+        <span class="delta-val">The walls of Greyveil are unnaturally moss-free. The head cleric knows why. He will tell the party when they return.</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-tag">Status</span>
+        <span class="delta-val">Party formed. No deaths. Goblin nest cleared. Milestone leveling — if the campaign continues, next session begins at Level 2.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Chapter Nav -->
+<nav class="chapter-nav">
+  <a class="prev ghost" href="#">Previous Chapter</a>
+  <a href="../index.html">◆ Table of Contents ◆</a>
+  <a class="next ghost" href="#">Next Chapter</a>
+</nav>
+<script>
+(function(){
+  var btn = document.getElementById('dark-toggle-btn');
+  var body = document.body;
+  try {
+    if(localStorage.getItem('chronicle-dark') === '1') {
+      body.classList.add('dark');
+      btn.querySelector('.toggle-label').textContent = 'Light';
+      btn.querySelector('.toggle-icon').textContent = '\u2600';
+    }
+  } catch(e){}
+  btn.addEventListener('click', function(){
+    var isDark = body.classList.toggle('dark');
+    try { localStorage.setItem('chronicle-dark', isDark ? '1' : '0'); } catch(e){}
+    btn.querySelector('.toggle-label').textContent = isDark ? 'Light' : 'Dark';
+    btn.querySelector('.toggle-icon').textContent = isDark ? '\u2600' : '\u25d1';
+  });
+})();
+</script>
+</body>
+</html>
