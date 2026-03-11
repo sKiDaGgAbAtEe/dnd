@@ -2494,7 +2494,58 @@
         "darkvision_ft": 60
       },
       "class_resources": {},
-      "features": [],
+      "features": [
+        {
+          "name": "Natural Explorer",
+          "source": "Ranger 1",
+          "description": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in. While traveling for an hour or more in your favored terrain, you gain benefits: difficult terrain doesn't slow travel; can't become lost except by magical means; remain alert while traveling; if traveling alone you can move stealthily at normal pace; forage twice as much food; while tracking you learn exact number, sizes, and how long ago they passed."
+        },
+        {
+          "name": "Favored Enemy",
+          "source": "Ranger 1",
+          "description": "Choose a favored enemy type (aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, undead) or two humanoid races. You have advantage on Wisdom (Survival) checks to track your favored enemies and on Intelligence checks to recall information about them. You also learn one language spoken by your favored enemies (if they speak one)."
+        },
+        {
+          "name": "Fighting Style",
+          "source": "Ranger 2",
+          "description": "At 2nd level, you adopt a fighting style: Archery, Defense, Dueling, or Two-Weapon Fighting."
+        },
+        {
+          "name": "Spellcasting",
+          "source": "Ranger 2",
+          "description": "You can cast ranger spells; your spellcasting ability is Wisdom."
+        },
+        {
+          "name": "Darkvision",
+          "source": "Elf",
+          "description": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light. You can\u2019t discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Fey Ancestry",
+          "source": "Elf",
+          "description": "You have advantage on saving throws against being charmed, and magic can\u2019t put you to sleep."
+        },
+        {
+          "name": "Trance",
+          "source": "Elf",
+          "description": "Elves do not need to sleep. Instead, they meditate deeply for 4 hours a day and gain the same benefit a human does from 8 hours of sleep."
+        },
+        {
+          "name": "Elf Weapon Training",
+          "source": "Elf",
+          "description": "You have proficiency with the longsword, shortsword, shortbow, and longbow."
+        },
+        {
+          "name": "Fey Step",
+          "source": "Eladrin Variant",
+          "description": "You can cast misty step once using this trait. You regain the ability to do so when you finish a short or long rest."
+        },
+        {
+          "name": "Researcher",
+          "source": "Sage",
+          "description": "If you don't know a piece of lore, you often know where and from whom you can obtain it."
+        }
+      ],
       "backstory": ""
     },
     "slot7": {
