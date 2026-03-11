@@ -1210,101 +1210,152 @@
         "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
       }
     },
-    "slot6": {
-      "identity": {
-        "name": "",
-        "race": "",
-        "class": "",
-        "subclass": "",
-        "level": 1,
-        "background": "",
-        "alignment": "",
-        "experience": 0,
-        "portrait_url": "",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
-      },
-      "meta": {
-        "player": "",
-        "last_session_updated": "Session 00",
-        "session_changes": []
-      },
-      "physical": {
-        "gender": "",
-        "age": null,
-        "size": "",
-        "height": "",
-        "weight": null,
-        "eyes": "",
-        "skin": "",
-        "hair": "",
-        "faith": "",
-        "distinguishing_features": ""
-      },
-      "senses": {
-        "darkvision_ft": 0
-      },
-      "abilities": {
-        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
-      },
-      "saving_throws": {
-        "str": { "proficient": false, "value": "+0" },
-        "dex": { "proficient": false, "value": "+0" },
-        "con": { "proficient": false, "value": "+0" },
-        "int": { "proficient": false, "value": "+0" },
-        "wis": { "proficient": false, "value": "+0" },
-        "cha": { "proficient": false, "value": "+0" }
-      },
-      "combat": {
-        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
-        "ac": 10, "initiative": "+0", "speed": 30,
-        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
-        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
-      },
-      "skills": {
-        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
-        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
-        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
-        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
-        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
-        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
-        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
-        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
-        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
-        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
-        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
-      },
-      "attacks": [],
-      "spellcasting": {
-        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
-        "cantrips": [],
-        "spells_prepared": [],
-        "spell_slots": {
-          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
-          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
-          "level_5": { "max": 0, "current": 0 }
-        }
-      },
-      "class_resources": {},
-      "features": [],
-      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
-      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
-      "equipment": {
-        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
-        "carried": []
-      },
-      "backstory": { "summary": "", "verbatim": "" }
+        "slot6": {
+  "identity": {
+    "name": "Accel Signal",
+    "race": "Eladrin Variant",
+    "class": "Ranger",
+    "subclass": "",
+    "level": 2,
+    "background": "Sage",
+    "alignment": "Neutral Good",
+    "experience": 300
+  },
+
+  "physical": {
+    "age": 28,
+    "height": "5'11\"",
+    "weight": 190,
+    "eyes": "Icy blue, with white…",
+    "skin": "Pale, frosty skin",
+    "hair": "Silvery white wi…"
+  },
+
+  "abilities": {
+    "str": 12,
+    "dex": 19,
+    "con": 15,
+    "int": 10,
+    "wis": 16,
+    "cha": 13
+  },
+
+  "combat": {
+    "hp_max": 24,
+    "hp_current": 24,
+    "hp_temp": 0,
+    "ac": 15,
+    "initiative": "+4",
+    "speed": 30,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "2d10",
+    "passive_perception": 15,
+    "passive_investigation": 10,
+    "passive_insight": 13
+  },
+
+  "saving_throws": {
+    "str": { "proficient": true,  "value": "+3" },
+    "dex": { "proficient": true,  "value": "+6" },
+    "con": { "proficient": false, "value": "+2" },
+    "int": { "proficient": false, "value": "+0" },
+    "wis": { "proficient": false, "value": "+3" },
+    "cha": { "proficient": false, "value": "+1" }
+  },
+
+  "skills": {
+    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+4" },
+    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "arcana":          { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+3" },
+    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "nature":          { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
+    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+4" },
+    "stealth":         { "ability": "dex", "proficient": true,  "expertise": false, "value": "+6" },
+    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" }
+  },
+
+  "attacks": [
+    {
+      "name": "Longbow",
+      "type": "Martial Ranged",
+      "attack": "+8",
+      "damage": "1d8+4",
+      "damage_type": "Piercing"
     },
+    {
+      "name": "Shortsword",
+      "type": "Martial Melee",
+      "attack": "+6",
+      "damage": "1d6+4",
+      "damage_type": "Piercing"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+3",
+      "damage": "1d1+1",
+      "damage_type": "Bludgeoning"
+    }
+  ],
+
+  "spellcasting": {
+    "enabled": true,
+    "ability": "wis",
+    "spell_save_dc": 13,
+    "spell_attack_bonus": "+5",
+    "spell_slots": {
+      "level_1": { "max": 2, "current": 2 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    },
+    "spells_known": [
+      { "name": "Hunter's Mark", "level": 1 },
+      { "name": "Jump", "level": 1 },
+      { "name": "Misty Step", "level": 2 }
+    ]
+  },
+
+  "proficiencies": {
+    "weapons": ["All simple weapons", "All martial weapons", "Longbow", "Longsword", "Shortbow", "Shortsword"],
+    "armor": ["Light Armor", "Medium Armor", "Shields"],
+    "tools": ["None"],
+    "languages": ["Abyssal", "Celestial", "Common", "Elvish", "Sylvan"]
+  },
+
+  "equipment": {
+    "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
+    "items": [
+      "Arrows",
+      "Common Clothes",
+      "Dungeoneer's Pack",
+      "Ink Bottle",
+      "Quiver",
+      "Small Knife",
+      "Letter from a dead colleague",
+      "Quill"
+    ],
+    "armor": ["Leather (AC 15)"]
+  },
+
+  "traits": {
+    "personality": "I've read every book in the world's greatest libraries and in almost every plane in existence. There's nothing I like more than a good mystery.",
+    "ideal": "Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
+    "bond": "I've been searching my whole life for the answer to a certain question. Where is my brother, the crown prince. Hiroe Signal of kamigawa neon dynasty",
+    "flaw": "Once I am fixated on learning or reading, I tend to seclude myself in my own world and ignore my surroundings."
+  }
+},
     "slot7": {
       "identity": {
         "name": "",
