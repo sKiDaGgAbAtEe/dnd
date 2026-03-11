@@ -1,2250 +1,1550 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Party — Campaign Characters</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #c8972a;
-    --gold-light: #f0c050;
-    --gold-bright: #ffd700;
-    --gold-dim: #a07828;
-    --gold-glow: rgba(200,151,42,0.25);
-    --dark: #060503;
-    --dark-2: #0d0a06;
-    --dark-3: #141008;
-    --border: #2a2010;
-    --text: #e8dfc0;
-    --text-dim: #c4ae78;
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; }
-
-  body {
-    background: #0c0b12;
-    color: var(--text);
-    font-family: 'Cinzel', serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* ── PARTICLE CANVAS ── */
-  #particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── BACKGROUND LAYERS ── */
-  .bg-radial {
-    position: fixed; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(160,120,255,0.18) 0%, rgba(100,80,200,0.06) 45%, transparent 70%),
-      radial-gradient(ellipse 55% 45% at 8% 75%, rgba(80,160,200,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 45% at 92% 75%, rgba(140,80,220,0.10) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 40% at 50% 105%, rgba(80,120,180,0.10) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .bg-grid { display: none; }
-
-  /* ── BACK TO HUB BUTTON ── */
-  .back-btn {
-    position: fixed;
-    top: 22px;
-    left: 24px;
-    z-index: 200;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 9px 18px 9px 14px;
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(240, 192, 80, 0.80);
-    text-decoration: none;
-    border: 1px solid rgba(200, 151, 42, 0.30);
-    background: rgba(6, 5, 3, 0.65);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-  }
-  .back-btn:hover {
-    color: #ffd77a;
-    border-color: rgba(255, 215, 122, 0.65);
-    box-shadow: 0 0 18px rgba(255, 200, 80, 0.22), 0 4px 20px rgba(0,0,0,0.40);
-    transform: translateX(-2px);
-  }
-  .back-btn svg {
-    flex-shrink: 0;
-    transition: transform 220ms ease;
-  }
-  .back-btn:hover svg { transform: translateX(-3px); }
-
-  /* vignette */
-  .bg-vignette {
-    position: fixed; inset: 0; z-index: 0;
-    background: radial-gradient(ellipse 85% 75% at 50% 40%, transparent 25%, rgba(0,0,0,0.35) 100%);
-    pointer-events: none;
-  }
-
-  /* ── MAIN CONTENT ── */
-  .content {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* ── HERO HEADER ── */
-  .hero {
-    width: 100%;
-    text-align: center;
-    padding: 90px 20px 50px;
-    position: relative;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-
-  .campaign-label {
-    font-size: 10px;
-    letter-spacing: 10px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    animation: fadeUp 1s ease both;
-  }
-
-  .campaign-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(42px, 7vw, 88px);
-    font-weight: 900;
-    line-height: 0.9;
-    background: linear-gradient(180deg,
-      #fff8e0 0%,
-      var(--gold-bright) 25%,
-      var(--gold) 60%,
-      var(--gold-dim) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 60px rgba(200,151,42,0.4));
-    animation: fadeUp 1s ease 0.15s both, titleGlow 6s ease-in-out infinite;
-    margin-bottom: 16px;
-  }
-
-  @keyframes titleGlow {
-    0%, 100% { filter: drop-shadow(0 0 40px rgba(200,151,42,0.3)); }
-    50% { filter: drop-shadow(0 0 80px rgba(255,215,0,0.6)); }
-  }
-
-  .campaign-sub {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: 16px;
-    color: var(--text-dim);
-    letter-spacing: 3px;
-    animation: fadeUp 1s ease 0.3s both;
-  }
-
-  /* ── DIVIDER ORNAMENT ── */
-  .ornament {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin: 40px auto;
-    width: 400px;
-    animation: fadeUp 1s ease 0.4s both;
-  }
-  .orn-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dim));
-  }
-  .orn-line.r {
-    background: linear-gradient(90deg, var(--gold-dim), transparent);
-  }
-  .orn-diamond {
-    width: 8px; height: 8px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    box-shadow: 0 0 12px var(--gold);
-  }
-  .orn-diamond.sm {
-    width: 4px; height: 4px;
-    background: var(--gold-dim);
-    box-shadow: none;
-  }
-
-  /* ── CHARACTER COUNT ── */
-  .party-count {
-    font-size: 9px;
-    letter-spacing: 6px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 50px;
-    animation: fadeUp 1s ease 0.5s both;
-  }
-
-  /* ── CHARACTER GRID ── */
-  .char-grid {
-    max-width: 1400px;
-    width: 100%;
-    padding: 0 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 80px;
-  }
-
-  .char-card {
-    flex: 0 0 calc(33.333% - 20px);
-    max-width: 420px;
-    min-width: 280px;
-  }
-
-  @media (max-width: 1100px) {
-    .char-card { flex: 0 0 calc(50% - 15px); }
-  }
-
-  @media (max-width: 700px) {
-    .char-card { flex: 0 0 100%; max-width: 420px; }
-  }
-
-  /* ── CHARACTER CARD ── */
-  .char-card {
-    background: linear-gradient(135deg,
-      rgba(13,10,6,0.9) 0%,
-      rgba(20,16,8,0.95) 100%
-    );
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.19,1,0.22,1);
-    cursor: pointer;
-  }
-
-  .char-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(200,151,42,0.25);
-    border-color: var(--gold-dim);
-  }
-
-  /* inner glow on hover */
-  .char-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at top, rgba(200,151,42,0.05) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .char-card:hover::before { opacity: 1; }
-
-  /* corner filigree inset border */
-  .char-card::after {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    border: 1px solid transparent;
-    border-image: linear-gradient(135deg, rgba(200,151,42,0.2), transparent 35%, transparent 65%, rgba(200,151,42,0.2)) 1;
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  .char-card:hover::after { opacity: 1; }
-
-  /* ── SEKHMET THEME (Gold) ── */
-  .char-card.theme-sekhmet {
-    background: linear-gradient(135deg, rgba(13,10,6,0.9) 0%, rgba(20,14,6,0.95) 100%);
-    border-color: rgba(200,151,42,0.3);
-  }
-  .char-card.theme-sekhmet:hover {
-    box-shadow: 0 20px 60px rgba(200,151,42,0.35), 0 0 80px -20px rgba(200,151,42,0.15);
-    border-color: var(--gold);
-  }
-  .char-card.theme-sekhmet::before {
-    background: radial-gradient(circle at top, rgba(200,151,42,0.08) 0%, transparent 70%);
-  }
-  .char-card.theme-sekhmet .level-badge,
-  .char-card.theme-sekhmet .class-badge {
-    border-color: var(--gold);
-    background: rgba(13,10,6,0.9);
-  }
-  .char-card.theme-sekhmet .level-num { color: var(--gold-bright); }
-  .char-card.theme-sekhmet .level-lbl { color: var(--gold-dim); }
-  .char-card.theme-sekhmet .class-badge { color: var(--gold-bright); }
-  .char-card.theme-sekhmet .char-name {
-    color: var(--gold-bright);
-    text-shadow: 0 0 20px rgba(200,151,42,0.5);
-  }
-  .char-card.theme-sekhmet .stat-cell:hover {
-    background: rgba(200,151,42,0.12);
-    border-color: var(--gold);
-  }
-  .char-card.theme-sekhmet .btn-primary {
-    background: rgba(200,151,42,0.15);
-    border-color: var(--gold);
-  }
-  .char-card.theme-sekhmet .btn-primary:hover {
-    background: var(--gold);
-    color: var(--dark);
-    box-shadow: 0 4px 24px rgba(200,151,42,0.5);
-  }
-
-  /* ── RAVEN THEME (Purple/Silver) ── */
-  .char-card.theme-raven {
-    background: linear-gradient(135deg, rgba(8,8,14,0.9) 0%, rgba(14,12,20,0.95) 100%);
-    border-color: rgba(168,170,184,0.25);
-  }
-  .char-card.theme-raven:hover {
-    box-shadow: 0 20px 60px rgba(176,112,232,0.3), 0 0 80px -20px rgba(120,80,200,0.15);
-    border-color: #8060b0;
-  }
-  .char-card.theme-raven::before {
-    background: radial-gradient(circle at top, rgba(88,40,160,0.08) 0%, transparent 70%);
-  }
-  .char-card.theme-raven .level-badge,
-  .char-card.theme-raven .class-badge {
-    border-color: #8060b0;
-    background: rgba(8,8,14,0.9);
-  }
-  .char-card.theme-raven .level-num { color: #b070e8; }
-  .char-card.theme-raven .level-lbl { color: #6050a0; }
-  .char-card.theme-raven .class-badge { color: #d0d4e8; }
-  .char-card.theme-raven .char-name {
-    color: #d0d4e8;
-    text-shadow: 0 0 20px rgba(176,112,232,0.4);
-  }
-  .char-card.theme-raven .stat-val { color: #b070e8; }
-  .char-card.theme-raven .stat-cell:hover {
-    background: rgba(88,40,160,0.12);
-    border-color: #8060b0;
-  }
-  .char-card.theme-raven .qi-tag {
-    background: rgba(88,40,160,0.08);
-    border-color: rgba(88,40,160,0.25);
-  }
-  .char-card.theme-raven .btn-primary {
-    background: rgba(88,40,160,0.15);
-    border-color: #8060b0;
-    color: #d0d4e8;
-  }
-  .char-card.theme-raven .btn-primary:hover {
-    background: #8060b0;
-    color: #fff;
-    box-shadow: 0 4px 24px rgba(176,112,232,0.5);
-  }
-  .char-card.theme-raven .btn-secondary {
-    border-color: rgba(88,40,160,0.25);
-    color: #8080a0;
-  }
-  .char-card.theme-raven .btn-secondary:hover {
-    border-color: #8060b0;
-    background: rgba(88,40,160,0.08);
-    color: #d0d4e8;
-  }
-
-  /* ── ASTRICA THEME (Green/Nature) ── */
-  .char-card.theme-astrica {
-    background: linear-gradient(135deg, rgba(6,10,8,0.9) 0%, rgba(8,14,10,0.95) 100%);
-    border-color: rgba(42,122,74,0.3);
-  }
-  .char-card.theme-astrica:hover {
-    box-shadow: 0 20px 60px rgba(80,192,128,0.3), 0 0 80px -20px rgba(42,122,74,0.15);
-    border-color: #3a9a5a;
-  }
-  .char-card.theme-astrica::before {
-    background: radial-gradient(circle at top, rgba(42,122,74,0.08) 0%, transparent 70%);
-  }
-  .char-card.theme-astrica .level-badge,
-  .char-card.theme-astrica .class-badge {
-    border-color: #3a9a5a;
-    background: rgba(6,10,8,0.9);
-  }
-  .char-card.theme-astrica .level-num { color: #50c080; }
-  .char-card.theme-astrica .level-lbl { color: #2a6040; }
-  .char-card.theme-astrica .class-badge { color: #7fff9a; }
-  .char-card.theme-astrica .char-name {
-    color: #50c080;
-    text-shadow: 0 0 20px rgba(42,122,74,0.5);
-  }
-  .char-card.theme-astrica .stat-val { color: #50c080; }
-  .char-card.theme-astrica .stat-cell:hover {
-    background: rgba(42,122,74,0.12);
-    border-color: #3a9a5a;
-  }
-  .char-card.theme-astrica .qi-tag {
-    background: rgba(42,122,74,0.08);
-    border-color: rgba(42,122,74,0.25);
-  }
-  .char-card.theme-astrica .btn-primary {
-    background: rgba(42,122,74,0.15);
-    border-color: #3a9a5a;
-    color: #7fff9a;
-  }
-  .char-card.theme-astrica .btn-primary:hover {
-    background: #3a9a5a;
-    color: #fff;
-    box-shadow: 0 4px 24px rgba(80,192,128,0.5);
-  }
-  .char-card.theme-astrica .btn-secondary {
-    border-color: rgba(42,122,74,0.25);
-    color: #508060;
-  }
-  .char-card.theme-astrica .btn-secondary:hover {
-    border-color: #3a9a5a;
-    background: rgba(42,122,74,0.08);
-    color: #50c080;
-  }
-
-  
-  /* ── EVO THEME (Storm/Blue) ── */
-  .char-card.theme-evo {
-    background: linear-gradient(135deg, rgba(6,8,14,0.9) 0%, rgba(10,14,22,0.95) 100%);
-    border-color: rgba(120,180,255,0.28);
-  }
-  .char-card.theme-evo:hover {
-    box-shadow: 0 20px 60px rgba(120,180,255,0.28), 0 0 90px -24px rgba(90,150,255,0.18);
-    border-color: rgba(140,200,255,0.55);
-  }
-  .char-card.theme-evo::before {
-    background: radial-gradient(circle at top, rgba(120,180,255,0.10) 0%, transparent 70%);
-  }
-  .char-card.theme-evo .level-badge,
-  .char-card.theme-evo .class-badge {
-    border-color: rgba(140,200,255,0.55);
-    background: rgba(6,8,14,0.9);
-  }
-  .char-card.theme-evo .level-num { color: rgba(160,220,255,0.95); }
-  .char-card.theme-evo .level-lbl { color: rgba(90,140,200,0.85); }
-  .char-card.theme-evo .class-badge { color: rgba(190,235,255,0.95); }
-  .char-card.theme-evo .char-name {
-    color: rgba(190,235,255,0.95);
-    text-shadow: 0 0 22px rgba(120,180,255,0.45);
-  }
-  .char-card.theme-evo .stat-val { color: rgba(160,220,255,0.95); }
-  .char-card.theme-evo .stat-cell:hover {
-    background: rgba(120,180,255,0.10);
-    border-color: rgba(140,200,255,0.55);
-  }
-  .char-card.theme-evo .qi-tag {
-    background: rgba(120,180,255,0.08);
-    border-color: rgba(120,180,255,0.22);
-  }
-  .char-card.theme-evo .btn-primary {
-    background: rgba(120,180,255,0.14);
-    border-color: rgba(140,200,255,0.55);
-    color: rgba(190,235,255,0.95);
-  }
-  .char-card.theme-evo .btn-primary:hover {
-    background: rgba(160,220,255,0.95);
-    color: var(--dark);
-    box-shadow: 0 4px 26px rgba(120,180,255,0.45);
-  }
-  .char-card.theme-evo .btn-secondary {
-    border-color: rgba(120,180,255,0.20);
-    color: rgba(140,180,220,0.80);
-  }
-  .char-card.theme-evo .btn-secondary:hover {
-    border-color: rgba(140,200,255,0.55);
-    background: rgba(120,180,255,0.08);
-    color: rgba(190,235,255,0.95);
-  }
-
-  /* themed overlay */
-  .char-card.theme-evo .card-image-overlay {
-    background: linear-gradient(180deg,
-      rgba(6,8,14,0.10) 0%,
-      rgba(6,8,14,0.25) 50%,
-      rgba(6,8,14,0.92) 100%
-    );
-  }
-
-  /* ── MALC THEME (Steel · Bronze) ── */
-  .char-card.theme-malc {
-    background: linear-gradient(135deg, rgba(8,9,12,0.92) 0%, rgba(12,13,18,0.96) 100%);
-    border-color: rgba(176,122,42,0.3);
-  }
-  .char-card.theme-malc:hover {
-    box-shadow: 0 20px 60px rgba(176,122,42,0.28), 0 0 80px -20px rgba(176,122,42,0.12);
-    border-color: #e0b060;
-  }
-  .char-card.theme-malc::before {
-    background: radial-gradient(circle at top, rgba(176,122,42,0.08) 0%, transparent 70%);
-  }
-  .char-card.theme-malc .level-badge,
-  .char-card.theme-malc .class-badge {
-    border-color: rgba(176,122,42,0.55);
-    background: rgba(8,9,12,0.92);
-  }
-  .char-card.theme-malc .level-num { color: #e0b060; }
-  .char-card.theme-malc .level-lbl { color: #7a5020; }
-  .char-card.theme-malc .class-badge { color: #d6dde6; }
-  .char-card.theme-malc .char-name {
-    color: #d6dde6;
-    text-shadow: 0 0 20px rgba(176,122,42,0.4);
-  }
-  .char-card.theme-malc .stat-val { color: #e0b060; }
-  .char-card.theme-malc .stat-cell:hover {
-    background: rgba(176,122,42,0.10);
-    border-color: rgba(176,122,42,0.55);
-  }
-  .char-card.theme-malc .qi-tag {
-    background: rgba(176,122,42,0.07);
-    border-color: rgba(176,122,42,0.22);
-  }
-  .char-card.theme-malc .btn-primary {
-    background: rgba(176,122,42,0.15);
-    border-color: #e0b060;
-    color: #f2f5ff;
-  }
-  .char-card.theme-malc .btn-primary:hover {
-    background: #e0b060;
-    color: var(--dark);
-    box-shadow: 0 4px 24px rgba(176,122,42,0.5);
-  }
-  .char-card.theme-malc .btn-secondary {
-    border-color: rgba(176,122,42,0.22);
-    color: #7a8396;
-  }
-  .char-card.theme-malc .btn-secondary:hover {
-    border-color: rgba(176,122,42,0.55);
-    background: rgba(176,122,42,0.08);
-    color: #d6dde6;
-  }
-  .char-card.theme-malc .card-image-overlay {
-    background: linear-gradient(180deg,
-      rgba(8,9,12,0.10) 0%,
-      rgba(8,9,12,0.25) 50%,
-      rgba(8,9,12,0.92) 100%
-    );
-  }
-
-
-  /* ── ACCEL SIGNAL THEME (Frost · Arcane) ── */
-  .char-card.theme-signal {
-    background: linear-gradient(135deg, rgba(6,10,14,0.92) 0%, rgba(10,14,18,0.96) 100%);
-    border-color: rgba(111,230,255,0.30);
-  }
-  .char-card.theme-signal:hover {
-    box-shadow: 0 20px 60px rgba(111,230,255,0.22), 0 0 90px -20px rgba(111,230,255,0.14);
-    border-color: #6fe6ff;
-  }
-  .char-card.theme-signal::before {
-    background: radial-gradient(circle at top, rgba(111,230,255,0.08) 0%, transparent 70%);
-  }
-  .char-card.theme-signal .level-badge,
-  .char-card.theme-signal .class-badge {
-    border-color: rgba(111,230,255,0.55);
-    background: rgba(8,9,12,0.92);
-  }
-  .char-card.theme-signal .level-num { color: #e6fdff; }
-  .char-card.theme-signal .level-lbl { color: rgba(111,230,255,0.65); }
-  .char-card.theme-signal .class-badge { color: #d6dde6; }
-  .char-card.theme-signal .char-name {
-    color: #d6dde6;
-    text-shadow: 0 0 24px rgba(111,230,255,0.40);
-  }
-  .char-card.theme-signal .stat-val { color: #baf4ff; }
-  .char-card.theme-signal .stat-cell:hover {
-    background: rgba(111,230,255,0.08);
-    border-color: rgba(111,230,255,0.55);
-  }
-  .char-card.theme-signal .qi-tag {
-    background: rgba(111,230,255,0.06);
-    border-color: rgba(111,230,255,0.22);
-  }
-  .char-card.theme-signal .btn-primary {
-    background: rgba(111,230,255,0.14);
-    border-color: rgba(111,230,255,0.55);
-    color: #f2f5ff;
-  }
-  .char-card.theme-signal .btn-primary:hover {
-    background: #6fe6ff;
-    color: var(--dark);
-    box-shadow: 0 4px 24px rgba(111,230,255,0.45);
-  }
-  .char-card.theme-signal .btn-secondary {
-    border-color: rgba(111,230,255,0.22);
-    color: #7a8396;
-  }
-  .char-card.theme-signal .btn-secondary:hover {
-    border-color: rgba(111,230,255,0.55);
-    background: rgba(111,230,255,0.08);
-    color: #d6dde6;
-  }
-  .char-card.theme-signal .card-image-overlay {
-    background: linear-gradient(180deg,
-      rgba(8,12,18,0.10) 0%,
-      rgba(8,12,18,0.25) 50%,
-      rgba(8,12,18,0.92) 100%
-    );
-  }
-
-/* ── CARD IMAGE — CONSTRAINED ── */
-  .card-image {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    transition: transform 0.6s ease, filter 0.6s ease;
-    filter: saturate(0.8) brightness(0.88);
-  }
-
-  .char-card:hover .card-image img {
-    transform: scale(1.08);
-    filter: saturate(1) brightness(1);
-  }
-
-  .card-image-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      rgba(6,5,3,0.1) 0%,
-      rgba(6,5,3,0.25) 50%,
-      rgba(6,5,3,0.92) 100%
-    );
-    pointer-events: none;
-  }
-
-  /* themed overlays */
-  .char-card.theme-raven .card-image-overlay {
-    background: linear-gradient(180deg,
-      rgba(8,8,14,0.1) 0%,
-      rgba(8,8,14,0.25) 50%,
-      rgba(8,8,14,0.92) 100%
-    );
-  }
-  .char-card.theme-astrica .card-image-overlay {
-    background: linear-gradient(180deg,
-      rgba(6,10,8,0.1) 0%,
-      rgba(6,10,8,0.25) 50%,
-      rgba(6,10,8,0.92) 100%
-    );
-  }
-
-  /* ── LEVEL BADGE ── */
-  .level-badge {
-    position: absolute;
-    top: 14px; right: 14px;
-    background: rgba(6,5,3,0.88);
-    border: 1px solid var(--gold-dim);
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    z-index: 3;
-  }
-
-  .level-num {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 20px;
-    color: var(--gold-light);
-    line-height: 1;
-    font-weight: 700;
-  }
-
-  .level-lbl {
-    font-size: 7px;
-    letter-spacing: 2px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-  }
-
-  /* ── CLASS BADGE ── */
-  .class-badge {
-    position: absolute;
-    bottom: 14px; left: 14px;
-    background: rgba(6,5,3,0.88);
-    border: 1px solid var(--gold-dim);
-    padding: 6px 14px;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--gold-light);
-    text-transform: uppercase;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    z-index: 3;
-  }
-
-  /* ── CARD BODY ── */
-  .card-body {
-    padding: 22px 20px 20px;
-    position: relative;
-  }
-
-  .char-name {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--gold-light);
-    margin-bottom: 4px;
-    line-height: 1.1;
-  }
-
-  .char-race-class {
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-
-  /* ── STATS ── */
-  .stat-row {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5px;
-    margin-bottom: 12px;
-  }
-
-  .stat-cell {
-    background: rgba(200,151,42,0.03);
-    border: 1px solid rgba(42,32,16,0.6);
-    text-align: center;
-    padding: 7px 2px;
-    transition: all 0.3s;
-  }
-
-  .stat-cell:hover {
-    background: rgba(200,151,42,0.08);
-    border-color: var(--gold-dim);
-  }
-
-  .stat-abbr {
-    display: block;
-    font-size: 7px;
-    letter-spacing: 1px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-
-  .stat-val {
-    display: block;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 15px;
-    color: var(--gold-light);
-    line-height: 1;
-    margin-bottom: 2px;
-  }
-
-  .stat-mod {
-    display: block;
-    font-size: 9px;
-    color: var(--text-dim);
-    font-weight: 600;
-  }
-
-  /* ── QUICK INFO ── */
-  .quick-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 16px;
-  }
-
-  .qi-tag {
-    background: rgba(200,151,42,0.08);
-    border: 1px solid rgba(42,32,16,0.5);
-    padding: 5px 10px;
-    font-size: 8px;
-    letter-spacing: 1px;
-    color: var(--text);
-    text-transform: uppercase;
-  }
-
-  /* ── CARD ACTIONS ── */
-  .card-actions {
-    display: flex;
-    gap: 8px;
-  }
-
-  .btn {
-    flex: 1;
-    padding: 10px 8px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: all 0.3s;
-    border: 1px solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  .btn-primary {
-    background: var(--gold-dim);
-    border-color: var(--gold);
-    color: var(--text);
-  }
-
-  .btn-primary:hover {
-    background: var(--gold);
-    color: var(--dark);
-    box-shadow: 0 4px 20px rgba(200,151,42,0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    border-color: var(--border);
-    color: var(--text-dim);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(200,151,42,0.08);
-    border-color: var(--gold-dim);
-    color: var(--text);
-  }
-
-  .btn-icon {
-    font-size: 13px;
-  }
-
-  /* ── EMPTY SLOT ── */
-  .char-card.empty {
-    background: rgba(13,10,6,0.3);
-    border-style: dashed;
-    border-color: rgba(42,32,16,0.3);
-    cursor: default;
-  }
-  .char-card.empty:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: rgba(42,32,16,0.5);
-  }
-  .char-card.empty::after { display: none; }
-
-  .empty-inner {
-    height: 100%;
-    min-height: 480px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .empty-rune {
-    font-size: 48px;
-    opacity: 0.12;
-    transition: opacity 0.4s;
-  }
-  .char-card.empty:hover .empty-rune { opacity: 0.2; }
-
-  .empty-label {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--text-dim);
-    opacity: 0.4;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    width: 100%;
-    text-align: center;
-    padding: 40px 20px 60px;
-    border-top: 1px solid var(--border);
-    position: relative;
-  }
-
-  .footer::before {
-    content: '✦   ✦   ✦';
-    position: absolute;
-    top: -8px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 8px;
-    color: var(--gold-dim);
-    letter-spacing: 4px;
-    background: var(--dark);
-    padding: 0 20px;
-  }
-
-  .footer-title {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: var(--text-dim);
-    margin-bottom: 8px;
-  }
-
-  .footer-count {
-    font-size: 9px;
-    letter-spacing: 6px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes cardFadeUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .char-card {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  .char-card.revealed {
-    animation: cardFadeUp 0.7s ease forwards;
-  }
-
-  /* ── FAN ART BUTTON ── */
-  .fanart-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px 80px;
-    gap: 18px;
-  }
-  .fanart-section-label {
-    font-size: 9px;
-    letter-spacing: 8px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-  }
-  .fanart-btn {
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 22px 64px 20px;
-    text-decoration: none;
-    background: linear-gradient(160deg, #060503 0%, #0d0a06 50%, #060503 100%);
-    border: 1px solid var(--gold-dim);
-    cursor: pointer;
-    transition: all 0.4s ease;
-    overflow: hidden;
-    min-width: 340px;
-  }
-  .fanart-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.5;
-    transition: opacity 0.4s;
-  }
-  .fanart-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(200,151,42,0.12) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .fanart-btn:hover {
-    border-color: var(--gold);
-    box-shadow:
-      0 0 24px rgba(200,151,42,0.25),
-      0 0 70px rgba(200,151,42,0.1),
-      inset 0 0 30px rgba(200,151,42,0.05);
-  }
-  .fanart-btn:hover::before { opacity: 1; }
-  .fanart-btn:hover::after { opacity: 1; }
-  .fanart-btn .corner {
-    position: absolute;
-    width: 14px; height: 14px;
-    border-color: var(--gold);
-    border-style: solid;
-    transition: all 0.4s ease;
-    opacity: 0.4;
-  }
-  .fanart-btn:hover .corner { opacity: 1; width: 20px; height: 20px; }
-  .corner.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
-  .corner.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
-  .corner.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-  .corner.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-  .btn-gems {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    z-index: 1;
-  }
-  .btn-gem {
-    width: 6px; height: 6px;
-    transform: rotate(45deg);
-    background: var(--gold);
-    box-shadow: 0 0 8px var(--gold);
-    transition: all 0.4s ease;
-  }
-  .btn-gem.sm {
-    background: var(--gold-dim);
-    box-shadow: none;
-    width: 4px; height: 4px;
-  }
-  .fanart-btn:hover .btn-gem {
-    box-shadow: 0 0 16px var(--gold-bright);
-    background: var(--gold-bright);
-  }
-  .fanart-btn:hover .btn-gem.sm {
-    background: var(--gold);
-    box-shadow: 0 0 8px var(--gold);
-  }
-  .gem-line {
-    width: 44px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dim));
-    transition: all 0.4s;
-  }
-  .gem-line.r {
-    background: linear-gradient(90deg, var(--gold-dim), transparent);
-  }
-  .fanart-btn:hover .gem-line {
-    background: linear-gradient(90deg, transparent, var(--gold));
-    width: 56px;
-  }
-  .fanart-btn:hover .gem-line.r {
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-  .btn-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 6px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-    transition: color 0.4s;
-  }
-  .fanart-btn:hover .btn-eyebrow { color: var(--text-dim); }
-  .btn-main-label {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-bright) 30%, var(--gold) 70%, var(--gold-dim) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 12px rgba(200,151,42,0.4));
-    position: relative;
-    z-index: 1;
-    transition: filter 0.4s;
-    line-height: 1.2;
-  }
-  .fanart-btn:hover .btn-main-label {
-    filter: drop-shadow(0 0 24px rgba(255,215,0,0.7));
-  }
-  .btn-sub-label {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    position: relative;
-    z-index: 1;
-    transition: color 0.4s;
-  }
-  .fanart-btn:hover .btn-sub-label { color: var(--gold-light); }
-
-  /* ── DOCUMENT VIEWER MODAL ── */
-  #doc-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(6px);
-    align-items: center;
-    justify-content: center;
-  }
-  #doc-modal.open { display: flex; }
-
-  .doc-modal-shell {
-    position: relative;
-    width: 92vw;
-    height: 91vh;
-    display: flex;
-    flex-direction: column;
-    background: #0c0a07;
-    border: 1px solid var(--gold-dim);
-    box-shadow: 0 0 80px rgba(200,151,42,0.18), 0 30px 80px rgba(0,0,0,0.7);
-    overflow: hidden;
-  }
-
-  /* top bar */
-  .doc-modal-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    background: rgba(13,10,6,0.96);
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-
-  /* character tabs */
-  .doc-char-tabs {
-    display: flex;
-    gap: 4px;
-    flex: 1;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .doc-char-tabs::-webkit-scrollbar { display: none; }
-
-  .doc-tab {
-    flex-shrink: 0;
-    padding: 6px 14px;
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    background: transparent;
-    border: 1px solid rgba(42,32,16,0.6);
-    cursor: pointer;
-    transition: all 0.25s;
-    white-space: nowrap;
-  }
-  .doc-tab:hover { color: var(--text); border-color: var(--gold-dim); }
-  .doc-tab.active {
-    color: var(--gold-bright);
-    border-color: var(--gold);
-    background: rgba(200,151,42,0.1);
-  }
-
-  /* sheet type switcher */
-  .doc-type-btns {
-    display: flex;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-  .doc-type-btn {
-    padding: 6px 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    background: transparent;
-    border: 1px solid rgba(42,32,16,0.6);
-    cursor: pointer;
-    transition: all 0.25s;
-    white-space: nowrap;
-  }
-  .doc-type-btn:hover { border-color: var(--gold-dim); color: var(--text); }
-  .doc-type-btn.active {
-    color: var(--gold-bright);
-    border-color: var(--gold);
-    background: rgba(200,151,42,0.1);
-  }
-
-  /* zoom controls */
-  .doc-zoom-group {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-  .doc-zoom-btn {
-    width: 28px; height: 28px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    color: var(--gold-dim);
-    background: transparent;
-    border: 1px solid rgba(42,32,16,0.6);
-    cursor: pointer;
-    transition: all 0.2s;
-    line-height: 1;
-    font-family: monospace;
-  }
-  .doc-zoom-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
-  .doc-zoom-label {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 1px;
-    color: var(--text-dim);
-    min-width: 36px;
-    text-align: center;
-  }
-
-  /* close button */
-  .doc-close-btn {
-    width: 32px; height: 32px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    color: var(--text-dim);
-    background: transparent;
-    border: 1px solid rgba(42,32,16,0.6);
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-  .doc-close-btn:hover { color: #ff8080; border-color: rgba(255,80,80,0.4); background: rgba(255,80,80,0.08); }
-
-  /* iframe wrapper */
-  .doc-iframe-wrap {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    background: #f5f0e8;
-  }
-
-  .doc-iframe-scroll {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-  }
-
-  #doc-iframe {
-    border: none;
-    width: 100%;
-    height: 100%;
-    transform-origin: top left;
-    display: block;
-  }
-
-  /* nav arrows */
-  .doc-nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px; height: 80px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(13,10,6,0.85);
-    border: 1px solid rgba(200,151,42,0.3);
-    color: var(--gold-dim);
-    font-size: 22px;
-    cursor: pointer;
-    transition: all 0.25s;
-    z-index: 10;
-    backdrop-filter: blur(4px);
-  }
-  .doc-nav-arrow:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(13,10,6,0.95); }
-  .doc-nav-arrow.prev { left: 0; border-left: none; border-radius: 0 2px 2px 0; }
-  .doc-nav-arrow.next { right: 0; border-right: none; border-radius: 2px 0 0 2px; }
-  .doc-nav-arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
-
-  /* char name in bar */
-  .doc-bar-name {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 13px;
-    color: var(--gold-light);
-    flex-shrink: 0;
-    margin-right: 6px;
-  }
-
-  .doc-sep { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; margin: 0 2px; }
-</style>
-</head>
-<body>
-
-  <!-- Back to Hub -->
-  <!-- NAV BAR: both buttons together -->
-  <nav style="
-    position: fixed;
-    top: 16px; left: 50%; transform: translateX(-50%);
-    z-index: 200;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(6,5,3,0.65);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(200,151,42,0.30);
-    padding: 6px 10px;
-  ">
-    <a class="back-btn" href="/dnd/index.html" style="position:static;background:none;border:none;backdrop-filter:none;padding:4px 10px 4px 6px;">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Back to the Hub
-    </a>
-    <span style="color:rgba(200,151,42,0.25);font-size:16px;line-height:1;">|</span>
-    <a href="/dnd/players(mobile).html" style="
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px;
-      font-family: 'Cinzel', serif;
-      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-      color: rgba(240,192,80,0.80); text-decoration: none;
-      transition: color 220ms ease;
-    " onmouseover="this.style.color='#ffd77a';" onmouseout="this.style.color='rgba(240,192,80,0.80)';">
-      📱 Mobile View
-    </a>
-  </nav>
-
-<!-- BACKGROUND LAYERS -->
-<canvas id="particles"></canvas>
-<div class="bg-radial"></div>
-<div class="bg-grid"></div>
-<div class="bg-vignette"></div>
-
-<div class="content">
-
-  <!-- ── HERO HEADER ── -->
-  <div class="hero">
-    <div class="campaign-label">◆ &nbsp; Campaign Chronicles &nbsp; ◆</div>
-    <h1 class="campaign-title">The Party</h1>
-    <div class="campaign-sub">Bound by Fate · Forged by Fire</div>
-  </div>
-
-  <div class="ornament">
-    <div class="orn-line"></div>
-    <div class="orn-diamond sm"></div>
-    <div class="orn-diamond"></div>
-    <div class="orn-diamond sm"></div>
-    <div class="orn-line r"></div>
-  </div>
-
-  <div class="party-count">Five Adventurers · Many More to Come</div>
-
-  <!-- ── CHARACTER GRID ── -->
-  <div class="char-grid">
-
-    <!-- SEKHMET -->
-    <div class="char-card theme-sekhmet" data-character="sekhmet" style="--reveal-delay: 0.1s;">
-      <div class="card-image">
-        <img src="Sekhmet.png" alt="Sekhmet">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">1</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Barbarian · Zealot</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Sekhmet</div>
-        <div class="char-race-class">Leonin &nbsp;·&nbsp; Path of the Zealot &nbsp;·&nbsp; Outlander</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">16</span>
-            <span class="stat-mod">+3</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 17</span>
-          <span class="qi-tag">AC 14</span>
-          <span class="qi-tag">Speed 35</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">True Neutral</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character1.html" class="btn btn-primary">
-            <span class="btn-icon">🦁</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character1_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- RAVEN -->
-    <div class="char-card theme-raven" data-character="raven" style="--reveal-delay: 0.2s;">
-      <div class="card-image">
-        <img src="raven.png" alt="Raven">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">1</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Rogue · Assassin</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Raven</div>
-        <div class="char-race-class">Shadar-Kai &nbsp;·&nbsp; Assassin &nbsp;·&nbsp; Spy</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">10</span>
-            <span class="stat-mod">+0</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">17</span>
-            <span class="stat-mod">+3</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">12</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 10</span>
-          <span class="qi-tag">AC 14</span>
-          <span class="qi-tag">Speed 30</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">Neutral</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character3.html" class="btn btn-primary">
-            <span class="btn-icon">🗡️</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character3_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- IZABELLA  -->
-    <div class="char-card theme-astrica" data-character="izabella" style="--reveal-delay: 0.3s;">
-      <div class="card-image">
-        <img src="izabella.png" alt="Izabella">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">1</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Wizard · Witherbloom</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Izabella</div>
-        <div class="char-race-class">Fairy &nbsp;·&nbsp; Witherbloom Student &nbsp;·&nbsp; Wizard</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">8</span>
-            <span class="stat-mod">-1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">16</span>
-            <span class="stat-mod">+3</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 7</span>
-          <span class="qi-tag">AC 12</span>
-          <span class="qi-tag">Speed 10</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">True Neutral</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character2.html" class="btn btn-primary">
-            <span class="btn-icon">✨</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character2_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- EVO -->
-    <div class="char-card theme-evo" data-character="evo" style="--reveal-delay: 0.4s;">
-      <div class="card-image">
-        <img src="Evo.png" alt="Evo">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">1</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Cleric · Tempest</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Evo</div>
-        <div class="char-race-class">Bronze Dragonborn &nbsp;·&nbsp; Tempest Domain &nbsp;·&nbsp; Rival Intern</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">14</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">12</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">17</span>
-            <span class="stat-mod">+3</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 10</span>
-          <span class="qi-tag">AC 18</span>
-          <span class="qi-tag">Speed 30</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">True Neutral</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character4.html" class="btn btn-primary">
-            <span class="btn-icon">⚡</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character4_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- MALC -->
-    <div class="char-card theme-malc" data-character="malc" style="--reveal-delay: 0.5s;">
-      <div class="card-image">
-        <img src="/dnd/malc.png" alt="Malc Grann">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">1</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Fighter · Folk Hero</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Malc Grann</div>
-        <div class="char-race-class">Rock Gnome &nbsp;·&nbsp; Folk Hero &nbsp;·&nbsp; Fighter</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">18</span>
-            <span class="stat-mod">+4</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">12</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">18</span>
-            <span class="stat-mod">+4</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">10</span>
-            <span class="stat-mod">+0</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">10</span>
-            <span class="stat-mod">+0</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">16</span>
-            <span class="stat-mod">+3</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 14</span>
-          <span class="qi-tag">AC 19</span>
-          <span class="qi-tag">Speed 30</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">Neutral</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character5.html" class="btn btn-primary">
-            <span class="btn-icon">🧱</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character5_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACCEL SIGNAL -->
-    <div class="char-card theme-signal" data-character="signal" style="--reveal-delay: 0.6s;">
-      <div class="card-image">
-        <img src="/dnd/signal.png" alt="Accel Signal">
-        <div class="card-image-overlay"></div>
-        <div class="level-badge">
-          <span class="level-num">2</span>
-          <span class="level-lbl">LVL</span>
-        </div>
-        <div class="class-badge">Ranger</div>
-      </div>
-
-      <div class="card-body">
-        <div class="char-name">Accel Signal</div>
-        <div class="char-race-class">Eladrin Variant &nbsp;·&nbsp; Ranger &nbsp;·&nbsp; Sage</div>
-
-        <div class="stat-row">
-          <div class="stat-cell">
-            <span class="stat-abbr">STR</span>
-            <span class="stat-val">12</span>
-            <span class="stat-mod">+1</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">DEX</span>
-            <span class="stat-val">19</span>
-            <span class="stat-mod">+4</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CON</span>
-            <span class="stat-val">15</span>
-            <span class="stat-mod">+2</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">INT</span>
-            <span class="stat-val">10</span>
-            <span class="stat-mod">+0</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">WIS</span>
-            <span class="stat-val">16</span>
-            <span class="stat-mod">+3</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-abbr">CHA</span>
-            <span class="stat-val">13</span>
-            <span class="stat-mod">+1</span>
-          </div>
-        </div>
-
-        <div class="quick-info">
-          <span class="qi-tag">HP 24</span>
-          <span class="qi-tag">AC 15</span>
-          <span class="qi-tag">Speed 30</span>
-          <span class="qi-tag">Prof +2</span>
-          <span class="qi-tag">Neutral Good</span>
-        </div>
-
-        <div class="card-actions">
-          <a href="/dnd/characters/character6.html" class="btn btn-primary">
-            <span class="btn-icon">❄️</span> Character Sheet
-          </a>
-          <a href="/dnd/characters/character6_textsheet.html" class="btn btn-secondary">
-            <span class="btn-icon">📜</span> Text Sheet
-          </a>
-        </div>
-      </div>
-    </div>
-
-
-
-  </div>
-
-  <!-- ── FAN ART BUTTON ── -->
-  <div class="fanart-section">
-    <div class="fanart-section-label">◆ &nbsp; The Chronicle &nbsp; ◆</div>
-    <a href="/dnd/fanart/index.html" class="fanart-btn">
-      <span class="corner tl"></span>
-      <span class="corner tr"></span>
-      <span class="corner bl"></span>
-      <span class="corner br"></span>
-      <span class="btn-eyebrow">Community Art</span>
-      <div class="btn-gems">
-        <span class="gem-line"></span>
-        <span class="btn-gem sm"></span>
-        <span class="btn-gem"></span>
-        <span class="btn-gem sm"></span>
-        <span class="gem-line r"></span>
-      </div>
-      <span class="btn-main-label">Art Gallery</span>
-      <span class="btn-sub-label">Art from the adventure &amp; beyond</span>
-      <div class="btn-gems">
-        <span class="gem-line"></span>
-        <span class="btn-gem sm"></span>
-        <span class="btn-gem"></span>
-        <span class="btn-gem sm"></span>
-        <span class="gem-line r"></span>
-      </div>
-    </a>
-  </div>
-
-  <!-- ── FOOTER ── -->
-  <div class="footer">
-    <div class="footer-title">The world fell. They did not.</div>
-    <div class="footer-count">Campaign · Session 0</div>
-  </div>
-
-</div>
-
-<script>
-  // ── PARTICLE SYSTEM ──
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const particles = [];
-  const COUNT = 70;
-
-  for (let i = 0; i < COUNT; i++) {
-    particles.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      size: Math.random() * 1.8 + 0.2,
-      speedX: (Math.random() - 0.5) * 0.25,
-      speedY: -Math.random() * 0.35 - 0.08,
-      opacity: Math.random() * 0.55 + 0.15,
-      pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: 0.01 + Math.random() * 0.02,
-      glow: Math.random() > 0.85
-    });
-  }
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.pulse += p.pulseSpeed;
-      const alpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
-
-      // soft halo on select particles
-      if (p.glow) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(160, 120, 255, ${alpha * 0.1})`;
-        ctx.fill();
+{
+  "campaign": {
+    "name": "Unnamed Chronicle",
+    "session_count": 0,
+    "last_updated": "2026-02-24"
+  },
+  "slots": {
+   "slot1": {
+  "identity": {
+    "name": "Sekhmet",
+    "race": "Leonin",
+    "class": "Barbarian",
+    "subclass": null,
+    "level": 1,
+    "background": "Outlander",
+    "alignment": "True Neutral",
+    "experience": 17,
+    "portrait_url": "/dnd/Sekhmet.png",
+    "theme_color": "#c8972a",
+    "theme_color_light": "#f0c050",
+    "theme_color_bright": "#ffd700",
+    "theme_color_dim": "#7a5a18",
+    "theme_rgb": "200,151,42"
+  },
+  "meta": {
+    "player": "Sterben",
+    "last_session_updated": "Session 00",
+    "session_changes": []
+  },
+  "physical": {
+    "gender": "Male",
+    "age": null,
+    "size": "Medium",
+    "height": null,
+    "weight": null,
+    "eyes": "Amber",
+    "skin": "Golden-furred",
+    "hair": "Dark mane",
+    "faith": null,
+    "distinguishing_features": "Gold ceremonial arm cuff. Mane braided with bone and stone fragments from the First Land."
+  },
+  "senses": {
+    "darkvision_ft": 60
+  },
+  "abilities": {
+    "str": 17,
+    "dex": 14,
+    "con": 17,
+    "int": 13,
+    "wis": 13,
+    "cha": 14
+  },
+  "saving_throws": {
+    "str": { "proficient": true,  "value": "+5" },
+    "dex": { "proficient": false, "value": "+2" },
+    "con": { "proficient": true,  "value": "+5" },
+    "int": { "proficient": false, "value": "+1" },
+    "wis": { "proficient": false, "value": "+1" },
+    "cha": { "proficient": false, "value": "+2" }
+  },
+  "combat": {
+    "hp_max": 17,
+    "hp_current": 17,
+    "hp_temp": 0,
+    "ac": 15,
+    "initiative": "+2",
+    "speed": 35,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "1d12",
+    "passive_perception": 13,
+    "passive_investigation": 11,
+    "passive_insight": 11
+  },
+  "skills": {
+    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+5" },
+    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "intimidation":    { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+1" },
+    "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" },
+    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+3" }
+  },
+  "attacks": [
+    {
+      "name": "Greataxe",
+      "type": "Martial Melee Weapon",
+      "attack": "+5",
+      "damage": "1d12+3",
+      "damage_type": "Slashing",
+      "detail": ""
+    },
+    {
+      "name": "Handaxe",
+      "type": "Simple Melee Weapon",
+      "attack": "+5",
+      "damage": "1d6+3",
+      "damage_type": "Slashing",
+      "detail": "Quantity: 2"
+    },
+    {
+      "name": "Javelin",
+      "type": "Simple Melee Weapon",
+      "attack": "+5",
+      "damage": "1d6+3",
+      "damage_type": "Piercing",
+      "detail": "Quantity: 4"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+5",
+      "damage": "1d4+3",
+      "damage_type": "Bludgeoning",
+      "detail": ""
+    },
+    {
+      "name": "Claws",
+      "type": "Leonin Natural Weapon",
+      "attack": "+5",
+      "damage": "1d4+3",
+      "damage_type": "Slashing",
+      "detail": "Natural weapons; can be used for unarmed strikes, dealing slashing instead of bludgeoning."
+    }
+  ],
+  "spellcasting": {
+    "enabled": false,
+    "ability": "wis",
+    "spell_save_dc": 0,
+    "spell_attack_bonus": "+0",
+    "spell_slots": {
+      "level_1": { "max": 0, "current": 0 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    }
+  },
+  "class_resources": {
+    "rage": {
+      "label": "Rage",
+      "max": 2,
+      "current": 2,
+      "recharge": "Long Rest",
+      "description": "+2 damage · B/P/S Resistance · Advantage on STR checks & saves · 1 minute"
+    }
+  },
+  "features": [
+    {
+      "name": "Rage",
+      "source": "Barbarian 1",
+      "description": "Bonus action. While raging: advantage on STR checks and STR saving throws; +2 damage to melee attacks using STR; resistance to bludgeoning, piercing, and slashing damage. Lasts 1 minute. 2 uses / long rest."
+    },
+    {
+      "name": "Unarmored Defense",
+      "source": "Barbarian 1",
+      "description": "While not wearing armor, AC = 10 + DEX mod (+2) + CON mod (+3) = 15. You may still use a shield."
+    },
+    {
+      "name": "Claws",
+      "source": "Leonin",
+      "description": "Natural weapons. You can use your claws to make unarmed strikes; on a hit they deal slashing damage equal to 1d4 + STR modifier."
+    },
+    {
+      "name": "Daunting Roar",
+      "source": "Leonin",
+      "description": "Bonus action. Creatures of your choice within 10 ft that can hear you must succeed on a WIS save (DC 8 + Prof + CON mod = 13) or be frightened until the end of your next turn. Recharge: short or long rest."
+    },
+    {
+      "name": "Darkvision",
+      "source": "Leonin",
+      "description": "You can see in dim light within 60 ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+    },
+    {
+      "name": "Wanderer",
+      "source": "Outlander",
+      "description": "Excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features. You can find food and fresh water for yourself and up to 5 companions each day (if the land offers it)."
+    },
+    {
+      "name": "Subclass — Zealot (Planned)",
+      "source": "Barbarian 3",
+      "description": "Planned path at level 3. Sekhmet's rage is sacred judgment: destiny-driven, hard to kill, and fueled by violation of something holy."
+    }
+  ],
+  "proficiencies": {
+    "armor": ["Light Armor", "Medium Armor", "Shields"],
+    "weapons": ["Simple Weapons", "Martial Weapons"],
+    "tools": ["Bagpipes"],
+    "languages": []
+  },
+  "traits": {
+    "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly — but he positions himself between danger and the weak without thinking.",
+    "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something — his name must echo in story long after his bones bleach in the sand.",
+    "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
+    "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
+  },
+  "equipment": {
+    "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
+    "carried": [
+      { "name": "Greataxe", "quantity": 1, "description": "" },
+      { "name": "Handaxe", "quantity": 2, "description": "" },
+      { "name": "Javelin", "quantity": 4, "description": "" },
+      { "name": "Explorer's Pack", "quantity": 1, "description": "" },
+      { "name": "Hunting Trap", "quantity": 1, "description": "" },
+      { "name": "Staff", "quantity": 1, "description": "" },
+      { "name": "Traveler's Clothes", "quantity": 1, "description": "" },
+      { "name": "Trophy of an animal", "quantity": 1, "description": "" }
+    ]
+  },
+  "backstory": {
+    "summary": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded — some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest — but because his will refused to dissolve. He walks a world smaller than it should be, carrying the memory of everything that was lost when the mythic gave way to the physical."
+  }
+},
+    "slot2": {
+      "identity": {
+        "name": "Izabella",
+        "race": "Fairy",
+        "class": "Wizard",
+        "subclass": "",
+        "level": 1,
+        "background": "Witherbloom Student",
+        "alignment": "True Neutral",
+        "experience": 0,
+        "portrait_url": "/dnd/izabella.png",
+        "theme_color": "#2a7a4a",
+        "theme_color_light": "#50c080",
+        "theme_color_bright": "#7fff9a",
+        "theme_color_dim": "#1a5a30",
+        "theme_rgb": "42,122,74"
+      },
+      "meta": {
+        "player": "Astrica",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "Female",
+        "age": null,
+        "size": "Tiny",
+        "height": null,
+        "weight": null,
+        "eyes": null,
+        "skin": null,
+        "hair": null,
+        "faith": null,
+        "distinguishing_features": "Wings. Carries a pressed-flower spellbook at all times. Easily underestimated."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 13,
+        "dex": 14,
+        "con": 13,
+        "int": 13,
+        "wis": 15,
+        "cha": 15
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+1" },
+        "dex": { "proficient": false, "value": "+2" },
+        "con": { "proficient": false, "value": "+1" },
+        "int": { "proficient": true,  "value": "+3" },
+        "wis": { "proficient": true,  "value": "+4" },
+        "cha": { "proficient": false, "value": "+2" }
+      },
+      "combat": {
+        "hp_max": 7,
+        "hp_current": 7,
+        "hp_temp": 0,
+        "ac": 12,
+        "initiative": "+2",
+        "speed": 10,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d6",
+        "passive_perception": 14,
+        "passive_investigation": 11,
+        "passive_insight": 14
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+2" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+3" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+1" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "insight":         { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+2" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+2" },
+        "stealth":         { "ability": "dex", "proficient": true,  "expertise": false, "value": "+4" },
+        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+4" }
+      },
+      "attacks": [
+        {
+          "name": "Quarterstaff",
+          "type": "Simple Melee Weapon",
+          "attack": "+3",
+          "damage": "1d6+1",
+          "damage_type": "Bludgeoning",
+          "detail": "Versatile: 1d8+1 when two-handed."
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+1",
+          "damage": "1d1+1",
+          "damage_type": "Bludgeoning",
+          "detail": "Basic melee strike."
+        },
+        {
+          "name": "Fire Bolt",
+          "type": "Cantrip",
+          "attack": "+3",
+          "damage": "1d10",
+          "damage_type": "Fire",
+          "detail": "Ranged spell attack. Range 120 ft. Cantrip."
+        },
+        {
+          "name": "Chill Touch",
+          "type": "Cantrip",
+          "attack": "+3",
+          "damage": "1d8",
+          "damage_type": "Necrotic",
+          "detail": "Range 120 ft. Target can't regain HP until start of your next turn. Cantrip."
+        },
+        {
+          "name": "Ray of Frost",
+          "type": "Cantrip",
+          "attack": "+3",
+          "damage": "1d8",
+          "damage_type": "Cold",
+          "detail": "Range 60 ft. Target speed reduced by 10 ft until start of your next turn. Cantrip."
+        },
+        {
+          "name": "Thunderclap",
+          "type": "Cantrip",
+          "attack": "—",
+          "damage": "1d6",
+          "damage_type": "Thunder",
+          "detail": "CON Save DC 11. Each creature within 5 ft. Cantrip."
+        },
+        {
+          "name": "Druidcraft",
+          "type": "Cantrip",
+          "attack": "—",
+          "damage": "—",
+          "damage_type": "Utility",
+          "detail": "Cantrip. Simple nature magic — predict weather, light/snuff small flames, harmless effects."
+        }
+      ],
+      "spellcasting": {
+        "enabled": true,
+        "ability": "int",
+        "spell_save_dc": 11,
+        "spell_attack_bonus": "+3",
+        "spell_slots": {
+          "level_1": { "max": 2, "current": 2 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        },
+        "cantrips": [
+          { "name": "Fire Bolt",    "school": "Evocation",   "casting_time": "1 action",  "range": "120 ft.",   "components": "V, S",       "duration": "Instantaneous", "description": "Ranged spell attack. Hit: 1d10 fire damage. Scales at 5th, 11th, and 17th level." },
+          { "name": "Chill Touch",  "school": "Necromancy",  "casting_time": "1 action",  "range": "120 ft.",   "components": "V, S",       "duration": "1 round",       "description": "Ranged spell attack. Hit: 1d8 necrotic. Target can't regain HP until start of your next turn. Undead also have disadvantage on attacks against you." },
+          { "name": "Ray of Frost", "school": "Evocation",   "casting_time": "1 action",  "range": "60 ft.",    "components": "V, S",       "duration": "Instantaneous", "description": "Ranged spell attack. Hit: 1d8 cold damage. Target speed -10 ft until start of your next turn." },
+          { "name": "Thunderclap",  "school": "Evocation",   "casting_time": "1 action",  "range": "Self 5 ft.","components": "S",          "duration": "Instantaneous", "description": "CON save DC 11. Each creature within 5 ft takes 1d6 thunder on a failed save. Audible 100 ft." },
+          { "name": "Druidcraft",   "school": "Transmutation","casting_time": "1 action", "range": "30 ft.",    "components": "V, S",       "duration": "Instantaneous", "description": "Predict weather, create harmless sensory effects, light/snuff small flames, wilt or cause to bloom a plant no larger than 1 cubic foot." }
+        ],
+        "spells_prepared": [
+          { "name": "Catapult",      "level": 1, "school": "Transmutation", "casting_time": "1 action",       "range": "60 ft.",  "components": "S",       "duration": "Instantaneous",          "description": "Choose an object weighing 1–5 lbs. It flies up to 90 ft in a straight line, then falls. Each creature in its path makes a DEX save or takes 3d8 bludgeoning. +1d8 per slot level above 1st." },
+          { "name": "Witch Bolt",    "level": 1, "school": "Evocation",     "casting_time": "1 action",       "range": "30 ft.",  "components": "V, S, M", "duration": "Concentration, 1 min",   "description": "Ranged spell attack. Hit: 1d12 lightning. On subsequent turns, use action to deal 1d12 automatically while in range. Ends if target is out of range or you use action for something else. +1d12 per slot level above 1st." },
+          { "name": "Magic Missile", "level": 1, "school": "Evocation",     "casting_time": "1 action",       "range": "120 ft.", "components": "V, S",    "duration": "Instantaneous",          "description": "Create 3 darts of magical force. Each hits a creature of your choice automatically for 1d4+1 force. All darts can target the same creature or different ones. +1 dart per slot level above 1st." }
+        ]
+      },
+      "class_resources": {
+        "arcane_recovery": {
+          "label": "Arcane Recovery",
+          "max": 1,
+          "current": 1,
+          "recharge": "Short Rest",
+          "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
+        }
+      },
+      "features": [
+        {
+          "name": "Arcane Recovery",
+          "source": "Wizard 1",
+          "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
+        },
+        {
+          "name": "Wizard Spellbook",
+          "source": "Wizard 1",
+          "description": "Contains 6 prepared 1st-level spells. Gain 2 new spells per wizard level. Copy from scrolls and tomes (2 hrs + 50 gp/spell level). Spellbook is a pressed-flower diary that also happens to contain the secrets of arcane reality."
+        },
+        {
+          "name": "Fairy Flight",
+          "source": "Fairy",
+          "description": "Has a flying speed equal to walking speed (10 ft). Cannot fly while wearing medium or heavy armor."
+        },
+        {
+          "name": "Fairy Magic",
+          "source": "Fairy",
+          "description": "Can cast Druidcraft cantrip for free. At level 3: cast Faerie Fire once per long rest. At level 5: cast Enlarge/Reduce once per long rest."
+        },
+        {
+          "name": "Fey Ancestry",
+          "source": "Fairy",
+          "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
+        },
+        {
+          "name": "Witherbloom Initiate",
+          "source": "Witherbloom Student",
+          "description": "Learned to weave life and death energies. Gains the Druidcraft cantrip and two 1st-level spells from the Druid or Wizard spell list. Life and death magic comes naturally to her — the swamp taught her that nothing truly ends."
+        }
+      ],
+      "proficiencies": {
+        "armor": [],
+        "weapons": ["Daggers", "Darts", "Slings", "Quarterstaffs", "Light Crossbows"],
+        "tools": ["Herbalism Kit"],
+        "languages": ["Common", "Elvish", "Sylvan"]
+      },
+      "traits": {
+        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable — she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
+        "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there — something the world is pretending not to notice.",
+        "bond": "Her spellbook contains pressed flowers, margin notes in three languages, and a spell she hasn't been able to cast yet. The people she travels with have become, unexpectedly, something she would cross swamps for.",
+        "flaw": "She occasionally forgets that other people cannot fly, hide instantly, or talk to mushrooms — which leads to plans that only work if you're her. She also underestimates her own size in situations requiring physical presence."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 1, "ep": 0, "sp": 0, "cp": 0 },
+        "carried": [
+          { "name": "Quarterstaff (Witherbloom-etched)", "quantity": 1, "description": "" },
+          { "name": "Arcane Focus Rod",                  "quantity": 1, "description": "" },
+          { "name": "Spellbook",                         "quantity": 1, "description": "Pressed flowers inside" },
+          { "name": "Explorer's Pack",                   "quantity": 1, "description": "" },
+          { "name": "Herbalism Kit",                     "quantity": 1, "description": "" },
+          { "name": "Ink Bottle & Ink Pen",              "quantity": 1, "description": "" },
+          { "name": "School Uniform",                    "quantity": 1, "description": "" },
+          { "name": "Book — Plant Identification",       "quantity": 1, "description": "" },
+          { "name": "Iron Pot",                          "quantity": 1, "description": "" },
+          { "name": "Dagger",                            "quantity": 1, "description": "" },
+          { "name": "Dart",                              "quantity": 5, "description": "" },
+          { "name": "Sling",                             "quantity": 1, "description": "" }
+        ]
+      },
+      "backstory": {
+        "summary": "She arrived at Witherbloom with pressed flowers already in her spellbook and a question she hadn't told anyone yet. The swamp suited her — it didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does life end and death begin, and is anything actually living in that gap? She is very small. She compensates with extraordinary thoroughness. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index."
       }
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      const r = Math.random() > 0.5 ? `rgba(180, 140, 255, ${alpha})` : `rgba(100, 180, 220, ${alpha})`;
-      ctx.fillStyle = r;
-      ctx.fill();
-
-      p.x += p.speedX;
-      p.y += p.speedY;
-
-      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
-      if (p.x < -10) p.x = canvas.width + 10;
-      if (p.x > canvas.width + 10) p.x = -10;
-    });
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = getComputedStyle(entry.target).getPropertyValue('--reveal-delay') || '0s';
-        entry.target.style.animationDelay = delay;
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
+    },
+    "slot3": {
+      "identity": {
+        "name": "Raven",
+        "race": "Shadar-kai",
+        "class": "Rogue",
+        "subclass": "Assassin",
+        "level": 1,
+        "background": "Spy",
+        "alignment": "True Neutral",
+        "experience": 0,
+        "portrait_url": "/dnd/raven.png",
+        "theme_color": "#5a5a7a",
+        "theme_color_light": "#9090b8",
+        "theme_color_bright": "#c8c8e8",
+        "theme_color_dim": "#2d2d4a",
+        "theme_rgb": "90,90,122"
+      },
+      "meta": {
+        "player": "Rose",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "Female",
+        "age": null,
+        "size": "Medium",
+        "height": null,
+        "weight": null,
+        "eyes": null,
+        "skin": "Ashen grey",
+        "hair": null,
+        "faith": null,
+        "distinguishing_features": "Shadow-lined pouch of carefully wrapped trinkets. Moves like she was never in the room."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 15,
+        "dex": 18,
+        "con": 15,
+        "int": 11,
+        "wis": 16,
+        "cha": 14
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+2" },
+        "dex": { "proficient": true,  "value": "+6" },
+        "con": { "proficient": false, "value": "+2" },
+        "int": { "proficient": true,  "value": "+2" },
+        "wis": { "proficient": false, "value": "+3" },
+        "cha": { "proficient": false, "value": "+2" }
+      },
+      "combat": {
+        "hp_max": 10,
+        "hp_current": 10,
+        "hp_temp": 0,
+        "ac": 15,
+        "initiative": "+4",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d8",
+        "passive_perception": 15,
+        "passive_investigation": 10,
+        "passive_insight": 13
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+        "deception":       { "ability": "cha", "proficient": true,  "expertise": true,  "value": "+6" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
+        "performance":     { "ability": "cha", "proficient": true,  "expertise": false, "value": "+4" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+2" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "stealth":         { "ability": "dex", "proficient": true,  "expertise": true,  "value": "+8" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
+      },
+      "attacks": [
+        {
+          "name": "Shortsword",
+          "type": "Simple Melee Weapon",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Melee Weapon Attack. Finesse, light. Primary blade."
+        },
+        {
+          "name": "Dagger",
+          "type": "Simple Melee/Ranged Weapon",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Piercing",
+          "detail": "Melee or Ranged (20/60 ft). Finesse, light, thrown. Carries two."
+        },
+        {
+          "name": "Shortbow",
+          "type": "Simple Ranged Weapon",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Piercing",
+          "detail": "Ranged Weapon Attack. Range 80/320 ft. 20 arrows carried."
+        },
+        {
+          "name": "Crowbar",
+          "type": "Improvised Melee",
+          "attack": "+4",
+          "damage": "1d4+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Improvised weapon. Also grants advantage on STR checks to force open doors and containers."
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+4",
+          "damage": "1d1+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Last resort."
+        }
+      ],
+      "spellcasting": {
+        "enabled": false,
+        "ability": "wis",
+        "spell_save_dc": 0,
+        "spell_attack_bonus": "+0",
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {
+        "sneak_attack": {
+          "label": "Sneak Attack",
+          "max": 1,
+          "current": 1,
+          "recharge": "Per Turn",
+          "description": "Once per turn. Extra 1d6 damage on a hit with a finesse or ranged weapon if you have advantage, or an ally is adjacent to the target and you don't have disadvantage."
+        },
+        "blessing_of_the_raven_queen": {
+          "label": "Blessing of the Raven Queen",
+          "max": 2,
+          "current": 2,
+          "recharge": "Long Rest",
+          "description": "Bonus action: teleport up to 30 ft to an unoccupied space you can see. Uses = proficiency bonus. At level 3, gain resistance to all damage until the start of your next turn when you teleport."
+        }
+      },
+      "features": [
+        {
+          "name": "Expertise",
+          "source": "Rogue 1",
+          "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics — the full suite of someone who was never where you thought she was."
+        },
+        {
+          "name": "Sneak Attack",
+          "source": "Rogue 1",
+          "description": "Once per turn, deal extra 1d6 damage with a finesse or ranged weapon when you have advantage on the attack roll, or when an ally is within 5 ft of the target and you don't have disadvantage. Scales with rogue level."
+        },
+        {
+          "name": "Thieves' Cant",
+          "source": "Rogue 1",
+          "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols — safe houses, territorial markers, danger warnings."
+        },
+        {
+          "name": "Blessing of the Raven Queen",
+          "source": "Shadar-kai",
+          "description": "Bonus action: teleport up to 30 ft to any unoccupied space in sight. Uses = proficiency bonus (2) per long rest. At level 3, becomes ghostly and translucent, gaining resistance to all damage until the start of her next turn after teleporting."
+        },
+        {
+          "name": "Darkvision",
+          "source": "Shadar-kai",
+          "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness — only shades of grey."
+        },
+        {
+          "name": "Fey Ancestry",
+          "source": "Shadar-kai",
+          "description": "Advantage on saving throws against being charmed. Magic cannot put her to sleep."
+        },
+        {
+          "name": "Necrotic Resistance",
+          "source": "Shadar-kai",
+          "description": "Resistance to necrotic damage."
+        },
+        {
+          "name": "Trance",
+          "source": "Shadar-kai",
+          "description": "Does not sleep. Meditates for 4 hours instead, gaining the benefit of a full 8-hour rest."
+        },
+        {
+          "name": "Criminal Contact",
+          "source": "Spy Background",
+          "description": "A reliable network contact who acts as liaison to a broader criminal web. Can send and receive messages across great distances through local messengers, corrupt caravan masters, and seedy sailors."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Light Armor"],
+        "weapons": ["Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"],
+        "tools": ["Thieves' Tools"],
+        "languages": ["Common", "Thieves' Cant", "Undercommon"]
+      },
+      "traits": {
+        "personality": "Moves through a room like she was never in it. Helpful to the party in ways that are difficult to trace back to her. Denies taking things even when they are visibly in her belt pouch.",
+        "ideal": "Information and positioning. She is never the most powerful person in the room — she is the one who knows where all the exits are.",
+        "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts — never admits it.",
+        "flaw": "If it catches the light, she wants it. She is aware this is a problem. She has decided it is not a problem."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 15, "ep": 0, "sp": 0, "cp": 0 },
+        "carried": [
+          { "name": "Shortsword",          "quantity": 1,  "description": "Primary blade." },
+          { "name": "Dagger",              "quantity": 2,  "description": "Finesse, light, thrown." },
+          { "name": "Shortbow",            "quantity": 1,  "description": "Range 80/320 ft." },
+          { "name": "Arrows",              "quantity": 20, "description": "Standard ammunition." },
+          { "name": "Crowbar",             "quantity": 1,  "description": "Advantage on STR checks to force open things. Also a weapon if it comes to it." },
+          { "name": "Leather Armor",       "quantity": 1,  "description": "AC 15." },
+          { "name": "Thieves' Tools",      "quantity": 1,  "description": "Tool proficiency." },
+          { "name": "Burglar's Pack",      "quantity": 1,  "description": "Standard adventuring supplies." },
+          { "name": "Dark Hooded Clothes", "quantity": 1,  "description": "Common clothes. Functional. Preferred." }
+        ]
+      },
+      "backstory": {
+        "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost — organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
       }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.char-card').forEach(card => observer.observe(card));
-
-  // ── CARD PARALLAX ──
-  document.querySelectorAll('.char-card:not(.empty)').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-      card.style.transform = `translateY(-8px) rotateY(${dx * 3}deg) rotateX(${-dy * 3}deg)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-</script>
-
-
-<script>
-/* ── PLAYER.JSON WIRING (landing cards) ── */
-(async function () {
-  const CANDIDATES = [
-    "./player.json",
-    "player.json",
-    "/player.json",
-    "/dnd/player.json",
-    "../player.json",
-    "../../player.json"
-  ];
-
-  async function loadPlayers() {
-    let lastErr = null;
-    for (const url of CANDIDATES) {
-      try {
-        const r = await fetch(url, { cache: "no-store" });
-        if (!r.ok) { lastErr = new Error(`HTTP ${r.status} @ ${url}`); continue; }
-        return await r.json();
-      } catch (e) { lastErr = e; }
-    }
-    throw lastErr || new Error("Could not load player.json");
-  }
-
-  function abMod(score) {
-    const n = Number(score);
-    if (!Number.isFinite(n)) return "";
-    const m = Math.floor((n - 10) / 2);
-    return (m >= 0 ? "+" : "") + m;
-  }
-
-  function setText(el, txt) {
-    if (!el) return;
-    el.textContent = (txt ?? "").toString();
-  }
-
-  function buildJoin(parts) {
-    return parts.filter(Boolean).join(" · ");
-  }
-
-  try {
-    const data = await loadPlayers();
-
-    // player.json uses a slots structure: data.slots.slot1, slot2, etc.
-    // Each slot has nested identity, abilities, combat sub-objects.
-    // Build a lookup map keyed by the card's data-character attribute,
-    // matching on identity.name (case-insensitive) or a slot's explicit key field.
-    const slots = data?.slots || {};
-    const charMap = {};
-    for (const slotVal of Object.values(slots)) {
-      const id = slotVal?.identity;
-      if (!id?.name) continue;
-      // Derive the card key from the name: lowercase, strip spaces
-      const cardKey = id.name.toLowerCase().replace(/\s+/g, "");
-      charMap[cardKey] = slotVal;
-    }
-    // Also allow matching by explicit key field if present
-    for (const slotVal of Object.values(slots)) {
-      if (slotVal?.key) charMap[slotVal.key] = slotVal;
-    }
-
-    document.querySelectorAll(".char-card[data-character]").forEach(card => {
-      const rawKey = card.getAttribute("data-character"); // e.g. "sekhmet", "malc"
-      // Try exact key first, then name-derived key (e.g. "malcgrann" → won't match "malc")
-      // So also try prefix matching for multi-word names like "Malc Grann" → key "malc"
-      let slot = charMap[rawKey];
-      if (!slot) {
-        // Fallback: find a slot whose name starts with the card key (case-insensitive)
-        slot = Object.values(slots).find(s =>
-          s?.identity?.name?.toLowerCase().startsWith(rawKey.toLowerCase())
-        );
+    },
+    "slot4": {
+      "identity": {
+        "name": "Evo",
+        "race": "Bronze Dragonborn",
+        "class": "Cleric",
+        "subclass": "Tempest Domain",
+        "level": 1,
+        "background": "Rival Intern",
+        "alignment": "Lawful Evil",
+        "experience": 0,
+        "portrait_url": "/dnd/Evo.png",
+  "theme_color":        "#4a6080",
+"theme_color_light":  "#8aaece",
+"theme_color_bright": "#c8dff0",
+"theme_color_dim":    "#4a6882",
+"theme_rgb":          "74,96,128"
+      },
+      "meta": {
+        "player": "Nikkelz",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": null,
+        "age": 25,
+        "size": "Medium",
+        "height": "6'7\"",
+        "weight": 240,
+        "eyes": "Blue",
+        "skin": "Bronze",
+        "hair": "None",
+        "faith": null,
+        "distinguishing_features": "Bronze draconic scales. No hair. Carries Cartographer's Tools from his archival days at Moogle & Co."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 15,
+        "dex": 13,
+        "con": 14,
+        "int": 12,
+        "wis": 16,
+        "cha": 16
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+2" },
+        "dex": { "proficient": false, "value": "+1" },
+        "con": { "proficient": false, "value": "+2" },
+        "int": { "proficient": false, "value": "+1" },
+        "wis": { "proficient": true,  "value": "+5" },
+        "cha": { "proficient": true,  "value": "+5" }
+      },
+      "combat": {
+        "hp_max": 10,
+        "hp_current": 10,
+        "hp_temp": 0,
+        "ac": 18,
+        "initiative": "+1",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d8",
+        "passive_perception": 13,
+        "passive_investigation": 13,
+        "passive_insight": 13
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+2" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "investigation":   { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+1" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "persuasion":      { "ability": "cha", "proficient": true,  "expertise": false, "value": "+5" },
+        "religion":        { "ability": "int", "proficient": true,  "expertise": false, "value": "+3" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" }
+      },
+      "attacks": [
+        {
+          "name": "Mace",
+          "type": "Simple Melee Weapon",
+          "attack": "+4",
+          "damage": "1d6+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Melee Weapon Attack. The preferred instrument of divine correction."
+        },
+        {
+          "name": "Light Crossbow",
+          "type": "Simple Ranged Weapon",
+          "attack": "+3",
+          "damage": "1d8+1",
+          "damage_type": "Piercing",
+          "detail": "Ranged Weapon Attack. Range 80/320 ft."
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+4",
+          "damage": "1d1+2",
+          "damage_type": "Bludgeoning",
+          "detail": "Last resort. Still hurts."
+        }
+      ],
+      "spellcasting": {
+        "enabled": true,
+        "ability": "wis",
+        "spell_save_dc": 13,
+        "spell_attack_bonus": "+5",
+        "spell_slots": {
+          "level_1": { "max": 2, "current": 2 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        },
+        "cantrips": [
+          {
+            "name": "Toll the Dead",
+            "school": "Necromancy",
+            "casting_time": "1 action",
+            "range": "60 ft.",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "A creature you can see must pass a Wisdom save or take 1d8 necrotic damage, or 1d12 if it's missing any hit points. Scales at 5th, 11th, and 17th level."
+          },
+          {
+            "name": "Word of Radiance",
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "5 ft.",
+            "components": "V, M (holy symbol)",
+            "duration": "Instantaneous",
+            "description": "Each creature of your choice within 5 ft must succeed on a CON save or take 1d6 radiant damage. Scales at 5th, 11th, and 17th level."
+          },
+          {
+            "name": "Guidance",
+            "school": "Divination",
+            "casting_time": "1 action",
+            "range": "Touch",
+            "components": "V, S",
+            "duration": "Concentration, up to 1 minute",
+            "description": "Touch one willing creature. Once before the spell ends, the target adds 1d4 to one ability check of its choice."
+          }
+        ],
+        "spells_prepared": [
+          {
+            "name": "Bless",
+            "level": 1,
+            "school": "Enchantment",
+            "casting_time": "1 action",
+            "range": "30 ft.",
+            "components": "V, S, M (holy water)",
+            "duration": "Concentration, up to 1 minute",
+            "description": "Bless up to 3 creatures. Each adds 1d4 to attack rolls and saving throws. +1 target per slot level above 1st."
+          },
+          {
+            "name": "Cure Wounds",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "Touch",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "A touched creature regains 1d8 + WIS modifier HP. No effect on undead or constructs. +1d8 per slot level above 1st."
+          },
+          {
+            "name": "Fog Cloud",
+            "level": 1,
+            "school": "Conjuration",
+            "casting_time": "1 action",
+            "range": "120 ft.",
+            "components": "V, S",
+            "duration": "Concentration, up to 1 hour",
+            "description": "20-foot-radius sphere of fog, heavily obscured. +20 ft. radius per slot level above 1st. [Tempest Domain]"
+          },
+          {
+            "name": "Guiding Bolt",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "120 ft.",
+            "components": "V, S",
+            "duration": "1 round",
+            "description": "Ranged spell attack. Hit: 4d6 radiant damage. Next attack against the target has advantage. +1d6 per slot level above 1st."
+          },
+          {
+            "name": "Healing Word",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 bonus action",
+            "range": "60 ft.",
+            "components": "V",
+            "duration": "Instantaneous",
+            "description": "A visible creature regains 1d4 + WIS modifier HP. No effect on undead or constructs. +1d4 per slot level above 1st."
+          },
+          {
+            "name": "Thunderwave",
+            "level": 1,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "Self (15-foot cube)",
+            "components": "V, S",
+            "duration": "Instantaneous",
+            "description": "Each creature in a 15-ft cube makes a CON save. Fail: 2d8 thunder damage, pushed 10 ft. Success: half damage. Audible 300 ft. +1d8 per slot level above 1st. [Tempest Domain]"
+          }
+        ]
+      },
+      "class_resources": {
+        "wrath_of_the_storm": {
+          "label": "Wrath of the Storm",
+          "max": 3,
+          "current": 3,
+          "recharge": "Long Rest",
+          "description": "Reaction when hit by a creature within 5 ft. Deal 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier."
+        }
+      },
+      "features": [
+        {
+          "name": "Bonus Proficiencies",
+          "source": "Tempest Domain 1",
+          "description": "Proficiency with martial weapons and heavy armor. Evo walked in expecting a desk job. He got a war portfolio instead."
+        },
+        {
+          "name": "Wrath of the Storm",
+          "source": "Tempest Domain 1",
+          "description": "Reaction triggered when a creature within 5 ft hits you. It takes 2d8 lightning or thunder damage (DEX save DC 13 halves). Uses = WIS modifier (3) per long rest."
+        },
+        {
+          "name": "Domain Spells",
+          "source": "Tempest Domain 1",
+          "description": "Fog Cloud and Thunderwave are always prepared and don't count against prepared spell limit. Higher-level domain spells unlock as Evo levels."
+        },
+        {
+          "name": "Lightning Breath Weapon",
+          "source": "Bronze Dragonborn",
+          "description": "Exhale a 5×30 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
+        },
+        {
+          "name": "Lightning Damage Resistance",
+          "source": "Bronze Dragonborn",
+          "description": "Resistance to lightning damage."
+        },
+        {
+          "name": "Inside Informant",
+          "source": "Rival Intern Background",
+          "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon — his as-yet-unfunded information startup."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
+        "weapons": ["Simple Weapons", "Martial Weapons"],
+        "tools": ["Cartographer's Tools"],
+        "languages": ["Common", "Draconic", "Gnomish"]
+      },
+      "traits": {
+        "personality": "Radiates the quiet confidence of someone who definitely belongs here and absolutely did not misread the job posting.",
+        "ideal": "Information is currency. The right leverage at the right moment is worth more than any spell slot.",
+        "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer — for now, interests align.",
+        "flaw": "Lawful Evil wrapped in a support role. He will absolutely sell you out if the market conditions are right."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
+        "encumbrance": {
+          "total_weight_lb": 76.5,
+          "encumbered_lb": 150,
+          "push_drag_lift_lb": 300
+        },
+        "carried": [
+          { "name": "Chain Mail",           "quantity": 1,  "description": "AC 16. Heavy armor." },
+          { "name": "Shield",               "quantity": 1,  "description": "+2 AC." },
+          { "name": "Mace",                 "quantity": 1,  "description": "1d6 bludgeoning." },
+          { "name": "Light Crossbow",        "quantity": 1,  "description": "1d8 piercing. Range 80/320 ft." },
+          { "name": "Crossbow Bolts",        "quantity": 20, "description": "Standard ammunition." },
+          { "name": "Cartographer's Tools",  "quantity": 1,  "description": "Tool proficiency. Holdover from the archives." }
+        ]
+      },
+      "backstory": {
+        "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding.",
+        "verbatim": "A lowly intern. I saw a job ad for a big fortune 5000 company called moogle & got hired on the spot. But I read the job description wrong, they didn't want a cleric they wanted a clerc(k). They all made fun of me for that. I used my time in the archives to learn most of their partners and I aim to undercut them in the global markets by starting my own information company called duck duck dragon. I need money for my startup so i joined a random party to get funds."
       }
-      if (!slot) return;
+    },
+    "slot5": {
+      "identity": {
+        "name": "Malc Grann",
+        "race": "Rock Gnome",
+        "class": "Fighter",
+        "subclass": "Battle Master (Planned)",
+        "level": 1,
+        "background": "Folk Hero",
+        "alignment": "Neutral",
+        "experience": "Milestone",
+        "portrait_url": "/dnd/malc.png",
+        "theme_color": "#5a3f2a",
+        "theme_color_light": "#8b6f47",
+        "theme_color_bright": "#d4a574",
+        "theme_color_dim": "#3d2817",
+        "theme_rgb": "90,63,42"
+      },
+      "meta": {
+        "player": "SirMoosen",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "Male",
+        "age": 67,
+        "size": "Small",
+        "height": "3'6\"",
+        "weight": 42,
+        "eyes": "Topaz",
+        "skin": "Tan",
+        "hair": "Platinum Blonde",
+        "faith": "Malc Grann",
+        "distinguishing_features": "Self-proclaimed Wall God. Always visibly excited when near a structurally significant wall."
+      },
+      "senses": {
+        "darkvision_ft": 60
+      },
+      "abilities": {
+        "str": 18,
+        "dex": 12,
+        "con": 18,
+        "int": 10,
+        "wis": 10,
+        "cha": 16
+      },
+      "saving_throws": {
+        "str": { "proficient": true,  "value": "+6" },
+        "dex": { "proficient": false, "value": "+1" },
+        "con": { "proficient": true,  "value": "+6" },
+        "int": { "proficient": false, "value": "+0", "note": "Advantage vs magic (Gnomish Cunning)" },
+        "wis": { "proficient": false, "value": "+0", "note": "Advantage vs magic (Gnomish Cunning)" },
+        "cha": { "proficient": false, "value": "+3", "note": "Advantage vs magic (Gnomish Cunning)" }
+      },
+      "combat": {
+        "hp_max": 14,
+        "hp_current": 14,
+        "hp_temp": 0,
+        "ac": 19,
+        "initiative": "+1",
+        "speed": 30,
+        "proficiency_bonus": "+2",
+        "hit_dice_total": "1d10",
+        "passive_perception": 12,
+        "passive_investigation": 10,
+        "passive_insight": 10
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "animal_handling": { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+4" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+3" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+1" },
+        "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+2" }
+      },
+      "attacks": [
+        {
+          "name": "Whip",
+          "type": "Martial Melee Weapon",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Slashing",
+          "detail": "Martial · Finesse · Reach · Slow"
+        },
+        {
+          "name": "Unarmed Strike",
+          "type": "Unarmed",
+          "attack": "+6",
+          "damage": "5",
+          "damage_type": "Bludgeoning",
+          "detail": ""
+        }
+      ],
+      "actions": {
+        "standard_actions": [
+          "Attack", "Magic", "Dash", "Disengage", "Dodge", "Help", "Hide",
+          "Ready", "Search", "Utilize", "Opportunity Attack", "Grapple",
+          "Shove", "Improvise", "Two-Weapon Fighting", "Interact with an Object",
+          "Study", "Influence"
+        ],
+        "bonus_actions": [
+          "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
+        ],
+        "special": [
+          "Tiny Clockwork Device: Activate whenever you or another creature activates it with a touch; the device produces the effect chosen at the time of creation."
+        ]
+      },
+      "spellcasting": {
+        "enabled": true,
+        "type": "lineage",
+        "ability": "int",
+        "spell_save_dc": 0,
+        "spell_attack_bonus": "+0",
+        "cantrips": [
+          {
+            "name": "Mending",
+            "source": "Gnomish Lineage Spells",
+            "school": "Transmutation",
+            "casting_time": "1 minute",
+            "range": "Touch",
+            "components": "V, S, M",
+            "duration": "Instantaneous",
+            "description": "Repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, or a torn cloak. Does not restore magic to a magic item.",
+            "ref": "PHB-2024 297"
+          },
+          {
+            "name": "Prestidigitation",
+            "source": "Gnomish Lineage Spells",
+            "school": "Transmutation",
+            "casting_time": "1 action",
+            "range": "10 ft.",
+            "components": "V, S",
+            "duration": "1 hour",
+            "description": "Minor magical trick: create a small sensory effect, light or snuff a candle, clean or soil an object, chill/warm/flavor up to 1 cubic foot of material, make a symbol appear on a surface, or produce a small trinket.",
+            "ref": "PHB-2024 307"
+          }
+        ],
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 },
+          "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 },
+          "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {
+        "second_wind": {
+          "label": "Second Wind",
+          "max": 2,
+          "current": 2,
+          "recharge": "Long Rest",
+          "notes": "Regain one use on a Short Rest.",
+          "description": "Bonus Action: regain 1d10 + 1 HP."
+        }
+      },
+      "features": [
+        {
+          "name": "Gnomish Cunning",
+          "source": "Rock Gnome",
+          "description": "Advantage on INT, WIS, and CHA saving throws against magic."
+        },
+        {
+          "name": "Darkvision",
+          "source": "Rock Gnome",
+          "description": "Darkvision 60 ft."
+        },
+        {
+          "name": "Tiny Clockwork Device",
+          "source": "Rock Gnome",
+          "description": "Activate whenever you or another creature activates it with a touch; it produces the effect chosen at the time of creation."
+        },
+        {
+          "name": "Second Wind",
+          "source": "Fighter 1",
+          "description": "Bonus Action: regain 1d10 + 1 HP. 2 uses per long rest; regain one use on a short rest."
+        }
+      ],
+      "proficiencies": {
+        "armor": ["Heavy Armor", "Light Armor", "Medium Armor", "Shields"],
+        "weapons": ["Martial Weapons", "Simple Weapons"],
+        "tools": ["Smith's Tools", "Vehicles (Land)"],
+        "languages": ["Common", "Draconic", "Gnomish"]
+      },
+      "traits": {
+        "personality": "Bright-eyed and excited to discuss any sufficiently sturdy-looking wall. Believes himself to be of divinity walking among mortals.",
+        "ideal": "The greatest wall ever built will be his temple. Every structure he encounters is evaluated for its potential.",
+        "bond": "His name means Strong Wall. He intends to live up to it — literally.",
+        "flaw": "Cannot pass a notable wall without stopping to examine it, regardless of circumstances."
+      },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 5, "ep": 0, "sp": 0, "cp": 0 },
+        "encumbrance": {
+          "total_weight_lb": 84,
+          "encumbered_lb": 270,
+          "push_drag_lift_lb": 540
+        },
+        "carried": [
+          { "name": "Shield",       "quantity": 1, "weight_lb": 6,  "description": "" },
+          { "name": "Chain Mail",   "quantity": 1, "weight_lb": 55, "description": "" },
+          { "name": "Whip",         "quantity": 1, "weight_lb": 3,  "description": "" },
+          { "name": "Backpack",     "quantity": 1, "weight_lb": 5,  "description": "" },
+          { "name": "Bedroll",      "quantity": 1, "weight_lb": 7,  "description": "" },
+          { "name": "Mason's Tools","quantity": 1, "weight_lb": 8,  "description": "" },
+          { "name": "Chain",        "quantity": 1, "weight_lb": 0,  "description": "" }
+        ]
+      },
+      "backstory": {
+        "summary": "Malc Grann — meaning Strong Wall — is what this gnome calls himself. Self-proclaimed Wall God. Believes himself to be of divinity walking among mortals. Bright-eyed and excited to discuss and examine any sufficiently sturdy-looking wall. His dream is to build the biggest and best wall anyone has ever seen and declare it his temple.",
+        "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
+      }
+    },
+    "slot6": {
+  "identity": {
+    "name": "Accel Signal",
+    "race": "Eladrin Variant",
+    "class": "Ranger",
+    "subclass": "",
+    "level": 2,
+    "background": "Sage",
+    "alignment": "Neutral Good",
+    "experience": 300
+  },
 
-      const id = slot.identity;
-      const combat = slot.combat || {};
-      const abilities = slot.abilities || {};
+  "physical": {
+    "age": 28,
+    "height": "5'11\"",
+    "weight": 190,
+    "eyes": "Icy blue, with white…",
+    "skin": "Pale, frosty skin",
+    "hair": "Silvery white wi…"
+  },
 
-      // Name
-      setText(card.querySelector(".char-name"), id.name || rawKey);
+  "abilities": {
+    "str": 12,
+    "dex": 19,
+    "con": 15,
+    "int": 10,
+    "wis": 16,
+    "cha": 13
+  },
 
-      // Level badge
-      setText(card.querySelector(".level-badge .level-num"), id.level);
+  "combat": {
+    "hp_max": 24,
+    "hp_current": 24,
+    "hp_temp": 0,
+    "ac": 15,
+    "initiative": "+4",
+    "speed": 30,
+    "proficiency_bonus": "+2",
+    "hit_dice_total": "2d10",
+    "passive_perception": 15,
+    "passive_investigation": 10,
+    "passive_insight": 13
+  },
 
-      // Class badge (Class · Subclass)
-      setText(card.querySelector(".class-badge"), buildJoin([id.class, id.subclass]));
+  "saving_throws": {
+    "str": { "proficient": true,  "value": "+3" },
+    "dex": { "proficient": true,  "value": "+6" },
+    "con": { "proficient": false, "value": "+2" },
+    "int": { "proficient": false, "value": "+0" },
+    "wis": { "proficient": false, "value": "+3" },
+    "cha": { "proficient": false, "value": "+1" }
+  },
 
-      // Subtitle line under name (Race · Subclass/Path · Background)
-      setText(card.querySelector(".char-race-class"), buildJoin([id.race, id.subclass, id.background]));
+  "skills": {
+    "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+4" },
+    "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "arcana":          { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "athletics":       { "ability": "str", "proficient": true,  "expertise": false, "value": "+3" },
+    "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "history":         { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+3" },
+    "nature":          { "ability": "int", "proficient": true,  "expertise": false, "value": "+2" },
+    "perception":      { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" },
+    "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+1" },
+    "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+    "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+4" },
+    "stealth":         { "ability": "dex", "proficient": true,  "expertise": false, "value": "+6" },
+    "survival":        { "ability": "wis", "proficient": true,  "expertise": false, "value": "+5" }
+  },
 
-      // Abilities (ordered)
-      const order = ["str","dex","con","int","wis","cha"];
-      const cells = card.querySelectorAll(".stat-row .stat-cell");
-      order.forEach((k, i) => {
-        const cell = cells[i];
-        if (!cell) return;
-        setText(cell.querySelector(".stat-val"), abilities[k]);
-        setText(cell.querySelector(".stat-mod"), abMod(abilities[k]));
-      });
-
-      // Quick info tags: HP, AC, Speed, Prof, Alignment
-      const tags = card.querySelectorAll(".quick-info .qi-tag");
-
-      const hpDisplay = combat.hp_current ?? combat.hp_max ?? null;
-      const ac = combat.ac ?? null;
-      const sp = combat.speed ?? null;
-
-      const pbRaw = combat.proficiency_bonus ?? null;
-      let pbTxt = "";
-      if (typeof pbRaw === "string") pbTxt = pbRaw.trim();
-      else if (pbRaw != null && pbRaw !== "") pbTxt = (Number(pbRaw) >= 0 ? "+" + Number(pbRaw) : String(pbRaw));
-
-      const al = id.alignment ?? "";
-
-      if (tags[0]) setText(tags[0], `HP ${hpDisplay ?? ""}`);
-      if (tags[1]) setText(tags[1], `AC ${ac ?? ""}`);
-      if (tags[2]) setText(tags[2], `Speed ${sp ?? ""}`);
-      if (tags[3]) setText(tags[3], `Prof ${pbTxt}`);
-      if (tags[4]) setText(tags[4], al);
-    });
-  } catch (err) {
-    console.warn("Landing-page wiring failed; leaving fallback values in place.", err);
-  }
-})();
-</script>
-<!-- AUDIO PLAYER -->
-<div id="audio-player" style="
-  position: fixed;
-  bottom: 28px; right: 32px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(14,10,6,0.88);
-  border: 1px solid rgba(184,131,42,0.35);
-  padding: 10px 18px;
-  backdrop-filter: blur(10px);
-  z-index: 100;
-">
-  <button id="audio-toggle" onclick="toggleAudio()" style="
-    background: none;
-    border: none;
-    color: #a07828;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-    transition: color 0.3s;
-  ">▶</button>
-  <span style="font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:#a07828; text-transform:uppercase;">Ambience</span>
-  <input type="range" id="audio-vol" min="0" max="1" step="0.05" value="0.01"
-    oninput="document.getElementById('bg-audio').volume=this.value"
-    style="width:60px; accent-color:#b8832a; cursor:pointer;">
-</div>
-
-<audio id="bg-audio" loop>
-  <source src="/dnd/background2.mp3" type="audio/mpeg">
-</audio>
-
-<!-- ── DOCUMENT VIEWER MODAL ── -->
-<div id="doc-modal" role="dialog" aria-modal="true">
-  <div class="doc-modal-shell">
-
-    <!-- Top bar -->
-    <div class="doc-modal-bar">
-      <span class="doc-bar-name" id="doc-bar-name">Character</span>
-      <div class="doc-sep"></div>
-
-      <!-- Character tabs -->
-      <div class="doc-char-tabs" id="doc-char-tabs">
-        <!-- populated by JS -->
-      </div>
-
-      <div class="doc-sep"></div>
-
-      <!-- Sheet type -->
-      <div class="doc-type-btns">
-        <button class="doc-type-btn active" id="btn-type-sheet" onclick="switchDocType('sheet')">⚔ Sheet</button>
-        <button class="doc-type-btn" id="btn-type-text" onclick="switchDocType('text')">📜 Text</button>
-      </div>
-
-      <div class="doc-sep"></div>
-
-      <!-- Zoom -->
-      <div class="doc-zoom-group">
-        <button class="doc-zoom-btn" onclick="changeZoom(-10)" title="Zoom out">−</button>
-        <span class="doc-zoom-label" id="doc-zoom-label">100%</span>
-        <button class="doc-zoom-btn" onclick="changeZoom(+10)" title="Zoom in">+</button>
-        <button class="doc-zoom-btn" onclick="resetZoom()" title="Reset zoom" style="font-size:11px;letter-spacing:0;font-family:'Cinzel',serif;">↺</button>
-      </div>
-
-      <div class="doc-sep"></div>
-
-      <!-- Close -->
-      <button class="doc-close-btn" onclick="closeDocModal()" title="Close">✕</button>
-    </div>
-
-    <!-- iframe area with nav arrows -->
-    <div class="doc-iframe-wrap">
-      <button class="doc-nav-arrow prev" id="doc-prev" onclick="navigateChar(-1)" title="Previous character">‹</button>
-      <div class="doc-iframe-scroll" id="doc-scroll">
-        <iframe id="doc-iframe" src="about:blank" title="Character document"></iframe>
-      </div>
-      <button class="doc-nav-arrow next" id="doc-next" onclick="navigateChar(+1)" title="Next character">›</button>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  // ── CHARACTER DATA ──
-  const PARTY = [
-    { key:'sekhmet', name:'Sekhmet',   emoji:'🦁', sheet:'/dnd/characters/character1.html',  text:'/dnd/characters/character1_textsheet.html' },
-    { key:'raven',   name:'Raven',     emoji:'🗡️', sheet:'/dnd/characters/character3.html',    text:'/dnd/characters/character3_textsheet.html' },
-    { key:'izabella',name:'Izabella',  emoji:'✨', sheet:'/dnd/characters/character2.html', text:'/dnd/characters/character2_textsheet.html' },
-    { key:'evo',     name:'Evo',       emoji:'⚡', sheet:'/dnd/characters/character4.html',      text:'/dnd/characters/character4_textsheet.html' },
-    { key:'malc',    name:'Malc Grann',emoji:'🧱', sheet:'/dnd/characters/character5.html',     text:'/dnd/characters/character5_textsheet.html' },
-  ];
-
-  let currentCharIdx = 0;
-  let currentDocType = 'sheet'; // 'sheet' or 'text'
-  let zoomLevel = 100;
-
-  // Build character tabs
-  const tabContainer = document.getElementById('doc-char-tabs');
-  PARTY.forEach((char, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'doc-tab' + (i === 0 ? ' active' : '');
-    btn.id = `doc-tab-${char.key}`;
-    btn.textContent = `${char.emoji} ${char.name}`;
-    btn.onclick = () => openDocModal(i, currentDocType);
-    tabContainer.appendChild(btn);
-  });
-
-  function openDocModal(charIdx, docType = 'sheet') {
-    currentCharIdx = charIdx;
-    currentDocType = docType;
-    updateModal();
-    document.getElementById('doc-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDocModal() {
-    document.getElementById('doc-modal').classList.remove('open');
-    document.getElementById('doc-iframe').src = 'about:blank';
-    document.body.style.overflow = '';
-  }
-
-  function updateModal() {
-    const char = PARTY[currentCharIdx];
-
-    // Update bar name
-    document.getElementById('doc-bar-name').textContent = char.name;
-
-    // Update tabs
-    document.querySelectorAll('.doc-tab').forEach((t, i) => t.classList.toggle('active', i === currentCharIdx));
-
-    // Update type buttons
-    document.getElementById('btn-type-sheet').classList.toggle('active', currentDocType === 'sheet');
-    document.getElementById('btn-type-text').classList.toggle('active', currentDocType === 'text');
-
-    // Update nav arrows
-    document.getElementById('doc-prev').disabled = currentCharIdx === 0;
-    document.getElementById('doc-next').disabled = currentCharIdx === PARTY.length - 1;
-
-    // Load iframe
-    const url = currentDocType === 'sheet' ? char.sheet : char.text;
-    const iframe = document.getElementById('doc-iframe');
-    iframe.src = url;
-
-    // Apply zoom
-    applyZoom();
-  }
-
-  function switchDocType(type) {
-    currentDocType = type;
-    updateModal();
-  }
-
-  function navigateChar(dir) {
-    const next = currentCharIdx + dir;
-    if (next < 0 || next >= PARTY.length) return;
-    currentCharIdx = next;
-    updateModal();
-  }
-
-  function applyZoom() {
-    const iframe = document.getElementById('doc-iframe');
-    const scroll = document.getElementById('doc-scroll');
-    const scale = zoomLevel / 100;
-
-    if (zoomLevel === 100) {
-      iframe.style.transform = '';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-    } else if (zoomLevel > 100) {
-      // Scale up: iframe stays 100% of scroll area, content inside zooms
-      iframe.style.transform = '';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-    } else {
-      iframe.style.transform = `scale(${scale})`;
-      iframe.style.transformOrigin = 'top left';
-      iframe.style.width = `${10000 / zoomLevel}%`;
-      iframe.style.height = `${10000 / zoomLevel}%`;
+  "attacks": [
+    {
+      "name": "Longbow",
+      "type": "Martial Ranged",
+      "attack": "+8",
+      "damage": "1d8+4",
+      "damage_type": "Piercing"
+    },
+    {
+      "name": "Shortsword",
+      "type": "Martial Melee",
+      "attack": "+6",
+      "damage": "1d6+4",
+      "damage_type": "Piercing"
+    },
+    {
+      "name": "Unarmed Strike",
+      "type": "Unarmed",
+      "attack": "+3",
+      "damage": "1d1+1",
+      "damage_type": "Bludgeoning"
     }
+  ],
 
-    // Use CSS zoom on the iframe for simple scaling
-    iframe.style.zoom = scale;
-    iframe.style.transform = '';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
+  "spellcasting": {
+    "enabled": true,
+    "ability": "wis",
+    "spell_save_dc": 13,
+    "spell_attack_bonus": "+5",
+    "spell_slots": {
+      "level_1": { "max": 2, "current": 2 },
+      "level_2": { "max": 0, "current": 0 },
+      "level_3": { "max": 0, "current": 0 },
+      "level_4": { "max": 0, "current": 0 },
+      "level_5": { "max": 0, "current": 0 }
+    },
+    "spells_known": [
+      { "name": "Hunter's Mark", "level": 1 },
+      { "name": "Jump", "level": 1 },
+      { "name": "Misty Step", "level": 2 }
+    ]
+  },
 
-    document.getElementById('doc-zoom-label').textContent = zoomLevel + '%';
+  "proficiencies": {
+    "weapons": ["All simple weapons", "All martial weapons", "Longbow", "Longsword", "Shortbow", "Shortsword"],
+    "armor": ["Light Armor", "Medium Armor", "Shields"],
+    "tools": ["None"],
+    "languages": ["Abyssal", "Celestial", "Common", "Elvish", "Sylvan"]
+  },
+
+  "equipment": {
+    "currency": { "pp": 0, "gp": 10, "ep": 0, "sp": 0, "cp": 0 },
+    "items": [
+      "Arrows",
+      "Common Clothes",
+      "Dungeoneer's Pack",
+      "Ink Bottle",
+      "Quiver",
+      "Small Knife",
+      "Letter from a dead colleague",
+      "Quill"
+    ],
+    "armor": ["Leather (AC 15)"]
+  },
+
+  "traits": {
+    "personality": "I've read every book in the world's greatest libraries and in almost every plane in existence. There's nothing I like more than a good mystery.",
+    "ideal": "Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
+    "bond": "I've been searching my whole life for the answer to a certain question. Where is my brother, the crown prince. Hiroe Signal of kamigawa neon dynasty",
+    "flaw": "Once I am fixated on learning or reading, I tend to seclude myself in my own world and ignore my surroundings."
   }
-
-  function changeZoom(delta) {
-    zoomLevel = Math.min(200, Math.max(50, zoomLevel + delta));
-    applyZoom();
-  }
-
-  function resetZoom() {
-    zoomLevel = 100;
-    applyZoom();
-  }
-
-  // ── INTERCEPT CARD BUTTONS ──
-  document.querySelectorAll('.card-actions .btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const href = this.getAttribute('href');
-      // Find which character this belongs to
-      const card = this.closest('.char-card');
-      const key = card?.getAttribute('data-character');
-      const idx = PARTY.findIndex(c => c.key === key);
-      if (idx === -1) return;
-
-      // Determine if primary (sheet) or secondary (text)
-      const type = this.classList.contains('btn-secondary') ? 'text' : 'sheet';
-      openDocModal(idx, type);
-    });
-  });
-
-  // Close on backdrop click
-  document.getElementById('doc-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeDocModal();
-  });
-
-  // Keyboard nav
-  document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('doc-modal');
-    if (!modal.classList.contains('open')) return;
-    if (e.key === 'Escape') closeDocModal();
-    if (e.key === 'ArrowLeft') navigateChar(-1);
-    if (e.key === 'ArrowRight') navigateChar(+1);
-  });
-</script>
-
-<script>
-  function toggleAudio() {
-    const audio = document.getElementById('bg-audio');
-    const btn   = document.getElementById('audio-toggle');
-    if (audio.paused) {
-      audio.play();
-      btn.textContent = '⏸';
-      btn.style.color = '#d4a84b';
-    } else {
-      audio.pause();
-      btn.textContent = '▶';
-      btn.style.color = '#a07828';
+},
+    "slot7": {
+      "identity": {
+        "name": "",
+        "race": "",
+        "class": "",
+        "subclass": "",
+        "level": 1,
+        "background": "",
+        "alignment": "",
+        "experience": 0,
+        "portrait_url": "",
+        "theme_color": "#c8972a",
+        "theme_color_light": "#f0c050",
+        "theme_color_bright": "#ffd700",
+        "theme_color_dim": "#7a5a18",
+        "theme_rgb": "200,151,42"
+      },
+      "meta": {
+        "player": "",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "",
+        "age": null,
+        "size": "",
+        "height": "",
+        "weight": null,
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "faith": "",
+        "distinguishing_features": ""
+      },
+      "senses": {
+        "darkvision_ft": 0
+      },
+      "abilities": {
+        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+0" },
+        "dex": { "proficient": false, "value": "+0" },
+        "con": { "proficient": false, "value": "+0" },
+        "int": { "proficient": false, "value": "+0" },
+        "wis": { "proficient": false, "value": "+0" },
+        "cha": { "proficient": false, "value": "+0" }
+      },
+      "combat": {
+        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
+        "ac": 10, "initiative": "+0", "speed": 30,
+        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
+        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
+      },
+      "attacks": [],
+      "spellcasting": {
+        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
+        "cantrips": [],
+        "spells_prepared": [],
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {},
+      "features": [],
+      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
+      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
+        "carried": []
+      },
+      "backstory": { "summary": "", "verbatim": "" }
+    },
+    "slot8": {
+      "identity": {
+        "name": "",
+        "race": "",
+        "class": "",
+        "subclass": "",
+        "level": 1,
+        "background": "",
+        "alignment": "",
+        "experience": 0,
+        "portrait_url": "",
+        "theme_color": "#c8972a",
+        "theme_color_light": "#f0c050",
+        "theme_color_bright": "#ffd700",
+        "theme_color_dim": "#7a5a18",
+        "theme_rgb": "200,151,42"
+      },
+      "meta": {
+        "player": "",
+        "last_session_updated": "Session 00",
+        "session_changes": []
+      },
+      "physical": {
+        "gender": "",
+        "age": null,
+        "size": "",
+        "height": "",
+        "weight": null,
+        "eyes": "",
+        "skin": "",
+        "hair": "",
+        "faith": "",
+        "distinguishing_features": ""
+      },
+      "senses": {
+        "darkvision_ft": 0
+      },
+      "abilities": {
+        "str": 10, "dex": 10, "con": 10, "int": 10, "wis": 10, "cha": 10
+      },
+      "saving_throws": {
+        "str": { "proficient": false, "value": "+0" },
+        "dex": { "proficient": false, "value": "+0" },
+        "con": { "proficient": false, "value": "+0" },
+        "int": { "proficient": false, "value": "+0" },
+        "wis": { "proficient": false, "value": "+0" },
+        "cha": { "proficient": false, "value": "+0" }
+      },
+      "combat": {
+        "hp_max": 10, "hp_current": 10, "hp_temp": 0,
+        "ac": 10, "initiative": "+0", "speed": 30,
+        "proficiency_bonus": "+2", "hit_dice_total": "1d8",
+        "passive_perception": 10, "passive_investigation": 10, "passive_insight": 10
+      },
+      "skills": {
+        "acrobatics":      { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "animal_handling": { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "arcana":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "athletics":       { "ability": "str", "proficient": false, "expertise": false, "value": "+0" },
+        "deception":       { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "history":         { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "insight":         { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "intimidation":    { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "investigation":   { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "medicine":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "nature":          { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "perception":      { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" },
+        "performance":     { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "persuasion":      { "ability": "cha", "proficient": false, "expertise": false, "value": "+0" },
+        "religion":        { "ability": "int", "proficient": false, "expertise": false, "value": "+0" },
+        "sleight_of_hand": { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "stealth":         { "ability": "dex", "proficient": false, "expertise": false, "value": "+0" },
+        "survival":        { "ability": "wis", "proficient": false, "expertise": false, "value": "+0" }
+      },
+      "attacks": [],
+      "spellcasting": {
+        "enabled": false, "ability": "int", "spell_save_dc": 10, "spell_attack_bonus": "+0",
+        "cantrips": [],
+        "spells_prepared": [],
+        "spell_slots": {
+          "level_1": { "max": 0, "current": 0 }, "level_2": { "max": 0, "current": 0 },
+          "level_3": { "max": 0, "current": 0 }, "level_4": { "max": 0, "current": 0 },
+          "level_5": { "max": 0, "current": 0 }
+        }
+      },
+      "class_resources": {},
+      "features": [],
+      "proficiencies": { "armor": [], "weapons": [], "tools": [], "languages": [] },
+      "traits": { "personality": "", "ideal": "", "bond": "", "flaw": "" },
+      "equipment": {
+        "currency": { "pp": 0, "gp": 0, "ep": 0, "sp": 0, "cp": 0 },
+        "carried": []
+      },
+      "backstory": { "summary": "", "verbatim": "" }
     }
   }
-</script>
+}
