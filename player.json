@@ -2179,6 +2179,7 @@
       }
     },
     "slot6": {
+      "key": "signal",
       "identity": {
         "name": "Accel Signal",
         "race": "Eladrin Variant",
@@ -2187,15 +2188,29 @@
         "level": 2,
         "background": "Sage",
         "alignment": "Neutral Good",
-        "experience": 300
+        "experience": 300,
+        "portrait_url": "/dnd/signal.png",
+        "theme_color": "#6fe6ff",
+        "theme_color_light": "#baf4ff",
+        "theme_color_bright": "#e6fdff",
+        "theme_color_dim": "#2a6f80",
+        "theme_rgb": "111,230,255"
+      },
+      "meta": {
+        "player": "HeroSignal",
+        "last_session_updated": "Session 01",
+        "session_changes": []
       },
       "physical": {
+        "gender": "",
         "age": 28,
+        "size": "Medium",
         "height": "5'11\"",
         "weight": 190,
         "eyes": "Icy blue, with white\u2026",
         "skin": "Pale, frosty skin",
-        "hair": "Silvery white wi\u2026"
+        "hair": "Silvery white wi\u2026",
+        "distinguishing_features": "Icy blue straight line tattoo running from above the right eyebrow, across the right eyelid, ending on the right cheekbone."
       },
       "abilities": {
         "str": 12,
@@ -2360,21 +2375,24 @@
           "type": "Martial Ranged",
           "attack": "+8",
           "damage": "1d8+4",
-          "damage_type": "Piercing"
+          "damage_type": "Piercing",
+          "detail": ""
         },
         {
           "name": "Shortsword",
           "type": "Martial Melee",
           "attack": "+6",
           "damage": "1d6+4",
-          "damage_type": "Piercing"
+          "damage_type": "Piercing",
+          "detail": ""
         },
         {
           "name": "Unarmed Strike",
           "type": "Unarmed",
           "attack": "+3",
           "damage": "1d1+1",
-          "damage_type": "Bludgeoning"
+          "damage_type": "Bludgeoning",
+          "detail": ""
         }
       ],
       "spellcasting": {
@@ -2471,12 +2489,6 @@
         "ideal": "Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
         "bond": "I've been searching my whole life for the answer to a certain question. Where is my brother, the crown prince. Hiroe Signal of kamigawa neon dynasty",
         "flaw": "Once I am fixated on learning or reading, I tend to seclude myself in my own world and ignore my surroundings."
-      },
-      "key": "signal",
-      "meta": {
-        "player": "HeroSignal",
-        "last_session_updated": "Session 01",
-        "session_changes": []
       },
       "senses": {
         "darkvision_ft": 60
