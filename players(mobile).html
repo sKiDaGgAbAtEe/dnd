@@ -600,6 +600,67 @@
     );
   }
 
+
+  /* ── FABLE THEME (Amber · Feather) ── */
+  .char-card.theme-fable {
+    background: linear-gradient(135deg, rgba(14,10,6,0.92) 0%, rgba(18,14,10,0.96) 100%);
+    border-color: rgba(255,193,94,0.30);
+  }
+  .char-card.theme-fable:hover {
+    box-shadow: 0 20px 60px rgba(255,193,94,0.22), 0 0 90px -20px rgba(255,193,94,0.14);
+    border-color: #ffc15e;
+  }
+  .char-card.theme-fable::before {
+    background: radial-gradient(circle at top, rgba(255,193,94,0.10) 0%, transparent 70%);
+  }
+  .char-card.theme-fable .level-badge,
+  .char-card.theme-fable .class-badge {
+    border-color: rgba(255,193,94,0.55);
+    background: rgba(10,8,6,0.92);
+  }
+  .char-card.theme-fable .level-num { color: #fff2dc; }
+  .char-card.theme-fable .level-lbl { color: rgba(255,193,94,0.65); }
+  .char-card.theme-fable .class-badge { color: #e8dfc0; }
+  .char-card.theme-fable .char-name {
+    color: #e8dfc0;
+    text-shadow: 0 0 24px rgba(255,193,94,0.35);
+  }
+  .char-card.theme-fable .stat-val { color: #ffd9a8; }
+  .char-card.theme-fable .stat-cell:hover {
+    background: rgba(255,193,94,0.08);
+    border-color: rgba(255,193,94,0.55);
+  }
+  .char-card.theme-fable .qi-tag {
+    background: rgba(255,193,94,0.06);
+    border-color: rgba(255,193,94,0.22);
+  }
+  .char-card.theme-fable .btn-primary {
+    background: rgba(255,193,94,0.14);
+    border-color: rgba(255,193,94,0.55);
+    color: #fff8ef;
+  }
+  .char-card.theme-fable .btn-primary:hover {
+    background: #ffc15e;
+    color: var(--dark);
+    box-shadow: 0 4px 24px rgba(255,193,94,0.45);
+  }
+  .char-card.theme-fable .btn-secondary {
+    border-color: rgba(255,193,94,0.22);
+    color: #a89060;
+  }
+  .char-card.theme-fable .btn-secondary:hover {
+    border-color: rgba(255,193,94,0.55);
+    background: rgba(255,193,94,0.08);
+    color: #e8dfc0;
+  }
+  .char-card.theme-fable .card-image-overlay {
+    background: linear-gradient(180deg,
+      rgba(18,12,8,0.10) 0%,
+      rgba(18,12,8,0.25) 50%,
+      rgba(18,12,8,0.92) 100%
+    );
+  }
+
 /* ── CARD IMAGE — CONSTRAINED ── */
   .card-image {
     position: relative;
@@ -1748,6 +1809,52 @@
     </div>
 
 
+
+    <!-- FABLE -->
+    <div class="char-card theme-fable" data-character="fable" style="--reveal-delay: 0.7s;">
+      <div class="card-image">
+        <img src="/dnd/fable.png" alt="Orion &quot;Fable&quot; Silverhall">
+        <div class="card-image-overlay"></div>
+        <div class="level-badge">
+          <span class="level-num">1</span>
+          <span class="level-lbl">LVL</span>
+        </div>
+        <div class="class-badge">Bard</div>
+      </div>
+
+      <div class="card-body">
+        <div class="char-name">Orion “Fable” Silverhall</div>
+        <div class="char-race-class">Owlin &nbsp;·&nbsp; Bard &nbsp;·&nbsp; Entertainer</div>
+
+        <div class="stat-row">
+          <div class="stat-cell"><span class="stat-abbr">STR</span><span class="stat-val">8</span><span class="stat-mod">-1</span></div>
+          <div class="stat-cell"><span class="stat-abbr">DEX</span><span class="stat-val">18</span><span class="stat-mod">+4</span></div>
+          <div class="stat-cell"><span class="stat-abbr">CON</span><span class="stat-val">15</span><span class="stat-mod">+2</span></div>
+          <div class="stat-cell"><span class="stat-abbr">INT</span><span class="stat-val">10</span><span class="stat-mod">+0</span></div>
+          <div class="stat-cell"><span class="stat-abbr">WIS</span><span class="stat-val">12</span><span class="stat-mod">+1</span></div>
+          <div class="stat-cell"><span class="stat-abbr">CHA</span><span class="stat-val">18</span><span class="stat-mod">+4</span></div>
+        </div>
+
+        <div class="quick-info">
+          <span class="qi-tag">HP 10</span>
+          <span class="qi-tag">AC 15</span>
+          <span class="qi-tag">Speed 30</span>
+          <span class="qi-tag">Prof +2</span>
+          <span class="qi-tag">Chaotic Good</span>
+        </div>
+
+        <div class="card-actions">
+          <a href="/dnd/characters/character7_mobile.html" class="btn btn-primary">
+            <span class="btn-icon">🦉</span> Character Sheet
+          </a>
+          <a href="/dnd/characters/character7_textsheet_mobile.html" class="btn btn-secondary">
+            <span class="btn-icon">📜</span> Text Sheet
+          </a>
+        </div>
+      </div>
+    </div>
+
+
 <!-- ── FAN ART BUTTON ── -->
   <div class="fanart-section">
     <div class="fanart-section-label">◆ &nbsp; The Chronicle &nbsp; ◆</div>
@@ -2092,6 +2199,7 @@
     { key:'evo',     name:'Evo',       emoji:'⚡', sheet:'/dnd/characters/character4_mobile.html',      text:'/dnd/characters/character4_textsheet_mobile.html' },
     { key:'malc',    name:'Malc Grann',emoji:'🧱', sheet:'/dnd/characters/character5_mobile.html',     text:'/dnd/characters/character5_textsheet_mobile.html' },
     { key:'signal',  name:'Accel Signal',emoji:'❄️', sheet:'/dnd/characters/character6_mobile.html',     text:'/dnd/characters/character6_textsheet_mobile.html' },
+    { key:'fable',   name:'Fable',     emoji:'🦉', sheet:'/dnd/characters/character7_mobile.html', text:'/dnd/characters/character7_textsheet_mobile.html' },
   ];
 
   let currentCharIdx = 0;
