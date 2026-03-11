@@ -2550,61 +2550,60 @@
     },
     "slot7": {
       "identity": {
-        "name": "",
-        "race": "",
-        "class": "",
+        "name": "Orion \"Fable\" Silverhall",
+        "race": "Owlin",
+        "class": "Bard",
         "subclass": "",
         "level": 1,
-        "background": "",
-        "alignment": "",
+        "background": "Entertainer",
+        "alignment": "Chaotic Good",
         "experience": 0,
-        "portrait_url": "",
-        "theme_color": "#c8972a",
-        "theme_color_light": "#f0c050",
-        "theme_color_bright": "#ffd700",
-        "theme_color_dim": "#7a5a18",
-        "theme_rgb": "200,151,42"
+        "portrait_url": "/dnd/fable.png",
+        "theme_color": "#ff8c2a",
+        "theme_color_light": "#ffb870",
+        "theme_color_bright": "#ffe7b8",
+        "theme_color_dim": "#8a3f12",
+        "theme_rgb": "255,140,42"
       },
       "meta": {
-        "player": "",
-        "last_session_updated": "Session 00",
+        "player": "IBKC",
+        "last_session_updated": "Session 01",
         "session_changes": []
       },
       "physical": {
         "gender": "",
-        "age": null,
-        "size": "",
-        "height": "",
-        "weight": null,
-        "eyes": "",
-        "skin": "",
-        "hair": "",
-        "faith": "",
-        "distinguishing_features": ""
+        "age": 34,
+        "size": "Medium",
+        "height": "6'5\" (195cm)",
+        "weight": "100 lb (45kg)",
+        "eyes": "Amber",
+        "skin": "Feathered",
+        "hair": "Brown/Tan/Cream",
+        "distinguishing_features": "Owlin with a messenger\u2019s satchel and performer\u2019s charm; a quiet, watchful presence that turns gregarious on stage."
       },
       "senses": {
-        "darkvision_ft": 0
+        "darkvision_ft": 120
       },
       "abilities": {
-        "str": 10,
-        "dex": 10,
-        "con": 10,
+        "str": 8,
+        "dex": 18,
+        "con": 15,
         "int": 10,
-        "wis": 10,
-        "cha": 10
+        "wis": 12,
+        "cha": 18
       },
       "saving_throws": {
         "str": {
           "proficient": false,
-          "value": "+0"
+          "value": "-1"
         },
         "dex": {
-          "proficient": false,
-          "value": "+0"
+          "proficient": true,
+          "value": "+6"
         },
         "con": {
           "proficient": false,
-          "value": "+0"
+          "value": "+2"
         },
         "int": {
           "proficient": false,
@@ -2612,38 +2611,38 @@
         },
         "wis": {
           "proficient": false,
-          "value": "+0"
+          "value": "+1"
         },
         "cha": {
-          "proficient": false,
-          "value": "+0"
+          "proficient": true,
+          "value": "+6"
         }
       },
       "combat": {
         "hp_max": 10,
         "hp_current": 10,
         "hp_temp": 0,
-        "ac": 10,
-        "initiative": "+0",
+        "ac": 15,
+        "initiative": "+4",
         "speed": 30,
         "proficiency_bonus": "+2",
         "hit_dice_total": "1d8",
-        "passive_perception": 10,
+        "passive_perception": 13,
         "passive_investigation": 10,
-        "passive_insight": 10
+        "passive_insight": 11
       },
       "skills": {
         "acrobatics": {
           "ability": "dex",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+6"
         },
         "animal_handling": {
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "arcana": {
           "ability": "int",
@@ -2655,13 +2654,13 @@
           "ability": "str",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "-1"
         },
         "deception": {
           "ability": "cha",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+6"
         },
         "history": {
           "ability": "int",
@@ -2671,15 +2670,15 @@
         },
         "insight": {
           "ability": "wis",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+3"
         },
         "intimidation": {
           "ability": "cha",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+4"
         },
         "investigation": {
           "ability": "int",
@@ -2691,7 +2690,7 @@
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         },
         "nature": {
           "ability": "int",
@@ -2701,21 +2700,21 @@
         },
         "perception": {
           "ability": "wis",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+3"
         },
         "performance": {
           "ability": "cha",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+6"
         },
         "persuasion": {
           "ability": "cha",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+6"
         },
         "religion": {
           "ability": "int",
@@ -2727,33 +2726,56 @@
           "ability": "dex",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+4"
         },
         "stealth": {
           "ability": "dex",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+0"
+          "value": "+6"
         },
         "survival": {
           "ability": "wis",
           "proficient": false,
           "expertise": false,
-          "value": "+0"
+          "value": "+1"
         }
       },
-      "attacks": [],
+      "attacks": [
+        {
+          "name": "Talons",
+          "type": "Natural Weapon",
+          "attack": "+6",
+          "damage": "1d6+4",
+          "damage_type": "Slashing",
+          "detail": "Owlin talons."
+        },
+        {
+          "name": "Dagger",
+          "type": "Simple Melee",
+          "attack": "+6",
+          "damage": "1d4+4",
+          "damage_type": "Piercing",
+          "detail": ""
+        },
+        {
+          "name": "Light Crossbow",
+          "type": "Simple Ranged",
+          "attack": "+6",
+          "damage": "1d8+4",
+          "damage_type": "Piercing",
+          "detail": ""
+        }
+      ],
       "spellcasting": {
-        "enabled": false,
-        "ability": "int",
-        "spell_save_dc": 10,
-        "spell_attack_bonus": "+0",
-        "cantrips": [],
-        "spells_prepared": [],
+        "enabled": true,
+        "ability": "cha",
+        "spell_save_dc": 14,
+        "spell_attack_bonus": "+6",
         "spell_slots": {
           "level_1": {
-            "max": 0,
-            "current": 0
+            "max": 2,
+            "current": 2
           },
           "level_2": {
             "max": 0,
@@ -2771,36 +2793,115 @@
             "max": 0,
             "current": 0
           }
+        },
+        "cantrips": [
+          "Message",
+          "Minor Illusion"
+        ],
+        "spells_known": [
+          {
+            "name": "Dissonant Whispers",
+            "level": 1
+          },
+          {
+            "name": "Healing Word",
+            "level": 1
+          },
+          {
+            "name": "Heroism",
+            "level": 1
+          },
+          {
+            "name": "Comprehend Languages",
+            "level": 1
+          }
+        ]
+      },
+      "class_resources": {
+        "bardic_inspiration": {
+          "label": "Bardic Inspiration",
+          "max": 4,
+          "current": 4,
+          "recharge": "Long Rest",
+          "description": "Bonus action: a creature within 60 ft gains 1d6 inspiration die (1 use)."
         }
       },
-      "class_resources": {},
-      "features": [],
+      "features": [
+        {
+          "name": "Darkvision",
+          "source": "Owlin",
+          "description": "Darkvision 120 ft."
+        },
+        {
+          "name": "Flight",
+          "source": "Owlin",
+          "description": "You have a flying speed (Owlin)."
+        },
+        {
+          "name": "Bardic Inspiration",
+          "source": "Bard 1",
+          "description": "CHA uses \u00b7 d6 \u00b7 60 ft \u00b7 recharges on Long Rest."
+        },
+        {
+          "name": "Origin Feat: Musician",
+          "source": "Feat",
+          "description": "Origin feat: Musician."
+        }
+      ],
       "proficiencies": {
-        "armor": [],
-        "weapons": [],
-        "tools": [],
-        "languages": []
+        "armor": [
+          "Light Armor"
+        ],
+        "weapons": [
+          "Simple Weapons"
+        ],
+        "tools": [
+          "Disguise Kit",
+          "Viol",
+          "Drum",
+          "Lyre",
+          "Flute",
+          "Lute",
+          "Pan Flute"
+        ],
+        "languages": [
+          "Common",
+          "Sylvan"
+        ]
       },
       "traits": {
-        "personality": "",
-        "ideal": "",
-        "bond": "",
+        "personality": "Freedom above all else. There are people out there who aim to harm the world and the people in it. But there are also those who rise to stop them. It's all a balance, but at least he wants people to choose where they stand on that balance.",
+        "ideal": "With no family to call his own, Fable makes connections to the people around him. His instruments are important to him, not because he needs them to make music, but because they represent connection.",
+        "bond": "He puts on a joyful personality and tells many stories, but none of them ever seem to be his own. It is far easier to talk about others than to talk about himself. For this reason he can sometimes come across as disingenuous at times.",
         "flaw": ""
       },
       "equipment": {
         "currency": {
           "pp": 0,
-          "gp": 0,
+          "gp": 42,
           "ep": 0,
           "sp": 0,
           "cp": 0
         },
-        "carried": []
+        "items": [
+          "Leather Armour",
+          "Dagger \u00d72",
+          "Light Crossbow",
+          "Crossbow Bolt Case",
+          "Bolts \u00d720",
+          "Backpack",
+          "Bedroll",
+          "Costume \u00d72",
+          "Candle \u00d75",
+          "Rations (1 day) \u00d75",
+          "Waterskin",
+          "Disguise Kit",
+          "Viol",
+          "Flute"
+        ]
       },
-      "backstory": {
-        "summary": "",
-        "verbatim": ""
-      }
+      "backstory": "Fable is a duality: one who is born with silent wings but craved the chorus of song. Because of this it is hard to know what will come of an interaction with him \u2014 the silent hunter, or the gregarious entertainer.\n\nFable lost his family after some rather gruesome circumstances in the past. Because of personal injuries, for a long time he was unable to fly, and so spent some of his younger years traveling by foot from town to town, hearing and regaling stories.\n\nWith his wings out of the picture he needed rehabilitation, but exercise seemed too bland, so he learned dance from the different places he travelled.\n\nNowadays he works as a messenger bird, using the opportunity to travel to interesting locations he wouldn't otherwise have a purpose to head to.",
+      "key": "fable"
     },
     "slot8": {
       "identity": {
