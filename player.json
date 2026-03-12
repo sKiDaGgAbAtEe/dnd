@@ -2487,10 +2487,7 @@
       "traits": {
         "personality": "I've read every book in the world's greatest libraries and in almost every plane in existence. There's nothing I like more than a good mystery.",
         "ideal": "Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
-        "bond": {
-  "summary": "I’ve spent my whole life trying to learn who wrote the note that was left with me.",
-  "note_verbatim": "His name is Accel, the brightest star in the darkest sky. Please take good care of our little aster constellar.",
-  "cipher": "MP~FULLMOON~OP~FEY~N1875.38E4494.121",
+        "bond": "I’ve spent my whole life chasing one question: who wrote the note that was left with me?\n\n— The Note —\n\"His name is Accel, the brightest star in the darkest sky. Please take good care of our little aster constellar.\"\n\nMP~FULLMOON~OP~FEY~N1875.38E4494.121",
         "flaw": "Once I am fixated on learning or reading, I tend to seclude myself in my own world and ignore my surroundings."
       },
       "senses": {
