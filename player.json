@@ -2546,7 +2546,10 @@
           "description": "If you don't know a piece of lore, you often know where and from whom you can obtain it."
         }
       ],
-      "backstory": ""
+    "backstory": {
+  "summary": "Found as an infant deep in the forest beside a mysterious note, Accel Signal was adopted by an elven conclave that saw him as an omen. Strange fey-like flickers—vanishing, reappearing, and turning translucent—marked his early years. Though the phenomena faded, his appearance never fully matched the forest elves who raised him. When he came of age, he left with his family’s blessing to chase the truth of his origin and decipher the note that began his life.",
+  "verbatim": "A roaming elf scout found me deep in the forest as a baby, alongside a mysterious note. I was presented to the elf conclave, and their royal family saw this as a good omen—so it was decided I would be adopted.\n\nMy siblings told me that as a baby I would sometimes disappear and reappear, and at times even become see-through. As I grew older those special tendencies faded, but the color of my appearance remained different from the traditional forest elves I grew up with.\n\nTaking that as a clue, I told my family I needed to find where I truly came from. With the blessing of my family and the entire enclave, when I came of age I set out across the world to gain knowledge and search for any hint about my origin—starting with the mysterious note that was left with me."
+}
     },
     "slot7": {
       "identity": {
