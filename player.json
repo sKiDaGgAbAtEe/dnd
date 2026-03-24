@@ -11,10 +11,10 @@
         "race": "Leonin",
         "class": "Barbarian",
         "subclass": null,
-        "level": 1,
+        "level": 2,
         "background": "Outlander",
         "alignment": "True Neutral",
-        "experience": 17,
+        "experience": 300,
         "portrait_url": "/dnd/Sekhmet.png",
         "theme_color": "#c8972a",
         "theme_color_light": "#f0c050",
@@ -23,19 +23,19 @@
         "theme_rgb": "200,151,42"
       },
       "meta": {
-        "player": "Sterben",
+        "player": "Illyasviel",
         "last_session_updated": "Session 00",
         "session_changes": []
       },
       "physical": {
         "gender": "Male",
-        "age": null,
+        "age": 40,
         "size": "Medium",
-        "height": null,
-        "weight": null,
-        "eyes": "Amber",
-        "skin": "Golden-furred",
-        "hair": "Dark mane",
+        "height": "6'5",
+        "weight": 230,
+        "eyes": "reddish-brown",
+        "skin": "tan fur",
+        "hair": "Lion's mane Red",
         "faith": null,
         "distinguishing_features": "Gold ceremonial arm cuff. Mane braided with bone and stone fragments from the First Land."
       },
@@ -77,14 +77,14 @@
         }
       },
       "combat": {
-        "hp_max": 17,
-        "hp_current": 17,
+        "hp_max": 25,
+        "hp_current": 25,
         "hp_temp": 0,
         "ac": 15,
         "initiative": "+2",
         "speed": 35,
         "proficiency_bonus": "+2",
-        "hit_dice_total": "1d12",
+        "hit_dice_total": "2d12",
         "passive_perception": 13,
         "passive_investigation": 11,
         "passive_insight": 11
@@ -98,9 +98,9 @@
         },
         "animal_handling": {
           "ability": "wis",
-          "proficient": false,
+          "proficient": true,
           "expertise": false,
-          "value": "+1"
+          "value": "+3"
         },
         "arcana": {
           "ability": "int",
@@ -201,35 +201,19 @@
       },
       "attacks": [
         {
-          "name": "Greataxe",
+          "name": "Sun-Disc Club",
           "type": "Martial Melee Weapon",
           "attack": "+5",
-          "damage": "1d12+3",
-          "damage_type": "Slashing",
+          "damage": "1d8+3",
+          "damage_type": "Bludgeoning",
           "detail": ""
-        },
-        {
-          "name": "Handaxe",
-          "type": "Simple Melee Weapon",
-          "attack": "+5",
-          "damage": "1d6+3",
-          "damage_type": "Slashing",
-          "detail": "Quantity: 2"
-        },
-        {
-          "name": "Javelin",
-          "type": "Simple Melee Weapon",
-          "attack": "+5",
-          "damage": "1d6+3",
-          "damage_type": "Piercing",
-          "detail": "Quantity: 4"
         },
         {
           "name": "Unarmed Strike",
           "type": "Unarmed",
           "attack": "+5",
           "damage": "1d4+3",
-          "damage_type": "Bludgeoning",
+          "damage_type": "Physical",
           "detail": ""
         },
         {
@@ -238,7 +222,7 @@
           "attack": "+5",
           "damage": "1d4+3",
           "damage_type": "Slashing",
-          "detail": "Natural weapons; can be used for unarmed strikes, dealing slashing instead of bludgeoning."
+          "detail": "Natural weapons; can be used for unarmed strikes, dealing slashing instead of normal bludgeoning."
         }
       ],
       "spellcasting": {
@@ -275,19 +259,36 @@
           "max": 2,
           "current": 2,
           "recharge": "Long Rest",
-          "description": "+2 damage \u00b7 B/P/S Resistance \u00b7 Advantage on STR checks & saves \u00b7 1 minute"
+          "description": "+2 damage · B/P/S Resistance · Advantage on STR checks & saves · 1 minute"
+        },
+        "daunting_roar": {
+          "label": "Daunting Roar",
+          "max": 1,
+          "current": 1,
+          "recharge": "Short or Long Rest",
+          "description": "Bonus action · creatures of your choice within 10 ft that can hear you make a WIS save (DC 13) or are frightened until the end of your next turn"
         }
       },
       "features": [
         {
-          "name": "Rage",
-          "source": "Barbarian 1",
-          "description": "Bonus action. While raging: advantage on STR checks and STR saving throws; +2 damage to melee attacks using STR; resistance to bludgeoning, piercing, and slashing damage. Lasts 1 minute. 2 uses / long rest."
-        },
-        {
           "name": "Unarmored Defense",
           "source": "Barbarian 1",
           "description": "While not wearing armor, AC = 10 + DEX mod (+2) + CON mod (+3) = 15. You may still use a shield."
+        },
+        {
+          "name": "Rage",
+          "source": "Barbarian 1",
+          "description": "Bonus action. While raging: advantage on STR checks and STR saving throws; +2 damage to melee weapon attacks using STR; resistance to bludgeoning, piercing, and slashing damage. Lasts 1 minute. 2 uses per long rest."
+        },
+        {
+          "name": "Danger Sense",
+          "source": "Barbarian 2",
+          "description": "Advantage on Dexterity saving throws against effects you can see, such as traps and spells. You do not gain this benefit while blinded, deafened, or incapacitated."
+        },
+        {
+          "name": "Reckless Attack",
+          "source": "Barbarian 2",
+          "description": "When you make your first attack on your turn, you can attack recklessly to gain advantage on melee weapon attack rolls using STR during this turn, but attack rolls against you have advantage until your next turn."
         },
         {
           "name": "Claws",
@@ -295,24 +296,24 @@
           "description": "Natural weapons. You can use your claws to make unarmed strikes; on a hit they deal slashing damage equal to 1d4 + STR modifier."
         },
         {
-          "name": "Daunting Roar",
-          "source": "Leonin",
-          "description": "Bonus action. Creatures of your choice within 10 ft that can hear you must succeed on a WIS save (DC 8 + Prof + CON mod = 13) or be frightened until the end of your next turn. Recharge: short or long rest."
-        },
-        {
           "name": "Darkvision",
           "source": "Leonin",
           "description": "You can see in dim light within 60 ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
         },
         {
-          "name": "Wanderer",
-          "source": "Outlander",
-          "description": "Excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features. You can find food and fresh water for yourself and up to 5 companions each day (if the land offers it)."
+          "name": "Daunting Roar",
+          "source": "Leonin",
+          "description": "Bonus action. Creatures of your choice within 10 ft that can hear you must succeed on a WIS save (DC 13) or be frightened until the end of your next turn. Recharge: short or long rest."
         },
         {
-          "name": "Subclass \u2014 Zealot (Planned)",
-          "source": "Barbarian 3",
-          "description": "Planned path at level 3. Sekhmet's rage is sacred judgment: destiny-driven, hard to kill, and fueled by violation of something holy."
+          "name": "Wanderer",
+          "source": "Outlander",
+          "description": "Excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features. You can find food and fresh water for yourself and up to 5 companions each day if the land offers it."
+        },
+        {
+          "name": "Musical Instrument Proficiency",
+          "source": "Outlander",
+          "description": "Proficient with lute."
         }
       ],
       "proficiencies": {
@@ -326,38 +327,34 @@
           "Martial Weapons"
         ],
         "tools": [
-          "Bagpipes"
+          "Lute"
         ],
         "languages": []
       },
       "traits": {
-        "personality": "He watches over companions as if they were a litter of newborn cubs. He does not show it openly \u2014 but he positions himself between danger and the weak without thinking.",
-        "ideal": "Glory is remembrance. To be remembered is to resist erasure. Every battle must mean something \u2014 his name must echo in story long after his bones bleach in the sand.",
+        "personality": "I watch over my friends as if they were a litter of newborn pups. He does not show it openly—but positions himself between danger and the weak without thinking.",
+        "ideal": "Glory. I must earn glory in battle, for myself and my clan. (Any)",
         "bond": "He walks so the memory of the First Land does not die. The weight of a fallen pride lives in every step.",
         "flaw": "He is slow to trust outsiders. Respect must be earned in sweat and blood. You do not simply enter a pride by standing near it."
       },
       "equipment": {
         "currency": {
-          "pp": 0,
-          "gp": 10,
-          "ep": 0,
-          "sp": 0,
+          "pp": 6,
+          "gp": 5,
+          "ep": 1,
+          "sp": 1,
           "cp": 0
+        },
+        "encumbrance": {
+          "total_weight_lb": 88.0,
+          "lightly_encumbered_lb": 85,
+          "heavily_encumbered_lb": 170,
+          "max_encumbered_lb": 340
         },
         "carried": [
           {
-            "name": "Greataxe",
+            "name": "Sun-Disc Club",
             "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "Handaxe",
-            "quantity": 2,
-            "description": ""
-          },
-          {
-            "name": "Javelin",
-            "quantity": 4,
             "description": ""
           },
           {
@@ -371,24 +368,14 @@
             "description": ""
           },
           {
-            "name": "Staff",
-            "quantity": 1,
-            "description": ""
-          },
-          {
             "name": "Traveler's Clothes",
-            "quantity": 1,
-            "description": ""
-          },
-          {
-            "name": "Trophy of an animal",
             "quantity": 1,
             "description": ""
           }
         ]
       },
       "backstory": {
-        "summary": "Before the Temporal Compression, his homeland breathed with mythic air. The horizon was wider. Spirits walked the surface of things. Then the world hardened. Matter thickened. What moved like wind became stone-bound. His pride faded \u2014 some into legend, some into the petrified ruins that scholars now mistake for ancient monuments. He held form. Not because he was strongest \u2014 but because his will refused to dissolve. He walks a world smaller than it should be, carrying the memory of everything that was lost when the mythic gave way to the physical."
+        "summary": ""
       }
     },
     "slot2": {
@@ -629,7 +616,7 @@
         {
           "name": "Thunderclap",
           "type": "Cantrip",
-          "attack": "\u2014",
+          "attack": "—",
           "damage": "1d6",
           "damage_type": "Thunder",
           "detail": "CON Save DC 11. Each creature within 5 ft. Cantrip."
@@ -637,10 +624,10 @@
         {
           "name": "Druidcraft",
           "type": "Cantrip",
-          "attack": "\u2014",
-          "damage": "\u2014",
+          "attack": "—",
+          "damage": "—",
           "damage_type": "Utility",
-          "detail": "Cantrip. Simple nature magic \u2014 predict weather, light/snuff small flames, harmless effects."
+          "detail": "Cantrip. Simple nature magic — predict weather, light/snuff small flames, harmless effects."
         }
       ],
       "spellcasting": {
@@ -726,7 +713,7 @@
             "range": "60 ft.",
             "components": "S",
             "duration": "Instantaneous",
-            "description": "Choose an object weighing 1\u20135 lbs. It flies up to 90 ft in a straight line, then falls. Each creature in its path makes a DEX save or takes 3d8 bludgeoning. +1d8 per slot level above 1st."
+            "description": "Choose an object weighing 1–5 lbs. It flies up to 90 ft in a straight line, then falls. Each creature in its path makes a DEX save or takes 3d8 bludgeoning. +1d8 per slot level above 1st."
           },
           {
             "name": "Witch Bolt",
@@ -756,14 +743,14 @@
           "max": 1,
           "current": 1,
           "recharge": "Short Rest",
-          "description": "Once per day on a Short Rest, recover spell slots totaling \u2264 half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
+          "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
         }
       },
       "features": [
         {
           "name": "Arcane Recovery",
           "source": "Wizard 1",
-          "description": "Once per day on a Short Rest, recover spell slots totaling \u2264 half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
+          "description": "Once per day on a Short Rest, recover spell slots totaling ≤ half wizard level (rounded up). At Level 1: recover one 1st-level slot. Cannot recover 6th level or higher."
         },
         {
           "name": "Wizard Spellbook",
@@ -788,7 +775,7 @@
         {
           "name": "Witherbloom Initiate",
           "source": "Witherbloom Student",
-          "description": "Learned to weave life and death energies. Gains the Druidcraft cantrip and two 1st-level spells from the Druid or Wizard spell list. Life and death magic comes naturally to her \u2014 the swamp taught her that nothing truly ends."
+          "description": "Learned to weave life and death energies. Gains the Druidcraft cantrip and two 1st-level spells from the Druid or Wizard spell list. Life and death magic comes naturally to her — the swamp taught her that nothing truly ends."
         }
       ],
       "proficiencies": {
@@ -810,10 +797,10 @@
         ]
       },
       "traits": {
-        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable \u2014 she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
-        "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there \u2014 something the world is pretending not to notice.",
+        "personality": "Small in stature, enormous in presence. Her curiosity is insatiable — she will touch everything, ask about everything, remember everything. Her laughter is genuine; her silences are calculating.",
+        "ideal": "Knowledge without application is just hoarding. She studies the boundary between life and death not out of morbidity, but because she believes something important lives there — something the world is pretending not to notice.",
         "bond": "Her spellbook contains pressed flowers, margin notes in three languages, and a spell she hasn't been able to cast yet. The people she travels with have become, unexpectedly, something she would cross swamps for.",
-        "flaw": "She occasionally forgets that other people cannot fly, hide instantly, or talk to mushrooms \u2014 which leads to plans that only work if you're her. She also underestimates her own size in situations requiring physical presence."
+        "flaw": "She occasionally forgets that other people cannot fly, hide instantly, or talk to mushrooms — which leads to plans that only work if you're her. She also underestimates her own size in situations requiring physical presence."
       },
       "equipment": {
         "currency": {
@@ -860,7 +847,7 @@
             "description": ""
           },
           {
-            "name": "Book \u2014 Plant Identification",
+            "name": "Book — Plant Identification",
             "quantity": 1,
             "description": ""
           },
@@ -887,7 +874,7 @@
         ]
       },
       "backstory": {
-        "summary": "She arrived at Witherbloom with pressed flowers already in her spellbook and a question she hadn't told anyone yet. The swamp suited her \u2014 it didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does life end and death begin, and is anything actually living in that gap? She is very small. She compensates with extraordinary thoroughness. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index."
+        "summary": "She arrived at Witherbloom with pressed flowers already in her spellbook and a question she hadn't told anyone yet. The swamp suited her — it didn't apologize for being complicated, for smelling of both rot and bloom at once. It studied the same question she did: where exactly does life end and death begin, and is anything actually living in that gap? She is very small. She compensates with extraordinary thoroughness. Her notes are annotated. Her annotations have annotations. Her spellbook has a table of contents and an index."
       }
     },
     "slot3": {
@@ -1174,7 +1161,7 @@
         {
           "name": "Expertise",
           "source": "Rogue 1",
-          "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics \u2014 the full suite of someone who was never where you thought she was."
+          "description": "Proficiency bonus doubled for two chosen skills or one skill and Thieves' Tools. Raven's expertise: Stealth, Sleight of Hand, Deception, Acrobatics — the full suite of someone who was never where you thought she was."
         },
         {
           "name": "Sneak Attack",
@@ -1184,7 +1171,7 @@
         {
           "name": "Thieves' Cant",
           "source": "Rogue 1",
-          "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols \u2014 safe houses, territorial markers, danger warnings."
+          "description": "A secret language of dialect, jargon, and code woven into ordinary conversation. Also grants knowledge of criminal signs and symbols — safe houses, territorial markers, danger warnings."
         },
         {
           "name": "Blessing of the Raven Queen",
@@ -1194,7 +1181,7 @@
         {
           "name": "Darkvision",
           "source": "Shadar-kai",
-          "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness \u2014 only shades of grey."
+          "description": "See in dim light as bright light, and in darkness as dim light, within 60 ft. Can't discern color in darkness — only shades of grey."
         },
         {
           "name": "Fey Ancestry",
@@ -1239,8 +1226,8 @@
       },
       "traits": {
         "personality": "Moves through a room like she was never in it. Helpful to the party in ways that are difficult to trace back to her. Denies taking things even when they are visibly in her belt pouch.",
-        "ideal": "Information and positioning. She is never the most powerful person in the room \u2014 she is the one who knows where all the exits are.",
-        "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts \u2014 never admits it.",
+        "ideal": "Information and positioning. She is never the most powerful person in the room — she is the one who knows where all the exits are.",
+        "bond": "The Raven Queen's shadow is long. Raven doesn't talk about why she knows the places between life and death as well as she does. She keeps small things from people she trusts — never admits it.",
         "flaw": "If it catches the light, she wants it. She is aware this is a problem. She has decided it is not a problem."
       },
       "equipment": {
@@ -1300,7 +1287,7 @@
         ]
       },
       "backstory": {
-        "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost \u2014 organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
+        "summary": "She doesn't explain the Shadowfell. She doesn't explain the Raven Queen. She doesn't explain the gap between what she was before and what she is now. She carries small things from people she's lost — organized carefully, wrapped in cloth, hidden in a shadow-lined pouch. She remembers where each one came from. Some are trophies. Some are tied to contracts she doesn't talk about. She joined this party for reasons that made sense at the time and has since stopped examining too closely."
       }
     },
     "slot4": {
@@ -1670,7 +1657,7 @@
         {
           "name": "Lightning Breath Weapon",
           "source": "Bronze Dragonborn",
-          "description": "Exhale a 5\u00d730 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
+          "description": "Exhale a 5×30 ft. line of lightning as an action. DC = 8 + CON mod + Prof bonus (12). Each creature makes a DEX save, taking 2d6 lightning on a failure or half on success. 1 use per short or long rest."
         },
         {
           "name": "Lightning Damage Resistance",
@@ -1680,7 +1667,7 @@
         {
           "name": "Inside Informant",
           "source": "Rival Intern Background",
-          "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon \u2014 his as-yet-unfunded information startup."
+          "description": "Spent time in the Moogle & Co. archives. Has catalogued a network of corporate partners and rivals, intelligence he intends to leverage for Duck Duck Dragon — his as-yet-unfunded information startup."
         }
       ],
       "proficiencies": {
@@ -1706,7 +1693,7 @@
       "traits": {
         "personality": "Radiates the quiet confidence of someone who definitely belongs here and absolutely did not misread the job posting.",
         "ideal": "Information is currency. The right leverage at the right moment is worth more than any spell slot.",
-        "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer \u2014 for now, interests align.",
+        "bond": "Duck Duck Dragon will be built. The startup needs capital, the party needs a healer — for now, interests align.",
         "flaw": "Lawful Evil wrapped in a support role. He will absolutely sell you out if the market conditions are right."
       },
       "equipment": {
@@ -1756,7 +1743,7 @@
         ]
       },
       "backstory": {
-        "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting \u2014 they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding.",
+        "summary": "Saw a job ad for Moogle & Co., a Fortune 5000 firm. Got hired on the spot. Misread the posting — they wanted a clerk, not a cleric. The office never let him forget it. He spent his internship in the archives instead, quietly mapping their entire partner network. Now he's building Duck Duck Dragon, an information brokerage, and needs startup capital. Joining a random adventuring party seemed like the most efficient path to funding.",
         "verbatim": "A lowly intern. I saw a job ad for a big fortune 5000 company called moogle & got hired on the spot. But I read the job description wrong, they didn't want a cleric they wanted a clerc(k). They all made fun of me for that. I used my time in the archives to learn most of their partners and I aim to undercut them in the global markets by starting my own information company called duck duck dragon. I need money for my startup so i joined a random party to get funds."
       }
     },
@@ -1964,7 +1951,7 @@
           "attack": "+6",
           "damage": "1d4+4",
           "damage_type": "Slashing",
-          "detail": "Martial \u00b7 Finesse \u00b7 Reach \u00b7 Slow"
+          "detail": "Martial · Finesse · Reach · Slow"
         },
         {
           "name": "Unarmed Strike",
@@ -1997,7 +1984,7 @@
           "Influence"
         ],
         "bonus_actions": [
-          "Second Wind \u2014 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
+          "Second Wind — 2 / Long Rest: regain 1d10 + 1 HP; regain one use on a Short Rest"
         ],
         "special": [
           "Tiny Clockwork Device: Activate whenever you or another creature activates it with a touch; the device produces the effect chosen at the time of creation."
@@ -2112,7 +2099,7 @@
       "traits": {
         "personality": "Bright-eyed and excited to discuss any sufficiently sturdy-looking wall. Believes himself to be of divinity walking among mortals.",
         "ideal": "The greatest wall ever built will be his temple. Every structure he encounters is evaluated for its potential.",
-        "bond": "His name means Strong Wall. He intends to live up to it \u2014 literally.",
+        "bond": "His name means Strong Wall. He intends to live up to it — literally.",
         "flaw": "Cannot pass a notable wall without stopping to examine it, regardless of circumstances."
       },
       "equipment": {
@@ -2174,7 +2161,7 @@
         ]
       },
       "backstory": {
-        "summary": "Malc Grann \u2014 meaning Strong Wall \u2014 is what this gnome calls himself. Self-proclaimed Wall God. Believes himself to be of divinity walking among mortals. Bright-eyed and excited to discuss and examine any sufficiently sturdy-looking wall. His dream is to build the biggest and best wall anyone has ever seen and declare it his temple.",
+        "summary": "Malc Grann — meaning Strong Wall — is what this gnome calls himself. Self-proclaimed Wall God. Believes himself to be of divinity walking among mortals. Bright-eyed and excited to discuss and examine any sufficiently sturdy-looking wall. His dream is to build the biggest and best wall anyone has ever seen and declare it his temple.",
         "verbatim": "Malc Grann, meaning Strong Wall, is what this Gnome calls himself. Self proclaimed \"Wall God\". Believes himself to be of divinity walking among mortals. Bright eyed and excited to discuss and examine any sufficiently sturdy looking wall. His dream is to build the biggest and best wall that anyone has ever seen and declare it his temple!"
       }
     },
@@ -2207,9 +2194,9 @@
         "size": "Medium",
         "height": "5'11\"",
         "weight": 190,
-        "eyes": "Icy blue, with white\u2026",
+        "eyes": "Icy blue, with white…",
         "skin": "Pale, frosty skin",
-        "hair": "Silvery white wi\u2026",
+        "hair": "Silvery white wi…",
         "distinguishing_features": "Icy blue straight line tattoo running from above the right eyebrow, across the right eyelid, ending on the right cheekbone."
       },
       "abilities": {
@@ -2518,12 +2505,12 @@
         {
           "name": "Darkvision",
           "source": "Elf",
-          "description": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light. You can\u2019t discern color in darkness, only shades of gray."
+          "description": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."
         },
         {
           "name": "Fey Ancestry",
           "source": "Elf",
-          "description": "You have advantage on saving throws against being charmed, and magic can\u2019t put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep."
         },
         {
           "name": "Trance",
@@ -2546,10 +2533,10 @@
           "description": "If you don't know a piece of lore, you often know where and from whom you can obtain it."
         }
       ],
-    "backstory": {
-  "summary": "Found as an infant deep in the forest beside a mysterious note, Accel Signal was adopted by an elven conclave that saw him as an omen. Strange fey-like flickers—vanishing, reappearing, and turning translucent—marked his early years. Though the phenomena faded, his appearance never fully matched the forest elves who raised him. When he came of age, he left with his family’s blessing to chase the truth of his origin and decipher the note that began his life.",
-  "verbatim": "A roaming elf scout found me deep in the forest as a baby, alongside a mysterious note. I was presented to the elf conclave, and their royal family saw this as a good omen—so it was decided I would be adopted.\n\nMy siblings told me that as a baby I would sometimes disappear and reappear, and at times even become see-through. As I grew older those special tendencies faded, but the color of my appearance remained different from the traditional forest elves I grew up with.\n\nTaking that as a clue, I told my family I needed to find where I truly came from. With the blessing of my family and the entire enclave, when I came of age I set out across the world to gain knowledge and search for any hint about my origin—starting with the mysterious note that was left with me."
-}
+      "backstory": {
+        "summary": "Found as an infant deep in the forest beside a mysterious note, Accel Signal was adopted by an elven conclave that saw him as an omen. Strange fey-like flickers—vanishing, reappearing, and turning translucent—marked his early years. Though the phenomena faded, his appearance never fully matched the forest elves who raised him. When he came of age, he left with his family’s blessing to chase the truth of his origin and decipher the note that began his life.",
+        "verbatim": "A roaming elf scout found me deep in the forest as a baby, alongside a mysterious note. I was presented to the elf conclave, and their royal family saw this as a good omen—so it was decided I would be adopted.\n\nMy siblings told me that as a baby I would sometimes disappear and reappear, and at times even become see-through. As I grew older those special tendencies faded, but the color of my appearance remained different from the traditional forest elves I grew up with.\n\nTaking that as a clue, I told my family I needed to find where I truly came from. With the blessing of my family and the entire enclave, when I came of age I set out across the world to gain knowledge and search for any hint about my origin—starting with the mysterious note that was left with me."
+      }
     },
     "slot7": {
       "identity": {
@@ -2582,7 +2569,7 @@
         "eyes": "Amber",
         "skin": "Feathered",
         "hair": "Brown/Tan/Cream",
-        "distinguishing_features": "Owlin with a messenger\u2019s satchel and performer\u2019s charm; a quiet, watchful presence that turns gregarious on stage."
+        "distinguishing_features": "Owlin with a messenger’s satchel and performer’s charm; a quiet, watchful presence that turns gregarious on stage."
       },
       "senses": {
         "darkvision_ft": 120
@@ -2847,7 +2834,7 @@
         {
           "name": "Bardic Inspiration",
           "source": "Bard 1",
-          "description": "CHA uses \u00b7 d6 \u00b7 60 ft \u00b7 recharges on Long Rest."
+          "description": "CHA uses · d6 · 60 ft · recharges on Long Rest."
         },
         {
           "name": "Origin Feat: Musician",
@@ -2894,22 +2881,22 @@
         },
         "items": [
           "Leather Armour",
-          "Dagger \u00d72",
+          "Dagger ×2",
           "Light Crossbow",
           "Crossbow Bolt Case",
-          "Bolts \u00d720",
+          "Bolts ×20",
           "Backpack",
           "Bedroll",
-          "Costume \u00d72",
-          "Candle \u00d75",
-          "Rations (1 day) \u00d75",
+          "Costume ×2",
+          "Candle ×5",
+          "Rations (1 day) ×5",
           "Waterskin",
           "Disguise Kit",
           "Viol",
           "Flute"
         ]
       },
-      "backstory": "Fable is a duality: one who is born with silent wings but craved the chorus of song. Because of this it is hard to know what will come of an interaction with him \u2014 the silent hunter, or the gregarious entertainer.\n\nFable lost his family after some rather gruesome circumstances in the past. Because of personal injuries, for a long time he was unable to fly, and so spent some of his younger years traveling by foot from town to town, hearing and regaling stories.\n\nWith his wings out of the picture he needed rehabilitation, but exercise seemed too bland, so he learned dance from the different places he travelled.\n\nNowadays he works as a messenger bird, using the opportunity to travel to interesting locations he wouldn't otherwise have a purpose to head to.",
+      "backstory": "Fable is a duality: one who is born with silent wings but craved the chorus of song. Because of this it is hard to know what will come of an interaction with him — the silent hunter, or the gregarious entertainer.\n\nFable lost his family after some rather gruesome circumstances in the past. Because of personal injuries, for a long time he was unable to fly, and so spent some of his younger years traveling by foot from town to town, hearing and regaling stories.\n\nWith his wings out of the picture he needed rehabilitation, but exercise seemed too bland, so he learned dance from the different places he travelled.\n\nNowadays he works as a messenger bird, using the opportunity to travel to interesting locations he wouldn't otherwise have a purpose to head to.",
       "key": "fable"
     },
     "slot8": {
