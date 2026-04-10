@@ -505,19 +505,26 @@
 }
 
 .kpi-row{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 8px;
   margin-top: 14px;
 }
-@media (max-width: 980px){
-  .kpi-row{grid-template-columns: repeat(2, 1fr);}
+.kpi-row{
+  display:flex;
+  flex-wrap:nowrap;
+  gap: 8px;
+  margin-top: 14px;
 }
 .kpi{
   border: 1px solid var(--border-light);
   background: linear-gradient(to bottom, rgba(255,252,245,0.7), rgba(237,224,196,0.4));
-  padding: 18px 14px 16px;
+  padding: 8px 10px 7px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 .kpi:hover{
@@ -527,23 +534,29 @@
 .kpi .n{
   font-family: 'Cinzel Decorative', serif;
   font-weight: 900;
-  font-size: 28px;
+  font-size: 16px;
   color: var(--primary);
   line-height: 1;
+  white-space: nowrap;
 }
 .kpi .l{
-  margin-top: 8px;
-  font-size: 8px;
-  letter-spacing: 6px;
+  margin-top: 4px;
+  font-size: 6px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--primary-dim);
+  white-space: nowrap;
 }
 
 .tools{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
+  gap:8px;
   margin-top: 12px;
+}
+.tools .tool-btn{
+  flex: 1;
+  justify-content: center;
 }
 .tool-btn{
   font-size: 9px;
@@ -1063,7 +1076,7 @@ body.dark .dark-toggle-fixed {
   <a href="/dnd/index.html" class="back-link">Home</a>
   <div class="nav-divider"></div>
   <span class="nav-breadcrumb">Chronicle</span>
-  <span class="dark-mode-btn" style="opacity:0.4;font-size:9px;letter-spacing:3px;">◑ toggle below →</span>
+
 </nav>
 
 <header class="chronicle-hero">
@@ -1080,14 +1093,14 @@ body.dark .dark-toggle-fixed {
   <section class="panel">
     <div class="panel-hd">
       <div class="panel-title">At a glance</div>
-      <div class="session-meta">Last updated: Mar 11, 2026</div>
+      <div class="session-meta">Last updated: Apr 10, 2026</div>
     </div>
 
     <div class="kpi-row">
-      <div class="kpi"><div class="n">2</div><div class="l">Sessions</div></div>
+      <div class="kpi"><div class="n">3</div><div class="l">Sessions</div></div>
       <div class="kpi"><div class="n">0</div><div class="l">One-shots</div></div>
       <div class="kpi"><div class="n">1</div><div class="l">Ongoing</div></div>
-      <div class="kpi"><div class="n">6</div><div class="l">PCs</div></div>
+      <div class="kpi"><div class="n">7</div><div class="l">PCs</div></div>
       <div class="kpi"><div class="n">2</div><div class="l">NPCs</div></div>
     </div>
 
@@ -1165,7 +1178,8 @@ body.dark .dark-toggle-fixed {
             <h4>Quick links</h4>
             <ul>
               <li><a href="/dnd/session-01.html">Session 01 page</a></li>
-              <li><a href="/dnd/session-01.cleaned.md">Cleaned transcript</a></li>
+              <li><a href="/dnd/session-02.html">Session 02 page</a></li>
+              <li><a href="/dnd/session-04.html">Session 04 page</a></li>
               <li><a href="/dnd/players.html">Players</a></li>
               <li><a href="/dnd/house-rules.html">House rules</a></li>
             </ul>
@@ -1189,7 +1203,7 @@ body.dark .dark-toggle-fixed {
 </div>
 
 <script>
-const DATA = {"siteTitle": "The Chronicle", "tagline": "A lively index of sessions, one-shots, characters, threads, and loot — built for GitHub Pages.", "stats": {"sessions": 2, "oneShots": 0, "ongoing": 1, "pcs": 6, "npcs": 2}, "quotes": [{"text": "All the shinies!", "by": "Raven"}, {"text": "Would anyone like to invest?", "by": "Evo"}, {"text": "Teacher's gone — no class!", "by": "Table"}, {"text": "My friends call me Fable.", "by": "Fable"}, {"text": "None of you are worthy sacrifices yet.", "by": "The Lich"}, {"text": "Raven, I fucking told you!", "by": "Izabella"}, {"text": "Do I ever listen?", "by": "Raven"}, {"text": "This is the Lord of Walls. We need to kill your goblins post haste.", "by": "Evo"}, {"text": "BRICK AND STONE!", "by": "Malc Grann"}, {"text": "Look at me! I killed your friend!", "by": "Malc Grann"}], "sessions": [{"id": "session-01", "number": "01", "title": "The Walls of Greyveil", "date": "2026-02-25", "runtime": "~3h 10m", "status": "Ongoing", "summary": "Strangers converge on a village whose walls are suspiciously moss-free. A goblin contract, a road ambush, a dark cave crawl, and a hobgoblin's skull later — the nest is broken, the party is formed, and someone is already being carried on someone else's head.", "highlights": ["Church diplomacy: Malc presented as the God of Walls", "Road ambush: first real fight, skeleton commander", "Cave push: darkvision chaos, Evo used as a lantern", "Boss drop: hobgoblin falls, 10 remaining goblins flee"], "rewards": ["4 gp each", "Magnifying glass (party-wide)", "Glowing lantern stone (Raven)", "4 health potions recovered"], "tags": ["goblins", "church", "ambush", "cave", "boss", "walls"], "links": {"page": "session-01.html", "transcript": "session-01.html"}}, {"id": "session-02", "number": "02", "title": "The Shore of Hollow Bones", "date": "2026-03-11", "runtime": "~3h", "status": "Ongoing", "summary": "A new bard arrives in the forest with a crossbow and letters to deliver. The party follows a blood trail to a coastal dock swarming with skeleton stevedores, boards a ship with a sealed ring of offerings, frees a lich by accident, destroys a bone giant, and gets teleported home. Nobody warned the cleric.", "highlights": ["Fable joins the party — immediately plays Heroism on Raven", "Skeleton ambush at the crossroads: Izabella 1 HP the whole time", "Raven brute-forces the sealing spell: bodies start moving", "Bone guardian final fight: Izabella kills it with an arrow to the skull"], "rewards": ["5 silver pieces (coffer at the docks)", "2 garnets (Raven)", "Assorted bones (Evo's teepee)", "Long rest taken"], "tags": ["lich", "undead", "docks", "ship", "seal", "bone guardian", "new member"], "links": {"page": "session-02.html", "transcript": "session-02.html"}}], "characters": [{"name": "Izabella", "role": "PC", "note": "Fairy Witherbloom grad; curious, spell-slinging. Gave away her last health potion twice.", "link": "/dnd/characters/izabella.html"}, {"name": "Evo", "role": "PC", "note": "Startup energy; always pitching. Collecting bones. Refuses to drink health potions he receives.", "link": "/dnd/characters/evo.html"}, {"name": "Raven", "role": "PC", "note": "Shadows, shinies, and survival instincts. Responsible for the lich being free.", "link": "/dnd/characters/raven.html"}, {"name": "Sekhmet", "role": "PC", "note": "Glory-seeker; direct and bold. Was asleep during session 02.", "link": "/dnd/characters/sekhmet.html"}, {"name": "Malc Grann", "role": "PC", "note": "God of Walls (self-proclaimed). Weapon of choice: whip, shield, and being thrown.", "link": "/dnd/characters/malc.html"}, {"name": "Fable", "role": "PC", "note": "Winged bard, new arrival. Carries undelivered letters. Surprisingly good at buffing.", "link": "/dnd/characters/fable.html"}, {"name": "Illy", "role": "DM", "note": "Keeps the world moving; hooks, adjudication, and tone.", "link": "/dnd/illy.html"}], "threads": [{"title": "The Lich is free", "status": "Open", "detail": "Raven broke the seal. He waved them home and said they weren't worthy sacrifices yet. That 'yet' is doing a lot of work."}, {"title": "Why are the town walls reinforced?", "status": "Open", "detail": "The head cleric promised an answer on return. Still outstanding — the party got sidetracked by undead."}, {"title": "Evo's bone teepee", "status": "Open", "detail": "Constructed in the nave of the church using remains from the lich's lair. The cleric has not commented. Yet."}, {"title": "The undelivered letters", "status": "Open", "detail": "Fable was hired to deliver letters before his caravan was ambushed. He hasn't mentioned them since joining the party."}, {"title": "Goblin raids' true cause", "status": "Open", "detail": "Was this hunger, coercion, or something pushing goblins onto the roads? Still no answer."}, {"title": "The church's magnifying inspection", "status": "Resolved", "detail": "Turns out the cleric just really likes clean walls. Malc understands him completely."}], "loot": [{"item": "Gold payout", "qty": "4 gp each", "note": "Session 01 — paid after returning with the hobgoblin skull."}, {"item": "Silver pieces", "qty": "5 sp total", "note": "Session 02 — found in a coffer in the dockside body pile."}, {"item": "Garnets", "qty": "2", "note": "Session 02 — both taken by Raven. One from the dock coffer, one pried from the altar blood pool."}, {"item": "Healing potions", "qty": "Multiple", "note": "Session 01 — church provisions + 2 crafted by Izabella (Survival nat-20)."}, {"item": "Glowing lantern stone", "qty": "1", "note": "Session 01 — pickpocketed from the town crier by Raven before anyone agreed to the quest."}, {"item": "Magnifying glass", "qty": "Party-wide", "note": "Session 01 — reward from the church cleric. Malc was visibly moved."}, {"item": "Assorted bones", "qty": "1 teepee's worth", "note": "Session 02 — Evo's collection. Raven stole one with a sleight of hand. Malc noticed something was missing."}]};
+const DATA = {"siteTitle": "The Chronicle","tagline": "A lively index of sessions, one-shots, characters, threads, and loot — built for GitHub Pages.","stats": {"sessions": 3,"oneShots": 0,"ongoing": 1,"pcs": 7,"npcs": 3},"quotes": [{"text": "All the shinies!","by": "Raven"},{"text": "Would anyone like to invest?","by": "Evo"},{"text": "Teacher's gone — no class!","by": "Table"},{"text": "My friends call me Fable.","by": "Fable"},{"text": "None of you are worthy sacrifices yet.","by": "The Lich"},{"text": "Raven, I fucking told you!","by": "Izabella"},{"text": "Do I ever listen?","by": "Raven"},{"text": "This is the Lord of Walls. We need to kill your goblins post haste.","by": "Evo"},{"text": "BRICK AND STONE!","by": "Malc Grann"},{"text": "Look at me! I killed your friend!","by": "Malc Grann"},{"text": "Every damn time — portals.","by": "Accel Signal"},{"text": "Nobody's dead. That's a positive.","by": "Evo"},{"text": "Not yet. But I am half dead.","by": "Izabella"},{"text": "Are you a capital-G God or a lowercase-g god?","by": "Accel Signal"},{"text": "The wall will not fall.","by": "Accel Signal"}],"sessions": [{"id": "session-01","number": "01","title": "The Walls of Greyveil","date": "2026-02-25","runtime": "~3h 10m","status": "Ongoing","summary": "Strangers converge on a village whose walls are suspiciously moss-free. A goblin contract, a road ambush, a dark cave crawl, and a hobgoblin's skull later — the nest is broken, the party is formed, and someone is already being carried on someone else's head.","highlights": ["Church diplomacy: Malc presented as the God of Walls","Road ambush: first real fight, skeleton commander","Cave push: darkvision chaos, Evo used as a lantern","Boss drop: hobgoblin falls, 10 remaining goblins flee"],"rewards": ["4 gp each","Magnifying glass (party-wide)","Glowing lantern stone (Raven)","4 health potions recovered"],"tags": ["goblins","church","ambush","cave","boss","walls"],"links": {"page": "session-01.html","transcript": "session-01.html"}},{"id": "session-02","number": "02","title": "The Shore of Hollow Bones","date": "2026-03-11","runtime": "~3h","status": "Ongoing","summary": "A new bard arrives in the forest with a crossbow and letters to deliver. The party follows a blood trail to a coastal dock swarming with skeleton stevedores, boards a ship with a sealed ring of offerings, frees a lich by accident, destroys a bone giant, and gets teleported home. Nobody warned the cleric.","highlights": ["Fable joins the party — immediately plays Heroism on Raven","Skeleton ambush at the crossroads: Izabella 1 HP the whole time","Raven brute-forces the sealing spell: bodies start moving","Bone guardian final fight: Izabella kills it with an arrow to the skull"],"rewards": ["5 silver pieces (coffer at the docks)","2 garnets (Raven)","Assorted bones (Evo's teepee)","Long rest taken"],"tags": ["lich","undead","docks","ship","seal","bone guardian","new member"],"links": {"page": "session-02.html","transcript": "session-02.html"}},{"id": "session-04","number": "04","title": "Where the Water Turns","date": "2026-04-02","runtime": "~2h 30m","status": "Ongoing","summary": "The town has expanded overnight — new shops, a waterway, growing crops — direct reward for clearing the goblin nest. A portal drops Accel Signal into the square. He has Memory Ale, a mysterious book, and a quest: the well is poisoned. The party descends into the undercroft and fights through a goblin tunnel network before pausing at a newly-unlocked door.","highlights": ["Town expanded overnight — first visible world reaction to players","Accel Signal joins via portal — survived the fey drink con (con save 17)","Sekhmet: first blood + Rage unlocked mid-combat","Isabella's Thunderclap finally lands — deafens entire floor, two goblins explode","Evo earns DM-granted advantage for fully committing to the God of the Wall bit","Accel: back-to-back nat 20s on opening turns"],"rewards": ["1 poison arrow (Accel)","Goblin bones: skull, spine, femurs, hand (Evo)","Locked door now open — water source accessible"],"tags": ["undercroft","goblins","poisoned water","new member","portals","rage","thunderclap","accel signal"],"links": {"page": "session-04.html","transcript": "session-04.html"}}],"characters": [{"name": "Izabella","role": "PC","note": "Fairy Witherbloom grad; curious, spell-slinging. Gave away her last health potion twice.","link": "/dnd/characters/izabella.html"},{"name": "Evo","role": "PC","note": "Startup energy; always pitching. Collecting bones. Canonically the God of the Wall — Illy made it official.","link": "/dnd/characters/evo.html"},{"name": "Raven","role": "PC","note": "Shadows, shinies, survival instincts. Responsible for the lich being free. Absent session 04.","link": "/dnd/characters/raven.html"},{"name": "Sekhmet","role": "PC","note": "Glory-seeker; direct and bold. First kill every session. Rage unlocked session 04.","link": "/dnd/characters/sekhmet.html"},{"name": "Malc Grann","role": "PC","note": "God of Walls (self-proclaimed, now semi-confirmed). Weapon of choice: whip, shield, and being thrown.","link": "/dnd/characters/malc.html"},{"name": "Fable","role": "PC","note": "Winged bard, joined session 02. Carries undelivered letters. Tactical brain. Walked up to a goblin and psychically exploded it.","link": "/dnd/characters/fable.html"},{"name": "Accel Signal","role": "PC","note": "Eladrin ranger, joined session 04 via portal. Has a mysterious book, Memory Ale, and a lot of questions about wells.","link": "/dnd/characters/accel.html"},{"name": "Illy","role": "DM","note": "Keeps the world moving; hooks, adjudication, and tone.","link": "/dnd/illy.html"}],"threads": [{"title": "The Lich is free","status": "Open","detail": "Raven broke the seal. He waved them home and said they weren't worthy sacrifices yet. That 'yet' is doing a lot of work."},{"title": "What's poisoning the water?","status": "Open","detail": "Session 04 pauses at the threshold. The well beneath the undercroft is contaminated — source and scope unknown. Door now open."},{"title": "Accel Signal's book","status": "Open","detail": "He keeps opening it, nodding, and closing it. It knew about the well before the party did. Nobody has asked him directly yet."},{"title": "Why are the town walls reinforced?","status": "Open","detail": "The head cleric promised an answer on return. Still outstanding."},{"title": "Evo's bone teepee","status": "Open","detail": "Constructed in the nave of the church using remains from the lich's lair. The cleric has not commented. Yet."},{"title": "The undelivered letters","status": "Open","detail": "Fable was hired to deliver letters before his caravan was ambushed. He hasn't mentioned them since joining."},{"title": "Goblin raids' true cause","status": "Open","detail": "The undercroft's purpose-built tunnel network suggests the goblin presence ran deeper than random raiding."},{"title": "The church's magnifying inspection","status": "Resolved","detail": "Turns out the cleric just really likes clean walls. Malc understands him completely."}],"loot": [{"item": "Gold payout","qty": "4 gp each","note": "Session 01 — paid after returning with the hobgoblin skull."},{"item": "Silver pieces","qty": "5 sp total","note": "Session 02 — found in a coffer in the dockside body pile."},{"item": "Garnets","qty": "2","note": "Session 02 — both taken by Raven. One from the dock coffer, one pried from the altar blood pool."},{"item": "Healing potions","qty": "Multiple","note": "Session 01 — church provisions + 2 crafted by Izabella (Survival nat-20)."},{"item": "Glowing lantern stone","qty": "1","note": "Session 01 — pickpocketed from the town crier by Raven before anyone agreed to the quest."},{"item": "Magnifying glass","qty": "Party-wide","note": "Session 01 — reward from the church cleric. Malc was visibly moved."},{"item": "Assorted bones","qty": "1 teepee's worth","note": "Session 02 — Evo's collection. Raven stole one with sleight of hand. Malc noticed something was missing."},{"item": "Poison arrow","qty": "1","note": "Session 04 — looted by Accel Signal from a goblin archer in the undercroft."}]};
 
 // ─── KPI COUNT-UP ───
 function animateCount(el, target, duration) {
