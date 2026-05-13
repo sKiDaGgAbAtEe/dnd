@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 04B — What Waits in the Water · The Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:        #6b3a1f;
+  --primary-light:  #8b4a28;
+  --primary-dim:    #9e6a45;
+  --accent:         #7a1a1a;
+  --accent-light:   #9b2c2c;
+  --parchment:      #f2e8d5;
+  --parchment-mid:  #ede0c4;
+  --parchment-dark: #e4d4b0;
+  --ink:            #2c1a0e;
+  --ink-mid:        #3d2510;
+  --border:         #c4a882;
+  --border-light:   #d4bc96;
+  --shadow:         rgba(44,26,14,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'Cinzel',serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 10%,rgba(180,140,80,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(160,120,60,0.14) 0%,transparent 45%),
+    radial-gradient(ellipse at 60% 40%,rgba(200,170,110,0.08) 0%,transparent 35%),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(107,58,31,0.025) 80px,rgba(107,58,31,0.025) 81px),
+    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(107,58,31,0.015) 80px,rgba(107,58,31,0.015) 81px);
+  background-attachment:fixed;
+}
+
+/* ── BACK NAV ── */
+.back-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:linear-gradient(to bottom,rgba(242,232,213,0.97),rgba(242,232,213,0));
+  padding:16px 40px;
+  display:flex;align-items:center;gap:24px;
+}
+.back-link{
+  color:var(--primary-dim);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.back-link:hover{color:var(--primary);}
+.back-link::before{content:'←';font-size:14px;}
+.nav-div{width:1px;height:16px;background:var(--border);}
+.nav-crumb{color:var(--primary-dim);font-size:10px;letter-spacing:3px;text-transform:uppercase;}
+.nav-id{margin-left:auto;font-size:9px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;text-align:center;
+  padding:130px 20px 70px;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:900px;height:550px;
+  background:radial-gradient(ellipse,rgba(180,130,70,0.14) 0%,transparent 65%);
+  pointer-events:none;
+}
+.session-eyebrow{
+  font-size:9px;letter-spacing:8px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:18px;
+  animation:fadeIn 1.5s ease;
+}
+.chapter-subtitle{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:clamp(13px,2vw,17px);color:var(--primary-light);
+  letter-spacing:5px;text-transform:uppercase;
+  margin-bottom:14px;animation:fadeIn 1.8s ease;
+}
+.chapter-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(28px,5.5vw,64px);font-weight:900;line-height:1.05;
+  color:var(--ink);
+  text-shadow:1px 2px 0px rgba(180,130,60,0.3),0 0 40px rgba(107,58,31,0.1);
+  animation:fadeIn 1.5s ease;margin-bottom:28px;
+}
+.hero-meta{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;animation:fadeIn 2.5s ease;
+}
+.hero-meta-item{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13px;color:var(--primary-dim);letter-spacing:3px;
+  display:flex;align-items:center;gap:8px;
+}
+.dot{color:var(--border);font-size:6px;}
+
+/* ── DIVIDERS ── */
+.divider{
+  display:flex;align-items:center;gap:16px;
+  margin:44px auto;max-width:820px;padding:0 30px;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.divider-glyph{color:var(--primary-dim);font-size:18px;flex-shrink:0;}
+
+.scene-break{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin:48px auto;max-width:400px;
+  color:var(--border);font-size:11px;letter-spacing:6px;
+}
+.scene-break::before,.scene-break::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border));
+}
+.scene-break::before{background:linear-gradient(to left,transparent,var(--border));}
+
+/* ── CONTENT WRAP ── */
+.content-wrap{max-width:820px;margin:0 auto;padding:0 30px 80px;}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--border);margin-bottom:44px;
+}
+@media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr);}}
+.stat-cell{
+  padding:20px 16px;text-align:center;
+  border-right:1px solid var(--border-light);
+  background:linear-gradient(to bottom,rgba(255,252,245,0.7),rgba(237,224,196,0.4));
+}
+.stat-cell:last-child{border-right:none;}
+.stat-n{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:24px;color:var(--primary);line-height:1;margin-bottom:8px;
+}
+.stat-l{font-size:8px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+/* ── COLD OPEN ── */
+.cold-open{
+  max-width:760px;margin:0 auto 20px;
+  padding:40px;position:relative;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(180,140,80,0.08),rgba(242,232,213,0.3));
+  box-shadow:inset 0 0 30px rgba(180,140,80,0.06),0 2px 12px var(--shadow);
+}
+.cold-open::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.cold-open-label{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.cold-open-label::after{content:'';flex:1;height:1px;background:var(--border-light);}
+.cold-open p{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:17px;line-height:1.9;color:var(--ink-mid);
+  margin-bottom:16px;
+}
+.cold-open p:last-child{margin-bottom:0;}
+
+/* ── SCENE HEADERS ── */
+.scene-title{
+  font-family:'Cinzel Decorative',serif;font-weight:700;
+  font-size:12px;letter-spacing:5px;color:var(--primary);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.scene-title::after{content:'';flex:1;height:1px;background:var(--border-light);}
+
+/* ── PROSE ── */
+.prose p{
+  font-family:'IM Fell English',serif;
+  font-size:16.5px;line-height:1.95;
+  color:var(--ink);margin-bottom:22px;
+}
+.prose p:last-child{margin-bottom:0;}
+.prose .em{color:var(--primary);font-style:italic;}
+
+/* ── DIALOGUE ── */
+.dialogue{border-left:2px solid var(--border);margin:28px 0;padding:0 0 0 24px;}
+.dialogue .speaker{
+  font-size:9px;letter-spacing:5px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.dialogue .line{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:16px;line-height:1.7;color:var(--ink-mid);
+}
+
+/* ── COMBAT BLOCK ── */
+.combat-block{
+  background:linear-gradient(135deg,rgba(122,26,26,0.06),rgba(237,224,196,0.5));
+  border:1px solid rgba(122,26,26,0.25);
+  padding:32px;margin:36px 0;position:relative;
+  box-shadow:0 2px 10px var(--shadow);
+}
+.combat-block::before{
+  content:'⚔';position:absolute;top:-12px;left:50%;
+  transform:translateX(-50%);
+  background:var(--parchment-mid);padding:0 12px;
+  color:var(--accent-light);font-size:18px;
+}
+.combat-block p{
+  font-family:'IM Fell English',serif;
+  font-size:16px;line-height:1.9;
+  color:var(--ink);margin-bottom:16px;
+}
+.combat-block p:last-child{margin-bottom:0;}
+
+/* ── CAST ── */
+.cast-section{
+  background:var(--parchment-mid);border:1px solid var(--border);
+  padding:32px;margin:40px 0;
+  box-shadow:0 2px 12px var(--shadow);
+}
+.cast-title{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+}
+.cast-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.cast-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:14px;
+}
+.cast-card{
+  border:1px solid var(--border-light);padding:16px;text-align:center;
+  background:linear-gradient(to bottom,rgba(255,250,240,0.6),rgba(237,224,196,0.3));
+  text-decoration:none;display:block;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.cast-card:hover{border-color:var(--border);box-shadow:0 2px 8px var(--shadow);}
+.cast-card.absent{opacity:0.55;border-style:dashed;}
+.cast-name{
+  font-family:'Cinzel Decorative',serif;font-size:10px;font-weight:700;
+  color:var(--primary);letter-spacing:2px;margin-bottom:4px;
+}
+.cast-class{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:12px;color:var(--ink-mid);margin-bottom:4px;
+}
+.cast-player{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;margin-top:6px;
+}
+.cast-badge{
+  display:inline-block;margin-top:6px;
+  font-size:7px;letter-spacing:3px;color:var(--primary);
+  border:1px solid var(--border);padding:2px 8px;text-transform:uppercase;
+}
+
+/* ── LOOT / DELTA ── */
+.delta-section{border:1px solid var(--border);margin:40px 0;box-shadow:0 2px 12px var(--shadow);}
+.delta-header{
+  background:linear-gradient(90deg,rgba(107,58,31,0.1),transparent);
+  padding:14px 24px;
+  font-size:9px;letter-spacing:6px;color:var(--primary);
+  text-transform:uppercase;border-bottom:1px solid var(--border);
+}
+.delta-body{padding:24px;background:var(--parchment-mid);}
+.delta-row{display:flex;gap:16px;margin-bottom:14px;align-items:baseline;}
+.delta-row:last-child{margin-bottom:0;}
+.delta-tag{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;white-space:nowrap;padding-top:2px;min-width:70px;
+}
+.delta-val{
+  font-family:'IM Fell English',serif;font-size:14px;
+  color:var(--ink-mid);line-height:1.6;
+}
+.delta-val .gold{color:var(--primary);font-style:italic;font-weight:bold;}
+
+/* ── COLLAPSIBLE TRANSCRIPT ── */
+.transcript-collapsible{border:1px solid var(--border);margin:40px 0;box-shadow:0 2px 12px var(--shadow);}
+.transcript-toggle{
+  width:100%;padding:18px 24px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to right,rgba(107,58,31,0.07),transparent);
+  border:none;font-family:'Cinzel',serif;user-select:none;
+  transition:background 0.2s;
+}
+.transcript-toggle:hover{background:linear-gradient(to right,rgba(107,58,31,0.13),transparent);}
+.transcript-toggle-left{display:flex;align-items:center;gap:14px;}
+.transcript-toggle-icon{font-size:13px;color:var(--primary-dim);}
+.transcript-toggle-label{font-size:9px;letter-spacing:5px;color:var(--primary);text-transform:uppercase;}
+.transcript-toggle-sub{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:11px;color:var(--primary-dim);margin-top:2px;
+}
+.transcript-toggle-hint{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:12px;color:var(--primary-dim);
+}
+.transcript-arrow{font-size:11px;color:var(--primary-dim);transition:transform 0.3s;}
+.transcript-collapsible.open .transcript-arrow{transform:rotate(180deg);}
+.transcript-body{
+  display:none;border-top:1px solid var(--border);
+  background:rgba(255,252,245,0.5);
+}
+.transcript-collapsible.open .transcript-body{display:block;}
+
+/* transcript internals */
+.t-header{
+  background:linear-gradient(to right,rgba(107,58,31,0.06),transparent);
+  border-bottom:1px solid var(--border-light);
+  padding:12px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.t-tools{display:flex;gap:7px;}
+.t-btn{
+  font-size:8px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--primary-dim);border:1px solid var(--border-light);
+  padding:5px 12px;background:transparent;
+  cursor:pointer;font-family:'Cinzel',serif;transition:all 0.2s;
+}
+.t-btn:hover{background:var(--parchment-dark);border-color:var(--border);color:var(--primary);}
+.t-btn.on{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+.search-wrap{position:relative;width:100%;margin-top:2px;}
+.t-search{
+  width:100%;padding:7px 12px 7px 32px;
+  font-family:'IM Fell English',serif;font-size:13px;font-style:italic;
+  color:var(--ink);background:rgba(255,252,245,0.85);
+  border:1px solid var(--border-light);outline:none;transition:border-color 0.2s;
+}
+.t-search:focus{border-color:var(--border);}
+.t-search::placeholder{color:var(--primary-dim);opacity:0.7;}
+.search-icon{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  color:var(--primary-dim);font-size:11px;pointer-events:none;
+}
+.search-count{
+  font-size:9px;letter-spacing:3px;color:var(--primary-dim);
+  text-align:right;margin-top:3px;min-height:13px;
+}
+.t-scroll{
+  max-height:520px;overflow-y:auto;padding:24px 28px;
+}
+.t-scroll.expanded{max-height:none;}
+.t-scroll::-webkit-scrollbar{width:4px;}
+.t-scroll::-webkit-scrollbar-track{background:transparent;}
+.t-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.t-speaker-block{margin-bottom:12px;}
+.t-name{
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:4px;text-transform:uppercase;margin-bottom:2px;
+}
+.t-name.dm{color:var(--accent);}
+.t-name.pc{color:var(--primary);}
+.t-line{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13px;line-height:1.8;color:var(--ink-mid);
+  padding-left:14px;border-left:2px solid var(--border-light);
+}
+.t-line.dm-line{font-style:normal;color:var(--ink);border-left-color:rgba(122,26,26,0.3);}
+.t-raw-pre{
+  font-family:'IM Fell English',serif;
+  font-size:12px;line-height:1.75;color:var(--ink-mid);white-space:pre-wrap;
+}
+mark{background:rgba(180,130,50,0.28);color:var(--ink);padding:1px 0;border-radius:2px;}
+.t-fade{
+  pointer-events:none;margin-top:-56px;height:56px;
+  background:linear-gradient(to top,rgba(255,252,245,0.97),transparent);
+}
+.t-fade.hidden{display:none;}
+.t-expand-row{
+  text-align:center;padding:10px;
+  border-top:1px solid var(--border-light);background:var(--parchment-mid);
+}
+.expand-btn{
+  font-size:8px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--primary-dim);background:transparent;
+  border:1px solid var(--border);padding:7px 24px;
+  cursor:pointer;font-family:'Cinzel',serif;transition:all 0.2s;
+}
+.expand-btn:hover{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+
+/* ── CHAPTER NAV ── */
+.chapter-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:820px;margin:0 auto;padding:36px 30px 60px;
+  border-top:1px solid var(--border);
+}
+.chapter-nav a{
+  color:var(--primary-dim);text-decoration:none;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.chapter-nav a:hover{color:var(--primary);}
+.chapter-nav a.prev::before{content:'←';font-size:14px;}
+.chapter-nav a.next::after{content:'→';font-size:14px;}
+.chapter-nav .ghost{visibility:hidden;pointer-events:none;}
+
+/* ── DARK MODE ── */
+body.dark{
+  --primary:#c8845a;--primary-light:#d99a72;--primary-dim:#b07050;
+  --accent:#c44444;--accent-light:#d45555;
+  --parchment:#1a1208;--parchment-mid:#221808;--parchment-dark:#2c2010;
+  --ink:#e8d8b8;--ink-mid:#d4c090;
+  --border:#5a3e22;--border-light:#4a3018;
+  --shadow:rgba(0,0,0,0.45);
+}
+body.dark{background-image:
+  radial-gradient(ellipse at 20% 10%,rgba(80,50,20,0.35) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 90%,rgba(60,35,10,0.3) 0%,transparent 45%),
+  radial-gradient(ellipse at 60% 40%,rgba(100,70,30,0.12) 0%,transparent 35%),
+  repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(200,130,60,0.04) 80px,rgba(200,130,60,0.04) 81px),
+  repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(200,130,60,0.025) 80px,rgba(200,130,60,0.025) 81px);
+}
+body.dark .back-nav{background:linear-gradient(to bottom,rgba(26,18,8,0.97),rgba(26,18,8,0));}
+body.dark .stat-cell{background:linear-gradient(to bottom,rgba(30,20,8,0.7),rgba(34,24,8,0.4));}
+body.dark .cold-open{background:linear-gradient(135deg,rgba(80,50,20,0.25),rgba(26,18,8,0.3));}
+body.dark .cast-card{background:linear-gradient(to bottom,rgba(30,20,8,0.6),rgba(34,24,8,0.3));}
+body.dark .delta-body{background:var(--parchment-mid);}
+body.dark .cast-section{background:var(--parchment-mid);}
+body.dark .combat-block{background:linear-gradient(135deg,rgba(122,26,26,0.18),rgba(34,24,8,0.5));}
+body.dark .combat-block::before{background:var(--parchment-mid);}
+body.dark .transcript-body{background:rgba(26,18,8,0.5);}
+body.dark .t-scroll{background:transparent;}
+body.dark .t-search{background:rgba(26,18,8,0.8);}
+
+/* ── DARK TOGGLE ── */
+.dark-toggle{
+  position:fixed;top:14px;right:20px;z-index:200;
+  background:var(--parchment);border:1px solid var(--border);
+  color:var(--primary-dim);font-family:'Cinzel',serif;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;transition:all 0.25s;
+  display:flex;align-items:center;gap:7px;
+}
+.dark-toggle:hover{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+.dark-toggle .toggle-icon{font-size:13px;line-height:1;}
+
+/* ── SCROLL FADE-IN ── */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+</style>
+</head>
+<body>
+
+<button class="dark-toggle" id="dark-toggle-btn" aria-label="Toggle dark mode">
+  <span class="toggle-icon">&#x25D1;</span><span class="toggle-label">Dark</span>
+</button>
+
+<nav class="back-nav">
+  <a class="back-link" href="/dnd/campaigns/index.html">Chronicle</a>
+  <div class="nav-div"></div>
+  <span class="nav-crumb">Sessions</span>
+  <div class="nav-div"></div>
+  <span class="nav-crumb">Session 04B</span>
+  <span class="nav-id">The Chronicle &middot; Session 04B</span>
+</nav>
+
+<header class="hero">
+  <div class="session-eyebrow">Chapter Four &mdash; Part Two</div>
+  <div class="chapter-subtitle">&mdash; Session 04B &mdash;</div>
+  <h1 class="chapter-title">What Waits<br>in the Water</h1>
+  <div class="hero-meta">
+    <span class="hero-meta-item">&#x25C6; 3 Combats</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">1 Absent Member</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">1 Shark in the Sewer</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">0 Deaths</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">1 Level-Up Incoming</span>
+  </div>
+</header>
+
+<main class="content-wrap">
+
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-n">3</div><div class="stat-l">Fights</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Mimic Found</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Shark Spotted</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Deaths</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Rest Taken</div></div>
+  </div>
+
+  <div class="cold-open">
+    <div class="cold-open-label">Cold Open</div>
+    <p>The grate comes off in Sekhmet&rsquo;s hands. Not with tools, not with a crowbar &mdash; with claws, with leverage, with a strength roll of 19 that impresses everyone including him. The iron tears free of the stone like it was always going to, and the sewer opens beneath them: dark water, goblin torchlight, the particular smell of somewhere nothing good has been living.</p>
+    <p>Izabella flies in first. She looked and rolled a 20. It looked safe to her. She did not tell anyone about the torches until she had already descended and they had already followed.</p>
+    <p><em>I just wanted y&rsquo;all to know that I saw those before y&rsquo;all did.</em></p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">&#x2736;</span></div>
+
+  <div class="scene-title fade-in">I &mdash; The Descent</div>
+  <div class="prose">
+    <p>The sewer is a maze built by people who did not want to be found. Goblin-sized passages threaded through the walls, trip-wire traps strung across the corridors, torchlight placed just wrong enough to obscure what it looks like it should illuminate. The party advances in a loose column: Izabella darting ahead, Accel Signal reading the terrain, Malc Grann navigating blind in the stretches between torches.</p>
+    <p>Raven is absent &mdash; elsewhere today, missed and noted, her absence leaving a gap in the rogue-shaped part of the formation. The party compensates. Accel steps into the scout role without being asked.</p>
+    <p>He finds the first trap before it finds anyone. Seventeen feet of fishing wire, thin as an eyelash, strung at ankle height across the passage. He marks it, steps around it, turns to the group. <em>Stop. Right there. There&rsquo;s a trap right in front of you.</em> He crouches and disables it with an 18 on sleight of hand, the rope going slack without a sound.</p>
+    <p>There is another trap eight feet further on. He finds that one too. He rolls a 23.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Accel Signal</div>
+    <div class="line">&ldquo;Izabella &mdash; I know you want to go in heads blazing. I understand. But let me get you there safely first.&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>Izabella waits. Briefly. With visible effort.</p>
+    <p>The corridor opens. Evo Guidance-boons Izabella&rsquo;s perception and she rolls a nat 20, confirming what Accel already suspected: the hallway ahead is clean. No further traps. Just shadows, and the sound of movement in the walls that Accel and Sekhmet alone can hear, a many-legged weight of something repositioning itself in the dark.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">II &mdash; The Black Widow</div>
+  <div class="prose">
+    <p>It comes out of the ceiling. Eight legs, a body the size of a large dog, the red hourglass unmistakable in the torchlight. The party has exactly enough time to see it before it moves.</p>
+    <p>Initiative is rolled. The VTT&rsquo;s initiative tracker refuses to include Malc Grann for approximately three minutes. By the time it is resolved, everyone has been in the interface, touched things they should not have touched, and the spider has been waiting with the patient menace of something that has nowhere else to be.</p>
+  </div>
+
+  <div class="combat-block fade-in">
+    <p><strong>Accel Signal</strong> goes first and does the same thing he always does &mdash; Hunter&rsquo;s Mark applied, longbow raised, calculation made. The spider is fast. It bites into him for 7 points before he can finish the sequence. He casts Misty Step as a bonus action, teleporting 30 feet back and out of its reach, then casts Blade Ward on himself. He has taken the hit, adjusted, and repositioned without breaking stride.</p>
+    <p><strong>Malc Grann</strong> goes next &mdash; DM calls him &ldquo;God,&rdquo; and he answers to it. He is at spider range. He whips it. It takes the hit. He whips it again. The second swing breaks one of its forelegs and sends the creature staggering.</p>
+    <p><strong>Evo</strong> watches Accel take a second bite and acts immediately. <em>Got it, Genji. I need healing.</em> He casts Healing Word across the gap &mdash; 1d4 plus his spellcasting modifier, rolling a 4 for a maximum result. He announces this is his last deal. He means it. He tracks Accel&rsquo;s HP out loud and argues about it when Accel misreports.</p>
+    <p><strong>Izabella</strong> lines up Spellfire Flare and rolls an 11. It misses. She stares at the result for a moment. <em>I&rsquo;m gonna kill myself. Why am I even here? Just to suffer?</em> Fable uses his reaction to give her Bardic Inspiration. She still has it when it matters.</p>
+    <p><strong>Sekhmet</strong> goes straight at it with the great club. He rolls a 16 to hit, connects, adds his strength modifier, and brings the club down across what Illy generously calls its &ldquo;little toesies.&rdquo; The spider is wounded.</p>
+    <p>The spider bites Sekhmet for 7 damage, leaving him at 3 HP. The table registers this.</p>
+    <p><strong>Accel</strong>, reinvigorated, Hunter&rsquo;s Mark still active, fires his longbow for 10 points. The spider is &ldquo;heavily wounded.&rdquo; One hit left in it. Malc Grann steps forward, whip out, and describes the kill: the cord breaks a leg, swings around, launches through the abdomen. Indiana Jones energy. The spider falls. Malc Grann announces that the god has fully healed during the battle. Both things are true.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">III &mdash; The Mimic in the Barrel</div>
+  <div class="prose">
+    <p>Post-combat, Fable plays a low droning note on his viol &mdash; a Minor Illusion of Sound, a subsonic thrum meant to repel whatever has been moving through the water. It works. The ripples stop. Fable explains he also has another reason for playing music, but does not elaborate. Nobody asks.</p>
+    <p>There is a barrel. Izabella wants to know what is in it. Fable says do not break the barrel. The DM says she can break the barrel if she wants. Izabella breaks the barrel.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Fable</div>
+    <div class="line">&ldquo;Inside&hellip; is a goblin.&rdquo;</div>
+  </div>
+  <div class="dialogue">
+    <div class="speaker">DM</div>
+    <div class="line">&ldquo;It&rsquo;s a mimic.&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>The juvenile mimic &mdash; Illy calls it this, as though size is mitigating &mdash; has one combat round of life. Accel Signal puts an arrow through it for 15 damage. It dies before it can do anything alarming. Malc Grann, who could not see Izabella because of the persistent darkness, had already decided to swap his initiative to her in case she was standing too close to it. She was.</p>
+    <p>Izabella observes that this is fine. She had a pet barrel once back home. It looked exactly like this one. The party receives this information quietly.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">IV &mdash; The Shark and the Respite</div>
+  <div class="prose">
+    <p>Sekhmet is at 3 HP. He needs a potion and he needs one now. Malc Grann produces one from his inventory &mdash; he has been carrying three, a fact he mentions with the energy of someone who only just remembered. He rolls 2d4 plus 2. The result is 9. Sekhmet goes from the edge of death to 12 HP. He says <em>dope-tastic</em> and the session pauses briefly so everyone can sit with that word.</p>
+    <p>The party pushes deeper. Wall creatures have been reaching through the stone to take swipes at anyone who walks too close &mdash; not traps, Illy clarifies, actual creatures, something that lives in the rock. Both Accel and Sekhmet make their dexterity saves. The sewer is a maze of wrong turns, dead ends, and passages the party has already walked. Fable tracks the route. Malc Grann inspects every wall they pass and reports on its structural integrity. This is not a joke; he has advantage on wall inspection and uses it every time.</p>
+    <p>At the waterway crossing, something moves below the surface. Izabella rolls a 22 on perception. It is some kind of shark, she reports. She cannot be certain of the species. What she can be certain of is that it already has a goblin in its mouth.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Malc Grann</div>
+    <div class="line">&ldquo;I&rsquo;m going to take this hand from my inventory and chuck it into the water.&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>He does. The shark thrashes after it. The party crosses while it is occupied. Malc Grann had a severed hand in his inventory. Nobody comments on the severed hand. The crossing succeeds.</p>
+    <p>They find a dead-end alcove with solid walls, a single entrance, and a platform blocking the waterway. It is, by the standards of this sewer, extremely safe. Malc Grann runs along the walls sniffing them, confirms they are structurally sound, and reports: <em>It&rsquo;s all clear, you guys. It&rsquo;s clear.</em> Accel sets an Alarm spell at the entrance, triggered to send a mental ping &mdash; specifically, Izabella&rsquo;s panicked oh my God &mdash; if anything crosses the threshold. Fable does not sleep. He keeps watch, instrument in hand, playing quietly.</p>
+    <p>Short rest. Everyone recovers to maximum HP. Izabella regains a spell slot. Sekhmet regains a rage charge. Evo confirms he has not yet used his Channel Divinity because he has not had the right moment for lightning damage. He agrees to try Divine Spark next time. Fable gives Heroic Inspiration to Izabella and Sekhmet before the rest ends.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Malc Grann</div>
+    <div class="line">&ldquo;You need to treat me like a blind toddler.&rdquo;</div>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">V &mdash; The Peephole &amp; the Horn</div>
+  <div class="prose">
+    <p>Rested, the party backtracks through the maze to a door they had not yet opened. Malc Grann presses his ear to it &mdash; perception roll, 22 &mdash; and hears breathing and footsteps. He evaluates the door with the professional skepticism of someone who has looked at a great many doors. Old, creaky, structurally tough. He draws his mace. He does not try to knock it down. He pops a hole in the middle of it instead, one precise strike, creating a 5mm peephole through which he can see a torchlit room and two goblins inside.</p>
+    <p>He reports this to Accel. They agree two goblins is manageable. Fable asks Sekhmet to push a table up against the other door to cover their rear. Sekhmet does. Fable observes that the table is a masterpiece. Illy draws it and agrees.</p>
+    <p>Evo puts his eye to the peephole. He announces he would like to cast Toll the Dead.</p>
+    <p>He does not have line of sight through 5mm of wood, technically. The table logic stands. Illy allows it. Evo corrects himself mid-cast &mdash; not Word of Radiance, which only reaches 5 feet, but Toll the Dead, which reaches any creature he can see. He can see them. Both goblins fail their wisdom saves. One dies instantly, choking on necrotic energy. The other survives the second roll. Evo opens the door.</p>
+  </div>
+
+  <div class="combat-block fade-in">
+    <p><strong>Evo</strong> opens the door on his turn and casts Toll the Dead again on the surviving goblin. It rolls a 2 on its save. The damage is also a 2. He uses his movement to close the gap.</p>
+    <p>The goblin, wounded and aware it is losing, pulls out a horn and blows it.</p>
+    <p><strong>Fable</strong> draws his crossbow and shoots the horn-blower before it can finish the signal. The bolt goes into its head. It falls. Horn still in hand. Whether the call went out, the party does not yet know.</p>
+    <p>The session ends here &mdash; not with resolution but with a sudden wrong sound from behind Izabella. A wall coming down. Something large. Something that was not there before. The DM motions everyone into the corner room. Izabella, who has seen it, is already moving.</p>
+    <p><em>You guys &mdash; you don&rsquo;t understand what I just saw.</em></p>
+    <p>She is not wrong. A level-up waits on the other side of whatever is coming.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">&#x2736;</span></div>
+
+  <div class="cast-section">
+    <div class="cast-title">Cast This Chapter</div>
+    <div class="cast-grid">
+      <div class="cast-card">
+        <div class="cast-name">Izabella</div>
+        <div class="cast-class">Fairy Sorcerer</div>
+        <div class="cast-player">Astrica</div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-name">Sekhmet</div>
+        <div class="cast-class">Leonin Barbarian</div>
+        <div class="cast-player">sKiDa</div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-name">Evo</div>
+        <div class="cast-class">Dragonborn Cleric</div>
+        <div class="cast-player">Nikkelz</div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-name">Fable</div>
+        <div class="cast-class">Owlman Bard</div>
+        <div class="cast-player">Itty Bitty</div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-name">Malc Grann</div>
+        <div class="cast-class">Gnome Fighter</div>
+        <div class="cast-player">Sir Moosen</div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-name">Accel Signal</div>
+        <div class="cast-class">Eladrin Ranger</div>
+        <div class="cast-player">Hero</div>
+      </div>
+      <div class="cast-card absent">
+        <div class="cast-name">Raven</div>
+        <div class="cast-class">Shadar-Kai Rogue</div>
+        <div class="cast-player">MissPenguRose</div>
+        <div class="cast-badge">Absent</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="delta-section">
+    <div class="delta-header">Loot &amp; Consequences</div>
+    <div class="delta-body">
+      <div class="delta-row">
+        <div class="delta-tag">Quest</div>
+        <div class="delta-val">Objective confirmed: the corrupted water well is the source of the town&rsquo;s poisoned supply. The party is somewhere beneath the church working toward it. The way is not yet clear.</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Encounters</div>
+        <div class="delta-val">Black Widow spider &mdash; killed by Malc Grann (whip, Indiana Jones style) &middot; Juvenile mimic in a barrel &mdash; one-shot by Accel Signal &middot; Two goblins through a door &mdash; one via Toll the Dead (Evo), one via crossbow (Fable)</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Traps</div>
+        <div class="delta-val">Two trip-wire dart traps disabled by Accel Signal (sleight of hand 18 and 23) &middot; Dart trap triggered on Evo and Malc Grann earlier in the session &mdash; both took 3 points of damage</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Items</div>
+        <div class="delta-val">1 healing potion used (Malc Grann &rarr; Sekhmet, 9 HP recovered) &middot; 1 severed hand &mdash; used as shark bait, inventory depleted (Malc Grann)</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Intel</div>
+        <div class="delta-val">Something lives in the sewer water &mdash; confirmed shark-type creature &middot; Wall creatures reach through stone and attack at close range &middot; A goblin horn was blown at session end &mdash; whether reinforcements are coming is unknown &middot; Something large is approaching Izabella from behind as the session cuts</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Resources</div>
+        <div class="delta-val">Short rest completed in the alcove &mdash; full HP restored for all &middot; Izabella: 1 spell slot recovered, Heroic Inspiration gained &middot; Sekhmet: 1 rage charge recovered, Heroic Inspiration gained &middot; Evo: Channel Divinity unused, Divine Spark available next fight &middot; Fable: kept watch, did not rest</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Pending</div>
+        <div class="delta-val">Level-up promised by DM after the next fight &middot; Raven absent this session (Mother&rsquo;s Day) &middot; Session ends on cliffhanger: the dinosaur-like thing Izabella saw, the horn blown, the wall coming down</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TRANSCRIPT COLLAPSIBLE ═══════════════════════════════════ -->
+  <div class="transcript-collapsible" id="transcript-collapsible">
+    <button class="transcript-toggle" onclick="toggleTranscript()">
+      <div class="transcript-toggle-left">
+        <span class="transcript-toggle-icon">&#x1F4DC;</span>
+        <div>
+          <div class="transcript-toggle-label">Raw Session Transcript</div>
+          <div class="transcript-toggle-sub">Session 04B &mdash; full recording text (corrected attribution)</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="transcript-toggle-hint" id="transcript-hint">Click to expand</span>
+        <span class="transcript-arrow">&#x25BC;</span>
+      </div>
+    </button>
+
+    <div class="transcript-body">
+      <div class="t-header">
+        <div class="t-tools">
+          <button class="t-btn on" id="btn-fmt" onclick="setView('fmt')">Formatted</button>
+          <button class="t-btn" id="btn-raw" onclick="setView('raw')">Raw</button>
+          <button class="t-btn" onclick="toggleExpand()">&#x21F3; Expand</button>
+        </div>
+        <div class="search-wrap">
+          <span class="search-icon">&#x1F50D;</span>
+          <input class="t-search" id="t-search" type="text"
+                 placeholder="Search transcript&#x2026;"
+                 oninput="handleSearch(this.value)">
+          <div class="search-count" id="search-count"></div>
+        </div>
+      </div>
+
+      <div class="t-scroll" id="t-scroll">
+        <div style="text-align:center;padding:30px;font-family:'IM Fell English',serif;font-style:italic;color:var(--primary-dim);">Loading&#x2026;</div>
+      </div>
+      <div class="t-fade" id="t-fade"></div>
+      <div class="t-expand-row">
+        <button class="expand-btn" id="expand-btn" onclick="toggleExpand()">Expand Full Transcript &#x25BE;</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="chapter-nav">
+  <a class="prev" href="session-04.html">Session 04 &mdash; Where the Water Turns</a>
+  <span></span>
+  <a class="next ghost" href="#">Next Chapter</a>
+</nav>
+
+<script id="t-data" type="application/json">"Sekhmet: word.\n\nEvo: Did you want any of that shit?\n\nSekhmet: Yeah, absolutely.\n\nIzabella: Testing, testing.\n\nSekhmet: AI has a field day with our, uh, testies. Make sure that you say your name.\n\nIzabella: Hi, this is Alex. I'm the fairy, uh, with magic.\n\nDM: Alex is the fairy with magic.\n\nSekhmet: You didn't say your name.\n\nIzabella: Oh, okay, hold on, starting over. Hi, this is Alex. I play Izabella, the wizard fairy. And next is Hero.\n\nAccel Signal: Hello, my name is Hero and I'm playing my character, the elder elf ranger Accel.\n\nFable: Hi, my name is Itty. I'm playing Fable. I am a bard.\n\nEvo: Owlin.\n\nIzabella: Nichols.\n\nEvo: Uh, I'm Nichols. I play a fucking stupid lizard thing. Uh, my name's Evo.\n\nIzabella: Perfect. Moosey.\n\nMalc Grann: My name's Moosen. I'm playing Malc Grann, the gnome god.\n\nSekhmet: I am Skida and I am playing Sekhmet. Lion person.\n\nIzabella: All right, awesome, amazing. I'm gonna put on YouTube music. I also have a Red Bull.\n\nDM: Okay, so you guys are being attacked by the goblins, and there was a mind goblin attacking you with psychic energy.\n\nDM: Okay, so you guys, uh, open up the side passage. And at the end of this, you see an entrance to a sewer.\n\nSekhmet: Ew. Uh-oh, stinky.\n\nAccel Signal: Because this is where we were, Skid, and we, uh, opened up a, uh, hidden passageway.\n\nEvo: Do you remember getting stabbed in the face by a goblin numerous times?\n\nSekhmet: It was a flesh wound.\n\nMalc Grann: I remember Malc Grann never getting stabbed because he's a fucking god.\n\nFable: If that were true, why would he be on lower HP?\n\nMalc Grann: Checkmate. Uh, he was hurt. I'm a god.\n\nDM: You're in a tunnel.\n\nIzabella: I'm ready, I promise. What are we doing? Are you okay? We're in a tunnel.\n\nEvo: Secret tunnel.\n\nSekhmet: Well, I'm going to grab it and rip it up like a fucking monster.\n\nDM: Roll me a strength check, please.\n\nSekhmet: 19.\n\nDM: So you dig your claws into the edges of the grate and you rip it up with force.\n\nSekhmet: Fuck yeah.\n\nAccel Signal: Jesus, that's some strength I see right there.\n\nMalc Grann: You'd be really good at building walls or taking walls down.\n\nSekhmet: Yeah, one or the other. Depends on my mood.\n\nIzabella: Looks safe to me. Let's go, guys.\n\nDM: So she flies in.\n\nIzabella: Anyone else coming with me?\n\nMalc Grann: I'm gonna sort of like point over to the manhole and say, you know, maybe we just like put it back over.\n\nIzabella: Oh my God, that's fucked up.\n\nDM: The monster is so acidic it can actually dissolve cement.\n\nMalc Grann: In what kind of timeline? Because— Are we sure this was good quality cement? Did it cure right?\n\nMalc Grann: Look, anytime people talk about cement as if it's concrete.\n\nSekhmet: I have to post this. Because cement doesn't come up often.\n\nDM: You guys are inside the sewer.\n\nIzabella: Okay, okay, we're in the sewer. I flew in first because I'm the only not pussy here.\n\nMalc Grann: Malc Grann, fly! Malc Grann, away! Away, Malc Grann! Away, you must go!\n\nMalc Grann: I can't see shit.\n\nDM: yeah, it's a light. It's the light source. There are torches. You guys don't know this, only Izabella knows.\n\nIzabella: Yeah, I forgot to tell you guys about that.\n\nMalc Grann: Thanks for not telling us shit.\n\nFable: Does it matter if I have darkvision?\n\nMalc Grann: You don't have darkvision. Do you not have darkvision?\n\nFable: I do.\n\nMalc Grann: Okay, I don't.\n\nDM: Accel and Sekhmet. Sekhmet, you both perceive that you hear multiple, um, things all around you.\n\nSekhmet: Oh no.\n\nEvo: Yeah, I mean, I would like to Guidance our fey.\n\nIzabella: I have +5.\n\nEvo: Nat 20.\n\nDM: Okay, you don't see any further traps that goblins laid down this hallway.\n\nDM: As the Black Widow emerges.\n\nSekhmet: Oh my god. Oh my god, what the fuck is that?\n\nIzabella: Oh my god.\n\nMalc Grann: You don't like that.\n\nDM: Go roll your, uh, initiative.\n\nMalc Grann: I am missing from the clash.\n\nMalc Grann: And I get a +2 to mine.\n\nMalc Grann: Get the fuck out of there after it bites you.\n\nDM: It's going to try to bite you. 14 plus a 5. Damn.\n\nAccel Signal: Dang, 19 to hit. Yep. Jesus Christ, dog. Yeah, that's gonna hit.\n\nDM: You're gonna take 7 points of damage as fangs sink into you.\n\nAccel Signal: All right, uh, I need a little help. But I'm still alive. That's all that matters.\n\nDM: Okay, there's a little black widow.\n\nAccel Signal: Spider, you don't know what a slippery elf I am. I'll cast Misty Step.\n\nMalc Grann: Yeah, that's why I can't see shit.\n\nEvo: Yes.\n\nDM: Malc Grann, the Rugged.\n\nMalc Grann: Is that— that is the spider square, yeah?\n\nDM: Yes, that is the spider square.\n\nMalc Grann: So I can whip its little—\n\nMalc Grann: Second Wind, 1d10 plus 2 HP.\n\nDM: Nice, every fighter's dream. Yep, back up to full HP.\n\nMalc Grann: That would be my turn. Sekhmet.\n\nSekhmet: I'm, I'm going after it.\n\nDM: So that's your to-hit. You roll the 16, so that hits.\n\nEvo: Burn it.\n\nIzabella: Spell Fire Flare on the Spidey. 11 does not hit. I'm gonna kill myself! Why am I even here? Just to suffer?\n\nFable: I'm going to give Izabella my Bardic Inspiration.\n\nEvo: Got it, Genji. I need healing. I am going to cast Healing Word on our elfy friend. Uh, 1d4 plus my spellcasting, so plus 3.\n\nDM: Sekhmet, you're gonna take 7 points of damage as it bites into you. Leaving you at 3 HP.\n\nIzabella: Oh my God, he's almost dead!\n\nAccel Signal: He did attack my lion friend here, you damn spider. You take the mark. You're marked.\n\nEvo: No, it's 24.\n\nEvo: Yeah, when I said full heal, I meant like +7.\n\nEvo: I got— that's all you got? Better than 7.\n\nEvo: Seth would be disadvantaged on the next turn.\n\nAccel Signal: 8 plus 2, 10.\n\nDM: 10 points of damage. Okay, this thing is heavily wounded.\n\nDM: God, you're up.\n\nMalc Grann: Wonderful. Time for the finishing whip.\n\nMalc Grann: I, uh, the whip breaks one of its legs and I bring it around and launch it right through the abdomen.\n\nDM: Like an Indiana Jones motherfucker. Anyways, the spider is now dead.\n\nMalc Grann: And the god has fully healed during the battle.\n\nFable: Guys, get out of the water!\n\nMalc Grann: It shifted me over. The god did something. I didn't touch it.\n\nFable: He's gonna turn around and start playing a low note repeatedly, just a dun dun dun dun dun, and is going to cast a Minor Illusion of Sound.\n\nDM: With your music, whatever was in the water did not like the vibrations.\n\nMalc Grann: Do we need to rest? Do we need to get out of here?\n\nIzabella: Yeah, we both need to rest. Freaking Sekhmet is almost dead, he's like one hit.\n\nFable: Don't break the barrel.\n\nIzabella: Can we break the barrel and see what's in it?\n\nDM: Yeah, you can break the barrel.\n\nFable: Okay. All right. Inside is a goblin.\n\nDM: Oh! Oh! It's a mimic.\n\nFable: Oh no. Oh no! Did I get eaten?\n\nDM: No, because you're a mage.\n\nMalc Grann: Hey, Izabella? Yeah? Maybe don't touch fucking everything.\n\nIzabella: I didn't touch fucking everything, I just touched the barrel. I had a pet barrel back at home once.\n\nMalc Grann: I don't know where Izabella is because I can't see shit, but I'm imagining she's standing next to the stupid fucking barrel, so I'm gonna swap my initiative with her.\n\nAccel Signal: Oh, uh, 15 damage.\n\nDM: Okay, your arrow blows through it and you have successfully killed the junior mimic, juvenile mimic.\n\nDM: You are now out of combat.\n\nIzabella: You see, easy peasy, no problem.\n\nMalc Grann: Oh, I can see a little bit now.\n\nSekhmet: Oh, I need to heal. Or I'm gonna die.\n\nMalc Grann: Uh, I would like to hand Sekhmet a healing potion. Oh, it's about time.\n\nMalc Grann: I forgot I had one. I'm looking at my inventory, I'm like, I got a bunch of bones.\n\nMalc Grann: God has all your healing potions. I have 3 potions.\n\nDM: 7 plus 2, you regain 9 HP. Nice, that puts you at 12 HP.\n\nSekhmet: Dope-tastic, thank you.\n\nMalc Grann: He said dope-tastic.\n\nMalc Grann: I am holding two. I'm still blind. Where are we going?\n\nFable: Well, we can block off the sewerways. Uh, does Malc have darkvision?\n\nMalc Grann: Yeah, I believe I'm the only party member without it.\n\nFable: I can inspect walls.\n\nIzabella: There you go, it's the perfect role for him. Go inspect those walls for us.\n\nDM: Perception with advantage.\n\nMalc Grann: Absolutely. He would have advantage on walls.\n\nDM: Yeah, okay, the walls are completely sound. There are no holes, no gaps. It is honestly just a respite area.\n\nMalc Grann: I will— running along the wall sniffing it, going, it's all clear, you guys, it's clear.\n\nAccel Signal: If we're camping here, I'm gonna go ahead and set an alarm.\n\nMalc Grann: You need to treat me like a blind toddler.\n\nMalc Grann: Oh, I mean, short rest gets me action surge, but long will get me my 2 second winds back.\n\nFable: I don't trust going to sleep in this place. I think the best we can do right now is a short rest.\n\nEvo: He raged against the goblins earlier.\n\nEvo: I haven't had an opportunity. I haven't done any lightning damage.\n\nEvo: Yeah, I'm like a fucking mix of old 5e and new 5e.\n\nEvo: Fuck it, YOLO.\n\nMalc Grann: I do not have proficiency. I stole this from the person in the market.\n\nDM: Okay, so you all take a short rest except for Fable?\n\nMalc Grann: Yes. Okay, shorty.\n\nFable: Uh, I will give Heroic Inspiration to Izabella and to Sekhmet.\n\nFable: I suppose we go deeper.\n\nSekhmet: Oh yeah, we do.\n\nMalc Grann: Ow, my elbow.\n\nIzabella: We're gonna need a tank to go in front.\n\nDM: We see the end of the hallway, and moments later you see something drag it under the water.\n\nIzabella: Oh, something's in the water, guys. Something's in the water.\n\nDM: You detect that it's some kind of shark, but you're not entirely sure what kind of shark.\n\nIzabella: I just can't be sure what kind of shark it is.\n\nDM: Whatever it is, it's a strong-ass shark to be biting into our walls.\n\nMalc Grann: Oh man. Um, I'm gonna take this hand in my inventory and I'm gonna chuck it in this direction in the water.\n\nIzabella: He chucked a hand.\n\nDM: As soon as this hits the water, you see thrashing about. And then it sinks back into the deeper water.\n\nMalc Grann: All right, but are we hunting that or are we going the other way? It's kind of a cue to, you know, cross while it was trying to eat.\n\nEvo: Uh, well, so I need one free hand for my magic focus, and I have a shield in one, so I would have to drop at the start of combat whatever you gave me. My mace is in my bag because I cannot have it on.\n\nMalc Grann: Yeah, come on, blame the god of wolves. Keeps getting distracted.\n\nDM: You were trying to figure out a way to find them for the town.\n\nDM: Oh, uh, corrupted water well. Basically, the town square was gutting out just poisonous water.\n\nDM: Yes, because the voice of God tells you so.\n\nMalc Grann: Okay. Yeah, how did you know that, Malc?\n\nMalc Grann: Do I hear anything coming from that door?\n\nDM: You definitely hear what sounds to be breathing and a couple steps inside there.\n\nIzabella: Neighbors?\n\nMalc Grann: Do not go in there.\n\nMalc Grann: Um, like borderline falling apart kind of level of creaky? No. Does it seem like a tough door? Yeah. I'm gonna ready my action.\n\nMalc Grann: Uh, I would like to equip my mace real fast. Um, and I'm gonna just take a whack at the middle of the door. I'm not trying to knock it down, I'm just trying to like pop a hole in it.\n\nFable: Like a viewing slot. Yeah.\n\nIzabella: A peeping tom.\n\nMalc Grann: I am peeping tom on this door. Okay, so I'm putting my mace back away. And I'm telling Accel I can see 2 goblins through this peephole. Alright, 2 goblins.\n\nAccel Signal: I think you and I can take it, but maybe you want to ask any of our buddies next door if they want to jump in on this?\n\nFable: Uh, Sekhmet, before we go, can you push this table up against the door?\n\nDM: And you put it up against the door.\n\nEvo: Okay, I would like to cast Word of Radiance on them.\n\nEvo: So Word of Radiance, any creature that I can see within range. Oh no, no, sorry, Toll the Dead, not Word of Radiance, because that's only 5 feet. But Toll the Dead, any creature that I see I can cast on.\n\nDM: First one rolled an 8. Second one rolled a 14.\n\nEvo: They both would lose. 16. Um, damage is 1d12 necrotic, otherwise 1d8.\n\nDM: The first— the front goblin easily gets hit by the necrotic energy and it dies instantly. Nice. Well, kind of choking to death.\n\nEvo: Initiative? Hell yeah, please. Oh my God, I rolled good.\n\nFable: Can I trade? Uh, hey Evo, do you want to trade initiatives with me?\n\nEvo: Um, why do you hate yours?\n\nFable: Well, because I can't get past everyone and I can't see the enemy. I'm at 19, and so is the goblin.\n\nEvo: Oh, uh, yeah, sure, I'll trade you.\n\nDM: So who goes first? Evo? Yeah, Evo. Yeah. All right, Evo, make it count.\n\nEvo: This, this door is still closed, right?\n\nDM: Yeah, you can open it though. We'll make it that bonus action.\n\nEvo: Sure. Uh, I will open the door and I'm gonna Toll Undead again.\n\nDM: Okay, make it count.\n\nEvo: It's the saving throw you just did. Yeah, 2. Well, let's see if I can hit him for more than 2 this time.\n\nDM: Okay, yay, he's still alive, barely.\n\nEvo: I will go ahead and use my move action to get up right in his face.\n\nDM: Not yet. This goblin's going to pull out his horn and blow it.\n\nEvo: Uh-oh, that's not good. Fable, you're up.\n\nFable: And I'm going to, uh, draw my crossbow and fire at that goblin that just blew the horn.\n\nEvo: 5 hits. Nice. 8, 5, 6.\n\nDM: Okay, your crossbow hits him dead in the head and he goes down.\n\nDM: At the end of this combat, you hear the sound of what sounds to be a wall coming down, and it's coming from the room behind Izabella.\n\nIzabella: It's coming from behind me?\n\nMalc Grann: This seems like a Helm's Deep situation.\n\nIzabella: You guys, that you get your— did you see what was over there? I'm ready to action my bow. It was like a big dinosaur-like thing.\n\nDM: We're gonna, uh, we're gonna end it there.\n\nIzabella: Okay, can we long rest now then?\n\nDM: Nope. Nope.\n\nIzabella: You guys, you don't understand what I just saw, okay.\n\nEvo: What happens to the cantrips I keep casting?\n\nDM: It's okay, the level-up's coming right after this next fight.\n\nFable: Oh, that's normally a bad sign.\n\nMalc Grann: Nope, the party TPK'd itself.\n\nDM: Twice. Yeah.\n\nIzabella: What does TPK mean?\n\nDM: Oh yeah, everyone dies.\n\nFable: Rocks fall, you die.\n\nDM: I have never killed my party."</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('dark-toggle-btn');
+  try {
+    if(localStorage.getItem('chronicle-dark')==='1'){
+      document.body.classList.add('dark');
+      btn.querySelector('.toggle-label').textContent='Light';
+      btn.querySelector('.toggle-icon').textContent='\u2600';
+    }
+  }catch(e){}
+  btn.addEventListener('click',function(){
+    var isDark=document.body.classList.toggle('dark');
+    try{localStorage.setItem('chronicle-dark',isDark?'1':'0');}catch(e){}
+    btn.querySelector('.toggle-label').textContent=isDark?'Light':'Dark';
+    btn.querySelector('.toggle-icon').textContent=isDark?'\u2600':'\u25d1';
+  });
+})();
+
+// Scroll fade-in
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el);});
+
+// Transcript collapsible
+function toggleTranscript(){
+  var el=document.getElementById('transcript-collapsible');
+  var open=el.classList.toggle('open');
+  document.getElementById('transcript-hint').textContent=open?'Click to collapse':'Click to expand';
+  if(open && !window._tLoaded){
+    window._tLoaded=true;
+    renderView('fmt');
+  }
+}
+
+// Transcript viewer
+var rawText='', curView='fmt', isExpanded=false;
+
+function getRaw(){
+  if(!rawText){
+    rawText=JSON.parse(document.getElementById('t-data').textContent.trim());
+  }
+  return rawText;
+}
+
+function renderView(v){
+  var body=document.getElementById('t-scroll');
+  var text=getRaw();
+  if(v==='raw'){body.innerHTML='<pre class="t-raw-pre">'+esc(text)+'</pre>';return;}
+  body.innerHTML=buildFormatted(text);
+}
+
+function buildFormatted(text){
+  var DM=new Set(['DM']);
+  var lines=text.split('\n');
+  var html='',inEntry=false,curSpeaker='';
+  function close(){if(inEntry){html+='</div>';inEntry=false;}}
+  for(var i=0;i<lines.length;i++){
+    var t=lines[i].trim();
+    if(!t){close();continue;}
+    var sm=t.match(/^([^:]+):\s*(.*)/);
+    if(sm){
+      close();
+      curSpeaker=sm[1].trim().toUpperCase();
+      var isDM=curSpeaker==='DM';
+      html+='<div class="t-speaker-block"><div class="t-name '+(isDM?'dm':'pc')+'">'+esc(sm[1].trim())+'</div>';
+      if(sm[2].trim()) html+='<div class="t-line'+(isDM?' dm-line':'')+'">'+esc(sm[2].trim())+'</div>';
+      inEntry=true;
+      continue;
+    }
+    if(inEntry){
+      var isDM2=curSpeaker==='DM';
+      html+='<div class="t-line'+(isDM2?' dm-line':'')+'">'+esc(t)+'</div>';
+    }
+  }
+  close();
+  return html||'<div style="padding:20px;font-family:serif;font-style:italic;color:var(--primary-dim);">Loaded.</div>';
+}
+
+function setView(v){
+  curView=v;
+  document.getElementById('btn-fmt').classList.toggle('on',v==='fmt');
+  document.getElementById('btn-raw').classList.toggle('on',v==='raw');
+  renderView(v);
+  var q=document.getElementById('t-search').value;
+  if(q) applyHL(q);
+}
+
+function toggleExpand(){
+  isExpanded=!isExpanded;
+  document.getElementById('t-scroll').classList.toggle('expanded',isExpanded);
+  document.getElementById('t-fade').classList.toggle('hidden',isExpanded);
+  document.getElementById('expand-btn').textContent=
+    isExpanded?'Collapse Transcript \u25b4':'Expand Full Transcript \u25be';
+}
+
+function handleSearch(q){
+  renderView(curView);
+  document.getElementById('search-count').textContent='';
+  if(q.trim()) applyHL(q.trim());
+}
+
+function applyHL(q){
+  var body=document.getElementById('t-scroll');
+  var re=new RegExp(escRe(q),'gi');
+  var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT);
+  var nodes=[];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+  var n=0;
+  nodes.forEach(function(node){
+    if(!re.test(node.textContent)){re.lastIndex=0;return;}
+    re.lastIndex=0;
+    n+=(node.textContent.match(re)||[]).length;
+    var span=document.createElement('span');
+    span.innerHTML=node.textContent.replace(re,function(s){return '<mark>'+s+'</mark>';});
+    node.parentNode.replaceChild(span,node);
+  });
+  document.getElementById('search-count').textContent=
+    n?n+' match'+(n===1?'':'es')+' found':'No matches';
+  var first=body.querySelector('mark');
+  if(first) first.scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+</script>
+</body>
+</html>
