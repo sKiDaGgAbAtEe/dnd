@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 05 — The Goblin King's Last Stand · The Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:        #6b3a1f;
+  --primary-light:  #8b4a28;
+  --primary-dim:    #9e6a45;
+  --accent:         #7a1a1a;
+  --accent-light:   #9b2c2c;
+  --parchment:      #f2e8d5;
+  --parchment-mid:  #ede0c4;
+  --parchment-dark: #e4d4b0;
+  --ink:            #2c1a0e;
+  --ink-mid:        #3d2510;
+  --border:         #c4a882;
+  --border-light:   #d4bc96;
+  --shadow:         rgba(44,26,14,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'Cinzel',serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 10%,rgba(180,140,80,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(160,120,60,0.14) 0%,transparent 45%),
+    radial-gradient(ellipse at 60% 40%,rgba(200,170,110,0.08) 0%,transparent 35%),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(107,58,31,0.025) 80px,rgba(107,58,31,0.025) 81px),
+    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(107,58,31,0.015) 80px,rgba(107,58,31,0.015) 81px);
+  background-attachment:fixed;
+}
+
+/* ── BACK NAV ── */
+.back-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:linear-gradient(to bottom,rgba(242,232,213,0.97),rgba(242,232,213,0));
+  padding:16px 40px;
+  display:flex;align-items:center;gap:24px;
+}
+.back-link{
+  color:var(--primary-dim);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.back-link:hover{color:var(--primary);}
+.back-link::before{content:'←';font-size:14px;}
+.nav-div{width:1px;height:16px;background:var(--border);}
+.nav-crumb{color:var(--primary-dim);font-size:10px;letter-spacing:3px;text-transform:uppercase;}
+.nav-id{margin-left:auto;font-size:9px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;text-align:center;
+  padding:130px 20px 70px;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:900px;height:550px;
+  background:radial-gradient(ellipse,rgba(180,130,70,0.14) 0%,transparent 65%);
+  pointer-events:none;
+}
+.session-eyebrow{
+  font-size:9px;letter-spacing:8px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:18px;
+  animation:fadeIn 1.5s ease;
+}
+.chapter-subtitle{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:clamp(13px,2vw,17px);color:var(--primary-light);
+  letter-spacing:5px;text-transform:uppercase;
+  margin-bottom:14px;animation:fadeIn 1.8s ease;
+}
+.chapter-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(28px,5.5vw,64px);font-weight:900;line-height:1.05;
+  color:var(--ink);
+  text-shadow:1px 2px 0px rgba(180,130,60,0.3),0 0 40px rgba(107,58,31,0.1);
+  animation:fadeIn 1.5s ease;margin-bottom:28px;
+}
+.hero-meta{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;animation:fadeIn 2.5s ease;
+}
+.hero-meta-item{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13px;color:var(--primary-dim);letter-spacing:3px;
+  display:flex;align-items:center;gap:8px;
+}
+.dot{color:var(--border);font-size:6px;}
+
+/* ── DIVIDERS ── */
+.divider{
+  display:flex;align-items:center;gap:16px;
+  margin:44px auto;max-width:820px;padding:0 30px;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.divider-glyph{color:var(--primary-dim);font-size:18px;flex-shrink:0;}
+
+.scene-break{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin:48px auto;max-width:400px;
+  color:var(--border);font-size:11px;letter-spacing:6px;
+}
+.scene-break::before,.scene-break::after{
+  content:'';flex:1;height:1px;
+}
+.scene-break::before{background:linear-gradient(to left,transparent,var(--border));}
+.scene-break::after{background:linear-gradient(to right,transparent,var(--border));}
+
+/* ── CONTENT WRAP ── */
+.content-wrap{max-width:820px;margin:0 auto;padding:0 30px 80px;}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--border);margin-bottom:44px;
+}
+@media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr);}}
+.stat-cell{
+  padding:20px 16px;text-align:center;
+  border-right:1px solid var(--border-light);
+  background:linear-gradient(to bottom,rgba(255,252,245,0.7),rgba(237,224,196,0.4));
+}
+.stat-cell:last-child{border-right:none;}
+.stat-n{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:24px;color:var(--primary);line-height:1;margin-bottom:8px;
+}
+.stat-l{font-size:8px;letter-spacing:5px;color:var(--primary-dim);text-transform:uppercase;}
+
+/* ── COLD OPEN ── */
+.cold-open{
+  max-width:760px;margin:0 auto 20px;
+  padding:40px;position:relative;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(180,140,80,0.08),rgba(242,232,213,0.3));
+  box-shadow:inset 0 0 30px rgba(180,140,80,0.06),0 2px 12px var(--shadow);
+}
+.cold-open::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.cold-open-label{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.cold-open-label::after{content:'';flex:1;height:1px;background:var(--border-light);}
+.cold-open p{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:17px;line-height:1.9;color:var(--ink-mid);
+  margin-bottom:16px;
+}
+.cold-open p:last-child{margin-bottom:0;}
+
+/* ── SCENE HEADERS ── */
+.scene-title{
+  font-family:'Cinzel Decorative',serif;font-weight:700;
+  font-size:12px;letter-spacing:5px;color:var(--primary);
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.scene-title::after{content:'';flex:1;height:1px;background:var(--border-light);}
+
+/* ── PROSE ── */
+.prose p{
+  font-family:'IM Fell English',serif;
+  font-size:16.5px;line-height:1.95;
+  color:var(--ink);margin-bottom:22px;
+}
+.prose p:last-child{margin-bottom:0;}
+.prose .em{color:var(--primary);font-style:italic;}
+
+/* ── DIALOGUE ── */
+.dialogue{border-left:2px solid var(--border);margin:28px 0;padding:0 0 0 24px;}
+.dialogue .speaker{
+  font-size:9px;letter-spacing:5px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.dialogue .line{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:16px;line-height:1.7;color:var(--ink-mid);
+}
+
+/* ── COMBAT BLOCK ── */
+.combat-block{
+  background:linear-gradient(135deg,rgba(122,26,26,0.06),rgba(237,224,196,0.5));
+  border:1px solid rgba(122,26,26,0.25);
+  padding:32px;margin:36px 0;position:relative;
+  box-shadow:0 2px 10px var(--shadow);
+}
+.combat-block::before{
+  content:'⚔';position:absolute;top:-12px;left:50%;
+  transform:translateX(-50%);
+  background:var(--parchment-mid);padding:0 12px;
+  color:var(--accent-light);font-size:18px;
+}
+.combat-block p{
+  font-family:'IM Fell English',serif;
+  font-size:16px;line-height:1.9;
+  color:var(--ink);margin-bottom:16px;
+}
+.combat-block p:last-child{margin-bottom:0;}
+
+/* ── CAST ── */
+.cast-section{
+  background:var(--parchment-mid);border:1px solid var(--border);
+  padding:32px;margin:40px 0;
+  box-shadow:0 2px 12px var(--shadow);
+}
+.cast-title{
+  font-size:9px;letter-spacing:6px;color:var(--primary-dim);
+  text-transform:uppercase;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+}
+.cast-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.cast-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:14px;
+}
+.cast-card{
+  border:1px solid var(--border-light);padding:16px;text-align:center;
+  background:linear-gradient(to bottom,rgba(255,250,240,0.6),rgba(237,224,196,0.3));
+  text-decoration:none;display:block;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.cast-card:hover{border-color:var(--border);box-shadow:0 2px 8px var(--shadow);}
+.cast-card.absent{opacity:0.55;border-style:dashed;}
+.cast-name{
+  font-family:'Cinzel Decorative',serif;font-size:10px;font-weight:700;
+  color:var(--primary);letter-spacing:2px;margin-bottom:4px;
+}
+.cast-class{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:12px;color:var(--ink-mid);margin-bottom:4px;
+}
+.cast-player{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;margin-top:6px;
+}
+.cast-badge{
+  display:inline-block;margin-top:6px;
+  font-size:7px;letter-spacing:3px;color:var(--primary);
+  border:1px solid var(--border);padding:2px 8px;text-transform:uppercase;
+}
+
+/* ── LOOT / DELTA ── */
+.delta-section{border:1px solid var(--border);margin:40px 0;box-shadow:0 2px 12px var(--shadow);}
+.delta-header{
+  background:linear-gradient(90deg,rgba(107,58,31,0.1),transparent);
+  padding:14px 24px;
+  font-size:9px;letter-spacing:6px;color:var(--primary);
+  text-transform:uppercase;border-bottom:1px solid var(--border);
+}
+.delta-body{padding:24px;background:var(--parchment-mid);}
+.delta-row{display:flex;gap:16px;margin-bottom:14px;align-items:baseline;}
+.delta-row:last-child{margin-bottom:0;}
+.delta-tag{
+  font-size:8px;letter-spacing:3px;color:var(--primary-dim);
+  text-transform:uppercase;white-space:nowrap;padding-top:2px;min-width:70px;
+}
+.delta-val{
+  font-family:'IM Fell English',serif;font-size:14px;
+  color:var(--ink-mid);line-height:1.6;
+}
+.delta-val .gold{color:var(--primary);font-style:italic;font-weight:bold;}
+
+/* ── COLLAPSIBLE TRANSCRIPT ── */
+.transcript-collapsible{border:1px solid var(--border);margin:40px 0;box-shadow:0 2px 12px var(--shadow);}
+.transcript-toggle{
+  width:100%;padding:18px 24px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to right,rgba(107,58,31,0.07),transparent);
+  border:none;font-family:'Cinzel',serif;user-select:none;
+  transition:background 0.2s;
+}
+.transcript-toggle:hover{background:linear-gradient(to right,rgba(107,58,31,0.13),transparent);}
+.transcript-toggle-left{display:flex;align-items:center;gap:14px;}
+.transcript-toggle-icon{font-size:13px;color:var(--primary-dim);}
+.transcript-toggle-label{font-size:9px;letter-spacing:5px;color:var(--primary);text-transform:uppercase;}
+.transcript-toggle-sub{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:11px;color:var(--primary-dim);margin-top:2px;
+}
+.transcript-toggle-hint{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:12px;color:var(--primary-dim);
+}
+.transcript-arrow{font-size:11px;color:var(--primary-dim);transition:transform 0.3s;}
+.transcript-collapsible.open .transcript-arrow{transform:rotate(180deg);}
+.transcript-body{
+  display:none;border-top:1px solid var(--border);
+  background:rgba(255,252,245,0.5);
+}
+.transcript-collapsible.open .transcript-body{display:block;}
+
+/* transcript internals */
+.t-header{
+  background:linear-gradient(to right,rgba(107,58,31,0.06),transparent);
+  border-bottom:1px solid var(--border-light);
+  padding:12px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.t-tools{display:flex;gap:7px;}
+.t-btn{
+  font-size:8px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--primary-dim);border:1px solid var(--border-light);
+  padding:5px 12px;background:transparent;
+  cursor:pointer;font-family:'Cinzel',serif;transition:all 0.2s;
+}
+.t-btn:hover{background:var(--parchment-dark);border-color:var(--border);color:var(--primary);}
+.t-btn.on{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+.search-wrap{position:relative;width:100%;margin-top:2px;}
+.t-search{
+  width:100%;padding:7px 12px 7px 32px;
+  font-family:'IM Fell English',serif;font-size:13px;font-style:italic;
+  color:var(--ink);background:rgba(255,252,245,0.85);
+  border:1px solid var(--border-light);outline:none;transition:border-color 0.2s;
+}
+.t-search:focus{border-color:var(--border);}
+.t-search::placeholder{color:var(--primary-dim);opacity:0.7;}
+.search-icon{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  color:var(--primary-dim);font-size:11px;pointer-events:none;
+}
+.search-count{
+  font-size:9px;letter-spacing:3px;color:var(--primary-dim);
+  text-align:right;margin-top:3px;min-height:13px;
+}
+.t-scroll{
+  max-height:520px;overflow-y:auto;padding:24px 28px;
+}
+.t-scroll.expanded{max-height:none;}
+.t-scroll::-webkit-scrollbar{width:4px;}
+.t-scroll::-webkit-scrollbar-track{background:transparent;}
+.t-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.t-speaker-block{margin-bottom:12px;}
+.t-name{
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:4px;text-transform:uppercase;margin-bottom:2px;
+}
+.t-name.dm{color:var(--accent);}
+.t-name.pc{color:var(--primary);}
+.t-line{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13px;line-height:1.8;color:var(--ink-mid);
+  padding-left:14px;border-left:2px solid var(--border-light);
+}
+.t-line.dm-line{font-style:normal;color:var(--ink);border-left-color:rgba(122,26,26,0.3);}
+.t-raw-pre{
+  font-family:'IM Fell English',serif;
+  font-size:12px;line-height:1.75;color:var(--ink-mid);white-space:pre-wrap;
+}
+mark{background:rgba(180,130,50,0.28);color:var(--ink);padding:1px 0;border-radius:2px;}
+.t-fade{
+  pointer-events:none;margin-top:-56px;height:56px;
+  background:linear-gradient(to top,rgba(255,252,245,0.97),transparent);
+}
+.t-fade.hidden{display:none;}
+.t-expand-row{
+  text-align:center;padding:10px;
+  border-top:1px solid var(--border-light);background:var(--parchment-mid);
+}
+.expand-btn{
+  font-size:8px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--primary-dim);background:transparent;
+  border:1px solid var(--border);padding:7px 24px;
+  cursor:pointer;font-family:'Cinzel',serif;transition:all 0.2s;
+}
+.expand-btn:hover{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+
+/* ── CHAPTER NAV ── */
+.chapter-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:820px;margin:0 auto;padding:36px 30px 60px;
+  border-top:1px solid var(--border);
+}
+.chapter-nav a{
+  color:var(--primary-dim);text-decoration:none;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.3s;
+}
+.chapter-nav a:hover{color:var(--primary);}
+.chapter-nav a.prev::before{content:'←';font-size:14px;}
+.chapter-nav a.next::after{content:'→';font-size:14px;}
+.chapter-nav .ghost{visibility:hidden;pointer-events:none;}
+
+/* ── DARK MODE ── */
+body.dark{
+  --primary:#c8845a;--primary-light:#d99a72;--primary-dim:#b07050;
+  --accent:#c44444;--accent-light:#d45555;
+  --parchment:#1a1208;--parchment-mid:#221808;--parchment-dark:#2c2010;
+  --ink:#e8d8b8;--ink-mid:#d4c090;
+  --border:#5a3e22;--border-light:#4a3018;
+  --shadow:rgba(0,0,0,0.45);
+}
+body.dark{background-image:
+  radial-gradient(ellipse at 20% 10%,rgba(80,50,20,0.35) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 90%,rgba(60,35,10,0.3) 0%,transparent 45%),
+  radial-gradient(ellipse at 60% 40%,rgba(100,70,30,0.12) 0%,transparent 35%),
+  repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(200,130,60,0.04) 80px,rgba(200,130,60,0.04) 81px),
+  repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(200,130,60,0.025) 80px,rgba(200,130,60,0.025) 81px);
+}
+body.dark .back-nav{background:linear-gradient(to bottom,rgba(26,18,8,0.97),rgba(26,18,8,0));}
+body.dark .stat-cell{background:linear-gradient(to bottom,rgba(30,20,8,0.7),rgba(34,24,8,0.4));}
+body.dark .cold-open{background:linear-gradient(135deg,rgba(80,50,20,0.25),rgba(26,18,8,0.3));}
+body.dark .cast-card{background:linear-gradient(to bottom,rgba(30,20,8,0.6),rgba(34,24,8,0.3));}
+body.dark .delta-body{background:var(--parchment-mid);}
+body.dark .cast-section{background:var(--parchment-mid);}
+body.dark .combat-block{background:linear-gradient(135deg,rgba(122,26,26,0.18),rgba(34,24,8,0.5));}
+body.dark .combat-block::before{background:var(--parchment-mid);}
+body.dark .transcript-body{background:rgba(26,18,8,0.5);}
+body.dark .t-scroll{background:transparent;}
+body.dark .t-search{background:rgba(26,18,8,0.8);}
+
+/* ── DARK TOGGLE ── */
+.dark-toggle{
+  position:fixed;top:14px;right:20px;z-index:200;
+  background:var(--parchment);border:1px solid var(--border);
+  color:var(--primary-dim);font-family:'Cinzel',serif;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;transition:all 0.25s;
+  display:flex;align-items:center;gap:7px;
+}
+.dark-toggle:hover{background:var(--primary);color:var(--parchment);border-color:var(--primary);}
+.dark-toggle .toggle-icon{font-size:13px;line-height:1;}
+
+/* ── SCROLL FADE-IN ── */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<button class="dark-toggle" id="dark-toggle-btn" aria-label="Toggle dark mode">
+  <span class="toggle-icon">&#x25D1;</span><span class="toggle-label">Dark</span>
+</button>
+
+<nav class="back-nav">
+  <a class="back-link" href="/dnd/campaigns/index.html">Chronicle</a>
+  <div class="nav-div"></div>
+  <span class="nav-crumb">Sessions</span>
+  <div class="nav-div"></div>
+  <span class="nav-crumb">Session 05</span>
+  <span class="nav-id">The Chronicle &middot; Session 05</span>
+</nav>
+
+<header class="hero">
+  <div class="session-eyebrow">Chapter Five</div>
+  <div class="chapter-subtitle">&mdash; Session 05 &mdash;</div>
+  <h1 class="chapter-title">The Goblin King&rsquo;s<br>Last Stand</h1>
+  <div class="hero-meta">
+    <span class="hero-meta-item">&#x25C6; 1 Fight</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">2 Diplomacy Fails</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">1 Beast Tamed</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">0 Deaths</span>
+    <span class="dot">&bull;</span>
+    <span class="hero-meta-item">Level 3</span>
+  </div>
+</header>
+
+<main class="content-wrap">
+
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Fight</div></div>
+    <div class="stat-cell"><div class="stat-n">2</div><div class="stat-l">Diplo Fails</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Beast Tamed</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Deaths</div></div>
+    <div class="stat-cell"><div class="stat-n">3</div><div class="stat-l">Level Up</div></div>
+  </div>
+
+  <div class="cold-open">
+    <div class="cold-open-label">Cold Open</div>
+    <p>Three members down. Fable gone. Accel Signal gone. Raven still absent. What remains is Evo with no spell slots, Izabella who cannot remember where she wrote her spells down, Sekhmet who has been raring to go since before anyone else finished their tea, and Malc Grann, who is back from heating up corn and ready to whip something.</p>
+    <p>Behind the door that already has a 5mm hole in it &mdash; Evo&rsquo;s hole, made last session when he was killing goblins through it &mdash; something is waiting. The party has been in there long enough to wonder if it knows they&rsquo;re coming.</p>
+    <p><em>I ain&rsquo;t got no spells, Lieutenant Dan.</em></p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">&#x2736;</span></div>
+
+  <div class="scene-title fade-in">I &mdash; The Diplomatic Incident</div>
+  <div class="prose">
+    <p>Sekhmet goes first. Not because he was sent &mdash; nobody sent him. He simply walked through the door while everyone was still arguing about whether to do it, found a hallway with torchlight and blood on the far wall, and crept far enough to see what was in the next room: a Goblin King, awake, mounted on a creature large enough to be described as &ldquo;that big motherfucker.&rdquo; He rolled an 18 on stealth and an 18 on investigation and came back to report with the energy of someone who has just confirmed something interesting rather than terrifying.</p>
+    <p>The creature is large. The goblin on top of it has a mace. He is not asleep. He is aware, at minimum, that something has been moving in the tunnels outside his room. Sekhmet was close enough to see his face and remained unseen.</p>
+    <p>The party convenes on the question of language. Neither Evo nor Malc Grann speak Goblin. Malc Grann speaks Gnomish and can communicate with lizards, a fact that is noted and set aside. Someone floats the idea of a diplomatic approach. Sekhmet, who at this point has the most health and the strongest melee damage, decides this means him.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Sekhmet</div>
+    <div class="line">&ldquo;Okay &mdash; I&rsquo;m a social barbarian.&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>He walks over. He rolls a 17 on persuasion. The Goblin King looks down at him, grunts in a language no one present understands, and points toward the door they came from. The meaning is clear. Sekhmet requests clarification on <em>which</em> door, gets no satisfying answer, and tries again. His luck runs out. The goblin slams his mace on the ground and points again, more firmly. The diplomatic window is closing.</p>
+    <p>Izabella steps forward. She wants to try. Everyone agrees this is a reasonable idea because Evo has a +5 to Persuasion and they should have sent him, but they didn&rsquo;t, and now Izabella is already moving across the room toward the Goblin King with purpose.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Izabella</div>
+    <div class="line">&ldquo;Sir &mdash; if you could just let us squeeze through your thighs, we will be able to conduct our business and leave.&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>She rolls a nat 1. The Goblin King gets mad. Evo, who has been watching this from across the room, jumps in front of her and attempts to apologize with a flat charisma check. He rolls a 6. The goblin rolls a nat 20 and hits Evo for 8 damage.</p>
+    <p>Everyone is now in combat.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">II &mdash; The King Falls</div>
+
+  <div class="combat-block fade-in">
+    <p>The first thing the Goblin King does is hit <strong>Evo</strong> with his mace for 8 damage. Evo&rsquo;s response is immediate: Wrath of the Storm, the cleric reaction that fires back when an attacker connects. The goblin makes a Dexterity save, rolls a 17, succeeds, and takes half damage. Evo uses Channel Divinity to push it to maximum: 2d8 lightning pushed to 8, halved to 4. He also uses his turn to smack the goblin with his mace and drink his healing potion, because he is severely injured and has no spell slots and is doing his best.</p>
+    <p><strong>Izabella</strong>, who caused this, attempts Witch Bolt and rolls a 1. She rolls again and gets a 2. She considers calling it a night. The DM suggests changing her dice color. She changes to a different color, rolls a 16 plus her +3 spellcasting modifier for a 19, and hits for 8 damage. A miracle. She annotates this fact to herself.</p>
+    <p><strong>Sekhmet</strong> rages &mdash; properly, verbally, with a declaration of intent &mdash; and attacks recklessly with his sun disc club. First swing: 14 plus 3 strength, hits. Damage: 7 plus 3, 10 points. Second round: 14 plus 3 again, hits. Damage: 7 plus 3 again, 10 points. The consistency is notable. He deals 10 damage on essentially every swing, with the focus and reliability of a machine.</p>
+    <p><strong>Malc Grann</strong> whips. His first attack lands for 8 damage &mdash; max damage on his d4 &mdash; which the DM receives with the reverence it deserves. His second attack, a nat 20 on the to-hit, he doubles his dice: 5 plus 7, 12 damage. The goblin is now described as &ldquo;bloodied.&rdquo;</p>
+    <p>The goblin spends most of his turns targeting Evo specifically &mdash; missing twice, hitting once more for 6 &mdash; and the lizard cleric absorbs it with the dignity of someone who made poor choices and is accepting the consequences. Evo fires his lightning breath weapon in a 30-foot line: the goblin fails his save and takes 7 damage; the beast behind him makes its save and takes 5.</p>
+    <p>Final round. Izabella switches her dice to a third color and rolls a 16 to hit, a 19 with her modifier. Four damage. The DM asks her to describe the kill.</p>
+    <p>She pauses. <em>I use Ray of Frost and it hits him in the face and&hellip; he dies.</em></p>
+    <p>Sekhmet adds the detail she leaves out: his face falls off. The Goblin King shatters into frozen pieces. The creature he was riding is now riderless, blasted by lightning, and very angry.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">III &mdash; Taming the Beast</div>
+  <div class="prose">
+    <p>The creature has been sitting in this room its entire life with a goblin on its back and 5 damage from Evo&rsquo;s breath weapon. It has opinions. The party, to their credit, immediately decides they want to keep it.</p>
+    <p>Sekhmet goes first. He walks up to it and hugs it. Animal handling with disadvantage &mdash; it has just been blasted and its master is dead &mdash; and he rolls a 5, the low of his two dice. He adds his +3 modifier. He has an 8. The creature bear hugs him back for 8 points of damage. The table interprets this as reciprocal affection. It is not clear the table is wrong.</p>
+    <p>Malc Grann whips it. He announces this is his training method &mdash; degradation, correction, reward only for good behavior &mdash; and rolls animal handling. Whatever he rolls, it is high enough that the DM runs a taming minigame, tracking something called &ldquo;affection.&rdquo; The whip brings affection down. This is noted.</p>
+    <p>Evo throws it a femur. He rolls an 18 on animal handling. Affection goes up. He marks minus 1 femur in his inventory. He has three left.</p>
+    <p>Izabella remembers she has Friend of the Forest. She can communicate with beasts in a limited way &mdash; they understand her words, she cannot understand them &mdash; and she has advantage on persuasion checks to influence them. She rolls a 13 and a 19. The creature follows the trail of bones Malc Grann lays in a path across the room and into the corner, clearing the way to the dark hole behind it.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="speaker">Izabella</div>
+    <div class="line">&ldquo;Hey friend &mdash; we&rsquo;ve got some bones for you to follow. Would you like to come with us?&rdquo;</div>
+  </div>
+
+  <div class="prose">
+    <p>It follows the bones. The hole is open.</p>
+  </div>
+
+  <div class="scene-break">&#x2736; &#x2736; &#x2736;</div>
+
+  <div class="scene-title fade-in">IV &mdash; The Source</div>
+  <div class="prose">
+    <p>Evo tries to collect the Goblin King&rsquo;s body. He fails his strength check &mdash; the upper half is frozen solid and fused to the creature&rsquo;s back &mdash; and manages only to rip off the skull. He now has a hobgoblin skull and a goblin skull. He catalogs this.</p>
+    <p>Izabella jumps in the hole without telling anyone. She can fly; she argues this makes it fine. The rest of the party follows.</p>
+    <p>Below: a portal, and a ritual pot. This is it &mdash; the source of the corruption that has been poisoning the town&rsquo;s water supply, the reason they went into the sewers, the thing at the end of the quest. It is inert. Whatever was feeding it has stopped, or paused, or is waiting for something. The party has a moment to breathe.</p>
+    <p>The DM tells them they level up to Level 3.</p>
+    <p>Izabella cheers. She does not immediately know what Level 3 gives her. Sekhmet needs to choose his subclass. Evo and Malc Grann apparently already know what they want. Izabella is instructed to do her homework before next session, because Level 3 is also when wizards unlock new spells and she has decisions to make.</p>
+    <p>The session ends there, in the dark below the sewers, beside an inert ritual pot and a portal to somewhere unknown, with a tamed beast eating bones upstairs and a goblin skull in Evo&rsquo;s pocket.</p>
+  </div>
+
+  <div class="divider"><span class="divider-glyph">&#x2736;</span></div>
+
+  <!-- CAST -->
+  <div class="cast-section fade-in">
+    <div class="cast-title">Session Cast</div>
+    <div class="cast-grid">
+      <a class="cast-card" href="#">
+        <div class="cast-name">Izabella</div>
+        <div class="cast-class">Wizard · Fairy</div>
+        <div class="cast-player">Kyuri V</div>
+        <div class="cast-badge">Kill Shot</div>
+      </a>
+      <a class="cast-card" href="#">
+        <div class="cast-name">Sekhmet</div>
+        <div class="cast-class">Barbarian · Tabaxi</div>
+        <div class="cast-player">sKiDa</div>
+        <div class="cast-badge">Hugged It</div>
+      </a>
+      <a class="cast-card" href="#">
+        <div class="cast-name">Evo</div>
+        <div class="cast-class">Cleric · Lizardfolk</div>
+        <div class="cast-player">Nikkelz</div>
+        <div class="cast-badge">No Spells</div>
+      </a>
+      <a class="cast-card" href="#">
+        <div class="cast-name">Malc Grann</div>
+        <div class="cast-class">Fighter · Gnome</div>
+        <div class="cast-player">SirMoosen</div>
+        <div class="cast-badge">Max Damage</div>
+      </a>
+      <a class="cast-card absent" href="#">
+        <div class="cast-name">Fable</div>
+        <div class="cast-class">Bard · Halfling</div>
+        <div class="cast-player">Itty Bitty</div>
+        <div class="cast-badge">Absent</div>
+      </a>
+      <a class="cast-card absent" href="#">
+        <div class="cast-name">Accel Signal</div>
+        <div class="cast-class">Ranger · Tiefling</div>
+        <div class="cast-player">Hero</div>
+        <div class="cast-badge">Absent</div>
+      </a>
+      <a class="cast-card absent" href="#">
+        <div class="cast-name">Raven</div>
+        <div class="cast-class">Rogue · Aasimar</div>
+        <div class="cast-player">MissPenguRose</div>
+        <div class="cast-badge">Absent</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- DELTA -->
+  <div class="delta-section fade-in">
+    <div class="delta-header">Session Delta &mdash; What Changed</div>
+    <div class="delta-body">
+      <div class="delta-row">
+        <div class="delta-tag">Enemies</div>
+        <div class="delta-val">Goblin King &mdash; <span class="gold">killed by Ray of Frost (Izabella, kill shot)</span>. Mounted beast &mdash; tamed via bone trail (affection secured by Izabella&rsquo;s Friend of the Forest persuasion 19, positive reinforcement from Evo).</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Items</div>
+        <div class="delta-val"><span class="gold">Goblin King skull</span> added to Evo&rsquo;s collection. Healing potion consumed (Evo). <span class="gold">&minus;1 femur</span> from Malc Grann&rsquo;s bone pouch (used as beast bait).</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Intel</div>
+        <div class="delta-val">Corruption source located: a ritual pot beside a portal, currently <span class="gold">inert</span>. The well poisoning has a physical site. Its origin and purpose remain unknown.</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Diplomacy</div>
+        <div class="delta-val">Sekhmet: persuasion 17 (goblin understood, rejected). Izabella: nat 1 (goblin offended, combat started). Evo: charisma 6 (apology failed, took 8 damage for his trouble). Taming minigame: whip &darr; affection, femur &uarr; affection, Friend of the Forest persuasion 19 &rarr; beast follows.</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Level Up</div>
+        <div class="delta-val"><span class="gold">All present characters advance to Level 3.</span> Sekhmet must choose subclass. Izabella must research new wizard spells before next session. Evo and Malc Grann already know their picks.</div>
+      </div>
+      <div class="delta-row">
+        <div class="delta-tag">Status</div>
+        <div class="delta-val">Party below the sewers at the corruption source. Portal location confirmed. No deaths. Evo was the most injured (8 damage from goblin nat 20 + 6 from mace). Sekhmet took 8 from the beast hug.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSCRIPT -->
+  <div class="transcript-collapsible" id="transcript-section">
+    <button class="transcript-toggle" onclick="toggleTranscript()">
+      <div class="transcript-toggle-left">
+        <span class="transcript-toggle-icon">&#x1F4DC;</span>
+        <div>
+          <div class="transcript-toggle-label">Session Transcript</div>
+          <div class="transcript-toggle-sub">Session 05 &mdash; The Goblin King&rsquo;s Last Stand</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span class="transcript-toggle-hint">Read the table</span>
+        <span class="transcript-arrow">&#x25BC;</span>
+      </div>
+    </button>
+    <div class="transcript-body" id="transcript-body">
+      <div class="t-header">
+        <div class="t-tools">
+          <button class="t-btn" id="fmt-btn" onclick="toggleFormat()">Formatted</button>
+          <button class="t-btn" id="raw-btn" onclick="toggleRaw()">Raw</button>
+        </div>
+        <div style="flex:1;min-width:180px;margin-left:16px;">
+          <div class="search-wrap">
+            <span class="search-icon">&#x1F50D;</span>
+            <input class="t-search" id="t-search" placeholder="Search transcript&hellip;" oninput="searchTranscript(this.value)">
+          </div>
+          <div class="search-count" id="search-count"></div>
+        </div>
+      </div>
+      <div class="t-scroll" id="t-scroll">
+        <div id="t-formatted"></div>
+        <div id="t-raw" style="display:none;"><pre class="t-raw-pre" id="t-raw-pre"></pre></div>
+      </div>
+      <div class="t-fade" id="t-fade"></div>
+      <div class="t-expand-row">
+        <button class="expand-btn" id="expand-btn" onclick="toggleExpand()">Expand Full Transcript</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="chapter-nav">
+  <a class="prev" href="session-04b.html">Session 04B</a>
+  <a class="next ghost" href="#">Session 06</a>
+</div>
+
+<script id="t-data" type="application/json">
+[
+  {"speaker":"Izabella","type":"pc","line":"Okay, I'm recording now."},
+  {"speaker":"Evo","type":"pc","line":"It was in the sewers. Illy, do you remember this?"},
+  {"speaker":"Sekhmet","type":"pc","line":"What Waits in the Water. That was the last session we had."},
+  {"speaker":"Izabella","type":"pc","line":"Um, I'm also playing Love in Deep Space while we play this, just so you know."},
+  {"speaker":"Sekhmet","type":"pc","line":"It ended, it ended. Um, Evo opens the door on his turn and casts Toll of the Dead again on the surviving goblin. Is that the one?"},
+  {"speaker":"Evo","type":"pc","line":"Well, that's the little room we're in. That was the inn. I was trying to remember the room. Yeah, like beside that. He's injured, not full health, and so is everybody else."},
+  {"speaker":"Evo","type":"pc","line":"I'm pretty sure we rested at some point. I'm just trying to remember if I have all my spells locked."},
+  {"speaker":"Izabella","type":"pc","line":"I have no idea what's even going on right now. I don't even remember my spells. Where do I even have all my stuff?"},
+  {"speaker":"Sekhmet","type":"pc","line":"In the tunnels we rested."},
+  {"speaker":"Evo","type":"pc","line":"Okay, that's what I was trying to figure out."},
+  {"speaker":"Malc Grann","type":"pc","line":"Yeah, yeah, yeah, you guys."},
+  {"speaker":"DM","type":"dm","line":"Oh, it was a short rest."},
+  {"speaker":"Evo","type":"pc","line":"Yeah, it's a short rest."},
+  {"speaker":"Izabella","type":"pc","line":"I found my stuff."},
+  {"speaker":"DM","type":"dm","line":"And yes, you guys were inside the catacombs exploring because you guys were on a quest to figure out where the poison that was affecting the well was coming from, because you guys released the lich, right?"},
+  {"speaker":"Evo","type":"pc","line":"I don't know why this is wrong. I shouldn't have any spell slots."},
+  {"speaker":"Izabella","type":"pc","line":"Oh yeah, and then there was a giant goblin. But were we doing a long rest inside the cave before we fight the giant goblin or no?"},
+  {"speaker":"DM","type":"dm","line":"No, you guys were debating whether to do a long rest or not."},
+  {"speaker":"Izabella","type":"pc","line":"Should we do a long rest, you guys?"},
+  {"speaker":"Evo","type":"pc","line":"No, we can't right now because there was something coming at us through this door."},
+  {"speaker":"Sekhmet","type":"pc","line":"Sounds like the perfect time to take a nap."},
+  {"speaker":"Izabella","type":"pc","line":"I really think that we should take a nappy poo."},
+  {"speaker":"Evo","type":"pc","line":"No, I remember us debating about the rest because I didn't have any spell slots, but we did heal up. I remembered that, so I was just trying to remember if it was a short or long."},
+  {"speaker":"Sekhmet","type":"pc","line":"I think we should just fuck up whatever it is."},
+  {"speaker":"Izabella","type":"pc","line":"Do I have any spell slots?"},
+  {"speaker":"Evo","type":"pc","line":"I ain't got no spells, Lieutenant Dan."},
+  {"speaker":"Izabella","type":"pc","line":"Do I have any spell slots?"},
+  {"speaker":"DM","type":"dm","line":"You have to check your Excel sheet."},
+  {"speaker":"Izabella","type":"pc","line":"I have an Excel sheet?"},
+  {"speaker":"Sekhmet","type":"pc","line":"How can we get this man some spell slots? Do we have a spell that gives spell slots?"},
+  {"speaker":"Evo","type":"pc","line":"Well, you definitely used the Wall of Fire thing when we were upstairs. And we have not gotten spells back since then, right?"},
+  {"speaker":"Izabella","type":"pc","line":"Okay, so I at least— I only have like 2. What do I have, 3 spell slots?"},
+  {"speaker":"Evo","type":"pc","line":"You want to take 5 and go run around?"},
+  {"speaker":"DM","type":"dm","line":"I think I read Catapult and you changed it for Tasha's Caustic Brew. So let me send this to you."},
+  {"speaker":"Sekhmet","type":"pc","line":"Okay, what are we doing? Are we trying the friendly approach? Are we going to fuck him up?"},
+  {"speaker":"Malc Grann","type":"pc","line":"Fuck some shit up."},
+  {"speaker":"Evo","type":"pc","line":"Well, it sounds like none of us can communicate with him, so plan B? I'm gonna toss a moose at him."},
+  {"speaker":"Sekhmet","type":"pc","line":"Alright, I've got the most health here. I'm just gonna go chat him up."},
+  {"speaker":"Izabella","type":"pc","line":"Okay. You should have sent me instead."},
+  {"speaker":"Sekhmet","type":"pc","line":"Nobody else was doing anything. I'm a social barbarian."},
+  {"speaker":"DM","type":"dm","line":"Roll persuasion."},
+  {"speaker":"Sekhmet","type":"pc","line":"That's a 20. 17."},
+  {"speaker":"Malc Grann","type":"pc","line":"Why do you keep rolling so well?"},
+  {"speaker":"Sekhmet","type":"pc","line":"Dude, I'm killing it today."},
+  {"speaker":"DM","type":"dm","line":"Alright, the goblin looks down at you and grunts in his language. You don't really understand what he's saying. But he's kind of grunting toward you and pointing toward the door."},
+  {"speaker":"Sekhmet","type":"pc","line":"He's grunting and pointing towards the door. Now, which door?"},
+  {"speaker":"DM","type":"dm","line":"That's the door you guys all came from."},
+  {"speaker":"Sekhmet","type":"pc","line":"Oh, so he's telling me to leave. But like, don't we need to go through here?"},
+  {"speaker":"DM","type":"dm","line":"To complete your quest, probably."},
+  {"speaker":"Sekhmet","type":"pc","line":"Oh, um, no. You got shit to do."},
+  {"speaker":"DM","type":"dm","line":"Alright, roll persuasion again."},
+  {"speaker":"Sekhmet","type":"pc","line":"Alright, my luck ran out, you guys."},
+  {"speaker":"Evo","type":"pc","line":"Can I Guidance him first?"},
+  {"speaker":"DM","type":"dm","line":"The goblin's going to slam his mace against the ground and point toward the door one last time."},
+  {"speaker":"Sekhmet","type":"pc","line":"Okay. Why doesn't the fairy come over here and try to talk some sense into him?"},
+  {"speaker":"Izabella","type":"pc","line":"I said I should do that way earlier, but everybody was like, no, Alex, you're the special one. Now is your time. Um, sir, if you could just let us squeeze through your thighs, we will be able to conduct our business and leave."},
+  {"speaker":"DM","type":"dm","line":"Izabella, please roll persuasion."},
+  {"speaker":"Izabella","type":"pc","line":"Oh shit. Can I roll again? That one didn't count, it was a practice run. A 20? Wow."},
+  {"speaker":"Sekhmet","type":"pc","line":"Oh, it hurts. It hurts."},
+  {"speaker":"Izabella","type":"pc","line":"I think he might have just insulted his mother."},
+  {"speaker":"DM","type":"dm","line":"So he's going to get mad. And he's going to attack."},
+  {"speaker":"Evo","type":"pc","line":"I'm going to quickly jump in front of her and put up my hands and try to apologize."},
+  {"speaker":"DM","type":"dm","line":"Roll charisma. Flat charisma."},
+  {"speaker":"Evo","type":"pc","line":"I rolled a 6."},
+  {"speaker":"DM","type":"dm","line":"Oh, hey — nat 20! Okay, Evo, you're gonna take 8 points of damage as he hits you with his mace. Wonderful."},
+  {"speaker":"Sekhmet","type":"pc","line":"I think we're gonna have to kill this guy, aren't we?"},
+  {"speaker":"DM","type":"dm","line":"Everyone is in combat."},
+  {"speaker":"Izabella","type":"pc","line":"Shit, okay. Now I roll good. God dang it."},
+  {"speaker":"Evo","type":"pc","line":"You are last in order, you gotta wait."},
+  {"speaker":"Izabella","type":"pc","line":"Again? Okay. I don't even remember what my spells do right now."},
+  {"speaker":"Izabella","type":"pc","line":"I think I'm gonna do Witch Bolt, I guess."},
+  {"speaker":"Evo","type":"pc","line":"Oh, hold on. I was just attacked, right? I'm gonna Wrath of the Storm him. So he attacks me, it hit me. I can use my reaction to make him make a Dexterity saving throw, taking 2d8 lightning."},
+  {"speaker":"DM","type":"dm","line":"17."},
+  {"speaker":"Evo","type":"pc","line":"17. Yeah, so he takes half. But I can use Channel Divinity when I roll thunder damage. I can do it to deal maximum instead of rolling. So it's 2d8 — he would take 8. Well, because he succeeded on the save, so he takes half. 4 to him."},
+  {"speaker":"DM","type":"dm","line":"Now it's back to Izabella."},
+  {"speaker":"Sekhmet","type":"pc","line":"Whatever it is, shoot it at his eye."},
+  {"speaker":"Izabella","type":"pc","line":"I'll do Witch Bolt. D20. Oh my God. Are you kidding me? A 2? Wow."},
+  {"speaker":"DM","type":"dm","line":"So your spell kind of fizzles out before you cast it. You're a little bit distracted by a bobby pin."},
+  {"speaker":"Izabella","type":"pc","line":"I'm so angry. That's a 1. I rolled a 1."},
+  {"speaker":"Sekhmet","type":"pc","line":"That's a solid attempt. We appreciate it."},
+  {"speaker":"DM","type":"dm","line":"Sekhmet, you're up."},
+  {"speaker":"Sekhmet","type":"pc","line":"Rage. I'm doing a ragey thing and I'm gonna rage on his fucking face. As aggressively as possible. It's gonna be properly disrespectful."},
+  {"speaker":"DM","type":"dm","line":"Got it. All over him."},
+  {"speaker":"Sekhmet","type":"pc","line":"So I roll a 20. With advantage, take the highest — 15. That hits."},
+  {"speaker":"DM","type":"dm","line":"You gotta roll your damage."},
+  {"speaker":"Sekhmet","type":"pc","line":"Damage is an 8. I think it's 1d8. 7 plus 3, 10."},
+  {"speaker":"DM","type":"dm","line":"So you deal 10 damage to the goblin on top. You smack your club against the goblin while raging, raging all over his face."},
+  {"speaker":"Sekhmet","type":"pc","line":"All over his face, dude."},
+  {"speaker":"DM","type":"dm","line":"Malc Grann, you're up."},
+  {"speaker":"Malc Grann","type":"pc","line":"I attack with my whip. Does a 16 hit?"},
+  {"speaker":"DM","type":"dm","line":"16 hits."},
+  {"speaker":"Malc Grann","type":"pc","line":"Beautiful. I deal a massive whopping 8 damage."},
+  {"speaker":"DM","type":"dm","line":"That's max damage."},
+  {"speaker":"Malc Grann","type":"pc","line":"That's actually rolled max."},
+  {"speaker":"DM","type":"dm","line":"Goblin's turn. Goblin's second attack is going to miss. Evo, you just saw the gnome whip the goblin up top and then the goblin missed both of his attacks."},
+  {"speaker":"Evo","type":"pc","line":"That goblin's shit."},
+  {"speaker":"Malc Grann","type":"pc","line":"I am a god."},
+  {"speaker":"DM","type":"dm","line":"The god just forced the goblin to miss."},
+  {"speaker":"Evo","type":"pc","line":"I'm gonna chug my healing potion."},
+  {"speaker":"DM","type":"dm","line":"They put a baby bottle bib on your potion so you don't drop it."},
+  {"speaker":"Evo","type":"pc","line":"What are they? 2d4 plus 2. 6. I have no reactions, so I'm just gonna sit here and cower."},
+  {"speaker":"Izabella","type":"pc","line":"Still, I guess I have to do a cantrip because obviously my spell slots are not hitting. Let's just go with Firebolt. Firebolt!"},
+  {"speaker":"Izabella","type":"pc","line":"Are you kidding me? A 2? Wow."},
+  {"speaker":"DM","type":"dm","line":"So you're going to try to cast, but it's going to miss."},
+  {"speaker":"Evo","type":"pc","line":"I shot and I missed, and I shot and I missed again."},
+  {"speaker":"Izabella","type":"pc","line":"Maybe I should have sat this one out, you guys."},
+  {"speaker":"DM","type":"dm","line":"You know what they say — it's time to change the color of your dice and reroll."},
+  {"speaker":"Izabella","type":"pc","line":"Oh, a 16! Okay, and I got 8 damage. 11 with my plus 3. I rolled a 19 and I got 8 damage."},
+  {"speaker":"DM","type":"dm","line":"So you managed to hit him."},
+  {"speaker":"Izabella","type":"pc","line":"Wow, a miracle."},
+  {"speaker":"DM","type":"dm","line":"Sekhmet, you're up."},
+  {"speaker":"Sekhmet","type":"pc","line":"I like what I've been doing, and I'm going to do that again. 14 plus 3 — 17 hits. Damage, 7 plus 3, 10. 10 again! Yeehaw!"},
+  {"speaker":"Evo","type":"pc","line":"Look at the consistent line, man."},
+  {"speaker":"DM","type":"dm","line":"You smack your club against the goblin again, all while raging, raging all over his face."},
+  {"speaker":"Malc Grann","type":"pc","line":"I whip it. Nat 20!"},
+  {"speaker":"Sekhmet","type":"pc","line":"Whipped the shit out of it."},
+  {"speaker":"Malc Grann","type":"pc","line":"That's double damage. 5 plus 7 — 12."},
+  {"speaker":"DM","type":"dm","line":"He is looking bloodied. Goblin's turn — he's gonna hit Evo but he's gonna miss. Again, second — also a miss. Now he'll use his lance attack against Evo — 6 points of damage."},
+  {"speaker":"Evo","type":"pc","line":"Goodbye healing potion. I'm Wrath of the Storming him again. 15. I got 16, so yes, he does take it. 2d8. 6, 7 — 7 to him."},
+  {"speaker":"DM","type":"dm","line":"Izabella, you're up."},
+  {"speaker":"Izabella","type":"pc","line":"I'm just gonna go with the Ray of Frost. 14. Does that hit?"},
+  {"speaker":"DM","type":"dm","line":"14 hits. 4 damage. Okay, describe the kill on the goblin."},
+  {"speaker":"Izabella","type":"pc","line":"The what? I'm sorry. Describe the kill? I use Ray of Frost and it hits him in the face and — I don't know, he dies."},
+  {"speaker":"Sekhmet","type":"pc","line":"His fucking face falls off."},
+  {"speaker":"Izabella","type":"pc","line":"Yeah, his face falls off. There you go."},
+  {"speaker":"DM","type":"dm","line":"The goblin's dead, but now the pet's angry."},
+  {"speaker":"Sekhmet","type":"pc","line":"Can we give him a hug?"},
+  {"speaker":"DM","type":"dm","line":"No, he just got blasted by lightning breath."},
+  {"speaker":"Evo","type":"pc","line":"Oh, goddammit."},
+  {"speaker":"Izabella","type":"pc","line":"How about I give him a snacky and see what happens?"},
+  {"speaker":"Evo","type":"pc","line":"Oh, it's a real shame you can't just give them all the bones in my pouch. I've got large bones, femurs, rib cages, goblin skulls."},
+  {"speaker":"Sekhmet","type":"pc","line":"We're gonna have to kill the beast."},
+  {"speaker":"Evo","type":"pc","line":"We're snackless."},
+  {"speaker":"DM","type":"dm","line":"Alright, Sekhmet, you're up."},
+  {"speaker":"Sekhmet","type":"pc","line":"I'm gonna hug the beast."},
+  {"speaker":"Evo","type":"pc","line":"Are you going to hug the monster?"},
+  {"speaker":"Sekhmet","type":"pc","line":"I'm gonna hug it. You do what you want. I'm gonna hug it."},
+  {"speaker":"DM","type":"dm","line":"Animal handling with disadvantage."},
+  {"speaker":"Sekhmet","type":"pc","line":"10 and a 5. Plus 3 modifier — Animal Handling +3. Let's fucking go. I have an 8."},
+  {"speaker":"DM","type":"dm","line":"You're gonna hug it. You are definitely hugging it. Make sure to roll that strength saving throw. You're gonna take 8 points of damage as he bear hugs you back."},
+  {"speaker":"Izabella","type":"pc","line":"He hugs you back. Is that a hug of affection?"},
+  {"speaker":"Sekhmet","type":"pc","line":"Aww, I can do that. He reciprocated."},
+  {"speaker":"DM","type":"dm","line":"Malc Grann's turn."},
+  {"speaker":"Malc Grann","type":"pc","line":"Get down, you beastie! I'm gonna whip this thing into submission. Let's go, doggy daddy, let's go!"},
+  {"speaker":"DM","type":"dm","line":"Roll animal handling. Well, you beat it, so I guess you calm it down for a little bit. Affection went down. It will remember that."},
+  {"speaker":"Evo","type":"pc","line":"I'll try to use positive reinforcement, unlike others. I'm gonna throw him a femur and try to pat him on the head."},
+  {"speaker":"DM","type":"dm","line":"Roll animal handling."},
+  {"speaker":"Evo","type":"pc","line":"18."},
+  {"speaker":"DM","type":"dm","line":"Okay, its affection went up."},
+  {"speaker":"Evo","type":"pc","line":"And I am minusing 1 femur. I have 3 left."},
+  {"speaker":"Sekhmet","type":"pc","line":"We could sneak around him while he's distracted and see what's behind him."},
+  {"speaker":"DM","type":"dm","line":"You can do that."},
+  {"speaker":"Evo","type":"pc","line":"You've started this, lion man. We're going to finish this."},
+  {"speaker":"Izabella","type":"pc","line":"I have Friend of the Forest. I have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words. I have advantage on all persuasion checks I make to influence them. I can just talk to him."},
+  {"speaker":"Izabella","type":"pc","line":"Hey friend — we've got some bones for you to follow. Would you like to come with us? Relax him, calm him down, make him a little less on edge and have him follow the bones."},
+  {"speaker":"DM","type":"dm","line":"Go ahead and roll your persuasion with advantage."},
+  {"speaker":"Izabella","type":"pc","line":"A 13 and a 19."},
+  {"speaker":"DM","type":"dm","line":"So you managed to convince the creature to follow the bones."},
+  {"speaker":"Evo","type":"pc","line":"I'm going to use the large bones and make a little trail. Excuse me. Excuse me. I'm in this corner now."},
+  {"speaker":"Sekhmet","type":"pc","line":"Alright, so there's a hole over here."},
+  {"speaker":"Izabella","type":"pc","line":"Yay! Good job, uh — okay, so can we leave now?"},
+  {"speaker":"DM","type":"dm","line":"Yeah, you can leave or you can go down the hole."},
+  {"speaker":"Evo","type":"pc","line":"Where is the Goblin King's body?"},
+  {"speaker":"DM","type":"dm","line":"It is dangling off of the creature's back with half of its upper body."},
+  {"speaker":"Evo","type":"pc","line":"Is it dangling close enough that I can grab something?"},
+  {"speaker":"DM","type":"dm","line":"You can grab the frozen crown. And sure — roll a strength check if you can rip the frozen upper body off."},
+  {"speaker":"Evo","type":"pc","line":"Not great."},
+  {"speaker":"DM","type":"dm","line":"Okay, so as you try to rip it off, you only managed to rip off the skull. So all you got was a skull."},
+  {"speaker":"Sekhmet","type":"pc","line":"Hey, you got a skull. Better than nothing."},
+  {"speaker":"Evo","type":"pc","line":"Alright, so now I have a hobgoblin skull and a goblin skull."},
+  {"speaker":"Izabella","type":"pc","line":"Come in the hole!"},
+  {"speaker":"DM","type":"dm","line":"Alright, so she went into the hole without the rest of you."},
+  {"speaker":"Sekhmet","type":"pc","line":"Let's go, everybody go, because she can fly and we can't."},
+  {"speaker":"Evo","type":"pc","line":"I'm injured. I'm glad we're jumping in this hole right now. Oh, I'm in danger."},
+  {"speaker":"DM","type":"dm","line":"You see a portal in front of you, as well as what looks to be a ritual pot. This seems to be the source of the corruption. However, it looks to be inert right now, so you have a moment to catch a rest. You all also level up to level 3."},
+  {"speaker":"Izabella","type":"pc","line":"Yay, we leveled up! What happens now? But what do we do? What happens when you level up? I forgot."},
+  {"speaker":"DM","type":"dm","line":"Lots of things happen. Level 3 is like the level."},
+  {"speaker":"Sekhmet","type":"pc","line":"Mm-hmm. Oh, this is gonna be a good one."},
+  {"speaker":"Izabella","type":"pc","line":"Okay, I think maybe we pause here. That was a good hour or so game, and maybe next time Itty can join."},
+  {"speaker":"Sekhmet","type":"pc","line":"Yeah, they gotta wake up and come join the party."},
+  {"speaker":"Izabella","type":"pc","line":"I think we wait to level up until next run too."},
+  {"speaker":"DM","type":"dm","line":"That's fine. Well, 2 of you can level up because 2 of you already know what you guys want."},
+  {"speaker":"Izabella","type":"pc","line":"I don't know what I want yet."},
+  {"speaker":"DM","type":"dm","line":"You're not part of the 2."},
+  {"speaker":"Evo","type":"pc","line":"You might not want to wait until next time, Alex, and you might want to actually look into this before the next game if you don't want to do it right now."},
+  {"speaker":"DM","type":"dm","line":"Hell yeah, because level 3 is also when you unlock new spells, so you can ready up."},
+  {"speaker":"Izabella","type":"pc","line":"Okay, perfect."},
+  {"speaker":"Sekhmet","type":"pc","line":"Do your homework."},
+  {"speaker":"Izabella","type":"pc","line":"I will do my homework. All right, well, thanks for game. It was nice to get back into it, everyone, even though I rolled like ass the whole game."},
+  {"speaker":"Sekhmet","type":"pc","line":"That makes it fun."},
+  {"speaker":"Izabella","type":"pc","line":"Okay, and I'm gonna stop the recording now."}
+]
+</script>
+
+<script>
+// ── DARK MODE ──
+(function(){
+  var s = localStorage.getItem('chronicle-dark');
+  if(s === 'true') document.body.classList.add('dark');
+})();
+document.getElementById('dark-toggle-btn').addEventListener('click', function(){
+  document.body.classList.toggle('dark');
+  localStorage.setItem('chronicle-dark', document.body.classList.contains('dark'));
+  this.querySelector('.toggle-label').textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+});
+
+// ── SCROLL FADE-IN ──
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(function(el){ observer.observe(el); });
+
+// ── TRANSCRIPT ──
+var tData = JSON.parse(document.getElementById('t-data').textContent);
+var isFormatted = true;
+var isExpanded = false;
+var currentQuery = '';
+
+function toggleTranscript(){
+  var sec = document.getElementById('transcript-section');
+  sec.classList.toggle('open');
+  if(sec.classList.contains('open') && !document.getElementById('t-formatted').innerHTML){
+    renderFormatted(tData);
+    renderRaw(tData);
+  }
+}
+
+function renderFormatted(data){
+  var html = '';
+  var pcColors = {
+    'Izabella':'pc','Sekhmet':'pc','Evo':'pc','Malc Grann':'pc',
+    'Fable':'pc','Accel Signal':'pc','Raven':'pc'
+  };
+  data.forEach(function(d){
+    var cls = d.type === 'dm' ? 'dm' : 'pc';
+    var lineCls = d.type === 'dm' ? 't-line dm-line' : 't-line';
+    html += '<div class="t-speaker-block">';
+    html += '<div class="t-name ' + cls + '">' + esc(d.speaker) + '</div>';
+    html += '<div class="' + lineCls + '">' + esc(d.line) + '</div>';
+    html += '</div>';
+  });
+  document.getElementById('t-formatted').innerHTML = html;
+}
+
+function renderRaw(data){
+  var text = data.map(function(d){ return d.speaker + ': ' + d.line; }).join('\n\n');
+  document.getElementById('t-raw-pre').textContent = text;
+}
+
+function esc(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleFormat(){
+  isFormatted = true;
+  document.getElementById('t-formatted').style.display = '';
+  document.getElementById('t-raw').style.display = 'none';
+  document.getElementById('fmt-btn').classList.add('on');
+  document.getElementById('raw-btn').classList.remove('on');
+  if(currentQuery) searchTranscript(currentQuery);
+}
+
+function toggleRaw(){
+  isFormatted = false;
+  document.getElementById('t-formatted').style.display = 'none';
+  document.getElementById('t-raw').style.display = '';
+  document.getElementById('fmt-btn').classList.remove('on');
+  document.getElementById('raw-btn').classList.add('on');
+  if(currentQuery) searchTranscript(currentQuery);
+}
+
+function searchTranscript(q){
+  currentQuery = q;
+  var countEl = document.getElementById('search-count');
+  if(!q){ renderFormatted(tData); countEl.textContent = ''; return; }
+  var lower = q.toLowerCase();
+  var matches = 0;
+  var html = '';
+  tData.forEach(function(d){
+    var haystack = (d.speaker + ' ' + d.line).toLowerCase();
+    if(haystack.indexOf(lower) === -1) return;
+    var cls = d.type === 'dm' ? 'dm' : 'pc';
+    var lineCls = d.type === 'dm' ? 't-line dm-line' : 't-line';
+    var highlighted = esc(d.line).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'), function(m){ return '<mark>' + m + '</mark>'; });
+    html += '<div class="t-speaker-block">';
+    html += '<div class="t-name ' + cls + '">' + esc(d.speaker) + '</div>';
+    html += '<div class="' + lineCls + '">' + highlighted + '</div>';
+    html += '</div>';
+    matches++;
+  });
+  document.getElementById('t-formatted').innerHTML = html || '<div style="padding:20px;font-family:\'IM Fell English\',serif;color:var(--primary-dim);font-style:italic;">No matches found.</div>';
+  countEl.textContent = matches + ' match' + (matches !== 1 ? 'es' : '') + ' for “' + q + '”';
+}
+
+function toggleExpand(){
+  var scroll = document.getElementById('t-scroll');
+  var fade = document.getElementById('t-fade');
+  var btn = document.getElementById('expand-btn');
+  isExpanded = !isExpanded;
+  scroll.classList.toggle('expanded', isExpanded);
+  fade.classList.toggle('hidden', isExpanded);
+  btn.textContent = isExpanded ? 'Collapse Transcript' : 'Expand Full Transcript';
+}
+</script>
+</body>
+</html>
